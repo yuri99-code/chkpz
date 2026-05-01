@@ -1,0 +1,1476 @@
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777143779, '')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:02:59] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: ToDoItem from mysql.todoitem
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: ToDoItem from mysql.todoitem
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: ToDoItem from mysql.todoitem
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1643) Could not load class ToDoItem
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: ToDoItem from mysql.todoitem
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 787) ToDoItem::getSelectColumns() is not a valid static method.
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: ToDoItem from mysql.todoitem
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 787) ToDoItem::loadCollection() is not a valid static method.
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144105, '')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:08:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_site_content' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144143, '')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:09:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144289, '')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:29] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_site_content' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144293, '')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:11:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_site_content' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144713, '')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('error.modError', '3.0', 'Replace references to class error.modError with MODX\\Revolution\\Error\\modError to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('rest.modRestService', '3.0', 'Replace references to class rest.modRestService with MODX\\Revolution\\Rest\\modRestService to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:33] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_deprecated_method` (`definition`, `since`, `recommendation`) VALUES ('modResource', '3.0', 'Replace references to class modResource with MODX\\Revolution\\modResource to take advantage of PSR-4 autoloading.')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_deprecated_method' doesn't exist
+)
+
+[2026-04-25 19:18:42] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:42] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:42] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144722, 'modx.user.contextTokens|a:0:{}')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:45] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:45] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-04-25 19:18:45] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-04-25 19:18:45] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-04-25 19:18:45] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-04-25 19:18:45] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:18:45] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144725, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:19:17] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:19:17] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-04-25 19:19:17] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-04-25 19:19:17] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-04-25 19:19:17] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:19:17] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144757, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:19:36] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:19:37] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-04-25 19:19:37] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('1f7abafb036eac638e2d27604059602f', 1777144777, 'modx.user.contextTokens|a:0:{}')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+

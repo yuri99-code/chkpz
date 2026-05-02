@@ -1,0 +1,55 @@
+@use "mixins";
+
+%d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%d-flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%colored-wrapper {
+  padding: mixins.adaptiveValue(4, 8);
+  border: 1px solid var(--white-color);
+  background-color: var(--secondary-color);
+  border-radius: 100px;
+}
+
+%border-radius {
+  border-radius: mixins.adaptiveValue(24, 32);
+}
+
+%label {
+  margin: auto;
+  padding: mixins.adaptiveValue(8, 14) mixins.adaptiveValue(16, 24);
+  width: fit-content;
+  font-size: mixins.adaptiveValue(14, 24);
+  font-weight: 500;
+  line-height: 120%;
+  color: var(--accent-color);
+  background-color: var(--secondary-color);
+  border-radius: 100px;
+}
+
+%colored-text {
+  padding-bottom: 10px;
+  color: var(--accent-color);
+  background-image: url("../images/yellow-line.svg");
+  background-position: 0 mixins.adaptiveValue(27, 60);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+%plus-icon {
+  width: mixins.adaptiveValue(20, 40);
+  height: mixins.adaptiveValue(20, 40);
+}
+
+%text {
+  font-size: mixins.adaptiveValue(14, 24);
+  line-height: 130%;
+}

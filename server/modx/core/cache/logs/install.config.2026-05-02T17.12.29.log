@@ -1,0 +1,1 @@
+[2026-05-02 17:12:29] (ERROR in xPDO\xPDOConnection::connect @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDOConnection.php : 89) SQLSTATE[HY000] [1045] Access denied for user ''@'192.168.16.3' (using password: NO)

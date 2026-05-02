@@ -235,7 +235,7 @@
   'use_weblink_target' => '',
   'welcome_action' => 'welcome',
   'welcome_namespace' => 'core',
-  'welcome_screen' => '1',
+  'welcome_screen' => '',
   'welcome_screen_url' => '//misc.modx.com/revolution/welcome.31.html',
   'which_editor' => '',
   'which_element_editor' => '',

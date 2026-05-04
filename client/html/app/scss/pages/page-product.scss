@@ -1,0 +1,21 @@
+@use "../vars";
+@use "../mixins";
+
+.product {
+  &-img {
+    @extend %img-cover;
+  }
+
+  &-title {
+    text-align: center;
+  }
+
+  &-text {
+    text-align: center;
+  }
+
+  &-subtitle {
+    font-weight: 600;
+    font-size: 20px;
+  }
+}

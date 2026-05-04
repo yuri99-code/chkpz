@@ -2,7 +2,7 @@
 @use "../mixins";
 
 .top {
-  padding: mixins.adaptiveValue(100, 400) 0;
+  padding: mixins.adaptiveValue(100, 300) 0;
   background-image: linear-gradient(rgba(107, 84, 34, 0.9), rgba(102, 59, 24, 0.4)), url("../../images/top-bg.webp");
   background-position: center;
   background-repeat: no-repeat;
@@ -24,20 +24,16 @@
     text-align: center;
   }
 
-  &__links {
-    @extend %d-flex-center;
-    text-align: center;
-  }
-
   &-link {
     padding: mixins.adaptiveValue(10, 15) mixins.adaptiveValue(40, 70);
+    display: block;
     font-size: 22px;
     color: white;
+    text-align: center;
     background-color: #1f3e83;
   }
 
   &-link--white {
-    margin-right: 15px;
     color: var(--black-color);
     background-color: white;
   }

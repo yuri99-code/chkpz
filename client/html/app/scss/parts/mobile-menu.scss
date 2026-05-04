@@ -14,7 +14,7 @@
 
   &__wrapper {
     padding: 50px 12px;
-    background-color: var(--primary-color);
+    background-color: var(--white-color);
     border-radius: 0 0 32px 32px;
   }
 
@@ -46,7 +46,8 @@
     background-color: var(--accent-color);
   }
 
-  &__btn {
-    font-size: 0.875rem;
+  &-phone {
+    display: block;
+    text-align: center;
   }
 }

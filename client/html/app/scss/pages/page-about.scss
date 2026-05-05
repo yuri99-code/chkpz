@@ -1,18 +1,34 @@
 @use "../vars";
 @use "../mixins";
 
-.about {
-  &__top {
-    padding: mixins.adaptiveValue(40, 80) 0;
-    background-image: linear-gradient(rgba(107, 84, 34, 0.9), rgba(102, 59, 24, 0.4)), url("../../images/top-bg.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.page-about {
+  .about {
+    &__top {
+      padding: mixins.adaptiveValue(40, 80) 0;
+      background-image: linear-gradient(rgba(107, 84, 34, 0.9), rgba(102, 59, 24, 0.4)), url("../../images/top-bg.webp");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
 
-    &-title {
-      font-size: mixins.adaptiveValue(24, 62);
-      color: white;
-      text-align: center;
+      &-title {
+        font-size: mixins.adaptiveValue(24, 62);
+        color: white;
+        text-align: center;
+      }
+    }
+
+    &__item-title {
+      font-size: mixins.adaptiveValue(24, 30);
+      font-weight: 600;
+      color: var(--black-color);
+    }
+
+    &__item-text {
+      line-height: 26px;
+    }
+
+    &-img {
+      @extend %img-cover;
     }
   }
 }

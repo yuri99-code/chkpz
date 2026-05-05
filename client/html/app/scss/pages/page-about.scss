@@ -2,5 +2,17 @@
 @use "../mixins";
 
 .about {
+  &__top {
+    padding: mixins.adaptiveValue(40, 80) 0;
+    background-image: linear-gradient(rgba(107, 84, 34, 0.9), rgba(102, 59, 24, 0.4)), url("../../images/top-bg.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
+    &-title {
+      font-size: mixins.adaptiveValue(24, 62);
+      color: white;
+      text-align: center;
+    }
+  }
 }

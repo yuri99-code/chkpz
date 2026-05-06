@@ -1,0 +1,11 @@
+@use "../vars";
+@use "../mixins";
+
+.footer {
+  padding: mixins.adaptiveValue(10, 30);
+  background-color: var(--bg-grey-color);
+
+  &-text {
+    text-align: center;
+  }
+}

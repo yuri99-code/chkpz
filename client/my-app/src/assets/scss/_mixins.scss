@@ -1,0 +1,11 @@
+@function adaptiveValue($min, $max) {
+  @return clamp(
+          calc($min * 1px),
+          calc(
+                  $min * 1px +
+                  ($max - $min) *
+                  ((100vw - (var(--min-screen) * 1px)) / (var(--max-screen) - var(--min-screen)))
+          ),
+          calc($max * 1px)
+  );
+}

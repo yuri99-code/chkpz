@@ -1,0 +1,20 @@
+@use "../vars";
+@use "../mixins";
+
+.card {
+  display: block;
+
+  &-img {
+    @extend %img-cover;
+  }
+
+  &-title {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &-text {
+    text-align: center;
+  }
+}

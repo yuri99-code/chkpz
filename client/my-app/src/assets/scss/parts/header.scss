@@ -1,0 +1,34 @@
+@use "../vars";
+@use "../mixins";
+
+.header {
+  padding: mixins.adaptiveValue(10, 30) mixins.adaptiveValue(20, 150);
+
+  &__inner {
+    @extend %d-flex-between-center;
+  }
+
+  &__list {
+    @extend %d-flex-center;
+  }
+
+  &__item {
+    margin-right: 15px;
+  }
+
+  &__logo-img {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  &__burger {
+    width: 20px;
+  }
+
+  &__burger-item {
+    margin-bottom: 5px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--black-color);
+  }
+}

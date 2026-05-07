@@ -1,4 +1,19 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 function Index() {
+    const partners = [
+        '/images/partner-1.png',
+        '/images/partner-2.jpg',
+        '/images/partner-3.webp',
+        '/images/partner-1.png',
+        '/images/partner-2.jpg',
+        '/images/partner-3.webp',
+    ];
+
     return (
         <>
             <section>
@@ -32,7 +47,7 @@ function Index() {
                         <div className="row">
                             <a href="" className="col-12 col-lg-6 mb-5">
                                 <div className="products__item-image">
-                                    <img src="./images/product.jpg" alt=""
+                                    <img src="/images/product.jpg" alt=""
                                          className="products__item-img"/>
                                 </div>
                                 <div className="products__item-title">Поковки и
@@ -41,7 +56,7 @@ function Index() {
                             </a>
                             <a href="" className="col-12 col-lg-6 mb-5">
                                 <div className="products__item-image">
-                                    <img src="./images/product.jpg" alt=""
+                                    <img src="/images/product.jpg" alt=""
                                          className="products__item-img"/>
                                 </div>
                                 <div className="products__item-title">Поковки и
@@ -50,7 +65,7 @@ function Index() {
                             </a>
                             <a href="" className="col-12 col-lg-6 mb-5">
                                 <div className="products__item-image">
-                                    <img src="./images/product.jpg" alt=""
+                                    <img src="/images/product.jpg" alt=""
                                          className="products__item-img"/>
                                 </div>
                                 <div className="products__item-title">Поковки и
@@ -59,7 +74,7 @@ function Index() {
                             </a>
                             <a href="" className="col-12 col-lg-6 mb-5">
                                 <div className="products__item-image">
-                                    <img src="./images/product.jpg" alt=""
+                                    <img src="/images/product.jpg" alt=""
                                          className="products__item-img"/>
                                 </div>
                                 <div className="products__item-title">Поковки и
@@ -95,74 +110,29 @@ function Index() {
             <section>
                 <div className="partners">
                     <h2 className="partners-title">Наши партнеры</h2>
-                    <div className="swiper">
-                        <div className="swiper-wrapper">
-                            <div className="swiper-slide">
+                    <Swiper
+                        modules={ [ Pagination ] }
+                        slidesPerView={ 3 }
+                        spaceBetween={ 50 }
+                        loop
+                        centeredSlides
+                        grabCursor
+                        pagination={ {
+                            clickable: true,
+                        } }
+                    >
+                        { partners.map( ( image, index ) => (
+                            <SwiperSlide key={ index }>
                                 <div className="partners__slide-image">
-                                    <img src="images/partner-1.png" alt=""
-                                         className="partners__slide-img"/>
+                                    <img
+                                        src={ image }
+                                        alt=""
+                                        className="partners__slide-img"
+                                    />
                                 </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-2.jpg" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-3.webp" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-1.png" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-2.jpg" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-3.webp" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-1.png" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-2.jpg" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-slide">
-                                <div className="partners__slide-image">
-                                    <img src="images/partner-3.webp" alt=""
-                                         className="partners__slide-img"/>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="swiper-pagination"></div>
-                    </div>
+                            </SwiperSlide>
+                        ) ) }
+                    </Swiper>
                 </div>
             </section>
 
@@ -177,7 +147,7 @@ function Index() {
                                     className="row mb-5 justify-content-center">
                                     <div className="col-3 col-lg-2">
                                         <img
-                                            src="images/head_planning_process.svg"
+                                            src="/images/head_planning_process.svg"
                                             alt="" className="advantages-icon"/>
                                     </div>
                                     <div className="col-6">
@@ -194,7 +164,8 @@ function Index() {
                                 <div
                                     className="row mb-5 justify-content-center">
                                     <div className="col-3 col-lg-2">
-                                        <img src="images/safe_safety.svg" alt=""
+                                        <img src="/images/safe_safety.svg"
+                                             alt=""
                                              className="advantages-icon"/>
                                     </div>
                                     <div className="col-6">
@@ -211,7 +182,7 @@ function Index() {
                                 <div
                                     className="row mb-5 justify-content-center">
                                     <div className="col-3 col-lg-2">
-                                        <img src="images/speed_time_fast.svg"
+                                        <img src="/images/speed_time_fast.svg"
                                              alt=""
                                              className="advantages-icon"/>
                                     </div>
@@ -229,7 +200,7 @@ function Index() {
                             </div>
                             <div className="col-12 col-lg-6">
                                 <div className="advantages__image">
-                                    <img src="images/advantages.jpg" alt=""
+                                    <img src="/images/advantages.jpg" alt=""
                                          className="advantages-img"/>
                                 </div>
                             </div>

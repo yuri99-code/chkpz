@@ -3,6 +3,8 @@ import { Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Header from '../parts/Header.jsx';
+import Footer from '../parts/Footer.jsx';
 
 function Index() {
     const partners = [
@@ -16,6 +18,7 @@ function Index() {
 
     return (
         <>
+            <Header/>
             <section>
                 <div className="top">
                     <div className="app-container">
@@ -239,6 +242,7 @@ function Index() {
                     </div>
                 </div>
             </section>
+            <Footer/>
         </>
     );
 }

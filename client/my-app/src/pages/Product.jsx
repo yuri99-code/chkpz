@@ -1,6 +1,11 @@
+import Header from '../parts/Header.jsx';
+import Footer from '../parts/Footer.jsx';
+
 function Product() {
     return (
         <>
+            <Header/>
+
             <section>
                 <div className="product">
                     <div className="app-container">
@@ -63,6 +68,8 @@ function Product() {
                     </div>
                 </div>
             </section>
+
+            <Footer/>
         </>
     );
 }

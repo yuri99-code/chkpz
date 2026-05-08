@@ -1,16 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.scss'
-import Index from "./pages/Index.jsx";
-import Header from './parts/Header.jsx';
-import Footer from './parts/Footer.jsx';
+import AppRouter from './components/AppRouter.jsx';
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <>
-        <Header />
-        <Index/>
-        <Footer />
-    </>
+      <BrowserRouter>
+          <AppRouter />
+      </BrowserRouter>
   )
 }
 

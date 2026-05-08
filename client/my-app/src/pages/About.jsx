@@ -1,6 +1,11 @@
+import Header from '../parts/Header.jsx';
+import Footer from '../parts/Footer.jsx';
+
 function About() {
     return (
         <>
+            <Header/>
+
             <section className="page-about">
                 <div className="about__top mb-5">
                     <h1 className="about__top-title">О нас</h1>
@@ -228,6 +233,8 @@ function About() {
                     </div>
                 </div>
             </section>
+
+            <Footer/>
         </>
     );
 }

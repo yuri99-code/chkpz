@@ -1,6 +1,11 @@
+import Header from '../parts/Header.jsx';
+import Footer from '../parts/Footer.jsx';
+
 function Catalog() {
     return (
         <>
+            <Header/>
+
             <section>
                 <div className="app-container">
                     <div className="row">
@@ -106,6 +111,8 @@ function Catalog() {
                     </div>
                 </div>
             </section>
+
+            <Footer/>
         </>
     );
 }

@@ -1,6 +1,10 @@
+import Footer from '../parts/Footer.jsx';
+import Header from '../parts/Header.jsx';
+
 function Contacts() {
     return (
         <>
+            <Header/>
 
             <section>
                 <div className="contacts">
@@ -47,6 +51,8 @@ function Contacts() {
                     </div>
                 </div>
             </section>
+
+            <Footer/>
         </>
     );
 }

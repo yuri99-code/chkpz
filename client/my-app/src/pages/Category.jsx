@@ -1,6 +1,11 @@
+import Footer from '../parts/Footer.jsx';
+import Header from '../parts/Header.jsx';
+
 function Category() {
     return (
         <>
+            <Header/>
+
             <section>
                 <div className="app-container">
                     <div className="row">
@@ -70,6 +75,8 @@ function Category() {
                     </div>
                 </div>
             </section>
+
+            <Footer/>
         </>
     );
 }

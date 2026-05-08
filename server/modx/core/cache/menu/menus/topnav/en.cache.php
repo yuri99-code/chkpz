@@ -1,7 +1,7 @@
 <?php  return array (
   0 => 
   array (
-    'text' => 'site',
+    'text' => 'Content',
     'parent' => 'topnav',
     'action' => '',
     'description' => '',
@@ -16,10 +16,10 @@
     array (
       0 => 
       array (
-        'text' => 'new_resource',
+        'text' => 'Create Resource',
         'parent' => 'site',
         'action' => 'resource/create',
-        'description' => 'new_resource_desc',
+        'description' => 'Create a Resource — usually a web page',
         'icon' => '',
         'menuindex' => 0,
         'params' => '',
@@ -34,10 +34,10 @@
       ),
       1 => 
       array (
-        'text' => 'refresh_site',
+        'text' => 'Clear Cache',
         'parent' => 'site',
         'action' => '',
-        'description' => 'refresh_site_desc',
+        'description' => 'Delete Cache files in all Contexts',
         'icon' => '',
         'menuindex' => 1,
         'params' => '',
@@ -49,10 +49,10 @@
         array (
           0 => 
           array (
-            'text' => 'refreshuris',
+            'text' => 'Refresh URIs',
             'parent' => 'refresh_site',
             'action' => '',
-            'description' => 'refreshuris_desc',
+            'description' => 'Regenerate system Resource URIs.',
             'icon' => '',
             'menuindex' => 0,
             'params' => '',
@@ -70,10 +70,10 @@
       ),
       2 => 
       array (
-        'text' => 'remove_locks',
+        'text' => 'Delete Locks',
         'parent' => 'site',
         'action' => '',
-        'description' => 'remove_locks_desc',
+        'description' => 'Delete all locks on Manager pages',
         'icon' => '',
         'menuindex' => 2,
         'params' => '',
@@ -88,10 +88,10 @@
       ),
       3 => 
       array (
-        'text' => 'site_schedule',
+        'text' => 'Site Schedule',
         'parent' => 'site',
         'action' => 'resource/site_schedule',
-        'description' => 'site_schedule_desc',
+        'description' => 'View Resources with upcoming publish or unpublish dates.',
         'icon' => '',
         'menuindex' => 3,
         'params' => '',
@@ -106,10 +106,10 @@
       ),
       4 => 
       array (
-        'text' => 'content_types',
+        'text' => 'Content Types',
         'parent' => 'site',
         'action' => 'system/contenttype',
-        'description' => 'content_types_desc',
+        'description' => 'Add content types for resources, such as .html, .js, etc.',
         'icon' => '',
         'menuindex' => 4,
         'params' => '',
@@ -124,10 +124,10 @@
       ),
       5 => 
       array (
-        'text' => 'trash',
+        'text' => 'Trash',
         'parent' => 'site',
         'action' => 'resource/trash',
-        'description' => 'trash_desc',
+        'description' => 'Manage deleted resources.',
         'icon' => '',
         'menuindex' => 5,
         'params' => '',
@@ -145,7 +145,7 @@
   ),
   1 => 
   array (
-    'text' => 'Медиа',
+    'text' => 'Media',
     'parent' => 'topnav',
     'action' => '',
     'description' => '',
@@ -160,10 +160,10 @@
     array (
       0 => 
       array (
-        'text' => 'file_browser',
+        'text' => 'Media Browser',
         'parent' => 'media',
         'action' => 'media/browser',
-        'description' => 'file_browser_desc',
+        'description' => 'View, upload and manage media',
         'icon' => '',
         'menuindex' => 0,
         'params' => '',
@@ -178,10 +178,10 @@
       ),
       1 => 
       array (
-        'text' => 'sources',
+        'text' => 'Media Sources',
         'parent' => 'media',
         'action' => 'source',
-        'description' => 'sources_desc',
+        'description' => 'Media sources for use of media from remote services or servers',
         'icon' => '',
         'menuindex' => 1,
         'params' => '',
@@ -199,7 +199,7 @@
   ),
   2 => 
   array (
-    'text' => 'components',
+    'text' => 'Extras',
     'parent' => 'topnav',
     'action' => '',
     'description' => '',
@@ -214,10 +214,10 @@
     array (
       0 => 
       array (
-        'text' => 'installer',
+        'text' => 'Installer',
         'parent' => 'components',
         'action' => 'workspaces',
-        'description' => 'installer_desc',
+        'description' => 'Manage Add-ons and Distributions',
         'icon' => '',
         'menuindex' => 0,
         'params' => '',

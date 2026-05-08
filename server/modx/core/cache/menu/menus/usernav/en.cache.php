@@ -1,7 +1,7 @@
 <?php  return array (
   0 => 
   array (
-    'text' => 'user',
+    'text' => 'User',
     'parent' => 'usernav',
     'action' => '',
     'description' => '',
@@ -19,7 +19,7 @@
         'text' => '{$username}',
         'parent' => 'user',
         'action' => 'security/profile',
-        'description' => 'profile_desc',
+        'description' => 'Edit account email, password or info',
         'icon' => '',
         'menuindex' => 0,
         'params' => '',
@@ -34,10 +34,10 @@
       ),
       1 => 
       array (
-        'text' => 'messages',
+        'text' => 'Messages',
         'parent' => 'user',
         'action' => 'security/message',
-        'description' => 'messages_desc',
+        'description' => 'View and send messages',
         'icon' => '',
         'menuindex' => 1,
         'params' => '',
@@ -52,10 +52,10 @@
       ),
       2 => 
       array (
-        'text' => 'Выйти',
+        'text' => 'Logout',
         'parent' => 'user',
         'action' => 'security/logout',
-        'description' => 'logout_desc',
+        'description' => 'Log out of the Manager',
         'icon' => '',
         'menuindex' => 2,
         'params' => '',
@@ -73,7 +73,7 @@
   ),
   1 => 
   array (
-    'text' => 'Доступ',
+    'text' => 'Access',
     'parent' => 'usernav',
     'action' => '',
     'description' => '',
@@ -88,10 +88,10 @@
     array (
       0 => 
       array (
-        'text' => 'users',
+        'text' => 'Users',
         'parent' => 'access',
         'action' => 'security/user',
-        'description' => 'user_management_desc',
+        'description' => 'Manage Users and their Permissions',
         'icon' => '',
         'menuindex' => 0,
         'params' => '',
@@ -106,10 +106,10 @@
       ),
       1 => 
       array (
-        'text' => 'Группы ресурсов',
+        'text' => 'Resource Groups',
         'parent' => 'access',
         'action' => 'security/resourcegroup',
-        'description' => 'resource_groups_desc',
+        'description' => 'Assign Resources to Groups',
         'icon' => '',
         'menuindex' => 1,
         'params' => '',
@@ -124,10 +124,10 @@
       ),
       2 => 
       array (
-        'text' => 'acls',
+        'text' => 'Access Control Lists',
         'parent' => 'access',
         'action' => 'security/permission',
-        'description' => 'acls_desc',
+        'description' => 'Manage Permissions through Groups, Roles and Access Policies',
         'icon' => '',
         'menuindex' => 2,
         'params' => '',
@@ -142,10 +142,10 @@
       ),
       3 => 
       array (
-        'text' => 'flush_access',
+        'text' => 'Flush Your Permissions',
         'parent' => 'access',
         'action' => '',
-        'description' => 'flush_access_desc',
+        'description' => 'Reload this session’s Permissions',
         'icon' => '',
         'menuindex' => 3,
         'params' => '',
@@ -171,10 +171,10 @@
       ),
       4 => 
       array (
-        'text' => 'flush_sessions',
+        'text' => 'Logout All Users',
         'parent' => 'access',
         'action' => '',
-        'description' => 'flush_sessions_desc',
+        'description' => 'Immediately destroy all sessions',
         'icon' => '',
         'menuindex' => 4,
         'params' => '',
@@ -202,7 +202,7 @@
   ),
   2 => 
   array (
-    'text' => 'admin',
+    'text' => 'Admin',
     'parent' => 'usernav',
     'action' => '',
     'description' => '',
@@ -217,10 +217,10 @@
     array (
       0 => 
       array (
-        'text' => 'system_settings',
+        'text' => 'System Settings',
         'parent' => 'admin',
         'action' => 'system/settings',
-        'description' => 'system_settings_desc',
+        'description' => 'Configure all system settings',
         'icon' => '',
         'menuindex' => 0,
         'params' => '',
@@ -235,10 +235,10 @@
       ),
       1 => 
       array (
-        'text' => 'form_customization',
+        'text' => 'Form Customization',
         'parent' => 'admin',
         'action' => 'security/forms',
-        'description' => 'form_customization_desc',
+        'description' => 'Create bespoke MODX Manager interfaces',
         'icon' => '',
         'menuindex' => 1,
         'params' => '',
@@ -253,10 +253,10 @@
       ),
       2 => 
       array (
-        'text' => 'propertysets',
+        'text' => 'Property Sets',
         'parent' => 'admin',
         'action' => 'element/propertyset',
-        'description' => 'propertysets_desc',
+        'description' => 'Manage Element property sets',
         'icon' => '',
         'menuindex' => 2,
         'params' => '',
@@ -271,10 +271,10 @@
       ),
       3 => 
       array (
-        'text' => 'edit_menu',
+        'text' => 'Menus',
         'parent' => 'admin',
         'action' => 'system/action',
-        'description' => 'edit_menu_desc',
+        'description' => 'Manage the main Manager menu',
         'icon' => '',
         'menuindex' => 3,
         'params' => '',
@@ -289,10 +289,10 @@
       ),
       4 => 
       array (
-        'text' => 'contexts',
+        'text' => 'Contexts',
         'parent' => 'admin',
         'action' => 'context',
-        'description' => 'contexts_desc',
+        'description' => 'Manage Contexts and their settings',
         'icon' => '',
         'menuindex' => 4,
         'params' => '',
@@ -307,10 +307,10 @@
       ),
       5 => 
       array (
-        'text' => 'dashboards',
+        'text' => 'Dashboards',
         'parent' => 'admin',
         'action' => 'system/dashboards',
-        'description' => 'dashboards_desc',
+        'description' => 'Manage custom login Dashboards',
         'icon' => '',
         'menuindex' => 5,
         'params' => '',
@@ -325,10 +325,10 @@
       ),
       6 => 
       array (
-        'text' => 'namespaces',
+        'text' => 'Namespaces',
         'parent' => 'admin',
         'action' => 'workspaces/namespace',
-        'description' => 'namespaces_desc',
+        'description' => 'Distinguish between Add-on settings',
         'icon' => '',
         'menuindex' => 6,
         'params' => '',
@@ -343,10 +343,10 @@
       ),
       7 => 
       array (
-        'text' => 'lexicon_management',
+        'text' => 'Lexicons',
         'parent' => 'admin',
         'action' => 'workspaces/lexicon',
-        'description' => 'lexicon_management_desc',
+        'description' => 'Edit Manager language strings',
         'icon' => '',
         'menuindex' => 7,
         'params' => '',
@@ -361,10 +361,10 @@
       ),
       8 => 
       array (
-        'text' => 'Язык',
+        'text' => 'Toggle language',
         'parent' => 'admin',
         'action' => '',
-        'description' => 'language_desc',
+        'description' => 'Select the appropriate manager language',
         'icon' => '',
         'menuindex' => 8,
         'params' => '',
@@ -378,7 +378,7 @@
           array (
             'id' => 'ar',
             'text' => 'Arabic',
-            'description' => 'language_ar <b>AR</b>',
+            'description' => 'Arabic <b>AR</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("ar"); return false;',
             'permissions' => '',
@@ -396,7 +396,7 @@
           array (
             'id' => 'be',
             'text' => 'Беларуская',
-            'description' => 'language_be <b>BE</b>',
+            'description' => 'Belarusian <b>BE</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("be"); return false;',
             'permissions' => '',
@@ -405,7 +405,7 @@
           array (
             'id' => 'bg',
             'text' => 'Bulgarian',
-            'description' => 'language_bg <b>BG</b>',
+            'description' => 'Bulgarian <b>BG</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("bg"); return false;',
             'permissions' => '',
@@ -414,7 +414,7 @@
           array (
             'id' => 'cs',
             'text' => 'Čeština',
-            'description' => 'language_cs <b>CS</b>',
+            'description' => 'Czech <b>CS</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("cs"); return false;',
             'permissions' => '',
@@ -423,7 +423,7 @@
           array (
             'id' => 'da',
             'text' => 'Danish',
-            'description' => 'language_da <b>DA</b>',
+            'description' => 'Danish <b>DA</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("da"); return false;',
             'permissions' => '',
@@ -432,7 +432,7 @@
           array (
             'id' => 'de',
             'text' => 'Deutsch',
-            'description' => 'language_de <b>DE</b>',
+            'description' => 'German <b>DE</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("de"); return false;',
             'permissions' => '',
@@ -441,7 +441,7 @@
           array (
             'id' => 'el',
             'text' => 'Greek',
-            'description' => 'language_el <b>EL</b>',
+            'description' => 'Greek <b>EL</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("el"); return false;',
             'permissions' => '',
@@ -450,7 +450,7 @@
           array (
             'id' => 'en',
             'text' => 'English',
-            'description' => 'language_en <b>EN</b>',
+            'description' => 'English <b>EN</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("en"); return false;',
             'permissions' => '',
@@ -459,7 +459,7 @@
           array (
             'id' => 'es',
             'text' => 'Spanish',
-            'description' => 'language_es <b>ES</b>',
+            'description' => 'Spanish <b>ES</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("es"); return false;',
             'permissions' => '',
@@ -468,7 +468,7 @@
           array (
             'id' => 'et',
             'text' => 'Estonian',
-            'description' => 'language_et <b>ET</b>',
+            'description' => 'Estonian <b>ET</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("et"); return false;',
             'permissions' => '',
@@ -477,7 +477,7 @@
           array (
             'id' => 'fa',
             'text' => 'Persian',
-            'description' => 'language_fa <b>FA</b>',
+            'description' => 'Persian <b>FA</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("fa"); return false;',
             'permissions' => '',
@@ -486,7 +486,7 @@
           array (
             'id' => 'fi',
             'text' => 'Finnish',
-            'description' => 'language_fi <b>FI</b>',
+            'description' => 'Finnish <b>FI</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("fi"); return false;',
             'permissions' => '',
@@ -495,7 +495,7 @@
           array (
             'id' => 'fr',
             'text' => 'Français',
-            'description' => 'language_fr <b>FR</b>',
+            'description' => 'French <b>FR</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("fr"); return false;',
             'permissions' => '',
@@ -504,7 +504,7 @@
           array (
             'id' => 'he',
             'text' => 'Hebrew',
-            'description' => 'language_he <b>HE</b>',
+            'description' => 'Hebrew <b>HE</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("he"); return false;',
             'permissions' => '',
@@ -513,7 +513,7 @@
           array (
             'id' => 'hi',
             'text' => 'हिंदी',
-            'description' => 'language_hi <b>HI</b>',
+            'description' => 'Hindi <b>HI</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("hi"); return false;',
             'permissions' => '',
@@ -522,7 +522,7 @@
           array (
             'id' => 'hu',
             'text' => 'magyar',
-            'description' => 'language_hu <b>HU</b>',
+            'description' => 'Hungarian <b>HU</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("hu"); return false;',
             'permissions' => '',
@@ -531,7 +531,7 @@
           array (
             'id' => 'id',
             'text' => 'Indonesian',
-            'description' => 'language_id <b>ID</b>',
+            'description' => 'Indonesian <b>ID</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("id"); return false;',
             'permissions' => '',
@@ -540,7 +540,7 @@
           array (
             'id' => 'it',
             'text' => 'Italiano',
-            'description' => 'language_it <b>IT</b>',
+            'description' => 'Italian <b>IT</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("it"); return false;',
             'permissions' => '',
@@ -549,7 +549,7 @@
           array (
             'id' => 'ja',
             'text' => 'Japanese',
-            'description' => 'language_ja <b>JA</b>',
+            'description' => 'Japanese <b>JA</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("ja"); return false;',
             'permissions' => '',
@@ -558,7 +558,7 @@
           array (
             'id' => 'nl',
             'text' => 'Nederlands',
-            'description' => 'language_nl <b>NL</b>',
+            'description' => 'Dutch <b>NL</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("nl"); return false;',
             'permissions' => '',
@@ -567,7 +567,7 @@
           array (
             'id' => 'pl',
             'text' => 'Polish',
-            'description' => 'language_pl <b>PL</b>',
+            'description' => 'Polish <b>PL</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("pl"); return false;',
             'permissions' => '',
@@ -576,7 +576,7 @@
           array (
             'id' => 'pt',
             'text' => 'Portuguese',
-            'description' => 'language_pt <b>PT</b>',
+            'description' => 'Portuguese <b>PT</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("pt"); return false;',
             'permissions' => '',
@@ -585,7 +585,7 @@
           array (
             'id' => 'ro',
             'text' => 'Romanian',
-            'description' => 'language_ro <b>RO</b>',
+            'description' => 'Romanian <b>RO</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("ro"); return false;',
             'permissions' => '',
@@ -594,7 +594,7 @@
           array (
             'id' => 'ru',
             'text' => 'Русский',
-            'description' => 'Русский <b>RU</b>',
+            'description' => 'Russian <b>RU</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("ru"); return false;',
             'permissions' => '',
@@ -612,7 +612,7 @@
           array (
             'id' => 'sv',
             'text' => 'Svenska',
-            'description' => 'Шведский <b>SV</b>',
+            'description' => 'Swedish <b>SV</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("sv"); return false;',
             'permissions' => '',
@@ -621,7 +621,7 @@
           array (
             'id' => 'th',
             'text' => 'Thai',
-            'description' => 'Тайский <b>TH</b>',
+            'description' => 'Thai <b>TH</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("th"); return false;',
             'permissions' => '',
@@ -630,7 +630,7 @@
           array (
             'id' => 'tr',
             'text' => 'Turkish',
-            'description' => 'Турецкий <b>TR</b>',
+            'description' => 'Turkish <b>TR</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("tr"); return false;',
             'permissions' => '',
@@ -639,7 +639,7 @@
           array (
             'id' => 'uk',
             'text' => 'Українська',
-            'description' => 'Украинский <b>UK</b>',
+            'description' => 'Ukrainian <b>UK</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("uk"); return false;',
             'permissions' => '',
@@ -648,7 +648,7 @@
           array (
             'id' => 'yo',
             'text' => 'Yoruba',
-            'description' => 'Йоруба <b>YO</b>',
+            'description' => 'Yoruba <b>YO</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("yo"); return false;',
             'permissions' => '',
@@ -657,7 +657,7 @@
           array (
             'id' => 'zh',
             'text' => '简体中文',
-            'description' => 'Китайский (упрощенный) <b>ZH</b>',
+            'description' => 'Chinese simplified <b>ZH</b>',
             'parent' => 'language',
             'handler' => 'MODx.switchLanguage("zh"); return false;',
             'permissions' => '',
@@ -667,10 +667,10 @@
       ),
       9 => 
       array (
-        'text' => 'reports',
+        'text' => 'Reports',
         'parent' => 'admin',
         'action' => '',
-        'description' => 'reports_desc',
+        'description' => 'Admin reports for your MODX install',
         'icon' => '',
         'menuindex' => 9,
         'params' => '',
@@ -682,10 +682,10 @@
         array (
           0 => 
           array (
-            'text' => 'view_logging',
+            'text' => 'Manager Actions',
             'parent' => 'reports',
             'action' => 'system/logs',
-            'description' => 'view_logging_desc',
+            'description' => 'View the recent manager activity.',
             'icon' => '',
             'menuindex' => 0,
             'params' => '',
@@ -700,10 +700,10 @@
           ),
           1 => 
           array (
-            'text' => 'eventlog_viewer',
+            'text' => 'Error Log',
             'parent' => 'reports',
             'action' => 'system/event',
-            'description' => 'eventlog_viewer_desc',
+            'description' => 'View the MODX error.log.',
             'icon' => '',
             'menuindex' => 1,
             'params' => '',
@@ -718,10 +718,10 @@
           ),
           2 => 
           array (
-            'text' => 'view_sysinfo',
+            'text' => 'System Info',
             'parent' => 'reports',
             'action' => 'system/info',
-            'description' => 'view_sysinfo_desc',
+            'description' => 'View server information, such as phpinfo, database info, and more.',
             'icon' => '',
             'menuindex' => 2,
             'params' => '',
@@ -742,10 +742,10 @@
   ),
   3 => 
   array (
-    'text' => 'about',
+    'text' => 'About',
     'parent' => 'usernav',
     'action' => 'help',
-    'description' => 'about_desc',
+    'description' => 'Help!',
     'icon' => '<i class="icon-question-circle icon"></i>',
     'menuindex' => 3,
     'params' => '',

@@ -1,0 +1,577 @@
+[2026-05-08 13:52:52] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:52:52] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:52:52] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248372, 'modx.user.contextTokens|a:0:{}')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:52:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:52:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:52:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248378, 'modx.user.contextTokens|a:0:{}')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:03] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:04] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-05-08 13:53:04] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-05-08 13:53:04] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-05-08 13:53:04] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-05-08 13:53:04] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:53:04] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:53:04] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_lexicon_entries' doesn't exist
+)
+
+[2026-05-08 13:53:05] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:05] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248385, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:34] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:34] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:53:34] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:53:34] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:53:34] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:34] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248414, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:51] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:51] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:53:52] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:53:52] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:53:52] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:53:52] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248432, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:18] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:19] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:54:19] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:54:19] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:54:19] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:19] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248459, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:24] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:24] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:54:24] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:54:24] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:54:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:25] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248465, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:31] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:31] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:54:31] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:54:31] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:54:31] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:31] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248471, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:38] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:38] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:54:38] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:54:38] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:54:38] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:38] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248478, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:43] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:44] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:54:44] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:54:44] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:54:44] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:44] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248484, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:53] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:53] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:54:53] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:54:53] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:54:53] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:53] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248493, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:57] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_access_context' doesn't exist
+)
+
+[2026-05-08 13:54:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_actiondom' doesn't exist
+)
+
+[2026-05-08 13:54:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 534) Error 42S02 executing query: SELECT `modUser`.`id` AS `modUser_id`, `modUser`.`username` AS `modUser_username`, `modUser`.`password` AS `modUser_password`, `modUser`.`cachepwd` AS `modUser_cachepwd`, `modUser`.`class_key` AS `modUser_class_key`, `modUser`.`active` AS `modUser_active`, `modUser`.`remote_key` AS `modUser_remote_key`, `modUser`.`remote_data` AS `modUser_remote_data`, `modUser`.`hash_class` AS `modUser_hash_class`, `modUser`.`salt` AS `modUser_salt`, `modUser`.`primary_group` AS `modUser_primary_group`, `modUser`.`session_stale` AS `modUser_session_stale`, `modUser`.`sudo` AS `modUser_sudo`, `modUser`.`createdon` AS `modUser_createdon`, `Profile`.`id` AS `Profile_id`, `Profile`.`internalKey` AS `Profile_internalKey`, `Profile`.`fullname` AS `Profile_fullname`, `Profile`.`email` AS `Profile_email`, `Profile`.`phone` AS `Profile_phone`, `Profile`.`mobilephone` AS `Profile_mobilephone`, `Profile`.`blocked` AS `Profile_blocked`, `Profile`.`blockeduntil` AS `Profile_blockeduntil`, `Profile`.`blockedafter` AS `Profile_blockedafter`, `Profile`.`logincount` AS `Profile_logincount`, `Profile`.`lastlogin` AS `Profile_lastlogin`, `Profile`.`thislogin` AS `Profile_thislogin`, `Profile`.`failedlogincount` AS `Profile_failedlogincount`, `Profile`.`sessionid` AS `Profile_sessionid`, `Profile`.`dob` AS `Profile_dob`, `Profile`.`gender` AS `Profile_gender`, `Profile`.`address` AS `Profile_address`, `Profile`.`country` AS `Profile_country`, `Profile`.`city` AS `Profile_city`, `Profile`.`state` AS `Profile_state`, `Profile`.`zip` AS `Profile_zip`, `Profile`.`fax` AS `Profile_fax`, `Profile`.`photo` AS `Profile_photo`, `Profile`.`comment` AS `Profile_comment`, `Profile`.`website` AS `Profile_website`, `Profile`.`extended` AS `Profile_extended`, `UserSettings`.`user` AS `UserSettings_user`, `UserSettings`.`key` AS `UserSettings_key`, `UserSettings`.`value` AS `UserSettings_value`, `UserSettings`.`xtype` AS `UserSettings_xtype`, `UserSettings`.`namespace` AS `UserSettings_namespace`, `UserSettings`.`area` AS `UserSettings_area`, `UserSettings`.`editedon` AS `UserSettings_editedon` FROM `modx_users` AS `modUser` LEFT JOIN `modx_user_attributes` `Profile` ON `modUser`.`id` = `Profile`.`internalKey` LEFT JOIN `modx_user_settings` `UserSettings` ON `modUser`.`id` = `UserSettings`.`user` WHERE `modUser`.`username` = ? ORDER BY `modUser`.`id` ASC  - Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_users' doesn't exist
+)
+
+[2026-05-08 13:54:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 227) Error 42S02 executing statement: 
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 13:54:58] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/Om/xPDOObject.php : 1447) Error 42S02 executing statement:
+INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES ('5f9b451008316ec52877e1443b48a646', 1778248498, 'modx.user.contextTokens|a:0:{}manager_language|s:2:\"en\";')
+Array
+(
+    [0] => 42S02
+    [1] => 1146
+    [2] => Table 'modx.modx_session' doesn't exist
+)
+
+[2026-05-08 15:01:57] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-05-08 15:01:57] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 607) No class specified for loadClass
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 607) No class specified for loadClass
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 607) No class specified for loadClass
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1643) Could not load class 
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 607) No class specified for loadClass
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 787) ::getSelectColumns() is not a valid static method.
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 607) No class specified for loadClass
+[2026-05-08 15:02:12] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 787) ::loadCollection() is not a valid static method.
+[2026-05-08 15:02:39] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 667) Could not load class: myPackage from mypackage
+[2026-05-08 15:02:39] (ERROR @ /var/www/html/core/vendor/xpdo/xpdo/src/xPDO/xPDO.php : 1273) Problem getting service mypackage, instance of class myPackage, from path /var/www/html/core/components/mypackage/model/mypackage/

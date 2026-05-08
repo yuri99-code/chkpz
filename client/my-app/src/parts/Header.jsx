@@ -34,7 +34,7 @@ function Header() {
                     </nav>
 
                     <Link to="/" className="header__logo">
-                        <img src="./images/Logo.png" alt=""
+                        <img src="/images/Logo.png" alt=""
                              className="header__logo-img"/>
                     </Link>
 

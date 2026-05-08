@@ -1,5 +1,6 @@
 import Footer from '../parts/Footer.jsx';
 import Header from '../parts/Header.jsx';
+import { Link } from 'react-router-dom';
 
 function Category() {
     return (
@@ -10,7 +11,7 @@ function Category() {
                 <div className="app-container">
                     <div className="row">
                         <div className="col-12 col-lg-6 mb-5">
-                            <a href="" className="card">
+                            <Link to="/product/15" className="card">
                                 <div className="card-image mb-3">
                                     <img src="/images/product.jpg" alt=""
                                          className="card-img"/>
@@ -23,7 +24,7 @@ function Category() {
                                     6361Х-2304015-01 применяется в специальной
                                     колесной и гусеничной технике
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                         <div className="col-12 col-lg-6 mb-5">
                             <a href="" className="card">

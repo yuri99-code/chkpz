@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import Header from '../parts/Header.jsx';
 import Footer from '../parts/Footer.jsx';
+import { Link } from 'react-router-dom';
 
 function Index() {
     const partners = [
@@ -48,7 +49,7 @@ function Index() {
                     <div className="app-container">
                         <h2 className="products__title">Наши товары</h2>
                         <div className="row">
-                            <a href="" className="col-12 col-lg-6 mb-5">
+                            <Link to="/category/test" className="col-12 col-lg-6 mb-5">
                                 <div className="products__item-image">
                                     <img src="/images/product.jpg" alt=""
                                          className="products__item-img"/>
@@ -56,7 +57,7 @@ function Index() {
                                 <div className="products__item-title">Поковки и
                                     штамповки для автомобильной промышлености
                                 </div>
-                            </a>
+                            </Link>
                             <a href="" className="col-12 col-lg-6 mb-5">
                                 <div className="products__item-image">
                                     <img src="/images/product.jpg" alt=""

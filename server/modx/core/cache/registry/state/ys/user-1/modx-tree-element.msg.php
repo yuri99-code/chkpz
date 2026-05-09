@@ -7,4 +7,5 @@ return array (
   4 => '/root/n_type_snippet',
   5 => '/root/n_type_chunk',
   6 => '/root/n_type_template',
+  7 => '/root/n_category/n_category_1',
 );

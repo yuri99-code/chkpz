@@ -1,0 +1,12 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_class' => 'xPDO\\Transport\\xPDOObjectVehicle',
+  'guid' => '581a1aab9f1294a56ab42e5f52c2beb7',
+  'package' => '',
+  'class' => 'MODX\\Revolution\\modSystemSetting',
+  'signature' => 'd88a467a5b244bf49c356b5bf562f08e',
+  'native_key' => 'formit.user_email',
+  'object' => '{"key":"formit.user_email","value":"","xtype":"textfield","namespace":"formit","area":"general","editedon":null}',
+);

@@ -8,6 +8,23 @@
     array (
       0 => 1,
       1 => 2,
+      2 => 4,
+    ),
+    3 => 
+    array (
+      0 => 8,
+      1 => 9,
+    ),
+    4 => 
+    array (
+      0 => 3,
+      1 => 5,
+      2 => 6,
+      3 => 7,
+    ),
+    5 => 
+    array (
+      0 => 10,
     ),
   ),
   'webLinkMap' => 
@@ -30,16 +47,7 @@
     ),
     'OnFileManagerUpload' => 
     array (
-      6 => '6',
       3 => '3',
-    ),
-    'OnHandleRequest' => 
-    array (
-      4 => '4',
-    ),
-    'OnMODXInit' => 
-    array (
-      4 => '4',
     ),
     'OnPluginFormPrerender' => 
     array (
@@ -55,13 +63,13 @@
     ),
     'OnRichTextEditorRegister' => 
     array (
-      8 => '8',
       5 => '5',
+      8 => '8',
     ),
     'OnSiteRefresh' => 
     array (
-      10 => '10',
       11 => '11',
+      10 => '10',
     ),
     'OnSnipFormPrerender' => 
     array (
@@ -82,12 +90,8 @@
     'OnWebPagePrerender' => 
     array (
       10 => '10',
-      11 => '11',
       9 => '9',
-    ),
-    'pdoToolsOnFenomInit' => 
-    array (
-      4 => '4',
+      11 => '11',
     ),
   ),
   'pluginCache' => 
@@ -280,92 +284,6 @@ if (is_array($resizeConfigs) && count($resizeConfigs) > 0) {
       'static' => 0,
       'static_file' => '',
     ),
-    4 => 
-    array (
-      'id' => 4,
-      'source' => 0,
-      'property_preprocess' => 0,
-      'name' => 'ClientConfig',
-      'description' => 'Sets system settings from the Client Config CMP.',
-      'editor_type' => 0,
-      'category' => 0,
-      'cache_type' => 0,
-      'plugincode' => '/**
- * ClientConfig
- *
- * Copyright 2011-2014 by Mark Hamstra <hello@markhamstra.com>
- *
- * ClientConfig is free software; you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- *
- * ClientConfig is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
- * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along with
- * ClientConfig; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place, Suite 330, Boston, MA 02111-1307 USA
- *
- * @package clientconfig
- *
- * @var modX $modx
- * @var int $id
- * @var string $mode
- * @var modResource $resource
- * @var modTemplate $template
- * @var modTemplateVar $tv
- * @var modChunk $chunk
- * @var modSnippet $snippet
- * @var modPlugin $plugin
-*/
-
-$eventName = $modx->event->name;
-
-switch($eventName) {
-    case \'OnMODXInit\':
-    case \'OnHandleRequest\':
-    case \'pdoToolsOnFenomInit\':
-        // Measure to guard against pdoTools fenom parser loop bug: https://github.com/modmore/ClientConfig/issues/192
-        // Here we only allow the pdoToolsOnFenomInit event to trigger the first time.
-        if ($eventName === \'pdoToolsOnFenomInit\') {
-            if ($modx->getOption(\'clientconfig.fenom_initialized\')) {
-                return;
-            }
-            $modx->setOption(\'clientconfig.fenom_initialized\', true);
-        }
-
-        /* Grab the class */
-        $path = $modx->getOption(\'clientconfig.core_path\', null, $modx->getOption(\'core_path\') . \'components/clientconfig/\');
-        $path .= \'model/clientconfig/\';
-        $clientConfig = $modx->getService(\'clientconfig\',\'ClientConfig\', $path);
-
-        /* If we got the class (gotta be careful of failed migrations), grab settings and go! */
-        if ($clientConfig instanceof ClientConfig) {
-            $contextKey = $modx->context instanceof modContext || $modx->context instanceof \\MODX\\Revolution\\modContext
-                ? $modx->context->get(\'key\') : \'web\';
-            $settings = $clientConfig->getSettings($contextKey);
-
-            /* Make settings available as [[++tags]] */
-            $modx->setPlaceholders($settings, \'+\');
-
-            /* Make settings available for $modx->getOption() */
-            foreach ($settings as $key => $value) {
-                $modx->setOption($key, $value);
-            }
-        }
-        break;
-}
-
-return;',
-      'locked' => 0,
-      'properties' => NULL,
-      'disabled' => 0,
-      'moduleguid' => '',
-      'static' => 0,
-      'static_file' => '',
-    ),
     5 => 
     array (
       'id' => 5,
@@ -493,49 +411,6 @@ if ($load) {
 return;',
       'locked' => 0,
       'properties' => 'a:14:{s:5:"theme";a:7:{s:4:"name";s:5:"theme";s:4:"desc";s:18:"prop_cm.theme_desc";s:4:"type";s:4:"list";s:7:"options";a:14:{i:0;a:2:{s:4:"text";s:7:"default";s:5:"value";s:7:"default";}i:1;a:2:{s:4:"text";s:8:"ambiance";s:5:"value";s:8:"ambiance";}i:2;a:2:{s:4:"text";s:10:"blackboard";s:5:"value";s:10:"blackboard";}i:3;a:2:{s:4:"text";s:6:"cobalt";s:5:"value";s:6:"cobalt";}i:4;a:2:{s:4:"text";s:7:"eclipse";s:5:"value";s:7:"eclipse";}i:5;a:2:{s:4:"text";s:7:"elegant";s:5:"value";s:7:"elegant";}i:6;a:2:{s:4:"text";s:11:"erlang-dark";s:5:"value";s:11:"erlang-dark";}i:7;a:2:{s:4:"text";s:11:"lesser-dark";s:5:"value";s:11:"lesser-dark";}i:8;a:2:{s:4:"text";s:7:"monokai";s:5:"value";s:7:"monokai";}i:9;a:2:{s:4:"text";s:4:"neat";s:5:"value";s:4:"near";}i:10;a:2:{s:4:"text";s:5:"night";s:5:"value";s:5:"night";}i:11;a:2:{s:4:"text";s:8:"rubyblue";s:5:"value";s:8:"rubyblue";}i:12;a:2:{s:4:"text";s:11:"vibrant-ink";s:5:"value";s:11:"vibrant-ink";}i:13;a:2:{s:4:"text";s:7:"xq-dark";s:5:"value";s:7:"xq-dark";}}s:5:"value";s:7:"default";s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:10:"indentUnit";a:7:{s:4:"name";s:10:"indentUnit";s:4:"desc";s:23:"prop_cm.indentUnit_desc";s:4:"type";s:9:"textfield";s:7:"options";s:0:"";s:5:"value";i:2;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:11:"smartIndent";a:7:{s:4:"name";s:11:"smartIndent";s:4:"desc";s:24:"prop_cm.smartIndent_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:0;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:7:"tabSize";a:7:{s:4:"name";s:7:"tabSize";s:4:"desc";s:20:"prop_cm.tabSize_desc";s:4:"type";s:9:"textfield";s:7:"options";s:0:"";s:5:"value";i:4;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:14:"indentWithTabs";a:7:{s:4:"name";s:14:"indentWithTabs";s:4:"desc";s:27:"prop_cm.indentWithTabs_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:13:"electricChars";a:7:{s:4:"name";s:13:"electricChars";s:4:"desc";s:26:"prop_cm.electricChars_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:19:"autoClearEmptyLines";a:7:{s:4:"name";s:19:"autoClearEmptyLines";s:4:"desc";s:32:"prop_cm.autoClearEmptyLines_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:0;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:12:"lineWrapping";a:7:{s:4:"name";s:12:"lineWrapping";s:4:"desc";s:25:"prop_cm.lineWrapping_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:11:"lineNumbers";a:7:{s:4:"name";s:11:"lineNumbers";s:4:"desc";s:24:"prop_cm.lineNumbers_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:15:"firstLineNumber";a:7:{s:4:"name";s:15:"firstLineNumber";s:4:"desc";s:28:"prop_cm.firstLineNumber_desc";s:4:"type";s:9:"textfield";s:7:"options";s:0:"";s:5:"value";i:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:13:"highlightLine";a:7:{s:4:"name";s:13:"highlightLine";s:4:"desc";s:26:"prop_cm.highlightLine_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:13:"matchBrackets";a:7:{s:4:"name";s:13:"matchBrackets";s:4:"desc";s:26:"prop_cm.matchBrackets_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:14:"showSearchForm";a:7:{s:4:"name";s:14:"showSearchForm";s:4:"desc";s:27:"prop_cm.showSearchForm_desc";s:4:"type";s:13:"combo-boolean";s:7:"options";s:0:"";s:5:"value";b:1;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}s:9:"undoDepth";a:7:{s:4:"name";s:9:"undoDepth";s:4:"desc";s:22:"prop_cm.undoDepth_desc";s:4:"type";s:9:"textfield";s:7:"options";s:0:"";s:5:"value";i:40;s:7:"lexicon";s:21:"codemirror:properties";s:4:"area";s:0:"";}}',
-      'disabled' => 0,
-      'moduleguid' => '',
-      'static' => 0,
-      'static_file' => '',
-    ),
-    6 => 
-    array (
-      'id' => 6,
-      'source' => 0,
-      'property_preprocess' => 0,
-      'name' => 'fileTranslit',
-      'description' => 'This plugin transliterates file names automatically on upload.',
-      'editor_type' => 0,
-      'category' => 0,
-      'cache_type' => 0,
-      'plugincode' => '/**
- * @author Anton Andersen <anton.a.andersen@gmail.com>
- *
- * This plugin transliterates filenames on upload via MODX filemanager.
- * It should be bent to the OnFileManagerUpload event.
- * Project page: https://github.com/TriAnMan/filetranslit
- */
-$currentdoc = $modx->newObject(\'modResource\');
-foreach ($files as &$file) {
-	if ($file[\'error\'] == 0) {
-		$newName = $currentdoc->cleanAlias($file[\'name\']);
-
-		//file rename logic
-		if ($file[\'name\'] !== $newName) {
-			$arDirFiles = $source->getObjectsInContainer($directory);
-			foreach ($arDirFiles as &$dirFile){
-				if($dirFile[\'name\']===$newName){
-					//delete file if there is one with new name
-					$source->removeObject($directory . $newName);
-				}
-			}
-			//transliterate uploaded file
-			$source->renameObject($directory . $file[\'name\'], $newName);
-		}
-	}
-}',
-      'locked' => 0,
-      'properties' => NULL,
       'disabled' => 0,
       'moduleguid' => '',
       'static' => 0,

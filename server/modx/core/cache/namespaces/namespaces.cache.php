@@ -1,16 +1,4 @@
 <?php  return array (
-  'ajaxform' => 
-  array (
-    'name' => 'ajaxform',
-    'path' => '/var/www/html/core/components/ajaxform/',
-    'assets_path' => '',
-  ),
-  'clientconfig' => 
-  array (
-    'name' => 'clientconfig',
-    'path' => '/var/www/html/core/components/clientconfig/',
-    'assets_path' => '/var/www/html/assets/components/clientconfig/',
-  ),
   'codemirror' => 
   array (
     'name' => 'codemirror',
@@ -22,18 +10,6 @@
     'name' => 'core',
     'path' => '/var/www/html/manager/',
     'assets_path' => '/var/www/html/manager/assets/',
-  ),
-  'filetranslit' => 
-  array (
-    'name' => 'filetranslit',
-    'path' => '/var/www/html/core/components/filetranslit/',
-    'assets_path' => '',
-  ),
-  'formit' => 
-  array (
-    'name' => 'formit',
-    'path' => '/var/www/html/core/components/formit/',
-    'assets_path' => '/var/www/html/assets/components/formit/',
   ),
   'frontendmanager' => 
   array (
@@ -59,12 +35,6 @@
     'path' => '/var/www/html/core/components/pdotools/',
     'assets_path' => '',
   ),
-  'sdstore' => 
-  array (
-    'name' => 'sdstore',
-    'path' => '/var/www/html/core/components/sdstore/',
-    'assets_path' => '',
-  ),
   'shop' => 
   array (
     'name' => 'shop',
@@ -76,11 +46,5 @@
     'name' => 'tinymce',
     'path' => '/var/www/html/core/components/tinymce/',
     'assets_path' => '/var/www/html/assets/components/tinymce/',
-  ),
-  'translit' => 
-  array (
-    'name' => 'translit',
-    'path' => '/var/www/html/core/components/translit/',
-    'assets_path' => '',
   ),
 );

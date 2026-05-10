@@ -7,22 +7,51 @@ require dirname( __DIR__ ) . '/index.php';
 $modx->initialize( 'web' );
 
 header( 'Content-Type: application/json' );
+header( 'Access-Control-Allow-Origin: *' );
 
-$resource = $modx->getObject( 'modResource', 2 );
+$template = $_GET['template_id'] ?? null;
 
-if ( ! $resource ) {
+$parent = $_GET['parent_id'] ?? null;
 
-    http_response_code( 404 );
+$page_id = $_GET['page_id'] ?? null;
 
-    echo json_encode( [
-        'error' => 'Page not found'
-    ] );
+$criteria = [
+    'published' => 1,
+    'deleted'   => 0,
+];
 
-    exit;
+if ( $template ) {
+    $criteria['template'] = $template;
 }
 
-$data = $resource->toArray();
+if ( $parent ) {
+    $criteria['parent'] = $parent;
+}
 
-$data['vars'] = $resource->getTVValue('Test');
+if ( $page_id ) {
+    $criteria['id'] = $page_id;
+}
 
-echo json_encode( $data );
+$query = $modx->newQuery( 'modResource' );
+
+$query->where( $criteria );
+
+$resources = $modx->getCollection(
+    'modResource',
+    $query
+);
+
+$result = [];
+
+foreach ( $resources as $resource ) {
+
+    $data = $resource->toArray();
+
+    $data['tvs'] = [
+        'category_image' => $resource->getTVValue( 'Category Image' ),
+    ];
+
+    $result[] = $data;
+}
+
+echo json_encode( $result, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );

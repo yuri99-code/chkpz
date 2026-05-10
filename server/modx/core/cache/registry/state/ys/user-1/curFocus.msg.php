@@ -1,2 +1,2 @@
 <?php
-return 'modx-resource-parent';
+return 'modx-resource-longtitle';

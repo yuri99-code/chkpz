@@ -1,8 +1,52 @@
 import Footer from '../parts/Footer.jsx';
 import Header from '../parts/Header.jsx';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Category() {
+    const [ products, setProducts ] = useState( [] );
+
+    const [ loading, setLoading ] = useState( true );
+
+    const [ error, setError ] = useState( null );
+
+    const { id } = useParams();
+
+    useEffect( () => {
+
+        async function fetchProducts() {
+
+            try {
+
+                const response = await axios.get(
+                    `http://localhost:8080/api/page.php?parent_id=${id}`,
+                );
+
+                setProducts( response.data );
+
+            } catch ( err ) {
+
+                console.error( err );
+
+                setError( 'Ошибка загрузки' );
+
+            } finally {
+
+                setLoading( false );
+            }
+        }
+
+        fetchProducts();
+
+    }, [] );
+
+    if ( error ) {
+        return <div>{ error }</div>;
+    }
+
+    console.log( products );
+
     return (
         <>
             <Header/>
@@ -10,38 +54,27 @@ function Category() {
             <section>
                 <div className="app-container">
                     <div className="row">
-                        <div className="col-12 col-lg-6 mb-5">
-                            <Link to="/product/15" className="card">
-                                <div className="card-image mb-3">
-                                    <img src="/images/product.jpg" alt=""
-                                         className="card-img"/>
-                                </div>
-                                <div
-                                    className="card-title mb-3">6361Х-2304015-01
-                                    Опора шаровая
-                                </div>
-                                <div className="card-text">Опора шаровая
-                                    6361Х-2304015-01 применяется в специальной
-                                    колесной и гусеничной технике
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="col-12 col-lg-6 mb-5">
-                            <a href="" className="card">
-                                <div className="card-image mb-3">
-                                    <img src="/images/product.jpg" alt=""
-                                         className="card-img"/>
-                                </div>
-                                <div
-                                    className="card-title mb-3">6361Х-2304015-01
-                                    Опора шаровая
-                                </div>
-                                <div className="card-text">Опора шаровая
-                                    6361Х-2304015-01 применяется в специальной
-                                    колесной и гусеничной технике
-                                </div>
-                            </a>
-                        </div>
+                        { products.map( product => (
+                            <div key={ product.id }
+                                 className="col-12 col-lg-6 mb-5">
+                                <Link to={ '/product/' + product.id }
+                                   className="card">
+                                    { product.tvs.product_image ?
+                                        <div className="card-image mb-3">
+                                            <img
+                                                src={ 'http://localhost:8080/' +
+                                                      product.tvs.product_image }
+                                                alt=""
+                                                className="card-img"/>
+                                        </div>
+                                        :
+                                        <div></div>
+                                    }
+                                    <div
+                                        className="card-title">{ product.pagetitle }</div>
+                                </Link>
+                            </div>
+                        ) ) }
                     </div>
                 </div>
             </section>

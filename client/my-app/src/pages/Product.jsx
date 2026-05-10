@@ -1,7 +1,52 @@
 import Header from '../parts/Header.jsx';
 import Footer from '../parts/Footer.jsx';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function Product() {
+    const [ product, setProduct ] = useState( {} );
+
+    const [ loading, setLoading ] = useState( true );
+
+    const [ error, setError ] = useState( null );
+
+    const { id } = useParams();
+
+    useEffect( () => {
+
+        async function fetchProduct() {
+
+            try {
+
+                const response = await axios.get(
+                    `http://localhost:8080/api/page.php?page_id=${id}`,
+                );
+
+                setProduct( response.data[0] );
+
+            } catch ( err ) {
+
+                console.error( err );
+
+                setError( 'Ошибка загрузки' );
+
+            } finally {
+
+                setLoading( false );
+            }
+        }
+
+        fetchProduct();
+
+    }, [] );
+
+    if ( error ) {
+        return <div>{ error }</div>;
+    }
+
+    console.log( product );
+
     return (
         <>
             <Header/>
@@ -9,10 +54,8 @@ function Product() {
             <section>
                 <div className="product">
                     <div className="app-container">
-                        <h1 className="product-title mb-4">6361Х-2304015-01
-                            Опора шаровая</h1>
-                        <div className="product-text mb-5">6361Х-2304015-01
-                        </div>
+                        <h1 className="product-title mb-4">{product.pagetitle}</h1>
+                        <div className="product-text mb-5">{product.longtitle}</div>
 
                         <div className="row align-items-center">
                             <div className="col-12 col-lg-6 mb-4 mb-lg-0">

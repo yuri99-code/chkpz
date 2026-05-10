@@ -232,42 +232,6 @@
       ),
       1 => 
       array (
-        'text' => 'FormIt',
-        'parent' => 'components',
-        'action' => 'home',
-        'description' => 'View all submitted forms.',
-        'icon' => '',
-        'menuindex' => 0,
-        'params' => '',
-        'handler' => '',
-        'permissions' => '',
-        'namespace' => 'formit',
-        'id' => 'formit',
-        'children' => 
-        array (
-        ),
-        'controller' => '',
-      ),
-      2 => 
-      array (
-        'text' => 'Configuration',
-        'parent' => 'components',
-        'action' => 'home',
-        'description' => 'Set and update site configuration.',
-        'icon' => '<i class="icon icon-wrench"></i>',
-        'menuindex' => 0,
-        'params' => '',
-        'handler' => '',
-        'permissions' => '',
-        'namespace' => 'clientconfig',
-        'id' => 'clientconfig',
-        'children' => 
-        array (
-        ),
-        'controller' => '',
-      ),
-      3 => 
-      array (
         'text' => 'MIGX',
         'parent' => 'components',
         'action' => 'index',

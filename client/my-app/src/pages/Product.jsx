@@ -20,10 +20,10 @@ function Product() {
             try {
 
                 const response = await axios.get(
-                    `http://localhost:8080/api/page.php?page_id=${id}`,
+                    `http://localhost:8080/api/page.php?page_id=${ id }`,
                 );
 
-                setProduct( response.data[0] );
+                setProduct( response.data[ 0 ] );
 
             } catch ( err ) {
 
@@ -54,27 +54,29 @@ function Product() {
             <section>
                 <div className="product">
                     <div className="app-container">
-                        <h1 className="product-title mb-4">{product.pagetitle}</h1>
-                        <div className="product-text mb-5">{product.longtitle}</div>
+                        <h1 className="product-title mb-4">{ product.pagetitle }</h1>
+                        <div
+                            className="product-text mb-5">{ product.longtitle }</div>
 
                         <div className="row align-items-center">
-                            <div className="col-12 col-lg-6 mb-4 mb-lg-0">
-                                <div className="product-image">
-                                    <img src="/images/product.jpg" alt=""
-                                         className="product-img"/>
+                            { product.tvs ?
+                                <div className="col-12 col-lg-6 mb-4 mb-lg-0">
+                                    <div className="product-image">
+                                        <img src={ 'http://localhost:8080/' +
+                                                   product.tvs.product_image }
+                                             alt=""
+                                             className="product-img"/>
+                                    </div>
                                 </div>
-                            </div>
+                                :
+                                <div></div>
+                            }
                             <div className="col-12 col-lg-6">
-                                <div className="product-subtitle mb-3">Опора
-                                    шаровая 6361Х-2304015-01 применяется в
-                                    специальной колесной и гусеничной технике
-                                </div>
-                                <div className="product-description">
-                                    Номенклатура: Опора шаровая <br/>
-                                    Артикул: 6361Х-2304015-01 <br/>
-                                    Диаметр: 234х330,5 <br/>
-                                    Масса, кг: 40
-                                </div>
+                                <div
+                                    dangerouslySetInnerHTML={ {
+                                        __html: product.content,
+                                    } }
+                                />
                             </div>
                         </div>
                     </div>

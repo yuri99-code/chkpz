@@ -59,11 +59,11 @@ function Category() {
                                  className="col-12 col-lg-6 mb-5">
                                 <Link to={ '/product/' + product.id }
                                    className="card">
-                                    { product.tvs ?
+                                    { product.tvs && product.tvs.product_image ?
                                         <div className="card-image mb-3">
                                             <img
                                                 src={ 'http://localhost:8080/' +
-                                                      product.tvs.category_image }
+                                                      product.tvs.product_image }
                                                 alt=""
                                                 className="card-img"/>
                                         </div>

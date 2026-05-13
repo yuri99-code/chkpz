@@ -6,6 +6,8 @@ return array (
   3 => '/root/web_0/web_2',
   4 => '/root/web_0/web_3',
   5 => '/root/web_0/web_4',
-  6 => '/root/web_0/web_4/web_5',
-  7 => '/root/web_0/web_4/web_3',
+  6 => '/root/web_0/web_4/web_3',
+  7 => '/root/web_0/web_4/web_5',
+  8 => '/root/web_0/web_4/web_6',
+  9 => '/root/web_0/web_4/web_7',
 );

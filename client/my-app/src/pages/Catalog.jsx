@@ -63,7 +63,7 @@ function Catalog() {
                                      className="col-12 col-lg-6 mb-5">
                                     <Link to={ '/category/' + category.id }
                                        className="card">
-                                        { category.tvs.category_image ?
+                                        { category.tvs && category.tvs.category_image ?
                                             <div className="card-image mb-3">
                                                 <img
                                                     src={ 'http://localhost:8080/' +

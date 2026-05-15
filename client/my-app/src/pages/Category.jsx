@@ -20,7 +20,7 @@ function Category() {
             try {
 
                 const response = await axios.get(
-                    `http://localhost:8080/api/page.php?parent_id=${id}`,
+                    `http://localhost:8080/api/page.php?parent_id=${ id }`,
                 );
 
                 setProducts( response.data );
@@ -51,33 +51,40 @@ function Category() {
         <>
             <Header/>
 
-            <section>
+            { loading ?
                 <div className="app-container">
-                    <div className="row">
-                        { products.map( product => (
-                            <div key={ product.id }
-                                 className="col-12 col-lg-6 mb-5">
-                                <Link to={ '/product/' + product.id }
-                                   className="card">
-                                    { product.tvs && product.tvs.product_image ?
-                                        <div className="card-image mb-3">
-                                            <img
-                                                src={ 'http://localhost:8080/' +
-                                                      product.tvs.product_image }
-                                                alt=""
-                                                className="card-img"/>
-                                        </div>
-                                        :
-                                        <div></div>
-                                    }
-                                    <div
-                                        className="card-title">{ product.pagetitle }</div>
-                                </Link>
-                            </div>
-                        ) ) }
-                    </div>
+                    <div>Loading...</div>
                 </div>
-            </section>
+                :
+                <section>
+                    <div className="app-container">
+                        <div className="row">
+                            { products.map( product => (
+                                <div key={ product.id }
+                                     className="col-12 col-lg-6 mb-5">
+                                    <Link to={ '/product/' + product.id }
+                                          className="card">
+                                        { product.tvs &&
+                                          product.tvs.product_image ?
+                                            <div className="card-image mb-3">
+                                                <img
+                                                    src={ 'http://localhost:8080/' +
+                                                          product.tvs.product_image }
+                                                    alt=""
+                                                    className="card-img"/>
+                                            </div>
+                                            :
+                                            <div></div>
+                                        }
+                                        <div
+                                            className="card-title">{ product.pagetitle }</div>
+                                    </Link>
+                                </div>
+                            ) ) }
+                        </div>
+                    </div>
+                </section>
+            }
 
             <section>
                 <div className="form">

@@ -6,8 +6,43 @@ import 'swiper/css/pagination';
 import Header from '../parts/Header.jsx';
 import Footer from '../parts/Footer.jsx';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function Index() {
+    const [ categories, setCategories ] = useState( [] );
+
+    const [ error, setError ] = useState( null );
+
+    useEffect( () => {
+
+        async function fetchCategories() {
+
+            try {
+
+                const response = await axios.get(
+                    'http://localhost:8080/api/page.php?parent_id=4',
+                );
+
+                setCategories( response.data );
+
+            } catch ( err ) {
+
+                console.error( err );
+
+                setError( 'Ошибка загрузки' );
+
+            }
+        }
+
+        fetchCategories();
+
+    }, [] );
+
+    if ( error ) {
+        return <div>{ error }</div>;
+    }
+
     const partners = [
         '/images/partner-1.png',
         '/images/partner-2.jpg',
@@ -49,42 +84,27 @@ function Index() {
                     <div className="app-container">
                         <h2 className="products__title">Наши товары</h2>
                         <div className="row">
-                            <Link to="/category/test" className="col-12 col-lg-6 mb-5">
-                                <div className="products__item-image">
-                                    <img src="/images/product.jpg" alt=""
-                                         className="products__item-img"/>
+                            { categories.map( category => (
+                                <div key={ category.id }
+                                     className="col-12 col-lg-6 mb-5">
+                                    <Link to={ '/category/' + category.id }
+                                          className="card">
+                                        { category.tvs && category.tvs.category_image ?
+                                            <div className="card-image mb-3">
+                                                <img
+                                                    src={ 'http://localhost:8080/' +
+                                                          category.tvs.category_image }
+                                                    alt=""
+                                                    className="card-img"/>
+                                            </div>
+                                            :
+                                            <div></div>
+                                        }
+                                        <div
+                                            className="card-title">{ category.pagetitle }</div>
+                                    </Link>
                                 </div>
-                                <div className="products__item-title">Поковки и
-                                    штамповки для автомобильной промышлености
-                                </div>
-                            </Link>
-                            <a href="" className="col-12 col-lg-6 mb-5">
-                                <div className="products__item-image">
-                                    <img src="/images/product.jpg" alt=""
-                                         className="products__item-img"/>
-                                </div>
-                                <div className="products__item-title">Поковки и
-                                    штамповки для автомобильной промышлености
-                                </div>
-                            </a>
-                            <a href="" className="col-12 col-lg-6 mb-5">
-                                <div className="products__item-image">
-                                    <img src="/images/product.jpg" alt=""
-                                         className="products__item-img"/>
-                                </div>
-                                <div className="products__item-title">Поковки и
-                                    штамповки для автомобильной промышлености
-                                </div>
-                            </a>
-                            <a href="" className="col-12 col-lg-6 mb-5">
-                                <div className="products__item-image">
-                                    <img src="/images/product.jpg" alt=""
-                                         className="products__item-img"/>
-                                </div>
-                                <div className="products__item-title">Поковки и
-                                    штамповки для автомобильной промышлености
-                                </div>
-                            </a>
+                            ) ) }
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import Footer from '../parts/Footer.jsx';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Form from '../components/Form.jsx';
 
 function Index() {
     const [ categories, setCategories ] = useState( [] );
@@ -89,7 +90,8 @@ function Index() {
                                      className="col-12 col-lg-6 mb-5">
                                     <Link to={ '/category/' + category.id }
                                           className="card">
-                                        { category.tvs && category.tvs.category_image ?
+                                        { category.tvs &&
+                                          category.tvs.category_image ?
                                             <div className="card-image mb-3">
                                                 <img
                                                     src={ 'http://localhost:8080/' +
@@ -233,36 +235,7 @@ function Index() {
                 </div>
             </section>
 
-            <section>
-                <div className="form">
-                    <div className="app-container">
-                        <h2 className="form-title">Свяжитесь с нами по любым
-                            вопросам</h2>
-                        <div className="form-text">Мы всегда рады коллаборациям,
-                            интересным проектам и отзывам наших клиентов
-                        </div>
-                        <form action="" className="form__wrapper">
-                            <div className="form-input__wrap">
-                                <input type="text" className="form-input"
-                                       placeholder="Ваше имя"/>
-                            </div>
-                            <div className="form-input__wrap">
-                                <input type="text" className="form-input"
-                                       placeholder="Ваш E-mail"/>
-                            </div>
-                            <div className="form-input__wrap">
-                                <textarea className="form-textarea"
-                                          placeholder="Text"></textarea>
-                            </div>
-                            <button className="form-btn">Отправить</button>
-                        </form>
-                        <div className="form-personal">Нажимая на кнопку, вы
-                            даете согласие на обработку персональных данных и
-                            соглашаетесь c политикой конфиденциальности
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Form/>
             <Footer/>
         </>
     );

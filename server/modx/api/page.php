@@ -50,6 +50,7 @@ foreach ( $resources as $resource ) {
     $data['tvs'] = [
         'category_image' => $resource->getTVValue( 'Category Image' ),
         'product_image' => $resource->getTVValue( 'Product Image' ),
+        'weight' => $resource->getTVValue( 'Weight' ),
     ];
 
     $result[] = $data;

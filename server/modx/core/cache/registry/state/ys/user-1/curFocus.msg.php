@@ -1,2 +1,2 @@
 <?php
-return 'modx-resource-content-type';
+return 'modx-resource-pagetitle';

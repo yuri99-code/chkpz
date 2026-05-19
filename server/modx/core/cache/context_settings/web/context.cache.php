@@ -86,8 +86,8 @@
     ),
     'OnSiteRefresh' => 
     array (
-      11 => '11',
       10 => '10',
+      11 => '11',
     ),
     'OnSnipFormPrerender' => 
     array (
@@ -108,8 +108,8 @@
     'OnWebPagePrerender' => 
     array (
       10 => '10',
-      9 => '9',
       11 => '11',
+      9 => '9',
     ),
   ),
   'pluginCache' => 

@@ -27,8 +27,6 @@ function Form( props ) {
                 form,
             );
 
-            console.log(result);
-
             alert( 'Сообщение отправлено' );
 
         } catch ( err ) {

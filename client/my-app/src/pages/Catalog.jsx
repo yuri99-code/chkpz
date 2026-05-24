@@ -45,8 +45,6 @@ function Catalog() {
         return <div>{ error }</div>;
     }
 
-    console.log( categories );
-
     return (
         <>
             <Header/>

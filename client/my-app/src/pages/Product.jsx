@@ -46,8 +46,6 @@ function Product() {
         return <div>{ error }</div>;
     }
 
-    console.log( product );
-
     return (
         <>
             <Header/>

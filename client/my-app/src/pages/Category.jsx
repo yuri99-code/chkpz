@@ -6,77 +6,108 @@ import axios from 'axios';
 import Form from '../components/Form.jsx';
 
 function Category() {
+    const [ products, setProducts ] = useState( [] );
+    const [ loading, setLoading ] = useState( true );
+    const [ error, setError ] = useState( null );
 
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const [weight, setWeight] = useState('');
+    const [ weight, setWeight ] = useState( '' );
+    const [ diameters, setDiameters ] = useState( '' );
 
     const { id } = useParams();
 
-    useEffect(() => {
+    useEffect( () => {
 
         async function fetchProducts() {
 
             try {
 
-                setLoading(true);
+                setLoading( true );
 
                 const response = await axios.get(
-                    `http://localhost:8080/api/page.php?parent_id=${id}`
+                    `http://localhost:8080/app/api/page.php?parent_id=${ id }`,
                 );
 
-                setProducts(response.data);
+                setProducts( response.data );
 
-            } catch (err) {
+            } catch ( err ) {
 
-                console.error(err);
+                console.error( err );
 
-                setError('Ошибка загрузки');
+                setError( 'Ошибка загрузки' );
 
             } finally {
 
-                setLoading(false);
+                setLoading( false );
             }
         }
 
         fetchProducts();
 
-    }, [id]);
+    }, [ id ] );
 
-    const uniqueWeights = useMemo(() => {
+    const uniqueWeights = useMemo( () => {
 
-        const weights = products
-        .map(product => product.tvs?.weight)
-        .filter(Boolean);
+        const weights = products.map( product => product.tvs?.weight ).
+        filter( Boolean );
 
-        return [...new Set(weights)]
-        .sort((a, b) => Number(a) - Number(b));
+        return [ ...new Set( weights ) ].sort(
+            ( a, b ) => Number( a ) - Number( b ) );
 
-    }, [products]);
+    }, [ products ] );
 
-    const filteredProducts = useMemo(() => {
+    const uniqueDiameters = useMemo( () => {
 
-        if (!weight) {
-            return products;
-        }
+        return [
+            ...new Set(
+                products.map( product => product.tvs?.diameter ).
+                filter( Boolean ),
+            ),
+        ].sort( ( a, b ) => Number( a ) - Number( b ) );
 
-        return products.filter(
-            product => String(product.tvs?.weight) === weight
-        );
+    }, [ products ] );
 
-    }, [products, weight]);
+    const toggleDiameter = ( value ) => {
 
-    if (error) {
-        return <div>{error}</div>;
+        setDiameters( prev => {
+
+            if ( prev.includes( value ) ) {
+                return prev.filter( item => item !== value );
+            }
+
+            return [ ...prev, value ];
+        } );
+
+    };
+
+    const filteredProducts = useMemo( () => {
+
+        return products.filter( product => {
+
+            const productWeight = String( product.tvs?.weight ?? '' );
+            const productDiameter = String( product.tvs?.diameter ?? '' );
+
+            const weightMatch =
+                !weight || productWeight === weight;
+
+            const diameterMatch =
+                diameters.length === 0 ||
+                diameters.includes( productDiameter );
+
+            return weightMatch && diameterMatch;
+
+        } );
+
+    }, [ products, weight, diameters ] );
+
+    if ( error ) {
+        return <div>{ error }</div>;
     }
 
     return (
         <>
             <Header/>
 
-            {loading
+            { loading
                 ? (
                     <div className="app-container">
                         <div>Loading...</div>
@@ -86,107 +117,137 @@ function Category() {
                     <section>
                         <div className="app-container">
                             <div className="row">
-
                                 <div className="col-12 col-lg-10">
-
                                     <div className="row">
-
-                                        {filteredProducts.map(product => (
-
+                                        { filteredProducts.map( product => (
                                             <div
-                                                key={product.id}
+                                                key={ product.id }
                                                 className="col-12 col-lg-6 mb-5"
                                             >
-
                                                 <Link
-                                                    to={'/product/' + product.id}
+                                                    to={ '/product/' +
+                                                         product.id }
                                                     className="card"
                                                 >
-
-                                                    {product.tvs?.product_image && (
-                                                        <div className="card-image mb-3">
-                                                            <img
-                                                                src={
-                                                                    'http://localhost:8080/' +
-                                                                    product.tvs.product_image
-                                                                }
-                                                                alt=""
-                                                                className="card-img"
-                                                            />
-                                                        </div>
-                                                    )}
-
+                                                    { product.tvs?.product_image &&
+                                                      (
+                                                          <div
+                                                              className="card-image mb-3">
+                                                              <img
+                                                                  src={
+                                                                      'http://localhost:8080/' +
+                                                                      product.tvs.product_image
+                                                                  }
+                                                                  alt=""
+                                                                  className="card-img"
+                                                              />
+                                                          </div>
+                                                      ) }
                                                     <div className="card-title">
-                                                        {product.pagetitle}
+                                                        { product.pagetitle }
                                                     </div>
-
                                                 </Link>
-
                                             </div>
-
-                                        ))}
-
+                                        ) ) }
                                     </div>
-
                                 </div>
 
                                 <div className="col-12 col-lg-2">
-
-                                    <div className="sidebar p-4">
-
-                                        <div className="sidebar-title">
+                                    <div className="sidebar p-3">
+                                        <div className="sidebar-title mb-3">
                                             Фильтры
                                         </div>
-
-                                        <div className="sidebar__item">
-
-                                            <div className="sidebar__item-title">
-                                                Вес, кг
+                                        { uniqueWeights.length > 0 && (
+                                            <div className="sidebar__item mb-3">
+                                                <div
+                                                    className="sidebar__item-title mb-2">
+                                                    Вес, кг
+                                                </div>
+                                                <div
+                                                    className="sidebar__item-filter">
+                                                    { uniqueWeights.map(
+                                                        value => (
+                                                            <div
+                                                                key={ value }
+                                                                className="mb-1"
+                                                            >
+                                                                <input
+                                                                    id={ `weight-${ value }` }
+                                                                    type="radio"
+                                                                    name="weight"
+                                                                    value={ value }
+                                                                    checked={ weight ===
+                                                                              String(
+                                                                                  value ) }
+                                                                    onChange={ ( e ) => setWeight(
+                                                                        e.target.value ) }
+                                                                />
+                                                                <label
+                                                                    htmlFor={ `weight-${ value }` }
+                                                                    className="ms-1">
+                                                                    { value }
+                                                                </label>
+                                                            </div>
+                                                        ) ) }
+                                                </div>
                                             </div>
+                                        ) }
 
-                                            <div className="sidebar__item-filter">
-
-                                                {uniqueWeights.map(value => (
-
-                                                    <div
-                                                        key={value}
-                                                        className="mb-1"
-                                                    >
-
-                                                        <label htmlFor={`weight-${value}`}>
-                                                            {value}
-                                                        </label>
-
-                                                        <input
-                                                            id={`weight-${value}`}
-                                                            type="radio"
-                                                            name="weight"
-                                                            value={value}
-                                                            checked={weight === String(value)}
-                                                            onChange={(e) => setWeight(e.target.value)}
-                                                        />
-
-                                                    </div>
-
-                                                ))}
-
-                                                {uniqueWeights.length > 0 && (
-                                                    <button
-                                                        className="mt-2"
-                                                        onClick={() => setWeight('')}
-                                                    >
-                                                        Сбросить
-                                                    </button>
-                                                )}
-
+                                        { uniqueWeights.length > 0 && (
+                                            <div className="sidebar__item">
+                                                <div
+                                                    className="sidebar__item-title mb-2">
+                                                    Диаметр
+                                                </div>
+                                                <div
+                                                    className="sidebar__item-filter">
+                                                    { uniqueDiameters.map(
+                                                        value => (
+                                                            <div
+                                                                key={ value }
+                                                                className="mb-1"
+                                                            >
+                                                                <input
+                                                                    id={ `diameter-${ value }` }
+                                                                    type="checkbox"
+                                                                    value={ value }
+                                                                    checked={ diameters.includes(
+                                                                        String(
+                                                                            value ) ) }
+                                                                    onChange={ () =>
+                                                                        toggleDiameter(
+                                                                            String(
+                                                                                value ) )
+                                                                    }
+                                                                />
+                                                                <label
+                                                                    htmlFor={ `diameter-${ value }` }
+                                                                    className="ms-1">
+                                                                    { value }
+                                                                </label>
+                                                            </div>
+                                                        ) ) }
+                                                    { uniqueDiameters.length > 0
+                                                      || uniqueWeights.length >
+                                                      0 ?
+                                                        (
+                                                            <button
+                                                                className="sidebar-resetBtn mt-3"
+                                                                onClick={ () => {
+                                                                    setWeight(
+                                                                        '' );
+                                                                    setDiameters(
+                                                                        [] );
+                                                                } }
+                                                            >
+                                                                Сбросить
+                                                            </button>
+                                                        ) : '' }
+                                                </div>
                                             </div>
-
-                                        </div>
-
+                                        ) }
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </section>

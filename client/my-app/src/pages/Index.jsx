@@ -22,7 +22,7 @@ function Index() {
             try {
 
                 const response = await axios.get(
-                    'http://localhost:8080/api/page.php?parent_id=4',
+                    'http://localhost:8080/app/api/page.php?parent_id=4',
                 );
 
                 setCategories( response.data );

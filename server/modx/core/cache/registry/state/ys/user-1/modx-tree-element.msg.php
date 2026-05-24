@@ -6,5 +6,6 @@ return array (
   3 => '/root/n_category/n_category_5',
   4 => '/root/n_category/n_category_8',
   5 => '/root/n_type_template',
-  6 => '/root/n_type_tv',
+  6 => '/root/n_type_plugin',
+  7 => '/root/n_type_tv',
 );

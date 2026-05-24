@@ -23,7 +23,7 @@ function Form( props ) {
         try {
 
             let result = await axios.post(
-                'http://localhost:8080/api/contact.php',
+                'http://localhost:8080/app/api/contact.php',
                 form,
             );
 

@@ -27,6 +27,10 @@ function Header() {
                                     нас</Link>
                             </li>
                             <li className="header__item">
+                                <Link to="/docs"
+                                      className="header__link">Документы</Link>
+                            </li>
+                            <li className="header__item">
                                 <Link to="/contacts"
                                       className="header__link">Контакты</Link>
                             </li>

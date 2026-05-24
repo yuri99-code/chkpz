@@ -21,7 +21,7 @@ function Product() {
             try {
 
                 const response = await axios.get(
-                    `http://localhost:8080/api/page.php?page_id=${ id }`,
+                    `http://localhost:8080/app/api/page.php?page_id=${ id }`,
                 );
 
                 setProduct( response.data[ 0 ] );

@@ -6,6 +6,7 @@ import Contacts from '../pages/Contacts.jsx';
 import Catalog from '../pages/Catalog.jsx';
 import Category from '../pages/Category.jsx';
 import Product from '../pages/Product.jsx';
+import Docs from '../pages/Docs.jsx';
 function AppRouter() {
     return (
         <Routes>
@@ -14,6 +15,7 @@ function AppRouter() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/category/:id" element={<Category />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/docs" element={<Docs />} />
             <Route path="*" element={<Index/>} />
         </Routes>
     );

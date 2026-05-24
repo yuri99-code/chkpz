@@ -7,8 +7,9 @@
     0 => 
     array (
       0 => 1,
-      1 => 2,
-      2 => 4,
+      1 => 4,
+      2 => 2,
+      3 => 23,
     ),
     3 => 
     array (
@@ -44,6 +45,11 @@
       2 => 21,
       3 => 22,
     ),
+    23 => 
+    array (
+      0 => 24,
+      1 => 25,
+    ),
   ),
   'webLinkMap' => 
   array (
@@ -56,8 +62,8 @@
     ),
     'OnDocFormPrerender' => 
     array (
-      1 => '1',
       5 => '5',
+      1 => '1',
     ),
     'OnFileEditFormPrerender' => 
     array (
@@ -81,8 +87,8 @@
     ),
     'OnRichTextEditorRegister' => 
     array (
-      5 => '5',
       8 => '8',
+      5 => '5',
     ),
     'OnSiteRefresh' => 
     array (

@@ -6,4 +6,5 @@
  */
 define('MODX_CORE_PATH', '/var/www/html/core/');
 define('MODX_CONFIG_KEY', 'config');
+define('BASE_URL', 'http://localhost:8080');
 ?>

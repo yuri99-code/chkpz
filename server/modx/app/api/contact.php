@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 define('MODX_API_MODE', true);
 
-require dirname(__DIR__) . '/index.php';
+require '../../index.php';
 
 $modx->initialize('web');
 

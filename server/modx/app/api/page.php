@@ -1,13 +1,18 @@
 <?php
 
-define( 'MODX_API_MODE', true );
+header( 'Access-Control-Allow-Origin: *' );
 
-require dirname( __DIR__ ) . '/index.php';
+header( 'Access-Control-Allow-Methods: POST, OPTIONS' );
 
-$modx->initialize( 'web' );
+header( 'Access-Control-Allow-Headers: Content-Type' );
 
 header( 'Content-Type: application/json' );
-header( 'Access-Control-Allow-Origin: *' );
+
+define( 'MODX_API_MODE', true );
+
+require '../../index.php';
+
+$modx->initialize( 'web' );
 
 $template = $_GET['template_id'] ?? null;
 
@@ -44,14 +49,16 @@ $resources = $modx->getCollection(
 $result = [];
 
 foreach ( $resources as $resource ) {
-
     $data = $resource->toArray();
 
     $data['tvs'] = [
         'category_image' => $resource->getTVValue( 'Category Image' ),
-        'product_image' => $resource->getTVValue( 'Product Image' ),
-        'weight' => $resource->getTVValue( 'Weight' ),
+        'product_image'  => $resource->getTVValue( 'Product Image' ),
+        'weight'         => $resource->getTVValue( 'Weight' ),
+        'diameter'       => $resource->getTVValue( 'Diameter' ),
     ];
+
+    $data['content'] = str_replace( 'app/', BASE_URL . '/app/', $data['content'] );
 
     $result[] = $data;
 }

@@ -5,16 +5,19 @@ RUN apk add --no-cache \
     libjpeg-turbo-dev \
     freetype-dev \
     libzip-dev \
-    zip unzip git
+    postgresql-dev \
+    zip \
+    unzip \
+    git
 
 RUN docker-php-ext-configure gd \
     --with-freetype \
-    --with-jpeg \
-    && docker-php-ext-install pdo pdo_mysql gd zip
+    --with-jpeg
 
-# Opcache
-RUN docker-php-ext-enable opcache
-
-COPY php.ini /usr/local/etc/php/php.ini
-
-WORKDIR /var/www/html
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    pdo_pgsql \
+    pgsql \
+    gd \
+    zip

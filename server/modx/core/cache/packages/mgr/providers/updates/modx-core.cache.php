@@ -1,4 +1,4 @@
-<?php if(time() > 1779625716){return null;} return array (
+<?php if(time() > 1782376799){return null;} return array (
   'modx' => 
   array (
     'updateable' => 1,
@@ -18,6 +18,11 @@
   ),
   'extras' => 
   array (
-    'updateable' => 0,
+    'updateable' => 2,
+    'names' => 
+    array (
+      0 => 'FormIt',
+      1 => 'pdoTools',
+    ),
   ),
 );

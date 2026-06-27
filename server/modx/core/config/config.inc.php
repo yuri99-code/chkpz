@@ -2,14 +2,14 @@
 /**
  *  MODX Configuration file
  */
-$database_type = 'mysql';
+$database_type = 'pgsql';
 $database_server = 'db';
 $database_connection_charset = 'utf8mb4';
 $table_prefix = 'modx_';
 $dbase = 'modx';
 $database_user = 'modx';
-$database_password = 'modx';
-$database_dsn = 'mysql:host=db;dbname=modx;charset=utf8mb4';
+$database_password = 'secret';
+$database_dsn = 'pgsql:host=db;dbname=modx;charset=utf8mb4';
 $config_options = array (
 );
 $driver_options = array (

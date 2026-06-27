@@ -2,25 +2,25 @@
 /**
  *  MODX Configuration file
  */
-$database_type = 'pgsql';
+$database_type = 'mysql';
 $database_server = 'db';
 $database_connection_charset = 'utf8mb4';
 $table_prefix = 'modx_';
 $dbase = 'modx';
 $database_user = 'modx';
-$database_password = 'secret';
-$database_dsn = 'pgsql:host=db;dbname=modx;charset=utf8mb4';
+$database_password = 'modx';
+$database_dsn = 'mysql:host=db;dbname=modx;charset=utf8mb4';
 $config_options = array (
 );
 $driver_options = array (
 );
 
-$lastInstallTime = 1777741983;
+$lastInstallTime = 1782581051;
 
-$site_id = 'modx69f6309f42c898.76832988';
-$site_sessionname = 'SN69f62f4c0d561';
+$site_id = 'modx6a40073b90d4e5.11233553';
+$site_sessionname = 'SN6a4003ff64fdd';
 $https_port = '443';
-$uuid = '14be2913-7ca6-4ec8-8292-afe5ebe43bb6';
+$uuid = 'a265cbe8-7d55-4b73-9fbf-33b24d726a24';
 
 if (!defined('MODX_ASSETS_PATH')) {
     $modx_assets_path= '/var/www/html/assets/';

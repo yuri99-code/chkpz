@@ -7,4 +7,4 @@ if (!defined('MODX_CORE_PATH')) {
     }
 }
 if (!defined('MODX_CONFIG_KEY')) define ('MODX_CONFIG_KEY', 'config');
-define ('MODX_SETUP_KEY', '@advanced@');
+define ('MODX_SETUP_KEY', '@git@');

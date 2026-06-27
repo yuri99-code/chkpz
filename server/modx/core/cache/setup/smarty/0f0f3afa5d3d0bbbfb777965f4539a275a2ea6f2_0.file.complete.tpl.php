@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-05-02 17:15:01
+/* Smarty version 4.5.6, created on 2026-06-27 17:25:32
   from '/var/www/html/setup/templates/complete.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.6',
-  'unifunc' => 'content_69f631152b5878_60231117',
+  'unifunc' => 'content_6a40078c3ec8e7_04258640',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f0f3afa5d3d0bbbfb777965f4539a275a2ea6f2' => 
     array (
       0 => '/var/www/html/setup/templates/complete.tpl',
-      1 => 1771302406,
+      1 => 1782222764,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69f631152b5878_60231117 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6a40078c3ec8e7_04258640 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form id="install" action="?action=complete" method="post">
     <div class="setup_body">
         <h2><?php echo $_smarty_tpl->tpl_vars['_lang']->value['thank_installing'];

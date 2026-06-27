@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-05-08 14:13:46
+/* Smarty version 4.5.6, created on 2026-06-27 17:44:00
   from '/var/www/html/manager/templates/default/resource/sections/tvs.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.6',
-  'unifunc' => 'content_69fdef9acb09a0_98165230',
+  'unifunc' => 'content_6a400be00549d0_43377489',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '03e09cd96e75c044bb61f3fc4db02d3f1dcecf50' => 
     array (
       0 => '/var/www/html/manager/templates/default/resource/sections/tvs.tpl',
-      1 => 1777879994,
+      1 => 1782222764,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69fdef9acb09a0_98165230 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6a400be00549d0_43377489 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/var/www/html/core/vendor/smarty/smarty/libs/plugins/function.cycle.php','function'=>'smarty_function_cycle',),));
 echo $_smarty_tpl->tpl_vars['OnResourceTVFormPrerender']->value;?>
 

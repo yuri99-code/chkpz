@@ -1,28 +1,10 @@
-<?php if(time() > 1782376799){return null;} return array (
+<?php if(time() > 1782585021){return null;} return array (
   'modx' => 
   array (
-    'updateable' => 1,
-    'versions' => 
-    array (
-      0 => 
-      array (
-        'version' => '3.2.1-pl',
-        'downloadId' => 'a1c54aa8-d971-4cd4-a279-340f6e806706',
-      ),
-    ),
-    'latest' => 
-    array (
-      'version' => '3.2.1-pl',
-      'downloadId' => 'a1c54aa8-d971-4cd4-a279-340f6e806706',
-    ),
+    'updateable' => 0,
   ),
   'extras' => 
   array (
-    'updateable' => 2,
-    'names' => 
-    array (
-      0 => 'FormIt',
-      1 => 'pdoTools',
-    ),
+    'updateable' => 0,
   ),
 );

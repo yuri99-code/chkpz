@@ -1,0 +1,528 @@
+/* top area around the tab strip */
+.x-tab-panel-noborder {
+  border: 1px solid #E2E3DE;
+  margin: 20px 0 20px;
+  overflow: visible;
+
+  /* background behind a button bar */
+  .x-tab-panel-body-noborder {
+    background-color: $white;
+    border-radius: $borderRadius;
+  }
+}
+
+/* main tabs */
+.x-tab-panel-header,
+.x-tab-panel-footer {
+  border: 0;
+  position: relative;
+}
+
+.x-tab-panel-header {
+  
+  @include grid-media($gtMobile) {
+    + .x-tab-panel-bwrap {
+      .x-tab-panel-body {
+        // Recalculations when changing tabs seem to add space within right side of container, triggering an unnecessary bottom scrollbar
+        overflow-x: hidden !important;
+      }
+    }
+  }
+}
+
+.x-tab-panel-header ul.x-tab-strip {
+  background-color: $tabStripBg !important; /* override !important extjs default theme style */
+  border: 0; /* prevent overflowing border, add to .x-tab-strip-wrap if necessary */
+  margin: 0; /* was -1px */
+  /*width: auto; /* this prevents tabs from triggering the scroll functionality */
+  position: relative;
+  top: 1px;
+}
+
+.x-tab-panel-header-plain .x-tab-strip-spacer,
+.x-tab-panel-footer-plain .x-tab-strip-spacer {
+  /*background-color: $white*/
+  border: none;
+  height: 0;
+}
+
+.x-tab-panel {
+
+  /* take care of nested tab panels as seen in MIGX */
+  .x-tab-panel {
+    padding-top: 18px;  /* 15px + 3px for the active tab box-shadow on top */
+
+    &.vertical-tabs-panel {
+      padding-top: 0; /* do not add that padding to vertical tabs panels */
+    }
+
+    .x-tab-strip-wrap {
+      .x-tab-strip {
+        background-color: $lightestGray !important; /* override !important rule defined by extjs default theme */
+      }
+    }
+
+  }
+}
+
+.x-tab-panel-header,
+.x-tab-strip {
+  padding-left: 0; /* was 1px */
+}
+
+.x-tab-panel-bwrap {
+  border-radius: $borderRadius;
+  overflow: visible; /* prevent cut off box-shadow */
+
+  /* no box-shadows on nested tab panels, MIGX for example */
+  .x-tab-panel-bwrap {
+    box-shadow: none;
+  }
+}
+
+ul.x-tab-strip li {
+  background-color: $tabInactiveBg;
+  color: $tabInactiveText;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+  cursor: pointer;
+  font: $tabFont;
+  line-height: 2.2;
+  margin-left: 0;
+  padding: 0 12px;
+  position: relative;
+  z-index: 1;
+
+  @include grid-media($mobile) {
+    line-height: 2.75;
+  }
+
+  html[dir="rtl"] & {
+    float: right;
+  }
+
+  &:hover {
+    background-color: $tabInactiveBgHover;
+    color: $tabInactiveTextHover;
+  }
+
+  &.x-tab-strip-active {
+    color: $tabActiveText;
+    background-color: $tabActiveBg;
+    cursor: default;
+
+    .vertical-tabs-header & {
+      border-radius: 0;
+    }
+
+    &:hover {
+      background-color: $tabActiveBgHover;
+    }
+  }
+
+  &.x-tab-edge {
+    height: 0;
+    visibility: hidden; /* display none makes the tab scroll buttons appear somehow */
+  }
+}
+
+.x-tab-strip-wrap,
+.x-tab-panel-header,
+.x-tab-panel {
+  overflow: visible;
+  border: none;
+}
+
+.x-tab-strip-wrap {
+  overflow: hidden;
+  padding: 2px 0 0;
+  margin: 0;
+}
+
+.x-tab-strip-closable {
+  padding-right: 15px !important;
+}
+
+.x-tab-strip .x-tab-strip-closable a.x-tab-strip-close {
+  right: 2px;
+  background-image: url($imgPath + 'modx-theme/tabs/tab-close.gif');
+}
+
+ul.x-tab-strip-top li:first-child {
+  margin-left: 0;
+}
+
+ul.x-tab-strip-bottom {
+  background-color: $wildSand;
+  border-top-color: $alto;
+
+  & .x-tab-right {
+    background-image: url($imgPath + 'modx-theme/tabs/tab-btm-inactive-right-bg.gif');
+
+    & .x-tab-right {
+      background-image: url($imgPath + 'modx-theme/tabs/tab-btm-right-bg.gif');
+    }
+
+    & .x-tab-left {
+      background-image: url($imgPath + 'modx-theme/tabs/tab-btm-left-bg.gif');
+    }
+  }
+
+  & .x-tab-left {
+    background-image: url($imgPath + 'modx-theme/tabs/tab-btm-inactive-left-bg.gif');
+  }
+
+}
+
+.x-tab-panel-body {
+  background-color: $white;
+  border: 0;
+  overflow: visible;
+}
+
+.x-tab-scroller-left,
+.x-tab-scroller-right {
+  border: 0;
+
+  &:before {
+    @extend %pseudo-font;
+
+    box-sizing: border-box;
+    color: $treeColor;
+    content: '';
+    font-size: 28px;
+    margin-top: -20px; /* half of the height to center vertically with top 50% */
+    opacity: 1;
+    filter: alpha(opacity=100); /* for IE <= 8 */
+    position: absolute;
+    top: 50%;
+    right: 0;
+    text-align: center;
+    width: 18px;
+    transition: opacity .25s;
+  }
+
+  &-over {
+    &:before {
+      color: $colorSplash;
+    }
+  }
+
+  &-disabled {
+    cursor: default;
+
+    &:before {
+      color: $treeColor;
+      opacity: .4;
+      filter: alpha(opacity=100); /* for IE <= 8 */
+    }
+  }
+}
+
+.x-tab-scroller-left {
+  &:before {
+    content: fa-content($fa-var-caret-left);
+  }
+}
+
+.x-tab-scroller-right {
+  &:before {
+    content: fa-content($fa-var-caret-right);
+  }
+}
+
+.x-tab-panel-bbar .x-toolbar,
+.x-tab-panel-tbar .x-toolbar {
+  border-color: $alto;
+}
+
+.x-tab-panel-body-noborder .x-panel-body-noheader:first-child {
+  border-top: 0 none;
+}
+
+.x-tab-panel-bbar-noborder .x-toolbar {
+  border-top-color: transparent;
+}
+
+.x-tab-panel-tbar-noborder .x-toolbar {
+  border-bottom-color: transparent;
+}
+
+/* vertical tabs */
+.vertical-tabs-panel {
+  background-color: $white;
+  margin: 0;
+  display: flex;
+  @include grid-media($mobile) {
+    display: unset;
+  }
+
+  &.wrapped {
+    border: 1px solid $borderColor;
+  }
+
+  .vertical-tabs-header {
+    background: $coreFieldBg !important;
+    border-right: var(--modx-mgr-border-size-region-divider) solid $borderColor !important;
+    width: auto !important;
+    .x-tab-scroller-left,
+    .x-tab-scroller-right {
+      display: none !important;
+      margin: 0 !important;
+    }
+
+    @include grid-media($mobile) {
+      width: unset !important;
+      float: unset;
+      border-right: none !important;
+      margin-bottom: 0;
+      padding-bottom: 1rem !important;
+      &::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 20px;
+          background-color: #fff;
+          border-radius: 48%;
+          width: 80%;
+          height: 26px;
+          transform: translateX(-50%);
+          box-shadow: 0px 3px 18px 0px #dad5d5;
+        }
+    }
+
+    .x-tab-strip-wrap {
+      /*
+        As vertical tab panels are nested ones too, do not apply the background color for nested tab panels
+      */
+      background-color: transparent;
+      line-height: 0;
+      margin: 0;
+      padding: 0;
+      width: unset !important;
+      /* 
+        Allows hiding of right border on active li via pseudo el;
+        needed here and on the li itself
+      */
+      overflow: visible;
+
+      @include grid-media($mobile) {
+        margin: 0 !important;
+        display: block;
+        width: 100% !important;
+      }
+
+      ul.x-tab-strip {
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        width: var(--modx-mgr-vertical-tabs-categories-width) !important;
+        >li {
+          border-bottom: 1px solid $borderColor;
+          color: $coreFieldLabelColor;
+          line-height: 1;
+          margin: 0;
+          overflow: hidden;
+          padding: 10px 15px;
+          transition: background-color .25s, color .25s;
+
+          @include grid-media($desktop) {
+            font-size: 12px;
+            padding: 8px;
+          }
+
+          &:hover {
+            background: $white;
+          }
+
+          &.x-tab-strip-active {
+            background: $white;
+            border-color: $borderColorHover;
+            box-shadow: none; /* removes the active tab strip on top */
+            color: $tabActiveText;
+          }
+          @include grid-media($gtMobile) {
+            &.x-tab-strip-active {
+              /* 
+                Allows hiding of right border on active li via pseudo el;
+                needed here and on the tab strip wrapper
+              */
+              overflow: visible;
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: -1px;
+                width: 1px;
+                height: 100%;
+                background-color: #fff;
+              }
+            }
+          }
+          @include grid-media($desktop) {
+            
+          }
+
+          &.x-tab-edge {
+            height: 0;
+            visibility: hidden; /* display none makes the tab scroll buttons appear somehow */
+
+            .x-tab-strip-text {
+              display: none; /* prevent 4px high space at the end of the tab strip */
+            }
+          }
+
+          .x-tab-strip-text {
+            line-height: 1.4;
+            padding: 2px 0 2px 0;
+            white-space: pre-wrap;
+          }
+        }
+
+        @include grid-media($mobile) {
+          width: auto !important;
+          flex-flow: wrap;
+          text-align: center;
+          border: 3px solid #fff;
+          border-bottom-width: 1px;
+          background-color: hsl(2, 2%, 94%) !important;
+          > li {
+            padding: 12px 8px;
+            flex-grow: 1;
+            border-radius: 0;
+            border-style: none solid solid;
+            border-color: #fff;
+            border-width: 1px;
+            border-bottom-width: 2px;
+            &.x-tab-strip-active {
+              width: unset !important;
+              background: #fff;
+              border: none;
+              a {
+                color: $tabActiveText;
+              }
+            }
+            &.x-tab-edge {
+              display: none;
+            }
+          }
+        }
+
+        @include grid-media($gtMobile) {
+          margin-bottom: var(--modx-mgr-panel-spacing);
+        }
+      }
+    }
+
+    /* the "categories" text */
+    h4 {
+      background: $white; /*border-right: 1px solid $borderColor;*/
+      border-bottom: 1px solid $borderColor;
+      color: $darkestGray;
+      font-size: 16px;
+      padding: 15px 0 15px 15px;
+    }
+
+    .x-tab-strip-spacer {
+      display: none; /* added by extjs */
+    }
+  }
+
+  /* this is the area where the TV form fields are displayed */
+  .x-tab-panel-bwrap {
+    box-shadow: none;
+
+    .x-tab-panel-body {
+      border-top: 0;
+      width: auto !important; /* Overrides extjs inline width */
+    }
+
+    .vertical-tabs-body {
+      border: 0; /* do not add the top border for nested tabs panels */
+      width: 100% !important;
+    }
+
+    .x-grid-panel {
+      .x-panel-bwrap {
+        > div:is(.x-panel-tbar, .x-panel-body, .x-panel-bbar) {
+          width: unset !important;
+        }
+      }
+    }
+
+    @include grid-media($mobile) {
+      .vertical-tabs-body {
+        padding-top: 0;
+      }
+    }
+
+    @include grid-media($gtMobile) {
+      width: calc(100% 
+        - var(--modx-mgr-vertical-tabs-categories-width) 
+        - var(--modx-mgr-border-size-region-divider)
+      );
+      .x-tab-panel-body {
+        .x-panel {
+          width: unset !important;
+        }
+      }
+      .x-grid-panel {
+        width: calc(100% - var(--modx-mgr-vertical-tabs-categories-width)) !important;
+        .x-panel-bwrap {
+          > div:is(.x-panel-tbar, .x-panel-body, .x-panel-bbar) {
+            width: 100% !important;
+            .x-toolbar {
+              width: unset !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.tvs-wrapper {
+  .vertical-tabs-panel {
+    .x-tab-panel-bwrap {
+      > .x-tab-panel-body {
+        padding: var(--modx-mgr-panel-spacing);
+      }
+    }
+  }
+
+  &.below-content {
+    border-radius: $borderRadius;
+    margin: 1rem;
+
+    .vertical-tabs-panel {
+      border-radius: $borderRadius;
+    }
+  }
+
+  @include grid-media($mobile) {
+    .vertical-tabs-panel {
+      .x-tab-panel-bwrap {
+        > .x-tab-panel-body {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+
+  @include grid-media($desktop) {
+    &.below-content {
+      margin: 0;
+    }
+  }
+}
+
+.window-vtabs {
+  .x-panel-mr {
+    padding-right: 0;
+  }
+
+  .vertical-tabs-panel {
+    width: 100% !important;
+    margin: 0;
+  }
+}

@@ -114,9 +114,14 @@ class xPDOManager extends \xPDO\Om\xPDOManager {
             $instance= $this->xpdo->newObject($className);
             if ($instance) {
                 $tableName= $this->xpdo->getTableName($className);
-                $existsStmt = $this->xpdo->query("SELECT COUNT(*) FROM {$tableName}");
-                if ($existsStmt && $existsStmt->fetchAll()) {
-                    return true;
+                try {
+                    $existsStmt = $this->xpdo->query("SELECT COUNT(*) FROM {$tableName}");
+                    if ($existsStmt && $existsStmt->fetchAll()) {
+                        return true;
+                    }
+                } catch (\PDOException $e) {
+                    /* Table does not exist; proceed to CREATE TABLE below. */
+                    $this->xpdo->log(xPDO::LOG_LEVEL_DEBUG, "Table {$tableName} does not exist, creating: " . $e->getMessage());
                 }
                 $modelVersion= $this->xpdo->getModelVersion($className);
                 $tableMeta= $this->xpdo->getTableMeta($className);
@@ -416,8 +421,18 @@ class xPDOManager extends \xPDO\Om\xPDOManager {
         $notNull= !isset ($meta['null']) ? false : ($meta['null'] === 'false' || empty($meta['null']));
         $null= $notNull ? ' NOT NULL' : ' NULL';
         $extra= '';
-        if (isset($meta['index']) && $meta['index'] == 'pk' && !is_array($pk) && $pktype == 'integer' && isset ($meta['generated']) && $meta['generated'] == 'native') {
-            $extra= ' AUTO_INCREMENT';
+        $isGeneratedPkField = isset($meta['index']) && $meta['index'] == 'pk'
+            && isset($meta['generated']) && $meta['generated'] == 'native';
+        if ($isGeneratedPkField && ($meta['phptype'] ?? '') === 'integer') {
+            if (!is_array($pk)) {
+                $extra = ' AUTO_INCREMENT';
+            } else {
+                $primaryColumns = $this->xpdo->getIndexMeta($class)['PRIMARY']['columns'] ?? [];
+                reset($primaryColumns);
+                if (key($primaryColumns) === $name) {
+                    $extra = ' AUTO_INCREMENT';
+                }
+            }
         }
         if (empty ($extra) && isset ($meta['extra'])) {
             $extra= ' ' . $meta['extra'];

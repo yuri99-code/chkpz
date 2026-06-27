@@ -36,16 +36,16 @@ services:
     networks:
       - modx_net
 
-#  db:
-#    image: pgvector/pgvector:pg17
-#    environment:
-#      POSTGRES_DB: modx
-#      POSTGRES_USER: modx
-#      POSTGRES_PASSWORD: secret
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      - modx_net
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: modx
+      POSTGRES_USER: modx
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    networks:
+      - modx_net
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -61,19 +61,19 @@ services:
     networks:
       - modx_net
 
-#  pgadmin:
-#    image: dpage/pgadmin4
-#    container_name: modx_pgadmin
-#    restart: always
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: admin@example.com
-#      PGADMIN_DEFAULT_PASSWORD: admin
-#    ports:
-#      - "8082:80"
-#    depends_on:
-#      - db
-#    networks:
-#      - modx_net
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: modx_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8082:80"
+    depends_on:
+      - postgres
+    networks:
+      - modx_net
 
 volumes:
   db_data:

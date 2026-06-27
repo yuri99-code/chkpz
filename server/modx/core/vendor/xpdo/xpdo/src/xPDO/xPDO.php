@@ -20,6 +20,9 @@ namespace xPDO;
 
 use Composer\Autoload\ClassLoader;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
+use xPDO\Logging\xPDOLogger;
 use xPDO\Om\xPDOCriteria;
 use xPDO\Om\xPDOQuery;
 
@@ -156,6 +159,10 @@ class xPDO {
      */
     public $services= null;
     /**
+     * @var LoggerInterface|null A PSR-3 logger instance for this xPDO instance.
+     */
+    public $logger= null;
+    /**
      * @var float Start time of the request, initialized when the constructor is
      * called.
      */
@@ -278,6 +285,18 @@ class xPDO {
             if ($this->services === null) {
                 $this->services = new xPDOContainer();
             }
+            if ($this->services instanceof ContainerInterface) {
+                if ($this->services->has(LoggerInterface::class)) {
+                    $logger = $this->services->get(LoggerInterface::class);
+                } elseif ($this->services->has('logger')) {
+                    $logger = $this->services->get('logger');
+                } else {
+                    $logger = null;
+                }
+                if ($logger instanceof LoggerInterface) {
+                    $this->logger = $logger;
+                }
+            }
             $this->setLogLevel($this->getOption('log_level', null, xPDO::LOG_LEVEL_FATAL, true));
             $this->setLogTarget($this->getOption('log_target', null, php_sapi_name() === 'cli' ? 'ECHO' : 'HTML', true));
             if (!empty($dsn)) {
@@ -350,6 +369,8 @@ class xPDO {
             $this->services = $data;
             if ($this->services->has('config')) {
                 $data = $this->services->get('config');
+            } else {
+                throw new xPDOException('A ContainerInterface passed to xPDO must provide a \'config\' entry containing the xPDO configuration array.');
             }
         }
         if (!is_array($data)) {
@@ -475,9 +496,10 @@ class xPDO {
                 $prefix= !is_string($prefix) ? $this->config[xPDO::OPT_TABLE_PREFIX] : $prefix;
                 if (!array_key_exists($pkg, $this->packages) || $this->packages[$pkg]['path'] !== $path || $this->packages[$pkg]['prefix'] !== $prefix) {
                     $this->packages[$pkg]= array('path' => $path, 'prefix' => $prefix);
-                    $this->setPackageMeta($pkg, $path, $namespacePrefix);
+                    $added = $this->setPackageMeta($pkg, $path, $namespacePrefix);
+                } else {
+                    $added = true;
                 }
-                $added= true;
             }
         } else {
             $this->log(xPDO::LOG_LEVEL_ERROR, 'addPackage called with an invalid package name.');
@@ -1027,7 +1049,7 @@ class xPDO {
                 $query->query['columns'] = array();
             }
             if (!empty($query->query['groupby']) || !empty($query->query['having'])) {
-                $query->select($expr);
+                $query->select('1 AS _c');
                 if ($query->prepare()) {
                     $countQuery = new xPDOCriteria($this, "SELECT COUNT(*) FROM ({$query->toSQL(false)}) cq", $query->bindings, $query->cacheFlag);
                     $stmt = $countQuery->prepare();
@@ -2047,6 +2069,60 @@ class xPDO {
         if ($level !== xPDO::LOG_LEVEL_FATAL && $level > $this->logLevel && $this->_debug !== true) {
             return;
         }
+        if (empty($file)) {
+            $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
+            if ($backtrace && isset($backtrace[2])) {
+                $file = $backtrace[2]['file'];
+                $line = $backtrace[2]['line'];
+            }
+            if (empty($file) && isset($_SERVER['SCRIPT_NAME'])) {
+                $file = $_SERVER['SCRIPT_NAME'];
+            }
+        }
+        if ($this->logger instanceof xPDOLogger) {
+            $this->logger->handleXpdo($level, $msg, $target, $def, $file, $line);
+            return;
+        }
+        if ($this->logger instanceof LoggerInterface) {
+            if (is_string($msg)) {
+                $message = $msg;
+            } elseif (is_object($msg) && method_exists($msg, '__toString')) {
+                $message = (string) $msg;
+            } else {
+                $message = print_r($msg, true);
+            }
+            $context = array(
+                'def' => $def,
+                'file' => $file,
+                'line' => $line,
+                'xpdo_level' => $level,
+            );
+            switch ($level) {
+                case xPDO::LOG_LEVEL_DEBUG:
+                    $psrLevel = LogLevel::DEBUG;
+                    break;
+                case xPDO::LOG_LEVEL_INFO:
+                    $psrLevel = LogLevel::INFO;
+                    break;
+                case xPDO::LOG_LEVEL_WARN:
+                    $psrLevel = LogLevel::WARNING;
+                    break;
+                case xPDO::LOG_LEVEL_ERROR:
+                    $psrLevel = LogLevel::ERROR;
+                    break;
+                case xPDO::LOG_LEVEL_FATAL:
+                    $psrLevel = LogLevel::CRITICAL;
+                    break;
+                default:
+                    $psrLevel = LogLevel::NOTICE;
+            }
+            $this->logger->log($psrLevel, $message, $context);
+            if ($level === xPDO::LOG_LEVEL_FATAL) {
+                while (ob_get_level() && @ob_end_flush()) {}
+                exit ('[' . date('Y-m-d H:i:s') . '] (' . $this->_getLogLevel($level) . $def . $file . $line . ') ' . $msg . "\n" . ($this->getDebug() === true ? '<pre>' . "\n" . print_r(debug_backtrace(), true) . "\n" . '</pre>' : ''));
+            }
+            return;
+        }
         if (empty ($target)) {
             $target = $this->logTarget;
         }
@@ -2054,22 +2130,6 @@ class xPDO {
         if (is_array($target)) {
             if (isset($target['options'])) $targetOptions =& $target['options'];
             $target = isset($target['target']) ? $target['target'] : 'ECHO';
-        }
-        if (empty($file)) {
-            if (version_compare(phpversion(), '5.4.0', '>=')) {
-                $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
-            } elseif (version_compare(phpversion(), '5.3.6', '>=')) {
-                $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-            } else {
-                $backtrace = debug_backtrace();
-            }
-            if ($backtrace && isset($backtrace[2])) {
-                $file = $backtrace[2]['file'];
-                $line = $backtrace[2]['line'];
-            }
-        }
-        if (empty($file) && isset($_SERVER['SCRIPT_NAME'])) {
-            $file = $_SERVER['SCRIPT_NAME'];
         }
         if ($level === xPDO::LOG_LEVEL_FATAL) {
             while (ob_get_level() && @ob_end_flush()) {}
@@ -2623,6 +2683,32 @@ class xPDO {
             $query->cacheFlag= $cacheFlag;
         }
         return $query;
+    }
+
+    /**
+     * Create an xPDOExpression value object wrapping a raw SQL fragment.
+     *
+     * This is the preferred public API for constructing xPDOExpression instances.
+     * Use this factory method (rather than instantiating xPDOExpression directly)
+     * when you need to pass a verbatim SQL expression (e.g. NOW(), counter + 1,
+     * COUNT(*) AS total) to xPDOQuery without the value being quoted or escaped.
+     *
+     * This is a query-layer feature only. Do not pass xPDOExpression instances
+     * to xPDOObject::set() or xPDOObject::save().
+     *
+     * SECURITY WARNING: The expression string is embedded verbatim into generated
+     * SQL without any escaping or parameterisation. User-supplied input must NEVER
+     * be passed directly to this method. Only developer-controlled, trusted strings
+     * are safe to use here.
+     *
+     * @param string $expr A trusted, developer-controlled SQL expression string.
+     *                     MUST NOT contain unsanitised user input.
+     * @return \xPDO\Om\xPDOExpression
+     * @psalm-taint-sink sql $expr
+     */
+    public function expression(string $expr): \xPDO\Om\xPDOExpression
+    {
+        return new \xPDO\Om\xPDOExpression($expr);
     }
 
     /**

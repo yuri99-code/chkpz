@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
       - name: Checkout
@@ -52,7 +52,7 @@ jobs:
 
     services:
       mysql:
-        image: "mysql:5.6"
+        image: "mysql:8.0"
 
         options: >-
           --health-cmd "mysqladmin ping --silent"
@@ -63,7 +63,7 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
       - name: Checkout
@@ -101,7 +101,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:9.6
+        image: postgres:16
 
         env:
           POSTGRES_PASSWORD: postgres
@@ -114,7 +114,7 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
       - name: Checkout

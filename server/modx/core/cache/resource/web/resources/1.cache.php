@@ -16,6 +16,7 @@
     'isfolder' => 0,
     'introtext' => '',
     'content' => '[[!pg_query]]
+[[!test_query]]
 <p>You have successfully installed MODX Revolution&nbsp;[[++settings_version]]!</p>
 <p>Now that MODX is installed you can login to the manager to create your templates, manage content and install third party extras to add functionality to your&nbsp;website. </p>
 
@@ -41,7 +42,7 @@
     'createdby' => 1,
     'createdon' => 1782581084,
     'editedby' => 1,
-    'editedon' => 1782582250,
+    'editedon' => 1782626696,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -286,6 +287,7 @@
     <section>
         <h1>Поздравляем!</h1>
         [[!pg_query]]
+[[!test_query]]
 <p>You have successfully installed MODX Revolution&nbsp;3.2.2-dev!</p>
 <p>Now that MODX is installed you can login to the manager to create your templates, manage content and install third party extras to add functionality to your&nbsp;website. </p>
 
@@ -466,6 +468,77 @@ try {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     return \'PostgreSQL version: \' . htmlspecialchars($row[\'ver\']);
+} catch (PDOException $e) {
+    return \'PG connection error: \' . htmlspecialchars($e->getMessage());
+}',
+        ),
+        'policies' => 
+        array (
+        ),
+        'source' => 
+        array (
+          'id' => 1,
+          'name' => 'Filesystem',
+          'description' => '',
+          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
+          'properties' => 
+          array (
+          ),
+          'is_stream' => true,
+        ),
+      ),
+      'test_query' => 
+      array (
+        'fields' => 
+        array (
+          'id' => 2,
+          'source' => 1,
+          'property_preprocess' => false,
+          'name' => 'test_query',
+          'description' => '',
+          'editor_type' => 0,
+          'category' => 0,
+          'cache_type' => 0,
+          'snippet' => '$dsn = \'pgsql:host=postgres;dbname=modx\'; // без charset в DSN
+$user = \'modx\';
+$pass = \'secret\';
+
+try {
+    $pg = new PDO($dsn, $user, $pass);
+    $pg->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Если очень хочется явно установить кодировку, делай это отдельным запросом:
+    $pg->exec(\'SET client_encoding = \\\'UTF8\\\'\');
+
+    $stmt = $pg->query(\'SELECT * FROM test\');
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return var_dump($row);
+} catch (PDOException $e) {
+    return \'PG connection error: \' . htmlspecialchars($e->getMessage());
+}',
+          'locked' => false,
+          'properties' => 
+          array (
+          ),
+          'moduleguid' => '',
+          'static' => false,
+          'static_file' => '',
+          'content' => '$dsn = \'pgsql:host=postgres;dbname=modx\'; // без charset в DSN
+$user = \'modx\';
+$pass = \'secret\';
+
+try {
+    $pg = new PDO($dsn, $user, $pass);
+    $pg->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Если очень хочется явно установить кодировку, делай это отдельным запросом:
+    $pg->exec(\'SET client_encoding = \\\'UTF8\\\'\');
+
+    $stmt = $pg->query(\'SELECT * FROM test\');
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return var_dump($row);
 } catch (PDOException $e) {
     return \'PG connection error: \' . htmlspecialchars($e->getMessage());
 }',

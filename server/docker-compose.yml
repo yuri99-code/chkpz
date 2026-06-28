@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nginx:
     image: nginx:1.25-alpine
@@ -38,12 +36,16 @@ services:
 
   postgres:
     image: pgvector/pgvector:pg17
+    container_name: modx_postgres
+    restart: always
     environment:
       POSTGRES_DB: modx
       POSTGRES_USER: modx
       POSTGRES_PASSWORD: secret
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     networks:
       - modx_net
 
@@ -68,8 +70,11 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
     ports:
       - "8082:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
     depends_on:
       - postgres
     networks:
@@ -77,6 +82,9 @@ services:
 
 volumes:
   db_data:
+  pgdata:
+  pgadmin-data:
 
 networks:
   modx_net:
+    driver: bridge

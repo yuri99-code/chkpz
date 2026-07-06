@@ -35,9 +35,9 @@ $_lang['test_nocompress_skip'] = 'Не е избрано, пропускане �
 $_lang['test_php_version_fail'] = 'Използвате PHP [[+version]], а MODX Revolution изисква PHP 5.1.1 или по-нов. Моля, наравете ъпгрйд на PHP поне до версия 5.1.1. MODX препоръчва ъпгрей най-малко до версия 5.3.2+.';
 $_lang['test_php_version_start'] = 'Проверка на PHP версия:';
 $_lang['test_php_version_success'] = 'OK! Използва: [[+version]]';
-$_lang['test_session_gc'] = 'Checking if <a href="https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">sessions garbage collector</a> are properly configured: ';
-$_lang['test_session_gc_fail'] = 'The sessions garbage collector does not start! The current configuration "session.gc_probability" is set to [[+gc_probability]] and "session.gc_divisor" is set to [[+gc_divisor]]. <br>By default, MODX stores sessions in the database, so misconfiguration of these options can cause the session table to grow in size.';
-$_lang['test_session_gc_success'] = 'OK! The current configuration "session.gc_probability" is set to [[+gc_probability]] and "session.gc_divisor" is set to [[+gc_divisor]]. <br>By default, MODX stores sessions in the database, so misconfiguration of these options can cause the session table to grow in size.';
+$_lang['test_safe_mode_start'] = 'Проверка, дали safe_mode е изключен:';
+$_lang['test_safe_mode_fail'] = 'MODX откри, че safe_mode е включен. За да продължите трябва да изключите safe_mode във вашата PHP конфигурация configuration.';
+$_lang['test_sessions_start'] = 'Проверка дали сесиите са правилно конфигурирани:';
 $_lang['test_simplexml'] = 'Проверка за SimpleXML:';
 $_lang['test_simplexml_nf'] = 'Не може да намери SimpleXML!';
 $_lang['test_simplexml_nf_msg'] = 'MODX не може да открие SimpleXML във вашата PHP среда. Управлението на пакетите и други функционалности няма да работят, ако то не е инсталирано. Може да продължите с инсталацията, но MODX препоръчва разрешаването на SimpleXML с цел разширени функции и функционалност.';

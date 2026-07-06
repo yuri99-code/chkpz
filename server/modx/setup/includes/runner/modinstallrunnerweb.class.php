@@ -1,9 +1,4 @@
 <?php
-
-use MODX\Revolution\modSession;
-use MODX\Revolution\modSystemSetting;
-use xPDO\xPDOException;
-
 require_once strtr(realpath(MODX_SETUP_PATH.'includes/runner/modinstallrunner.class.php'),'\\','/');
 /*
  * This file is part of MODX Revolution.
@@ -21,14 +16,11 @@ class modInstallRunnerWeb extends modInstallRunner {
          */
         @ set_time_limit(0);
     }
-
     /**
      * Execute the installation process.
      *
      * @param integer $mode The install mode.
-     *
      * @return array An array of result messages collected during execution.
-     * @throws xPDOException
      */
     public function execute($mode) {
         /* write config file */
@@ -42,12 +34,6 @@ class modInstallRunnerWeb extends modInstallRunner {
             case modInstall::MODE_UPGRADE_REVO :
             case modInstall::MODE_UPGRADE_REVO_ADVANCED :
                 $this->loadVersionInstaller();
-
-                if (version_compare($this->versioner->version, '2.6.0', '<')) {
-                    $this->addResult(modInstallRunner::RESULT_FAILURE, '<p class="notok">' . $this->install->lexicon('upgrade_unsupported_version', ['version' => $this->versioner->version]) . '</p>');
-                    return $this->getResults();
-                }
-
                 $this->versioner->install();
                 break;
                 /* new install, create tables */
@@ -92,40 +78,40 @@ class modInstallRunnerWeb extends modInstallRunner {
      */
     public function cleanup() {
         /* empty sessions table to prevent old permissions from loading */
-        $tableName = $this->install->xpdo->getTableName(modSession::class);
+        $tableName = $this->install->xpdo->getTableName('modSession');
         $this->install->xpdo->exec($this->install->driver->truncate($tableName));
 
         /* clear cache */
-        $this->install->xpdo->cacheManager->deleteTree(MODX_CORE_PATH.'cache/', [
+        $this->install->xpdo->cacheManager->deleteTree(MODX_CORE_PATH.'cache/',array(
             'skipDirs' => false,
-            'extensions' => [
+            'extensions' => array(
                 '.cache.php',
                 '.tpl.php',
-            ],
-        ]);
+            ),
+        ));
 
         $this->install->lock();
 
-        $this->install->settings->store([
+        $this->install->settings->store(array(
             'finished' => true,
-        ]);
+        ));
     }
 
     public function postRun() {
         $compressJs = $this->install->settings->get('compress_js');
         if ($compressJs === 0) {
             /** @var modSystemSetting $setting */
-            $setting = $this->install->xpdo->getObject(modSystemSetting::class, [
+            $setting = $this->install->xpdo->getObject('modSystemSetting',array(
                 'key' => 'compress_js',
-            ]);
+            ));
             if (empty($setting)) {
-                $setting = $this->install->xpdo->newObject(modSystemSetting::class);
-                $setting->fromArray([
+                $setting = $this->install->xpdo->newObject('modSystemSetting');
+                $setting->fromArray(array(
                     'key' => 'compress_js',
                     'xtype' => 'combo-boolean',
                     'namespace' => 'core',
                     'area' => 'manager',
-                ],'',true);
+                ),'',true);
             }
             $setting->set('value',0);
             $setting->save();
@@ -133,17 +119,17 @@ class modInstallRunnerWeb extends modInstallRunner {
         $compressCss = $this->install->settings->get('compress_css');
         if ($compressCss === 0) {
             /** @var modSystemSetting $setting */
-            $setting = $this->install->xpdo->getObject(modSystemSetting::class, [
+            $setting = $this->install->xpdo->getObject('modSystemSetting',array(
                 'key' => 'compress_css',
-            ]);
+            ));
             if (empty($setting)) {
-                $setting = $this->install->xpdo->newObject(modSystemSetting::class);
-                $setting->fromArray([
+                $setting = $this->install->xpdo->newObject('modSystemSetting');
+                $setting->fromArray(array(
                     'key' => 'compress_css',
                     'xtype' => 'combo-boolean',
                     'namespace' => 'core',
                     'area' => 'manager',
-                ],'',true);
+                ),'',true);
             }
             $setting->set('value',0);
             $setting->save();
@@ -153,9 +139,9 @@ class modInstallRunnerWeb extends modInstallRunner {
         // The setting is installed disabled by default, so we don't have to force it off if unchecked
         $sendPoweredByHeader = $this->install->settings->get('send_poweredby_header');
         if (!empty($sendPoweredByHeader)) {
-            $setting = $this->install->xpdo->getObject(modSystemSetting::class, [
+            $setting = $this->install->xpdo->getObject('modSystemSetting',array(
                 'key' => 'send_poweredby_header',
-            ]);
+            ));
             if ($setting instanceof modSystemSetting) {
                 $setting->set('value', 1);
                 $setting->save();

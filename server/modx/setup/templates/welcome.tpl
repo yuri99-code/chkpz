@@ -1,22 +1,29 @@
+<script src="assets/js/sections/welcome.js"></script>
 <form id="welcome" action="?action=welcome" method="post">
+<div>
+    <h2>{$_lang.welcome}</h2>
+    {$_lang.welcome_message}
+    <br />
+</div>
 
-    <div class="content-wrap">
+{if $smarty.const.MODX_SETUP_KEY NEQ '@traditional@'}
+<p>{$_lang.config_key_change}</p>
 
-        <h2>{$_lang.config_key}</h2>
-        <p>{$_lang.config_key_override}</p>
-
-        <div class="labelHolder">
-            <label for="config_key">{$_lang.config_key}</label>
-            <input type="text" name="config_key" id="config_key" value="{$config_key|escape}" style="width:250px" />
-
-            {if $writableError}
-            <span class="field_error">{$_lang.config_not_writable_err}</span>
-            {/if}
-        </div>
+<div id="cck-div">
+    <h3>{$_lang.config_key}</h3>
+    <p><small>{$_lang.config_key_override}</small></p>
+    <div class="labelHolder">
+        <label for="config_key">{$_lang.config_key}</label>
+        <input type="text" name="config_key" id="config_key" value="{$config_key|escape}" style="width:250px" />
+        <br />
+        {if $writableError}
+        <span class="field_error">{$_lang.config_not_writable_err}</span>
+        {/if}
     </div>
-
-    <div class="setup_navbar">
-       <input type="button" onclick="MODx.go('language');" value="&#xf053; {$_lang.back}" id="modx-back" class="button">
-       <input type="submit" name="proceed" value="{$_lang.next} &#xf054;" id="modx-next" class="button" autofocus="autofocus">
-    </div>
+</div>
+{/if}
+<div class="setup_navbar">
+    <input type="submit" name="proceed" value="{$_lang.next}" autofocus="autofocus" />
+    <input type="button" onclick="MODx.go('language');" value="{$_lang.back}" />
+</div>
 </form>

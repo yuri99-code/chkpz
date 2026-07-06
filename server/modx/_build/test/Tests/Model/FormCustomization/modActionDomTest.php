@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the MODX Revolution package.
  *
@@ -10,10 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\FormCustomization;
-
-use MODX\Revolution\modActionDom;
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modMail class.
@@ -24,16 +19,9 @@ use MODX\Revolution\MODxTestCase;
  * @group FormCustomization
  * @group modActionDom
  */
-class modActionDomTest extends MODxTestCase
-{
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures()
-    {
-        parent::setUpFixtures();
+class modActionDomTest extends MODxTestCase {
+    public function setUp() {
+        parent::setUp();
     }
 
     /**
@@ -44,11 +32,10 @@ class modActionDomTest extends MODxTestCase
      * @param string $container
      * @dataProvider providerApply
      */
-    public function testApply($expected, $ruleType, $name, $value, $container)
-    {
+    public function testApply($expected,$ruleType,$name,$value,$container) {
         /** @var modActionDom $rule */
-        $rule = $this->modx->newObject(modActionDom::class);
-        $rule->fromArray([
+        $rule = $this->modx->newObject('modActionDom');
+        $rule->fromArray(array(
             'set' => 0,
             'action' => 1,
             'xtype' => '',
@@ -59,45 +46,33 @@ class modActionDomTest extends MODxTestCase
             'container' => $container,
             'for_parent' => 0,
             'rank' => 0,
-        ]);
+        ));
         $content = $rule->apply(1);
-        $this->assertEquals($expected, $content);
+        $this->assertEquals($expected,$content);
     }
     /**
      * @return array
      */
-    public function providerApply()
-    {
-        return [
-            [
-                'MODx.hideField("modx-panel-resource", "description");',
-                'fieldVisible','description',0,'modx-panel-resource'
-            ],
+    public function providerApply() {
+        return array(
+            array('MODx.hideField("modx-panel-resource",["description"]);',
+                'fieldVisible','description',0,'modx-panel-resource'),
 
-            [
-                'MODx.renameLabel("modx-panel-resource", "published", "Active");',
-                'fieldTitle','published','Active','modx-panel-resource'
-            ],
+            array('MODx.renameLabel("modx-panel-resource",["published"],["Active"]);',
+                'fieldTitle','published','Active','modx-panel-resource'),
 
-            [
-                'MODx.renameTab("modx-resource-settings", "Other Settings");',
-                'tabTitle','modx-resource-settings','Other Settings','modx-resource-tabs'
-            ],
+            array('MODx.renameTab("modx-resource-settings","Other Settings");',
+                'tabTitle','modx-resource-settings','Other Settings','modx-resource-tabs'),
 
-            [
-                'MODx.hideRegion("modx-resource-tabs", "modx-resource-settings");',
-                'tabVisible','modx-resource-settings',0,'modx-resource-tabs'
-            ],
+            array('MODx.hideRegion("modx-resource-tabs","modx-resource-settings");',
+                'tabVisible','modx-resource-settings',0,'modx-resource-tabs'),
 
-            [
-                'MODx.addTab("modx-resource-tabs", {id: "tab-other", title: "Other Tab"});',
-                'tabNew','tab-other','Other Tab','modx-resource-tabs'
-            ],
+            array('MODx.addTab("modx-resource-tabs",{title:"Other Tab",id:"tab-other"});',
+                'tabNew','tab-other','Other Tab','modx-resource-tabs'),
 
-            [
-                'MODx.moveTV("tv15", "modx-resource-settings");',
-                'tvMove','tv15','modx-resource-settings','modx-panel-resource'
-            ],
-        ];
+            array('MODx.moveTV(["tv15"],"modx-resource-settings");',
+                'tvMove','tv15','modx-resource-settings','modx-panel-resource'),
+        );
     }
+
 }

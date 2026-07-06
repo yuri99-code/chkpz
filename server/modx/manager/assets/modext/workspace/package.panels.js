@@ -11,6 +11,24 @@ MODx.panel.PackageMetaPanel = function(config) {
 
 	Ext.applyIf(config,{
 		cls: 'vertical-tabs-panel wrapped'
+		// same as in parent class
+		// ,headerCfg: { tag: 'div', cls: 'x-tab-panel-header vertical-tabs-header' }
+		// ,bwrapCfg: { tag: 'div', cls: 'x-tab-panel-bwrap vertical-tabs-bwrap' }
+		// ,defaults: {
+		// 	bodyCssClass: 'vertical-tabs-body'
+		// 	,autoScroll: true
+		// 	,autoHeight: true
+		// 	,autoWidth: true
+		// }
+		// ,layoutOnTabChange: true
+		// ,listeners:{
+			// tabchange: function(tb, pnl){
+			// 	w = this.bwrap.getWidth();
+			// 	this.body.setWidth(w);
+			// 	this.doLayout();
+			// }
+			// ,scope: this
+		// }
 		,items: []
 	});
 	MODx.panel.PackageMetaPanel.superclass.constructor.call(this,config);
@@ -297,7 +315,7 @@ MODx.grid.PackageDependencies = function(config) {
     Ext.applyIf(config,{
         id: 'modx-grid-package-dependencies'
         ,baseParams: {
-            action: 'Workspace/Packages/GetDependencies'
+            action: 'workspace/packages/getdependencies'
             ,signature: config.pkgInfo.data.signature
         }
         ,fields: ['name', 'constraints', 'installed', 'parentSignature', 'signature', 'downloaded', 'actions']
@@ -373,7 +391,7 @@ Ext.extend(MODx.grid.PackageDependencies,MODx.grid.Package, {
         Ext.Ajax.request({
             url: MODx.config.connector_url
             ,params: {
-                action: 'Workspace/Packages/Dependency/Download'
+                action: 'workspace/packages/dependency/download'
                 ,signature: rec.data.parentSignature
                 ,name: rec.data.name
                 ,constraints: rec.data.constraints

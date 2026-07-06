@@ -11,7 +11,7 @@
 /**
  * Loads the lexicon into a JS-compatible function _()
  *
- * @var \MODX\Revolution\modX $modx
+ * @var modX $modx
  * @package modx
  * @subpackage lexicon
  */
@@ -47,7 +47,7 @@ var _ = function(s,v) {
 }';
 
 function esc($s) {
-    return strtr($s, ['\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n','</'=>'<\/']);
+    return strtr($s,array('\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n','</'=>'<\/'));
 }
 
 /* gather output from buffer */

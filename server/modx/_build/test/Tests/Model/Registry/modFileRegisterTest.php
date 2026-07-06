@@ -9,12 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Registry;
-
-
-use MODX\Revolution\modX;
-use MODX\Revolution\MODxTestCase;
-use MODX\Revolution\MODxTestHarness;
 
 /**
  * Tests related to the modFileRegister class.
@@ -27,24 +21,16 @@ use MODX\Revolution\MODxTestHarness;
  * @group modFileRegister
  */
 class modFileRegisterTest extends MODxTestCase {
-    /**
-     * @beforeClass
-     * @throws \xPDO\xPDOException
-     */
-    public static function setUpFixturesBeforeClass() {
+    public static function setUpBeforeClass() {
         /** @var modX $modx */
-        $modx =& MODxTestHarness::getFixture(modX::class, 'modx');
+        $modx =& MODxTestHarness::getFixture('modX', 'modx');
         $modx->getService('registry', 'registry.modRegistry');
-        $modx->registry->addRegister('register', 'registry.modFileRegister', ['directory' => 'register']);
+        $modx->registry->addRegister('register', 'registry.modFileRegister', array('directory' => 'register'));
     }
 
-    /**
-     * @afterClass
-     * @throws \xPDO\xPDOException
-     */
-    public static function tearDownFixturesAfterClass() {
+    public static function tearDownAfterClass() {
         /** @var modX $modx */
-        $modx =& MODxTestHarness::getFixture(modX::class, 'modx');
+        $modx =& MODxTestHarness::getFixture('modX', 'modx');
         $modx->getService('registry', 'registry.modRegistry');
         $modx->registry->removeRegister('register');
     }
@@ -68,13 +54,13 @@ class modFileRegisterTest extends MODxTestCase {
         $this->assertTrue(in_array($topic, $this->modx->registry->register->subscriptions), "Could not subscribe to register topic {$topic}");
     }
     public function providerSubscribe() {
-        return [
-            ['/food'],
-            ['/food/'],
-            ['/beer/'],
-            ['/beer'],
-            ['/food/beer/'],
-        ];
+        return array(
+            array('/food'),
+            array('/food/'),
+            array('/beer/'),
+            array('/beer'),
+            array('/food/beer/'),
+        );
     }
 
     /**
@@ -89,12 +75,12 @@ class modFileRegisterTest extends MODxTestCase {
         $this->assertEquals($expected, $this->modx->registry->register->getCurrentTopic(), "Could not set current topic.");
     }
     public function providerSetCurrentTopic() {
-        return [
-            ['/', ''],
-            ['/food/', 'food'],
-            ['/beer/', '/beer'],
-            ['/food/beer/', '/food/beer/'],
-        ];
+        return array(
+            array('/', ''),
+            array('/food/', 'food'),
+            array('/beer/', '/beer'),
+            array('/food/beer/', '/food/beer/'),
+        );
     }
 
     /**
@@ -113,38 +99,38 @@ class modFileRegisterTest extends MODxTestCase {
         $this->assertEquals($expected, $actual, "Could not send msg(s) to the topic.");
     }
     public function providerSend() {
-        return [
-            [
+        return array(
+            array(
                 true,
                 '/topic1/',
                 '1',
-                []
-            ],
-            [
+                array()
+            ),
+            array(
                 true,
                 '/topic2/',
-                ['1', '2', '3'],
-                []
-            ],
-            [
+                array('1', '2', '3'),
+                array()
+            ),
+            array(
                 true,
                 '/topic3/',
-                ['a' => '1', 'b' => '2', 'c' => '3'],
-                []
-            ],
-            [
+                array('a' => '1', 'b' => '2', 'c' => '3'),
+                array()
+            ),
+            array(
                 true,
                 '/topic4/',
-                ['a' => 1, 'b' => 2.0, 'c' => 3.25, 'd' => 4.1390, 'e' => 5],
-                []
-            ],
-            [
+                array('a' => 1, 'b' => 2.0, 'c' => 3.25, 'd' => 4.1390, 'e' => 5),
+                array()
+            ),
+            array(
                 false,
                 '/topic5/',
-                ['../../invalidMessageKey' => 'invalid'],
-                []
-            ],
-        ];
+                array('../../invalidMessageKey' => 'invalid'),
+                array()
+            ),
+        );
     }
 
     /**
@@ -163,73 +149,73 @@ class modFileRegisterTest extends MODxTestCase {
         $this->assertEquals($expected, $actual, "Could not read msg(s) from topic.");
     }
     public function providerRead() {
-        return [
-            [
-                ['1'],
+        return array(
+            array(
+                array('1'),
                 '/topic1/',
-                [
+                array(
                     'poll_limit' => 1,
-                ]
-            ],
-            [
-                ['1', '2', '3'],
+                )
+            ),
+            array(
+                array('1', '2', '3'),
                 '/topic2/',
-                [
+                array(
                     'poll_limit' => 1,
-                ]
-            ],
-            [
-                ['1', '2', '3'],
+                )
+            ),
+            array(
+                array('1', '2', '3'),
                 '/topic3/',
-                [
+                array(
                     'poll_limit' => 1,
                     'remove_read' => false,
-                ]
-            ],
-            [
-                ['1'],
+                )
+            ),
+            array(
+                array('1'),
                 '/topic3/a',
-                [
+                array(
                     'poll_limit' => 1,
-                ]
-            ],
-            [
-                ['2'],
+                )
+            ),
+            array(
+                array('2'),
                 '/topic3/b',
-                [
+                array(
                     'poll_limit' => 1,
-                ]
-            ],
-            [
-                ['3'],
+                )
+            ),
+            array(
+                array('3'),
                 '/topic3/c',
-                [
+                array(
                     'poll_limit' => 1,
-                ]
-            ],
-            [
-                ['a' => 1, 'b' => 2.0, 'c' => 3.25, 'd' => 4.1390, 'e' => 5],
+                )
+            ),
+            array(
+                array('a' => 1, 'b' => 2.0, 'c' => 3.25, 'd' => 4.1390, 'e' => 5),
                 '/topic4/',
-                [
+                array(
                     'poll_limit' => 1,
                     'remove_read' => false,
                     'include_keys' => true
-                ]
-            ],
-            [
-                [1, 2.0, 3.25, 4.1390, 5],
+                )
+            ),
+            array(
+                array(1, 2.0, 3.25, 4.1390, 5),
                 '/topic4/',
-                [
+                array(
                     'poll_limit' => 1,
-                ]
-            ],
-            [
-                [],
+                )
+            ),
+            array(
+                array(),
                 '/topic5/',
-                [
+                array(
                     'poll_limit' => 1,
-                ]
-            ],
-        ];
+                )
+            ),
+        );
     }
 }

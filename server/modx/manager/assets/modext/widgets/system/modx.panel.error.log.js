@@ -1,11 +1,3 @@
-/**
- * Loads the ErrorLog panel
- *
- * @class MODx.panel.ErrorLog
- * @extends MODx.FormPanel
- * @param {Object} config An object of configuration options
- * @xtype modx-panel-error-log
- */
 MODx.panel.ErrorLog = function(config) {
     config = config || {};
     Ext.applyIf(config,{
@@ -13,15 +5,15 @@ MODx.panel.ErrorLog = function(config) {
         ,id: 'modx-panel-error-log'
         ,cls: 'container'
         ,baseParams: {
-            action: 'System/ErrorLog/Clear'
+            action: 'system/errorlog/clear'
         }
+        // ,layout: 'form' // unnecessary and creates a wrong box shadow
         ,items: [{
             html: _('error_log')
             ,id: 'modx-error-log-header'
             ,xtype: 'modx-header'
-        },MODx.getPageStructure([{
-            title: _('error_log')
-            ,layout: 'form'
+        },{
+            layout: 'form'
             ,hideLabels: true
             ,autoHeight: true
             ,border: true
@@ -59,23 +51,7 @@ MODx.panel.ErrorLog = function(config) {
                     ,scope: this
                 }]
             }]
-        },{
-            title: _('deprecated_log')
-            ,id: 'modx-panel-deprecated-log'
-            ,layout: 'form'
-            ,hideLabels: true
-            ,autoHeight: true
-            ,border: true
-            ,items: [{
-                html: '<p>'+_('deprecated_log_desc')+'</p>'
-                ,xtype: 'modx-description'
-            },{
-                xtype: 'modx-grid-deprecated-log'
-                ,id: 'modx-grid-deprecated-log'
-                ,border: false
-                ,cls:'main-wrapper'
-            }]
-        }])]
+        }]
     });
     MODx.panel.ErrorLog.superclass.constructor.call(this,config);
     this.setup();
@@ -91,7 +67,7 @@ Ext.extend(MODx.panel.ErrorLog,MODx.FormPanel,{
         return true;
     }
     ,download: function() {
-        location.href = this.config.url+'?action=System/ErrorLog/Download&HTTP_MODAUTH='+MODx.siteId;
+        location.href = this.config.url+'?action=system/errorlog/download&HTTP_MODAUTH='+MODx.siteId;
     }
     /**
      * Set the textarea height to make use of the maximum "space" the client viewport allows

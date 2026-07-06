@@ -1,6 +1,6 @@
 /**
  * Loads the groups and roles page
- *
+ * 
  * @class MODx.page.ResourceGroups
  * @extends MODx.Component
  * @param {Object} config An object of config properties
@@ -13,7 +13,7 @@ MODx.page.ResourceGroups = function(config) {
             xtype: 'modx-panel-resource-groups'
         }]
         ,buttons: [{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,id: 'modx-abtn-help'
             ,handler: MODx.loadHelpPane
         }]

@@ -9,10 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Validation;
-
-
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modValidator class.

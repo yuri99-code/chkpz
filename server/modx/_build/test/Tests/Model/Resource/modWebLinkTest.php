@@ -9,10 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Resource;
-
-
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modWebLink class.
@@ -23,10 +19,4 @@ use MODX\Revolution\MODxTestCase;
  * @group Resource
  * @group modResource
  */
-class modWebLinkTest extends MODxTestCase {
-
-    public function testIncomplete()
-    {
-        $this->markTestIncomplete( 'This test has not been implemented yet.');
-    }
-}
+class modWebLinkTest extends MODxTestCase {}

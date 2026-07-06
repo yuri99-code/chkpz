@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads the resource group page
  *
@@ -22,7 +20,7 @@ class SecurityResourceGroupManagerController extends modManagerController {
      * @return bool
      */
     public function checkPermissions() {
-        return $this->modx->hasPermission(['resourcegroup_resource_list' => true,'resourcegroup_resource_edit' => true]);
+        return $this->modx->hasPermission(array('resourcegroup_resource_list' => true,'resourcegroup_resource_edit' => true));
     }
 
     /**
@@ -46,7 +44,7 @@ class SecurityResourceGroupManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {}
+    public function process(array $scriptProperties = array()) {}
 
     /**
      * Return the pagetitle
@@ -70,7 +68,7 @@ class SecurityResourceGroupManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['user','access'];
+        return array('user','access');
     }
 
     /**

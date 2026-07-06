@@ -9,11 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Element;
-
-
-use MODX\Revolution\modTemplateVar;
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modTemplateVar class.
@@ -29,15 +24,10 @@ class modTemplateVarTest extends MODxTestCase {
     /** @var modTemplateVar $tv */
     public $tv;
 
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
-        $this->tv = $this->modx->newObject(modTemplateVar::class);
-        $this->tv->fromArray([
+    public function setUp() {
+        parent::setUp();
+        $this->tv = $this->modx->newObject('modTemplateVar');
+        $this->tv->fromArray(array(
             'id' => 12345,
             'name' => 'Unit Test Template Var',
             'caption' => 'UTTV',
@@ -45,17 +35,12 @@ class modTemplateVarTest extends MODxTestCase {
             'default_text' => '<p>Hello, [[+name]]!</p>',
             'category' => 0,
             'locked' => 0,
-        ],'',true,true);
-        $this->tv->setProperties(['name' => 'John']);
+        ),'',true,true);
+        $this->tv->setProperties(array('name' => 'John'));
         $this->tv->setCacheable(false);
     }
-    /**
-     * Tear down fixtures after each test.
-     *
-     * @after
-     */
-    public function tearDownFixtures() {
-        parent::tearDownFixtures();
+    public function tearDown() {
+        parent::tearDown();
         $this->tv = null;
     }
 
@@ -79,9 +64,9 @@ class modTemplateVarTest extends MODxTestCase {
      * @return array
      */
     public function providerSetContent() {
-        return [
-            ['Test content.'],
-        ];
+        return array(
+            array('Test content.'),
+        );
     }
 
     /**
@@ -90,7 +75,7 @@ class modTemplateVarTest extends MODxTestCase {
      * @param null|string $content
      * @dataProvider providerProcess
      */
-    public function testProcess($expected,array $properties = [],$content = null) {
+    public function testProcess($expected,array $properties = array(),$content = null) {
         $result = $this->tv->process($properties,$content);
         $this->assertEquals($expected,$result);
     }
@@ -98,11 +83,11 @@ class modTemplateVarTest extends MODxTestCase {
      * @return array
      */
     public function providerProcess() {
-        return [
-            ['<p>Hello, John!</p>'],
-            ['<p>Hello, Mark!</p>', ['name' => 'Mark']],
+        return array(
+            array('<p>Hello, John!</p>'),
+            array('<p>Hello, Mark!</p>',array('name' => 'Mark')),
             //array('<p>Having fun.</p>',array(),'<p>Having fun.</p>'),
             //array('<p>Test 1</p>',array('number' => 1),'<p>Test [[+number]]</p>'),
-        ];
+        );
     }
 }

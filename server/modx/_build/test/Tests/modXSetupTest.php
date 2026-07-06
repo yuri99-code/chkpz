@@ -8,9 +8,6 @@
  * files found in the top-level directory of this distribution.
  *
  */
-namespace MODX\Revolution\Tests;
-
-use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
 
 /**
  * Tests related to verifying and setting up the test environment.
@@ -18,7 +15,7 @@ use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
  * @package modx-test
  * @subpackage modx
  */
-class modXSetupTest extends XTestCase {
+class modXSetupTest extends \PHPUnit\Framework\TestCase {
     /**
      * Test that the PDO extension is available and loaded.
      */

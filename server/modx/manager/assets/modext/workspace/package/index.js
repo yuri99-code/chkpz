@@ -8,11 +8,12 @@ MODx.page.Package = function(config) {
             ,package_name: MODx.request.package_name
         }]
         ,buttons: [{
-            process: 'Workspace/Packages/Update'
+            process: 'workspace/packages/update'
             ,text: _('save')
             ,id: 'modx-abtn-save'
             ,cls: 'primary-button'
             ,method: 'remote'
+            // ,checkDirty: true
             ,keys: [{
                 key: MODx.config.keymap_save || 's'
                 ,alt: true
@@ -26,7 +27,7 @@ MODx.page.Package = function(config) {
                 MODx.loadPage('workspaces');
             }
         },{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,id: 'modx-abtn-help'
             ,handler: MODx.loadHelpPane
         }]

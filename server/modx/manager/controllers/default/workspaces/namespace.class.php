@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads Namespace management
  *
@@ -44,7 +42,7 @@ class WorkspacesNamespaceManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {}
+    public function process(array $scriptProperties = array()) {}
 
     /**
      * Return the pagetitle
@@ -68,7 +66,7 @@ class WorkspacesNamespaceManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['workspace','namespace'];
+        return array('workspace','namespace');
     }
 
     /**

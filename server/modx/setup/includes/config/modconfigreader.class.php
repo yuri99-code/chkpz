@@ -21,14 +21,14 @@ abstract class modConfigReader {
     /** @var xPDO $xpdo */
     public $xpdo;
     /** @var array $config */
-    public $config = [];
+    public $config = array();
 
-    function __construct(modInstall $install,array $config = []) {
+    function __construct(modInstall $install,array $config = array()) {
         $this->install =& $install;
         $this->xpdo =& $install->xpdo;
-        $this->config = array_merge([
+        $this->config = array_merge(array(
 
-        ],$config);
+        ),$config);
     }
 
     /**
@@ -36,17 +36,17 @@ abstract class modConfigReader {
      * @abstract
      * @param array $config
      */
-    abstract public function read(array $config = []);
+    abstract public function read(array $config = array());
 
     /**
      * Load defaults for a configuration file if one does not exist; used in new installations
      * @param array $config
      * @return array
      */
-    public function loadDefaults(array $config = []) {
+    public function loadDefaults(array $config = array()) {
         $this->getHttpHost();
 
-        $this->config = array_merge($this->config, [
+        $this->config = array_merge($this->config,array(
             'database_type' => isset ($_POST['databasetype']) ? $_POST['databasetype'] : 'mysql',
             'database_server' => isset ($_POST['databasehost']) ? $_POST['databasehost'] : 'localhost',
             'database_connection_charset' => 'utf8',
@@ -58,9 +58,9 @@ abstract class modConfigReader {
             'site_sessionname' => 'SN' . uniqid(''),
             'inplace' => isset ($_POST['inplace']) ? 1 : 0,
             'unpacked' => isset ($_POST['unpacked']) ? 1 : 0,
-            'config_options' => [],
-            'driver_options' => [],
-        ],$config);
+            'config_options' => array(),
+            'driver_options' => array(),
+        ),$config);
         return $this->config;
     }
 
@@ -69,7 +69,7 @@ abstract class modConfigReader {
      */
     public function getHttpHost() {
         if (php_sapi_name() != 'cli') {
-            $this->config['https_port'] = isset ($_POST['httpsport']) ? $_POST['httpsport'] : '443';
+            $this->config['https_port'] = isset($_POST['httpsport']) ? $_POST['httpsport'] : 443;
             $this->config['http_host'] = parse_url('http://' . $_SERVER['HTTP_HOST'], PHP_URL_HOST);
             $this->config['http_port'] = parse_url('http://' . $_SERVER['HTTP_HOST'], PHP_URL_PORT);
             $this->config['http_host'] .= in_array($this->config['http_port'], [null , 80, 443]) ? '' : ':' . $this->config['http_port'];

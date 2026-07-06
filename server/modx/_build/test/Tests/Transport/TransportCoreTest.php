@@ -9,10 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Transport;
-
-
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to creating transport packages
@@ -23,13 +19,10 @@ use MODX\Revolution\MODxTestCase;
  */
 class TransportCoreTest extends MODxTestCase
 {
-    /**
-     * @before
-     * @throws \xPDO\xPDOException
-     */
-    public function setUpFixtures()
+
+    public function setUp()
     {
-        parent::setUpFixtures();
+        parent::setUp();
 
         if (!defined('MODX_SOURCE_PATH')) {
             define('MODX_SOURCE_PATH', dirname(__DIR__) . '/../../../');
@@ -44,24 +37,18 @@ class TransportCoreTest extends MODxTestCase
         }
     }
 
-    /**
-     * @after
-     */
-    public function tearDownFixtures()
+    public function tearDown()
     {
         @unlink(MODX_PACKAGES_PATH. "core.transport.zip");
     }
 
-    /**
-     * @large
-     */
     public function testBuildCoreTransportPackage()
     {
         $transportCoreFile = MODX_BUILD_DIR. 'transport.core.php';
         $transportCorePackFile = MODX_PACKAGES_PATH. 'core.transport.zip';
 
         $result = shell_exec("php $transportCoreFile");
-        $this->assertStringContainsString('Transport zip created. Build script finished.', $result);
+        $this->assertContains('Transport zip created. Build script finished.', $result);
 
         $this->assertFileExists($transportCorePackFile);
     }

@@ -8,37 +8,31 @@
 
 <script>
 // <![CDATA[
-document.getElementById('tv{$tv->id}').setAttribute('autocomplete', globalAutoCompleteSetting);
 {literal}
 Ext.onReady(function() {
-    const fld = MODx.load({
+    var fld{/literal}{$tv->id}{literal} = MODx.load({
     {/literal}
         xtype: 'textfield'
-        ,itemId: 'tv{$tv->id}'
         ,applyTo: 'tv{$tv->id}'
+        ,width: 400
         ,id: 'tv{$tv->id}'
         ,enableKeyEvents: true
         ,msgTarget: 'under'
         ,allowBlank: {if $params.allowBlank == 1 || $params.allowBlank == 'true'}true{else}false{/if}
     {literal}
-        ,listeners: {
-            keydown: {
-                fn: MODx.fireResourceFormChange,
-                scope: this
-            }
-        }
+        ,listeners: { 'keydown': { fn:MODx.fireResourceFormChange, scope:this}}
     });
-    MODx.makeDroppable(fld, function(v) {
-        const tf = fld;
+    MODx.makeDroppable(fld{/literal}{$tv->id}{literal},function(v) {
+        var tf = fld;
         if (tf) {
-            const ov = tf.getValue();
+            var ov = tf.getValue();
             if (ov != '') {
-                v = `,${v}`;
+                v = ','+v;
             }
         }
         return v;
     });
-    Ext.getCmp('modx-panel-resource').getForm().add(fld);
+    Ext.getCmp('modx-panel-resource').getForm().add(fld{/literal}{$tv->id}{literal});
 });
 {/literal}
 // ]]>
@@ -54,31 +48,28 @@ Ext.onReady(function() {
 // <![CDATA[
 {literal}
 Ext.onReady(function() {
-    Ext.select('#tv-{/literal}{$tv->id}{literal}-tag-list li', true).on('click', function(e, i) {
-        const li = Ext.get(i);
-        if (!li) {
-            return;
-        }
-        const tf = Ext.getCmp('tv{/literal}{$tv->id}{literal}');
-        let v = tf.getValue();
+    Ext.select('#tv-{/literal}{$tv->id}{literal}-tag-list li',true).on('click',function(e,i) {
+        var li = Ext.get(i);
+        if (!li) { return; }
+        var tf = Ext.getCmp('tv{/literal}{$tv->id}{literal}');
+        var v = tf.getValue();
         if (li.hasClass('modx-tag-checked')) {
-            tf.setValue(Ext.util.Format.trimCommas(v.replace(li.dom.title, '')));
+            tf.setValue(Ext.util.Format.trimCommas(v.replace(li.dom.title,'')));
             li.removeClass('modx-tag-checked');
         } else {
-            v = v + (v != '' ? ',' : '');
-            tf.setValue(Ext.util.Format.trimCommas(v + li.dom.title));
+            v = v+(v != '' ? ',' : '');
+            tf.setValue(Ext.util.Format.trimCommas(v+li.dom.title));
             li.addClass('modx-tag-checked');
         }
         MODx.fireResourceFormChange();
     });
-    const p = Ext.getCmp('modx-panel-resource');
+    var p = Ext.getCmp('modx-panel-resource');
     if (p) {
-        p.on('tv-reset', function(o) {
-            if (o.id != '{/literal}{$tv->id}{literal}') {
-                return;
-            }
-            const df = Ext.get(`tvdef${o.id}`).dom.value.split(',');
-            Ext.select(`#tv-${o.id}-tag-list li`, true).forEach(li => {
+        p.on('tv-reset',function(o) {
+            if (o.id != '{/literal}{$tv->id}{literal}') return;
+            var df = Ext.get('tvdef'+o.id).dom.value;
+            df = df.split(',');
+            Ext.select('#tv-'+o.id+'-tag-list li',true).each(function(li,c,idx) {
                 if (df.indexOf(li.dom.title) != -1) {
                     li.addClass('modx-tag-checked');
                 } else {

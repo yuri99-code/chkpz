@@ -8,10 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modChunk;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modSystemEvent;
-
 /**
  * Load update chunk page
  *
@@ -26,7 +22,7 @@ class ElementChunkUpdateManagerController extends modManagerController {
     /** @var modChunk $chunk */
     public $chunk;
     /** @var array $chunkArray */
-    public $chunkArray = [];
+    public $chunkArray = array();
 
     /**
      * Check for any permissions or requirements to load page
@@ -56,6 +52,8 @@ class ElementChunkUpdateManagerController extends modManagerController {
             });
         });
         MODx.onChunkFormRender = "'.$this->onChunkFormRender.'";
+        MODx.perm.tree_show_element_ids = '.($this->modx->hasPermission('tree_show_element_ids') ? 1 : 0).';
+        MODx.perm.unlock_element_properties = '.($this->modx->hasPermission('unlock_element_properties') ? 1 : 0).';
         // ]]>
         </script>');
 
@@ -66,16 +64,15 @@ class ElementChunkUpdateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* grab chunk */
-        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((int)$scriptProperties['id'])) {
+        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((integer)$scriptProperties['id'])) {
             return $this->failure($this->modx->lexicon('chunk_err_ns'));
         }
-        $this->chunk = $this->modx->getObject(modChunk::class, ['id' => $scriptProperties['id']]);
-        if (empty($this->chunk)) return $this->failure($this->modx->lexicon('chunk_err_nfs',
-            ['id' => $scriptProperties['id']]));
+        $this->chunk = $this->modx->getObject('modChunk', array('id' => $scriptProperties['id']));
+        if (empty($this->chunk)) return $this->failure($this->modx->lexicon('chunk_err_nfs',array('id' => $scriptProperties['id'])));
         if (!$this->chunk->checkPolicy('view')) return $this->failure($this->modx->lexicon('access_denied'));
 
         /* grab category for chunk, assign to parser */
@@ -86,22 +83,22 @@ class ElementChunkUpdateManagerController extends modManagerController {
 
         /* get properties */
         $properties = $this->chunk->get('properties');
-        if (!is_array($properties)) $properties = [];
+        if (!is_array($properties)) $properties = array();
 
-        $data = [];
+        $data = array();
         foreach ($properties as $property) {
-            $data[] = [
+            $data[] = array(
                 $property['name'],
                 $property['desc'],
                 !empty($property['type']) ? $property['type'] : 'textfield',
-                !empty($property['options']) ? $property['options'] : [],
+                !empty($property['options']) ? $property['options'] : array(),
                 $property['value'],
                 !empty($property['lexicon']) ? $property['lexicon'] : '',
                 false, /* overridden set to false */
                 $property['desc_trans'],
                 !empty($property['area']) ? $property['area'] : '',
                 !empty($property['area_trans']) ? $property['area_trans'] : '',
-            ];
+            );
         }
         $this->chunkArray = $this->chunk->toArray();
         $this->chunkArray['properties'] = $data;
@@ -139,11 +136,11 @@ class ElementChunkUpdateManagerController extends modManagerController {
     public function firePreRenderEvents() {
         /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML
         into the panel */
-        $this->onChunkFormPrerender = $this->modx->invokeEvent('OnChunkFormPrerender', [
+        $this->onChunkFormPrerender = $this->modx->invokeEvent('OnChunkFormPrerender',array(
             'id' => $this->chunkArray['id'],
             'mode' => modSystemEvent::MODE_UPD,
             'chunk' => $this->chunk,
-        ]);
+        ));
         if (is_array($this->onChunkFormPrerender)) { $this->onChunkFormPrerender = implode('',$this->onChunkFormPrerender); }
         $this->setPlaceholder('onChunkFormPrerender', $this->onChunkFormPrerender);
     }
@@ -154,12 +151,12 @@ class ElementChunkUpdateManagerController extends modManagerController {
      */
     public function loadRte() {
         $o = '';
-        if ($this->modx->getOption('use_editor') === 1) {
-            $onRTEInit = $this->modx->invokeEvent('OnRichTextEditorInit', [
-                'elements' => ['post'],
+        if ($this->modx->getOption('use_editor') == 1) {
+            $onRTEInit = $this->modx->invokeEvent('OnRichTextEditorInit',array(
+                'elements' => array('post'),
                 'chunk' => &$this->chunk,
                 'mode' => modSystemEvent::MODE_UPD,
-            ]);
+            ));
             if (is_array($onRTEInit)) {
                 $onRTEInit = implode('', $onRTEInit);
             }
@@ -173,13 +170,13 @@ class ElementChunkUpdateManagerController extends modManagerController {
      * @return mixed
      */
     public function fireRenderEvent() {
-        $this->onChunkFormRender = $this->modx->invokeEvent('OnChunkFormRender', [
+        $this->onChunkFormRender = $this->modx->invokeEvent('OnChunkFormRender',array(
             'id' => $this->chunk->get('id'),
             'mode' => modSystemEvent::MODE_UPD,
             'chunk' => $this->chunk,
-        ]);
+        ));
         if (is_array($this->onChunkFormRender)) $this->onChunkFormRender = implode('', $this->onChunkFormRender);
-        $this->onChunkFormRender = str_replace(['"',"\n","\r"], ['\"','',''],$this->onChunkFormRender);
+        $this->onChunkFormRender = str_replace(array('"',"\n","\r"),array('\"','',''),$this->onChunkFormRender);
         return $this->onChunkFormRender;
     }
 
@@ -206,7 +203,7 @@ class ElementChunkUpdateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['chunk','category','propertyset','element'];
+        return array('chunk','category','propertyset','element');
     }
 
     /**

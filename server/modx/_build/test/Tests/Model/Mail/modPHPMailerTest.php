@@ -9,10 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Mail;
-
-
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modPHPMailer class.

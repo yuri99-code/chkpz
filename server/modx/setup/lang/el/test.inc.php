@@ -35,9 +35,9 @@ $_lang['test_nocompress_skip'] = 'Δεν επιλέχτηκε, παράλειψ�
 $_lang['test_php_version_fail'] = 'Η έκδοση PHP που χρησιμοποιείτε είναι: [[+version]] και το MODX Revolution χρειάζεται έκδοση [[+required]] τουλάχιστον. Παρακαλούμε αναβαθμίστε την PHP στην έκδοση [[+required]] το λιγότερο. Σας συνιστούμε να την αναβαθμίσετε σε έκδοση [[+recommended]] για λόγους ασφαλείας και για μελλοντική συμβατότητα.';
 $_lang['test_php_version_start'] = 'Checking PHP version:';
 $_lang['test_php_version_success'] = 'Εντάξει! Χρήση: [[+version]]';
-$_lang['test_session_gc'] = 'Checking if <a href="https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">sessions garbage collector</a> are properly configured: ';
-$_lang['test_session_gc_fail'] = 'The sessions garbage collector does not start! The current configuration "session.gc_probability" is set to [[+gc_probability]] and "session.gc_divisor" is set to [[+gc_divisor]]. <br>By default, MODX stores sessions in the database, so misconfiguration of these options can cause the session table to grow in size.';
-$_lang['test_session_gc_success'] = 'OK! The current configuration "session.gc_probability" is set to [[+gc_probability]] and "session.gc_divisor" is set to [[+gc_divisor]]. <br>By default, MODX stores sessions in the database, so misconfiguration of these options can cause the session table to grow in size.';
+$_lang['test_safe_mode_start'] = 'Έλεγχος ότι έχει απενεργοποιηθεί η ασφαλής λειτουργία safe_mode:';
+$_lang['test_safe_mode_fail'] = 'Η ασφαλής λειτουργία της PHP είναι ενεργοποιημένη. Πρέπει να απενεργοποιήσετε το safe_mode στις ρυθμίσεις PHP για να μπορέσετε να συνεχίσετε.';
+$_lang['test_sessions_start'] = 'Checking if sessions are properly configured:';
 $_lang['test_simplexml'] = 'Αναζήτηση SimpleXML:';
 $_lang['test_simplexml_nf'] = 'Δεν βρέθηκε το SimpleXML!';
 $_lang['test_simplexml_nf_msg'] = 'MODX could not find SimpleXML on your PHP environment. Package Management and other functionality will not work without this installed. You may continue with installation, but MODX recommends enabling SimpleXML for advanced features and functionality.';

@@ -2,18 +2,6 @@ Ext.namespace('MODx');
 Ext.apply(Ext,{
     isFirebug: (window.console && window.console.firebug)
 });
-
-/*
-    Note that currently (07/2022) it is practically impossible to
-    force Chrome to turn autocomplete off. Other browsers will comply
-    with autocomplete="off". Creating a global value here so we can easily
-    manage the attribute in one place.
-
-    The old trick of setting autocomplete="new-password" for non-password
-    fields appears to no longer work (Chrome)
-*/
-const globalAutoCompleteSetting = 'off';
-
 /* work around IE9 createContextualFragment bug
    http://www.sencha.com/forum/showthread.php?125869-Menu-shadow-probolem-in-IE9
  */
@@ -48,38 +36,11 @@ Ext.extend(MODx,Ext.Component,{
 
     ,startup: function() {
         this.initQuickTips();
-        this.initMarkRequiredFields();
+        this.initMarkRequiredTVs();
         this.request = this.getURLParameters();
         this.Ajax = this.load({ xtype: 'modx-ajax' });
-        Ext.override(Ext.form.Field, {
-            defaultAutoCreate: {
-                tag: 'input',
-                type: 'text',
-                size: '20',
-                autocomplete: globalAutoCompleteSetting,
-                msgTarget: 'under'
-            }
-        });
-        Ext.override(Ext.form.TextArea,{
-            onRender: function(ct, position) {
-                if (!this.el){
-                    this.defaultAutoCreate = {
-                        tag: 'textarea',
-                        style: 'width:100px;height:60px;',
-                        autocomplete: globalAutoCompleteSetting
-                    };
-                }
-                Ext.form.TextArea.superclass.onRender.call(this, ct, position);
-                if (this.grow){
-                    this.textSizeEl = Ext.DomHelper.append(document.body, {
-                        tag: 'pre', cls: 'x-form-grow-sizer'
-                    });
-                    if(this.preventScrollbars){
-                        this.el.setStyle('overflow', 'hidden');
-                    }
-                    this.el.setHeight(this.growMin);
-                }
-            }
+        Ext.override(Ext.form.Field,{
+            defaultAutoCreate: {tag: "input", type: "text", size: "20", autocomplete: "on", msgTarget: 'under' }
         });
 
         Ext.Ajax.on('requestexception',this.onAjaxException,this);
@@ -135,41 +96,27 @@ Ext.extend(MODx,Ext.Component,{
         });
     }
 
-    ,initMarkRequiredFields: function() {
+    ,initMarkRequiredTVs: function() {
+        var markdom = '<span class=\"required\">*</span> ';
 
-        const markerEl = '<span class=\"field-required-mark\">*</span>';
-
-        const MarkRequiredFieldPlugin = function (config) {
+        var MarkRequiredTVPlugin = function (config) {
             config = config || {};
             Ext.apply(config, {
                 init: function(cmp) {
-
                     if (cmp.allowBlank !== false) return;
 
-                    const cmpLabel = cmp.fieldLabel;
-
-                    if (cmpLabel) {
-                        cmp.fieldLabel = cmpLabel + markerEl;
-                    } else {
-                        let labelEl = null;
-                        if (cmp.caption && document.getElementById(cmp.caption)) {
-                            labelEl = document.getElementById(cmp.caption);
-                        } else {
-                            const id = cmp.itemId;
-                            if (id && id.match(/^tv[\d]*$/i)) {
-                                labelEl = document.getElementById(`${id}-caption`);
-                            }
-                        }
-                        if (labelEl) {
-                            labelEl.innerHTML = labelEl.innerHTML + markerEl;
-                        }
+                    var tv = cmp.applyTo || cmp.id;
+                    if (tv && tv.match(/^tv[\d]*$/i)) {
+                        var label = document.getElementById(tv+'-caption');
+                        var html = label.innerHTML+markdom;
+                        label.innerHTML = html;
                     }
                 }
             });
-            MarkRequiredFieldPlugin.superclass.constructor.call(this, config);
+            MarkRequiredTVPlugin.superclass.constructor.call(this, config);
         }
-        Ext.extend(MarkRequiredFieldPlugin, Ext.BoxComponent);
-        Ext.ComponentMgr.registerPlugin('markrequiredfields',MarkRequiredFieldPlugin);
+        Ext.extend(MarkRequiredTVPlugin, Ext.BoxComponent);
+        Ext.ComponentMgr.registerPlugin('markrequiredfields',MarkRequiredTVPlugin);
 
         if (!Array.isArray(Ext.form.Field.prototype.plugins)) {
             Ext.form.Field.prototype.plugins = [];
@@ -252,7 +199,7 @@ Ext.extend(MODx,Ext.Component,{
         MODx.Ajax.request({
             url: MODx.config.connector_url
             ,params: {
-                action: 'System/ClearCache'
+                action: 'system/clearcache'
                 ,register: 'mgr'
                 ,topic: topic
                 ,media_sources: true
@@ -278,7 +225,7 @@ Ext.extend(MODx,Ext.Component,{
         MODx.Ajax.request({
             url: MODx.config.connector_url
             ,params: {
-                action: 'System/RefreshUris'
+                action: 'system/refreshuris'
                 ,register: 'mgr'
                 ,topic: topic
                 ,menu: true
@@ -301,7 +248,7 @@ Ext.extend(MODx,Ext.Component,{
             MODx.Ajax.request({
                 url: MODx.config.connector_url
                 ,params: {
-                    action: 'Resource/Locks/Release'
+                    action: 'resource/locks/release'
                     ,id: id
                 }
                 ,listeners: {
@@ -316,7 +263,7 @@ Ext.extend(MODx,Ext.Component,{
 			,text: _('confirm_remove_locks')
 			,url: MODx.config.connectors_url
 			,params: {
-				action: 'System/RemoveLocks'
+				action: 'system/remove_locks'
 			}
 			,listeners: {
 				'success': {
@@ -356,7 +303,7 @@ Ext.extend(MODx,Ext.Component,{
                 ,text: _('logout_confirm')
                 ,url: MODx.config.connector_url
                 ,params: {
-                    action: 'Security/Logout'
+                    action: 'security/logout'
                     ,login_context: 'mgr'
                 }
                 ,listeners: {
@@ -398,7 +345,7 @@ Ext.extend(MODx,Ext.Component,{
                 Ext.Ajax.request({
                     url: MODx.config.connector_url,
                     params: {
-                        action: 'Element/Category/GetList',
+                        action: 'element/category/getlist',
                         id: category,
                         limit: 0,
                     },
@@ -485,7 +432,6 @@ Ext.extend(MODx,Ext.Component,{
     }
 
     ,helpUrl: false
-
     ,loadHelpPane: function(b) {
         var url = MODx.helpUrl || MODx.config.help_url || '';
         if (!url || !url.length) { return false; }
@@ -504,40 +450,34 @@ Ext.extend(MODx,Ext.Component,{
             ,layout: 'fit'
 			,bodyStyle : 'padding: 0;'
             ,items: [{
-	        	xtype: 'container',
-				layout: {
-	            	type: 'vbox',
-					align: 'stretch'
+	        	xtype		: 'container',
+				layout		: {
+	            	type		: 'vbox',
+					align		: 'stretch'
 				},
-				width: '100%',
-				height: '100%',
-				items:[{
-					autoEl: {
-		                tag: 'iframe',
-		                src: url,
-		                width: '100%',
-						height: '100%',
-						frameBorder: 0
+				width		: '100%',
+				height		: '100%',
+				items		:[{
+					autoEl 		: {
+		                tag 		: 'iframe',
+		                src			: url,
+		                width		: '100%',
+						height		: '100%',
+						frameBorder	: 0
 					}
 				}]
 			}]
+			//,html: '<iframe src="' + url + '" width="100%" height="100%" frameborder="0"></iframe>'
         });
         MODx.helpWindow.show(b);
         return true;
     }
 
-    /**
-     * Adds a new tab to the specified panel; method called from code inserted via modActionDom (modactiondom.class.php)
-     *
-     * @param {String} panelId - Text id of the tabPanel the new tab will be added to
-     * @param {Object} newTabConfig - The base configuration for the new tab
-     * @return {void}
-     */
-    ,addTab: function(panelId, newTabConfig) {
-        const tabPanel = Ext.getCmp(panelId);
-        if (tabPanel) {
-            Ext.applyIf(newTabConfig,{
-                id: 'modx-' + Ext.id() + '-tab'
+    ,addTab: function(tbp,opt) {
+        var tabs = Ext.getCmp(tbp);
+        if (tabs) {
+            Ext.applyIf(opt,{
+                id: 'modx-'+Ext.id()+'-tab'
                 ,layout: 'form'
                 ,labelAlign: 'top'
                 ,cls: 'modx-resource-tab'
@@ -549,44 +489,33 @@ Ext.extend(MODx,Ext.Component,{
                     ,width: 400
                 }
             });
-            tabPanel.add(newTabConfig);
-            tabPanel.doLayout();
+            tabs.add(opt);
+            tabs.doLayout();
+            tabs.setActiveTab(0);
         }
     }
     ,hiddenTabs: []
-
-    ,hideTab: function(ct, tab) {
-        this.hideRegion(ct, tab);
-    }
-
-    /**
-     * Hides a region or tab; method called from code inserted via modActionDom (modactiondom.class.php)
-     * and from MODX.hideTab (above)
-     *
-     * @param {String} containerId - Text id of the region/tab's container
-     * @param {String} regionId - Text id of the region/tab to hide
-     * @return {void}
-     */
-    ,hideRegion: function(containerId, regionId) {
-        const tabPanel = Ext.getCmp(containerId);
-        if (tabPanel) {
-            const tabObj = tabPanel.getItem(regionId);
+    ,hideTab: function(ct,tab) {this.hideRegion(ct,tab);}
+    ,hideRegion: function(ct,tab) {
+        var tp = Ext.getCmp(ct);
+        if (tp) {
+            var tabObj = tp.getItem(tab);
             if (tabObj) {
-                tabPanel.hideTabStripItem(regionId);
-                MODx.hiddenTabs.push(regionId);
-                tabPanel.setActiveTab(this._getNextActiveTab(tabPanel, regionId));
+                var z = tp.hideTabStripItem(tab);
+                MODx.hiddenTabs.push(tab);
+                var idx = this._getNextActiveTab(tp,tab);
+                tp.setActiveTab(idx);
             } else {
-                const region = Ext.getCmp(regionId);
+                var region = Ext.getCmp(tab);
                 if (region) {
                     region.hide();
                 }
             }
         }
     }
-
     ,_getNextActiveTab: function(tp,tab) {
-        let id;
         if (MODx.hiddenTabs.indexOf(tab) != -1) {
+            var id;
             for (var i=0;i<tp.items.items.length;i++) {
                  id = tp.items.items[i].id;
                 if (MODx.hiddenTabs.indexOf(id) == -1) { break; }
@@ -595,57 +524,37 @@ Ext.extend(MODx,Ext.Component,{
         return id;
     }
 
-    /**
-     * Moves a TV to the specified a region or tab; method called from code inserted via modActionDom (modactiondom.class.php)
-     * and from MODX.hideTab (above)
-     *
-     * @param {String} tvId - Text id of the TV to move
-     * @param {String} targetId - Text id of the TV's destination (region/tab)
-     * @return {void}
-     */
-    ,moveTV: function(tvId, targetId) {
-        const   sourcePanel = Ext.getCmp('modx-panel-resource-tv'),
-                sourceItem = Ext.get(tvId + '-tr'),
-                target = Ext.getCmp(targetId)
-        ;
-        if (!sourcePanel || !sourceItem || !target) {
-            return;
-        }
+    ,moveTV: function(tvs,tab) {
+        if (!Ext.isArray(tvs)) { tvs = [tvs]; }
+        var tvp = Ext.getCmp('modx-panel-resource-tv');
+        if (!tvp) { return; }
 
-        target.add({
-            html: '',
-            width: '100%',
-            id: 'tv-tr-out-' + tvId,
-            cls: 'modx-tv-out'
-        });
-        target.doLayout();
+        for (var i=0;i<tvs.length;i++) {
+            var tr = Ext.get(tvs[i]+'-tr');
 
-        const targetItem = Ext.get('tv-tr-out-' + tvId);
-        if (targetItem) {
-            targetItem.replaceWith(sourceItem);
-        } else {
-            const id = tvId.replace('tv', '');
-            console.warn('Attempted to move the TV named "'
-                + sourceItem.dom.innerText + '" (id #' + id + ') to the panel with the id "'
-                + target.id + '" but the original TV field could not be found. '
-                + 'It is likely a conflicting customization rule has already tried to move this TV.'
-            );
+            if (!tr) { return; }
+            var fp = Ext.getCmp(tab);
+            if (!fp) { return; }
+            fp.add({
+                html: ''
+                ,width: '100%'
+                ,id: 'tv-tr-out-'+tvs[i]
+                ,cls: 'modx-tv-out'
+            });
+            fp.doLayout();
+
+            var o = Ext.get('tv-tr-out-'+tvs[i]);
+            o.replaceWith(tr);
         }
     }
-
     ,hideTV: function(tvs) {
-        if (!Ext.isArray(tvs)) {
-            tvs = [tvs];
-        }
+        if (!Ext.isArray(tvs)) { tvs = [tvs]; }
         this.hideTVs(tvs);
     }
-
     ,hideTVs: function(tvs) {
-        if (!Ext.isArray(tvs)) {
-            tvs = [tvs];
-        }
-        let el;
-        for (let i=0; i<tvs.length; i++) {
+        if (!Ext.isArray(tvs)) { tvs = [tvs]; }
+        var el;
+        for (var i=0;i<tvs.length;i++) {
             el = Ext.get(tvs[i]+'-tr');
             if (el) {
                 el.setVisibilityMode(Ext.Element.DISPLAY);
@@ -653,57 +562,38 @@ Ext.extend(MODx,Ext.Component,{
             }
         }
     }
-
-    /**
-     * Changes the label of the specified field; method called from code inserted via modActionDom (modactiondom.class.php)
-     *
-     * @param {String} containerId - Text id of the field's/container's container
-     * @param {String} fieldId - Text id or name of field/container whose label/title being renamed
-     * @param {String} newLabel - The replacement label text
-     * @return {void}
-     */
-    ,renameLabel: function(containerId, fieldId, newLabel) {
-        if (fieldId.indexOf('modx-resource-content') !== -1) {
-            const contentCmp = Ext.getCmp('ta');
-            if (contentCmp) {
-                contentCmp.label.update(newLabel);
+    ,renameLabel: function(ct,flds,vals) {
+        var cto;
+        if (ct == 'modx-panel-resource' && flds.indexOf('modx-resource-content') != -1) {
+            cto = Ext.getCmp('modx-resource-content');
+            if (cto) {
+                if (cto.setTitle) {
+                    cto.setTitle(vals[0]);
+                } else if (cto.setLabel) {
+                    cto.setLabel(flds,vals);
+                } else {
+                    cto.label.update(vals[0]);
+                }
             }
         } else {
-            const container = Ext.getCmp(containerId);
-            if (container) {
-                container.setLabel(fieldId, newLabel);
+            cto = Ext.getCmp(ct);
+            if (cto) {
+                cto.setLabel(flds,vals);
             }
         }
     }
-
-    /**
-     * Renames a form tab; method called from code inserted via modActionDom (modactiondom.class.php)
-     *
-     * @param {String} tabId - Text id of tab being renamed
-     * @param {String} newTitle - The replacement title text
-     * @return {void}
-     */
-    ,renameTab: function(tabId, newTitle) {
-        const tab = Ext.getCmp(tabId);
+    ,renameTab: function(tb,title) {
+        var tab = Ext.getCmp(tb);
         if (tab) {
-            tab.setTitle(newTitle);
+            tab.setTitle(title);
         }
     }
-
-    /**
-     * Hides a field in the specified container; method called from code inserted via modActionDom (modactiondom.class.php)
-     *
-     * @param {String} containerId - Text id of the field's container
-     * @param {String} fieldId - Text id or name of field being hidden
-     * @return {void}
-     */
-    ,hideField: function(containerId, fieldId) {
-        const container = Ext.getCmp(containerId);
-        if (container) {
-            container.hideField(fieldId);
+    ,hideField: function(ct,flds) {
+        ct = Ext.getCmp(ct);
+        if (ct) {
+            ct.hideField(flds);
         }
     }
-
     ,preview: function() {
         var url = MODx.config.site_url;
         if (MODx.config.default_site_url) {
@@ -738,47 +628,6 @@ Ext.extend(MODx,Ext.Component,{
 
     ,isEmpty: function(v) {
         return Ext.isEmpty(v) || v === false || v === 'false' || v === 'FALSE' || v === '0' || v === 0;
-    }
-
-    ,createResource: function(record) {
-        if (MODx.createResourceWindow) {
-            MODx.createResourceWindow.destroy();
-        }
-
-        MODx.createResourceWindow = MODx.load({
-            xtype: 'modx-window-create-resource',
-            record: record,
-            closeAction: 'close',
-            listeners: {
-                'success': {
-                    fn: function(r) {
-                        MODx.loadPage('?a=resource/update&id=' + r.a.result.object.id);
-                    },
-                    scope: this
-                },
-                'failure': {
-                    fn: function(data, data2) {
-                        console.log('failure');
-                        console.log(data);
-                        console.log(data2);
-                    },
-                    scope: this
-                }
-            }
-        });
-
-        MODx.createResourceWindow.setValues(record);
-        MODx.createResourceWindow.show();
-    }
-
-    ,switchLanguage: function(lang) {
-        var params = {
-            switch: lang
-        };
-        Ext.iterate(MODx.request, function (key, value) {
-            params['target_' + key] = value;
-        });
-        MODx.loadPage('language', params);
     }
 });
 Ext.reg('modx',MODx);
@@ -1046,7 +895,7 @@ MODx.HttpProvider = function(config) {
             ,topic: ''
         }
         ,writeBaseParams: {
-            action: 'System/Registry/Register/Send'
+            action: 'system/registry/register/send'
             ,message: ''
             ,message_key: ''
             ,message_format: 'json'
@@ -1055,7 +904,7 @@ MODx.HttpProvider = function(config) {
             ,kill: 0
         }
         ,readBaseParams: {
-            action: 'System/Registry/Register/Read'
+            action: 'system/registry/register/read'
             ,format: 'json'
             ,poll_limit: 1
             ,poll_interval: 1
@@ -1086,7 +935,7 @@ Ext.extend(MODx.HttpProvider, Ext.state.Provider, {
     initState: function(state) {
         if (state instanceof Object) {
             Ext.iterate(state, function(name, value, o) {
-                this.state[name] = value;
+                this.state[name] = value;//this.decodeValue(value);
             }, this)
         } else {
             this.state = {};

@@ -45,7 +45,7 @@ class modInstallConnectorRequest extends modInstallRequest {
      * @param array $config
      * @return modInstallError
      */
-    public function loadError($class = 'error.modInstallJSONError',$path = '',array $config = []) {
+    public function loadError($class = 'error.modInstallJSONError',$path = '',array $config = array()) {
         $className = $this->install->loadClass($class,$path);
         if (!empty($className)) {
             $this->error = new $className($this->install,$config);

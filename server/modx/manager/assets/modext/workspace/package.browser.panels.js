@@ -157,11 +157,10 @@ MODx.grid.PackageBrowserGrid = function(config) {
                  ,'downloads','releasedon','screenshot','license','location','version-compiled'
                  ,'supports_db','minimum_supports','breaks_at','featured','audited','changelog'
                  ,'downloaded','dlaction-text','dlaction-icon']
-        ,showActionsColumn: false
         ,url: MODx.config.connector_url
         ,baseParams: {
 			provider: MODx.provider
-			,action: 'Workspace/Packages/Rest/GetList'
+			,action: 'workspace/packages/rest/getList'
 		}
         ,paging: true
         ,pageSize: 10
@@ -277,7 +276,7 @@ Ext.extend(MODx.grid.PackageBrowserGrid,MODx.grid.Grid,{
 		Ext.Ajax.request({
 			url : this.config.url
 			,params : {
-				action : 'Workspace/Packages/Rest/Download'
+				action : 'workspace/packages/rest/download'
 				,info : rec.location+'::'+rec.signature
 				,provider : MODx.provider
 			}
@@ -532,7 +531,7 @@ MODx.PackageBrowserThumbsView = function(config) {
                  ,'downloads','releasedon','screenshot','license','supports','location','version-compiled', 'featured'
                  ,'downloaded','dlaction-text','dlaction-icon']
         ,baseParams: {
-            action: 'Workspace/Packages/Rest/GetList'
+            action: 'workspace/packages/rest/getList'
             ,provider: MODx.provider
         }
         ,tpl: this.templates.thumb
@@ -632,7 +631,7 @@ Ext.extend(MODx.PackageBrowserThumbsView,MODx.DataView,{
         MODx.Ajax.request({
             url: this.config.url
             ,params: {
-                action: 'Workspace/Packages/Rest/Download'
+                action: 'workspace/packages/rest/download'
                 ,info: data.location+'::'+data.signature
                 ,provider: MODx.provider || MODx.config.default_provider
             }
@@ -814,7 +813,7 @@ Ext.extend(MODx.panel.PackageBrowserView,MODx.Panel,{
 		MODx.Ajax.request({
             url: this.url
             ,params: {
-                action: 'Workspace/Packages/Rest/Download'
+                action: 'workspace/packages/rest/download'
                 ,info: record.location+'::'+record.signature
                 ,provider: MODx.provider || MODx.config.default_provider
             }

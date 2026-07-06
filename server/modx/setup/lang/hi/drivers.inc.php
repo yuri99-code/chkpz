@@ -15,3 +15,6 @@ $_lang['mysql_version_fail'] = 'आप MySQL [[+version]] पर चल रह�
 $_lang['mysql_version_server_nf'] = 'ModX mysql_get_server_info के माध्यम से अपने सर्वर संस्करण का पता नहीं लगा सकता है ()। स्वयं अपने सर्वर संस्करण आगे बढ़ने से पहले कम से कम 4.1.20 है कि सुनिश्चित करें।';
 $_lang['mysql_version_server_start'] = 'MySQL सर्वर संस्करण की जाँच:';
 $_lang['mysql_version_success'] = 'ठीक है! रनिंग: [[+version]]';
+
+$_lang['sqlsrv_version_success'] = 'ठीक है!';
+$_lang['sqlsrv_version_client_success'] = 'ठीक है!';

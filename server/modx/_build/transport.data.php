@@ -13,24 +13,37 @@ set_time_limit(0);
 @ require_once dirname(__FILE__) . '/build.config.php';
 
 if (!defined('MODX_CORE_PATH'))
-    define('MODX_CORE_PATH', dirname(dirname(__FILE__)) . '/core/');
+    define('MODX_CORE_PATH', dirname(__DIR__) . '/core/');
 if (!defined('MODX_CONFIG_KEY'))
     define('MODX_CONFIG_KEY', 'config');
-
-require MODX_CORE_PATH . 'vendor/autoload.php';
-
-$modx = \MODX\Revolution\modX::getInstance();
+require_once (MODX_CORE_PATH . 'model/modx/modx.class.php');
+$modx= new modX();
 $modx->initialize('mgr');
 
 $cacheManager= $modx->getCacheManager();
-$modx->setLogLevel(\xPDO\xPDO::LOG_LEVEL_ERROR);
+$modx->setLogLevel(xPDO::LOG_LEVEL_ERROR);
 $modx->setLogTarget('ECHO');
+
+
+// Get all Actions
+$content= "<?php\n";
+$query= $modx->newQuery('modAction');
+$query->where(array('namespace' => 'core'));
+$query->sortby('id');
+
+$collection= $modx->getCollection('modAction', $query);
+foreach ($collection as $key => $c) {
+    $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
+}
+$cacheManager->writeFile(dirname(__FILE__) . '/data/transport.core.actions.php', $content);
+unset($content, $collection, $key, $c);
+
 
 // Get all Menus
 $content= "<?php\n";
-$query= $modx->newQuery(\MODX\Revolution\modMenu::class);
+$query= $modx->newQuery('modMenu');
 $query->sortby('id');
-$collection= $modx->getCollection(\MODX\Revolution\modMenu::class, $query);
+$collection= $modx->getCollection('modMenu', $query);
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -40,9 +53,9 @@ unset($content, $collection, $key, $c);
 
 // Get all Events
 $content= "<?php\n";
-$query= $modx->newQuery(\MODX\Revolution\modEvent::class);
+$query= $modx->newQuery('modEvent');
 $query->sortby('id');
-$collection= $modx->getCollection(\MODX\Revolution\modEvent::class, $query);
+$collection= $modx->getCollection('modEvent', $query);
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -52,9 +65,9 @@ unset($content, $collection, $key, $c);
 
 // Get all Content Types
 $content= "<?php\n";
-$query= $modx->newQuery(\MODX\Revolution\modContentType::class);
+$query= $modx->newQuery('modContentType');
 $query->sortby('id');
-$collection= $modx->getCollection(\MODX\Revolution\modContentType::class, $query);
+$collection= $modx->getCollection('modContentType', $query);
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -63,11 +76,11 @@ unset($content, $collection, $key, $c);
 
 // Get all System Settings
 $content= "<?php\n";
-$query= $modx->newQuery(\MODX\Revolution\modSystemSetting::class);
-$query->select($modx->getSelectColumns(\MODX\Revolution\modSystemSetting::class, '', '', ['editedon'], true));
-$query->where(['namespace' => 'core']);
+$query= $modx->newQuery('modSystemSetting');
+$query->select($modx->getSelectColumns('modSystemSetting', '', '', array('editedon'), true));
+$query->where(array('namespace' => 'core'));
 $query->sortby($modx->escape('key'));
-$collection= $modx->getCollection(\MODX\Revolution\modSystemSetting::class, $query);
+$collection= $modx->getCollection('modSystemSetting', $query);
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -77,12 +90,12 @@ unset($content, $collection, $key, $c);
 
 // Get all Context Settings
 $content= "<?php\n";
-$query= $modx->newQuery(\MODX\Revolution\modContextSetting::class);
-$query->select($modx->getSelectColumns(\MODX\Revolution\modContextSetting::class, '', '', ['editedon'], true));
-$query->where(['namespace' => 'core']);
+$query= $modx->newQuery('modContextSetting');
+$query->select($modx->getSelectColumns('modContextSetting', '', '', array('editedon'), true));
+$query->where(array('namespace' => 'core'));
 $query->sortby($modx->escape('context_key'));
 $query->sortby($modx->escape('key'));
-$collection= $modx->getCollection(\MODX\Revolution\modContextSetting::class, $query);
+$collection= $modx->getCollection('modContextSetting', $query);
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -92,7 +105,7 @@ unset($content, $collection, $key, $c);
 
 // Get the Admin Group
 $content= "<?php\n";
-$collection= $modx->getCollection(\MODX\Revolution\modUserGroup::class, ['id' => 1]);
+$collection= $modx->getCollection('modUserGroup', array('id' => 1));
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -102,7 +115,7 @@ unset($content, $collection, $key, $c);
 
 // Get the default UserGroupRoles
 $content= "<?php\n";
-$collection= $modx->getCollection(\MODX\Revolution\modUserGroupRole::class);
+$collection= $modx->getCollection('modUserGroupRole');
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -112,7 +125,7 @@ unset($content, $collection, $key, $c);
 
 // Get the default Access Policies
 $content= "<?php\n";
-$collection= $modx->getCollection(\MODX\Revolution\modAccessPolicy::class);
+$collection= $modx->getCollection('modAccessPolicy');
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }
@@ -122,7 +135,7 @@ unset($content, $collection, $key, $c);
 
 // Get the default AccessContext ACLs
 $content= "<?php\n";
-$collection= $modx->getCollection(\MODX\Revolution\modAccessContext::class);
+$collection= $modx->getCollection('modAccessContext');
 foreach ($collection as $key => $c) {
     $content.= $cacheManager->generateObject($c, "collection['{$key}']", false, false, 'xpdo');
 }

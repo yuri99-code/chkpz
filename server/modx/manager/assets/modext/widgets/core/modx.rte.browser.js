@@ -10,12 +10,11 @@ MODx.browser.RTE = function(config) {
     Ext.Ajax.extraParams = {
         'HTTP_MODAUTH': config.auth
     };
-
+    
     this.ident = 'modx-browser-'+Ext.id();
     this.view = MODx.load({
         xtype: 'modx-browser-view'
         ,onSelect: {fn: this.onSelect, scope: this}
-        ,multiSelect: config.multiSelect || false
         ,ident: this.ident
         ,source: config.source || MODx.config.default_media_source
         ,id: this.ident+'-view'
@@ -54,13 +53,13 @@ MODx.browser.RTE = function(config) {
     this.tree.on('click',function(node,e) {
         this.load(node.id);
     },this);
-
+    
     Ext.applyIf(config,{
         title: _('modx_browser')
         ,layout: 'border'
         ,renderTo: document.body
         ,id: this.ident+'-viewport'
-
+        
         ,onSelect: MODx.onBrowserReturn || function(data) {}
         ,items: [{
             id: this.ident+'-browser-tree'
@@ -116,11 +115,11 @@ Ext.extend(MODx.browser.RTE,Ext.Viewport,{
         this.view.store.filter('name', filter.getValue(),true);
         this.view.select(0);
     }
-
+    
     ,setReturn: function(el) {
         this.returnEl = el;
     }
-
+    
     ,load: function(dir) {
         dir = dir || '';
         var t = Ext.getCmp(this.ident+'-tree');
@@ -133,7 +132,7 @@ Ext.extend(MODx.browser.RTE,Ext.Viewport,{
             ,source: this.config.source || MODx.config.default_media_source
         });
     }
-
+    
     ,sortStore: function(){
         var v = Ext.getCmp(this.ident+'sortSelect').getValue();
         this.view.store.sort(v, v == 'name' ? 'ASC' : 'DESC');
@@ -145,7 +144,7 @@ Ext.extend(MODx.browser.RTE,Ext.Viewport,{
         this.view.setTemplate(v);
         this.view.select(0);
     }
-
+    
     ,reset: function(){
         if(this.rendered){
             Ext.getCmp('filter').reset();
@@ -154,7 +153,7 @@ Ext.extend(MODx.browser.RTE,Ext.Viewport,{
         this.view.store.clearFilter();
         this.view.select(0);
     }
-
+    
     ,getToolbar: function() {
         return [{
             text: _('filter')+':'
@@ -221,33 +220,23 @@ Ext.extend(MODx.browser.RTE,Ext.Viewport,{
             }
         }];
     }
-
-    ,onSelect: function () {
-        const selNodes = this.view.getSelectedNodes(),
-            callback = this.config.onSelect || this.onSelectHandler,
-            lookup = this.view.lookup,
-            scope = this.config.scope,
-            source = parseInt(this.config.source || MODx.config.default_media_source);
-
-        if (callback) {
-            selNodes.forEach((selNode) => {
-                try {
-                    let selData = lookup[selNode.id];
-                    selData.source = source;
-                    Ext.callback(callback, scope || this, [selData]);
-                    this.fireEvent('select', selData);
-                } catch (e) {
-                    console.error('Error processing MODx.Browser onSelect callback:', e);
-                }
-            });
-        }
-
-        if (window.top.opener) {
-            window.top.close();
-            window.top.opener.focus();
+    
+    ,onSelect: function(data) {
+        var selNode = this.view.getSelectedNodes()[0];
+        var callback = this.config.onSelect || this.onSelectHandler;
+        var lookup = this.view.lookup;
+        var scope = this.config.scope;
+        if(selNode && callback) {
+            data = lookup[selNode.id];
+            Ext.callback(callback,scope || this,[data]);
+            this.fireEvent('select',data);
+            if (window.top.opener) {
+                window.top.close();
+                window.top.opener.focus();
+            }
         }
     }
-
+    
     ,onSelectHandler: function(data) {
         Ext.get(this.returnEl).dom.value = unescape(data.url);
     }

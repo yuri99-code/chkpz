@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Class ResourceIndexManagerController
  */
@@ -51,7 +49,7 @@ class ResourceTrashManagerController extends modManagerController
      */
     public function getLanguageTopics()
     {
-        return ['trash', 'namespace'];
+        return array('trash', 'namespace');
     }
 
     /**
@@ -59,7 +57,7 @@ class ResourceTrashManagerController extends modManagerController
      * @param array $scriptProperties A array of REQUEST parameters.
      * @return mixed Either an error or output string, or an array of placeholders to set.
      */
-    public function process(array $scriptProperties = [])
+    public function process(array $scriptProperties = array())
     {
         return null;
     }

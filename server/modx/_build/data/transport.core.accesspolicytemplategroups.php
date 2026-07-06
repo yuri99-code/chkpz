@@ -7,24 +7,54 @@
  * For complete copyright and license information, see the COPYRIGHT and LICENSE
  * files found in the top-level directory of this distribution.
  */
+$templateGroups = array();
 
-use MODX\Revolution\modAccessPolicyTemplateGroup;
+/* administrator group templates */
+$templateGroups['1']= $xpdo->newObject('modAccessPolicyTemplateGroup');
+$templateGroups['1']->fromArray(array(
+    'id' => 1,
+    'name' => 'Admin',
+    'description' => 'All admin policy templates.',
+));
 
-$templateGroups = [];
+/* Object group templates */
+$templateGroups['2']= $xpdo->newObject('modAccessPolicyTemplateGroup');
+$templateGroups['2']->fromArray(array(
+    'id' => 2,
+    'name' => 'Object',
+    'description' => 'All Object-based policy templates.',
+));
 
-$groups = modAccessPolicyTemplateGroup::getCoreGroups();
+/* Resource group templates */
+$templateGroups['3']= $xpdo->newObject('modAccessPolicyTemplateGroup');
+$templateGroups['3']->fromArray(array(
+    'id' => 3,
+    'name' => 'Resource',
+    'description' => 'All Resource-based policy templates.',
+));
 
-foreach (modAccessPolicyTemplateGroup::getCoreGroups() as $index => $groupName) {
-    $group = $xpdo->newObject(modAccessPolicyTemplateGroup::class);
-    $group->fromArray(
-        [
-            'id' => $index + 1,
-            'name' => $groupName,
-            'description' => sprintf('policy_template_group_%s_desc', strtolower($groupName)),
-        ]
-    );
+/* Element group templates */
+$templateGroups['4']= $xpdo->newObject('modAccessPolicyTemplateGroup');
+$templateGroups['4']->fromArray(array(
+    'id' => 4,
+    'name' => 'Element',
+    'description' => 'All Element-based policy templates.',
+));
 
-    $templateGroups[] = $group;
-}
+/* Media Source group templates */
+$templateGroups['5']= $xpdo->newObject('modAccessPolicyTemplateGroup');
+$templateGroups['5']->fromArray(array(
+    'id' => 5,
+    'name' => 'MediaSource',
+    'description' => 'All Media Source-based policy templates.',
+));
+
+/* Namespace group templates */
+$templateGroups['6']= $xpdo->newObject('modAccessPolicyTemplateGroup');
+$templateGroups['6']->fromArray(array(
+    'id' => 6,
+    'name' => 'Namespace',
+    'description' => 'All Namespace based policy templates.',
+));
 
 return $templateGroups;

@@ -1,112 +1,184 @@
+@import "font-awesome/variables";
+@import "font-awesome/mixins";
+
 #modx-leftbar {
-
   /* the main container + bg behind the tabs */
-  .x-tab-panel-noborder {
-    margin: 0 8px;
-  }
-
-  .x-tab-panel-bwrap {
-    border-radius: 0 0 $borderRadius $borderRadius;
-    position: relative;
-    z-index: 1;
-
-    .x-tab-panel-body-noborder {
-      border-radius: 0 0 $borderRadius $borderRadius;
-      background: $mainBg;
-    }
-  }
-
-  #modx-leftbar-tabpanel {
-    @include grid-media($desktop) {
-      width: auto !important;
-      margin: 0 auto;
-      padding: 0.5em;
-    }
-  }
-
-  @include grid-media($desktop) {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    box-shadow: none;
-    margin: 0 auto 10px auto;
-
-    #modx-leftbar-header {
-      display: none;
-    }
+  @include media($mobile) {
+    position:relative !important;
+	top:auto !important;
+	left:auto !important;
+	width:100% !important;
+	height:auto !important;
   }
 
   .x-plain-body {
-    @include grid-media($desktop) {
-      width: 100% !important;
-      height: auto !important;
-    }
+	  @include media($mobile) {
+		  height:auto !important;
+	  }
   }
 
+  & .x-tab-panel-noborder {
+    margin: 26px;
+  }
   /* the toolbars just below the tabs */
   & .x-panel-tbar {
     padding: 0;
   }
-
   & .x-toolbar {
     padding: 4px 5px 2px 0;
   }
-
   /* root box containing a context or category */
   & .x-tree-root-ct {
     padding: 6px;
   }
-
   /* just the actual nodes */
   & .x-tree .x-panel-body {
     background: $white;
-    border-radius: 0;
+  }
+
+  .x-tab-panel-bwrap {
+    border-radius: $borderRadius 0 $borderRadius $borderRadius;
+    position: relative;
+    z-index: 1;
+
+    .x-tab-panel-body-noborder {
+      border-radius: $borderRadius 0 $borderRadius $borderRadius;
+      background-color: $white;
+    }
   }
 }
 
 #modx-tree-usergroup .x-toolbar-left-row {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-#modx-resource-tree-tbar .x-toolbar-left .x-btn .tree-new-resource,
-#modx-tree-element .x-toolbar-left .x-btn .tree-new-template {
+#modx-resource-tree-tbar .x-toolbar-left .x-btn.tree-new-resource,
+#modx-tree-element .x-toolbar-left .x-btn.tree-new-template {
   margin-left: 16px;
 }
 
-#modx-split-wrapper {
+#modx-leftbar {
+	@include media($mobile) {
+		margin:1em auto;
+	}
+	#modx-leftbar-tabpanel { // janky
+		@include media($mobile) {
+			width:auto !important;
+			margin:0 auto;
+			padding:0.5em;
+		}
+	}
+}
 
-  .x-layout-split,
-  #modx-leftbar-tabs-xcollapsed {
-    margin-left: -70px;
+.x-layout-split,
+#modx-leftbar-tabs-xcollapsed {
+  overflow: visible;
+  width: 8px;
+  z-index: 2; /* make it stay higher than the tree itself to cover the box shadow */
+
+  &:hover {
+    background: $softGray;
+
+    .x-layout-mini {
+      opacity: 1;
+      filter: alpha(opacity=100); /* for IE <= 8 */
+    }
+  }
+
+  .x-layout-mini {
+    background-color: #fff;
+    box-shadow: $boxShadow;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center left;
+    border-radius: 0 $borderRadius $borderRadius 0;
+    left: -25px;
+    top: 68px;
+    width: 11px; /* to have left and right 3px equal space from the arrow which is 5px */
+    height: 39px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* for IE <= 8 */
+    transition: all 0.25s;
+
+    &:after {
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 5px solid $treeColor;
+      position: absolute;
+      content: ' ';
+      right: 4px;
+      top: 14px;
+    }
+
+    &:hover:after {
+      border-right-color: $colorSplash;
+    }
+
+    /* Firefox & IE adjustments */
+    .ext-gecko3 &,
+    .ext-ie & {
+      height: 40px;
+      top: 69px;
+    }
   }
 }
 
-.x-layout-split {
-  overflow: visible;
-  width: 8px;
-  z-index: 2;
+/* tree menu splitter / tree expander */
+#modx-leftbar-tabs-xsplit, #modx-leftbar-tabs-xcollapsed {
+	@include media($mobile) {
+		position:relative;
+		top:auto !important;
+		left:auto !important;
+		right:auto;
+		bottom:auto;
+		visibility:visible;
+		width:auto !important;
+		height:auto !important;
+	}
+	.x-layout-mini {
+		@include media($mobile) {
+			position: relative;
+			right: auto;
+			width: auto !important;
+			top:auto !important;
+			&:after {
+				text-align:center;
+				top:auto !important;
+				left:0 !important;
+				right:0 !important;
+			}
 
-  &:hover {
-    background: $mediumGray;
-  }
+		}
+	}
+}
+
+#modx-leftbar-tabs-xsplit, #modx-leftbar-tabs-xcollapsed {
+	.x-layout-mini {
+		@include media($mobile) {
+			left:0 !important;
+			&:after {
+				border:none;
+				@include awesome-font();
+				line-height:42px;
+				content:"\f0db"; // absolutely no idea why $fa-var-columns won't work
+				font-size:16px;
+			}
+		}
+	}
 }
 
 /* style for the collapsed tree expander */
 #modx-leftbar-tabs-xcollapsed {
   .x-layout-mini {
-    //display: none;
     left: 0;
 
     &:after {
       border-right: 0;
       border-left: 5px solid $treeColor;
-
-      @include grid-media($desktop) {
-        border: none;
-      }
+	  @include media($mobile) {
+		  border:none;
+	  }
     }
 
     &:hover:after {
@@ -117,10 +189,14 @@
 
 .modx-tree {
   padding: 0;
-
   #modx-file-tree & {
     &:first-child {
       padding-top: 4px;
+    }
+    .tree-pseudoroot-node {
+      /* why was this here? this prevents the spacing between the nodes/sources in the filetree */
+      /*margin-top: 0;
+      margin-bottom: 0;*/
     }
   }
 }
@@ -131,13 +207,11 @@
 .x-tree-arrows .x-tree-elbow-end-plus,
 .x-tree-arrows .x-tree-elbow-end-minus {
   background: none;
-
   &:hover {
     background: lighten($treeText, 25);
     border-radius: 50%;
   }
 }
-
 .x-tree-arrows .x-tree-elbow-plus:before,
 .x-tree-arrows .x-tree-elbow-minus:before,
 .x-tree-arrows .x-tree-elbow-end-plus:before,
@@ -145,35 +219,56 @@
   background: transparent 0 0;
   display: inline-block;
   width: 10px;
+  padding-left: 6px;
+  margin: 0 0 0 -16px;
+}
+.x-tree-arrows .x-tree-elbow-minus:before,
+.x-tree-arrows .x-tree-elbow-end-minus:before {
+  @extend %pseudo-font;
+  content:$fa-var-caret-down;
   padding-left: 4px;
-  padding-right: 4px;
-  text-align: center;
-  margin: 0;
+  width: 12px;
 }
 
-.x-tree-arrows .x-tree-elbow-plus:before,
-.x-tree-arrows .x-tree-elbow-minus:before,
-.x-tree-arrows .x-tree-elbow-end-plus:before,
-.x-tree-arrows .x-tree-elbow-end-minus:before {
+/* icons for the various tree elements */
+.tree-context:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-caret-right);
+  content:$fa-var-globe;
 }
-
-.x-tree-arrows .x-tree-elbow-minus:before,
-.x-tree-arrows .x-tree-elbow-end-minus:before {
+.x-tree-node-expanded .tree-folder:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-caret-down);
+  content:$fa-var-folder-open;
+}
+.x-tree-node-collapsed .tree-folder:before, .x-tree-node .tree-folder:before {
+  @extend %pseudo-font;
+  content:$fa-var-folder;
+}
+.x-tree-node .locked-resource:before {
+  @extend %pseudo-font;
+  content:$fa-var-lock;
+}
+.tree-resource:before {
+  @extend %pseudo-font;
+  content:$fa-var-file-o;
+}
+.tree-static-resource:before {
+  @extend %pseudo-font;
+  content:$fa-var-file-text-o;
+}
+.tree-weblink:before {
+  @extend %pseudo-font;
+  content:$fa-var-link;
+}
+.tree-symlink:before {
+  @extend %pseudo-font;
+  content:$fa-var-files-o;
 }
 
 /* tree states */
 .x-tree-node-el {
   color: $treeColor;
   font: $treeNodeFont;
-  padding: 0 8px;
-
-  &.is_folder {
-    background: $treeFolderBg;
-  }
+  padding-left: 6px;
 
   .x-btn {
     -moz-box-shadow: none;
@@ -189,346 +284,17 @@
     vertical-align: -15%;
   }
 
-  a span {
-    padding-left: 7px;
-
-    & span {
-      padding-left: 0;
-    }
-  }
-
   /* For legacy icons */
   background-repeat: no-repeat;
   background-position: 5px;
 }
 
-/* tweak icons for FA 5.2.0 */
+.x-tree-node-el a span {
+  line-height: 1.7; /* back to 18px */
+  padding-left: 7px;
 
-i.icon,
-i.icon-large {
-  font-style: normal;
-  /*
-    Outline only free fa icons (151 of the 1600+ free solid icons)
-    Font Awesome 5 Free icons that support regular (outline) variant
-    See https://fontawesome.com/v5/search?s=regular&m=free
-  */
-  .unpublished &,
-  .deleted & {
-    &.fa-address-book,
-    &.fa-address-card,
-    &.fa-angry,
-    &.fa-arrow-alt-circle-down,
-    &.fa-arrow-alt-circle-left,
-    &.fa-arrow-alt-circle-right,
-    &.fa-arrow-alt-circle-up,
-    &.fa-bell,
-    &.fa-bell-slash,
-    &.fa-bookmark,
-    &.fa-building,
-    &.fa-calendar,
-    &.fa-calendar-alt,
-    &.fa-calendar-check,
-    &.fa-calendar-minus,
-    &.fa-calendar-plus,
-    &.fa-calendar-times,
-    &.fa-caret-square-down,
-    &.fa-caret-square-left,
-    &.fa-caret-square-right,
-    &.fa-caret-square-up,
-    &.fa-chart-bar,
-    &.fa-check-circle,
-    &.fa-check-square,
-    &.fa-circle,
-    &.fa-clipboard,
-    &.fa-clock,
-    &.fa-clone,
-    &.fa-closed-captioning,
-    &.fa-comment,
-    &.fa-comment-alt,
-    &.fa-comment-dots,
-    &.fa-comments,
-    &.fa-compass,
-    &.fa-copy,
-    &.fa-copyright,
-    &.fa-credit-card,
-    &.fa-dizzy,
-    &.fa-dot-circle,
-    &.fa-edit,
-    &.fa-envelope,
-    &.fa-envelope-open,
-    &.fa-eye,
-    &.fa-eye-slash,
-    &.fa-file,
-    &.fa-file-alt,
-    &.fa-file-archive,
-    &.fa-file-audio,
-    &.fa-file-code,
-    &.fa-file-excel,
-    &.fa-file-image,
-    &.fa-file-pdf,
-    &.fa-file-powerpoint,
-    &.fa-file-video,
-    &.fa-file-word,
-    &.fa-flag,
-    &.fa-flushed,
-    &.fa-folder,
-    &.fa-folder-open,
-    &.fa-frown,
-    &.fa-frown-open,
-    &.fa-futbol,
-    &.fa-gem,
-    &.fa-grimace,
-    &.fa-grin,
-    &.fa-grin-alt,
-    &.fa-grin-beam,
-    &.fa-grin-beam-sweat,
-    &.fa-grin-hearts,
-    &.fa-grin-squint,
-    &.fa-grin-squint-tears,
-    &.fa-grin-stars,
-    &.fa-grin-tears,
-    &.fa-grin-tongue,
-    &.fa-grin-tongue-squint,
-    &.fa-grin-tongue-wink,
-    &.fa-grin-wink,
-    &.fa-hand-lizard,
-    &.fa-hand-paper,
-    &.fa-hand-peace,
-    &.fa-hand-point-down,
-    &.fa-hand-point-left,
-    &.fa-hand-point-right,
-    &.fa-hand-point-up,
-    &.fa-hand-pointer,
-    &.fa-hand-rock,
-    &.fa-hand-scissors,
-    &.fa-hand-spock,
-    &.fa-handshake,
-    &.fa-hdd,
-    &.fa-heart,
-    &.fa-hospital,
-    &.fa-hourglass,
-    &.fa-id-badge,
-    &.fa-id-card,
-    &.fa-image,
-    &.fa-images,
-    &.fa-keyboard,
-    &.fa-kiss,
-    &.fa-kiss-beam,
-    &.fa-kiss-wink-heart,
-    &.fa-laugh,
-    &.fa-laugh-beam,
-    &.fa-laugh-squint,
-    &.fa-laugh-wink,
-    &.fa-lemon,
-    &.fa-life-ring,
-    &.fa-lightbulb,
-    &.fa-list-alt,
-    &.fa-map,
-    &.fa-meh,
-    &.fa-meh-blank,
-    &.fa-meh-rolling-eyes,
-    &.fa-minus-square,
-    &.fa-money-bill-alt,
-    &.fa-moon,
-    &.fa-newspaper,
-    &.fa-object-group,
-    &.fa-object-ungroup,
-    &.fa-paper-plane,
-    &.fa-pause-circle,
-    &.fa-play-circle,
-    &.fa-plus-square,
-    &.fa-question-circle,
-    &.fa-registered,
-    &.fa-sad-cry,
-    &.fa-sad-tear,
-    &.fa-save,
-    &.fa-share-square,
-    &.fa-smile,
-    &.fa-smile-beam,
-    &.fa-smile-wink,
-    &.fa-snowflake,
-    &.fa-square,
-    &.fa-star,
-    &.fa-star-half,
-    &.fa-sticky-note,
-    &.fa-stop-circle,
-    &.fa-sun,
-    &.fa-surprise,
-    &.fa-thumbs-down,
-    &.fa-thumbs-up,
-    &.fa-times-circle,
-    &.fa-tired,
-    &.fa-trash-alt,
-    &.fa-user,
-    &.fa-user-circle,
-    &.fa-window-close,
-    &.fa-window-maximize,
-    &.fa-window-minimize,
-    &.fa-window-restore,
-    &.icon-address-book,
-    &.icon-address-card,
-    &.icon-angry,
-    &.icon-arrow-alt-circle-down,
-    &.icon-arrow-alt-circle-left,
-    &.icon-arrow-alt-circle-right,
-    &.icon-arrow-alt-circle-up,
-    &.icon-bell,
-    &.icon-bell-slash,
-    &.icon-bookmark,
-    &.icon-building,
-    &.icon-calendar,
-    &.icon-calendar-alt,
-    &.icon-calendar-check,
-    &.icon-calendar-minus,
-    &.icon-calendar-plus,
-    &.icon-calendar-times,
-    &.icon-caret-square-down,
-    &.icon-caret-square-left,
-    &.icon-caret-square-right,
-    &.icon-caret-square-up,
-    &.icon-chart-bar,
-    &.icon-check-circle,
-    &.icon-check-square,
-    &.icon-circle,
-    &.icon-clipboard,
-    &.icon-clock,
-    &.icon-clone,
-    &.icon-closed-captioning,
-    &.icon-comment,
-    &.icon-comment-alt,
-    &.icon-comment-dots,
-    &.icon-comments,
-    &.icon-compass,
-    &.icon-copy,
-    &.icon-copyright,
-    &.icon-credit-card,
-    &.icon-dizzy,
-    &.icon-dot-circle,
-    &.icon-edit,
-    &.icon-envelope,
-    &.icon-envelope-open,
-    &.icon-eye,
-    &.icon-eye-slash,
-    &.icon-file,
-    &.icon-file-alt,
-    &.icon-file-archive,
-    &.icon-file-audio,
-    &.icon-file-code,
-    &.icon-file-excel,
-    &.icon-file-image,
-    &.icon-file-pdf,
-    &.icon-file-powerpoint,
-    &.icon-file-video,
-    &.icon-file-word,
-    &.icon-flag,
-    &.icon-flushed,
-    &.icon-folder,
-    &.icon-folder-open,
-    &.icon-frown,
-    &.icon-frown-open,
-    &.icon-futbol,
-    &.icon-gem,
-    &.icon-grimace,
-    &.icon-grin,
-    &.icon-grin-alt,
-    &.icon-grin-beam,
-    &.icon-grin-beam-sweat,
-    &.icon-grin-hearts,
-    &.icon-grin-squint,
-    &.icon-grin-squint-tears,
-    &.icon-grin-stars,
-    &.icon-grin-tears,
-    &.icon-grin-tongue,
-    &.icon-grin-tongue-squint,
-    &.icon-grin-tongue-wink,
-    &.icon-grin-wink,
-    &.icon-hand-lizard,
-    &.icon-hand-paper,
-    &.icon-hand-peace,
-    &.icon-hand-point-down,
-    &.icon-hand-point-left,
-    &.icon-hand-point-right,
-    &.icon-hand-point-up,
-    &.icon-hand-pointer,
-    &.icon-hand-rock,
-    &.icon-hand-scissors,
-    &.icon-hand-spock,
-    &.icon-handshake,
-    &.icon-hdd,
-    &.icon-heart,
-    &.icon-hospital,
-    &.icon-hourglass,
-    &.icon-id-badge,
-    &.icon-id-card,
-    &.icon-image,
-    &.icon-images,
-    &.icon-keyboard,
-    &.icon-kiss,
-    &.icon-kiss-beam,
-    &.icon-kiss-wink-heart,
-    &.icon-laugh,
-    &.icon-laugh-beam,
-    &.icon-laugh-squint,
-    &.icon-laugh-wink,
-    &.icon-lemon,
-    &.icon-life-ring,
-    &.icon-lightbulb,
-    &.icon-list-alt,
-    &.icon-map,
-    &.icon-meh,
-    &.icon-meh-blank,
-    &.icon-meh-rolling-eyes,
-    &.icon-minus-square,
-    &.icon-money-bill-alt,
-    &.icon-moon,
-    &.icon-newspaper,
-    &.icon-object-group,
-    &.icon-object-ungroup,
-    &.icon-paper-plane,
-    &.icon-pause-circle,
-    &.icon-play-circle,
-    &.icon-plus-square,
-    &.icon-question-circle,
-    &.icon-registered,
-    &.icon-sad-cry,
-    &.icon-sad-tear,
-    &.icon-save,
-    &.icon-share-square,
-    &.icon-smile,
-    &.icon-smile-beam,
-    &.icon-smile-wink,
-    &.icon-snowflake,
-    &.icon-square,
-    &.icon-star,
-    &.icon-star-half,
-    &.icon-sticky-note,
-    &.icon-stop-circle,
-    &.icon-sun,
-    &.icon-surprise,
-    &.icon-thumbs-down,
-    &.icon-thumbs-up,
-    &.icon-times-circle,
-    &.icon-tired,
-    &.icon-trash-alt,
-    &.icon-user,
-    &.icon-user-circle,
-    &.icon-window-close,
-    &.icon-window-maximize,
-    &.icon-window-minimize,
-    &.icon-window-restore {
-      &::before {
-        font-weight: 400;
-      }
-    }
-  }
-}
-
-.x-tree-node-el {
-
-  .icon-refresh,
-  .icon-plus-circle {
-    font-size: 1em;
-    vertical-align: 0;
+  & span {
+    padding-left: 0;
   }
 }
 
@@ -539,54 +305,56 @@ i.icon-large {
 
   i.icon,
   i.icon-large {
-    color: $unpublished;
+    font-style: normal;
   }
 }
-
 .hidemenu,
 .hidemenu a span {
   color: $hidden;
-  font-style: $hiddenText;
+  font-style: normal;
 
   &.unpublished,
   &.unpublished a span {
-    i.icon,
-    i.icon-large {
-      color: $hidden;
-    }
+    font-style: $unpubText;
   }
+
   i.icon,
   i.icon-large {
-    color: $treeColor;
+    color: $hidden;
+    font-style: normal;
   }
 }
-
+:not(.hidemenu),
+:not(.hidemenu) a span {
+  &.unpublished,
+  &.unpublished a span {
+    //color: $unpublished;
+  }
+}
 .deleted {
   color: $delTextColor;
 
   i.icon,
   i.icon-large {
     color: $delTextColor;
+    // font-style: normal;
   }
 
   a span {
     color: $delTextColor;
     text-decoration: $delTextDeco;
+    /* deleted files should inherit the text style from published/unpublished and
+       not overwrite it */
+    // font-style: $delTextStyle;
   }
 }
 
 .element-node-disabled a span {
   color: $disabledTextColor;
 }
-
 .x-tree-node {
-  position: relative;
-  background: $treeItemBg;
-  color: $treeItemColor;
-
   .x-tree-node-disabled,
   .element-node-disabled {
-
     a span,
     i.icon {
       color: $disabledTextColor;
@@ -598,70 +366,60 @@ i.icon-large {
   font-style: $lockedText;
 }
 
+.x-tree-node {
+  position:relative;
+}
+
 .modx-tree-node-tool-ct {
-  position: absolute;
-  top: 0;
-  right: 6px;
-  bottom: 0;
-  line-height: 1.8;
+  position:absolute;
+  top:0;
+  right:6px;
+  bottom:0;
+  line-height:1.8;
 
-  html[dir="rtl"] & {
-    left: 6px;
-    right: unset;
-  }
-
-  .x-btn {
-    &:hover, &:focus {
-      color: $green !important;
-    }
-  }
-
-  #modx-gr-tree-resource &, #modx-ih-resource-tree & {
-    display: none;
-  }
 }
 
 /* Direct create buttons for a tree node */
 .x-tree-node-el {
   .modx-tree-node-btn-create {
-    position: absolute;
-    top: 0;
-    right: 6px;
-    bottom: 0;
-    line-height: 34px;
-    opacity: 0;
-    transition: opacity .4s ease-in;
-    overflow: hidden;
-
-    html[dir="rtl"] & {
-      left: 6px;
-      right: unset;
-    }
+    position:absolute;
+    top:0;
+    right:6px;
+    bottom:0;
+    line-height:1.8;
+    opacity:0;
+    transition: opacity 0.4s ease-in;
 
     .x-btn {
-      color: $darkGray;
-      opacity: .4;
-      transition: opacity .2s ease-in-out, color .2s ease-in-out;
+      color: $darkGray !important;
+      opacity:    0.4 !important;
+      transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
 
-      &:hover,
-      &:focus {
-        opacity: 1.0;
-        color: $green;
+      &:hover, &:focus {
+        opacity: 1.0 !important;
+        color: $colorSplashMedium !important;
       }
     }
-
-    #modx-gr-tree-resource &, #modx-ih-resource-tree & {
-      display: none;
-    }
   }
-
-  &:hover,
-  &:focus,
-  &:focus-within {
+  &:hover, &:focus {
     .modx-tree-node-btn-create {
       opacity: 1.0;
     }
   }
+}
+
+/* Back out create button visibility for resource groups panel */
+#modx-panel-resource-groups {
+    #modx-gr-tree-resource {
+        .modx-tree-node-tool-ct {
+            display: none;
+        }
+        .x-tree-node-el {
+            .modx-tree-node-btn-create {
+                display: none;
+            }
+        }
+    }
 }
 
 .x-tree-root-ct {
@@ -673,81 +431,72 @@ i.icon-large {
 .tree-pseudoroot-node.x-tree-node-el {
   background-color: $treePseudoRootBg;
   font: $treePseudoRootFont;
-  position: relative;
-  padding: 0 5px;
+  position:relative;
+  padding: 0 0 0 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 
   a span {
     color: $treePseudoRootColor;
   }
 
-  >.icon {
+  > .icon {
+    font-weight: normal;
     color: $treePseudoRootColor;
+    font-size: (4em / 3);
+    line-height: (3em / 4);
+    vertical-align: -15%;
   }
 
   .modx-tree-node-tool-ct {
-    line-height: 3;
-    opacity: .5;
+    line-height: 35px;
+    opacity: 0.5;
     filter: alpha(opacity=50); /* for IE <= 8 */
-
     .x-btn {
       margin-left: 2px;
     }
   }
-
-  &.x-tree-node-collapsed {
-    border-bottom: 1px solid $borderColor;
+  &.x-tree-node-expanded, &.x-tree-node-expanded span, &.x-tree-node-expanded > .icon {
+    color: $treePseudoRootOverColor;
+    background-color: $treePseudoRootOverBg;
   }
-
-  &.x-tree-node-expanded,
-  &.x-tree-node-expanded span,
-  &.x-tree-node-expanded > .icon {
-    color: $treePseudoRootColor; //background-color: $treePseudoRootBg;
-  }
-
   &.x-tree-node-over {
     background-color: $treePseudoRootOverBg;
     color: $treePseudoRootOverColor;
   }
-
-  +.x-tree-node-ct,
-  +div > .x-tree-node-ct {
-    background: $treeBg; //padding: 5px 0;
+  + .x-tree-node-ct, + div > .x-tree-node-ct {
+    padding: 5px 0;
     overflow-x: auto;
-
     &:empty {
       padding: 0;
     }
   }
-
   &:hover .modx-tree-node-tool-ct {
     opacity: 1;
     filter: alpha(opacity=100); /* for IE <= 8 */
-
-    .x-btn {
-      color: inherit;
-    }
   }
 }
 
-.x-tree-elbow,
-.x-tree-elbow-end {
+
+.x-tree-elbow, .x-tree-elbow-end {
   display: inline-block;
+
+  #modx-leftbar-tabpanel & {
+    /*display: inline;*/
+  }
 }
 
 /* miscellaneous tree styles */
 .x-tree-node-el .x-tree-node-icon {
   display: inline-block;
 }
-
 .x-tree-node-loading .x-tree-node-icon {
   background-image: url($imgPath + 'modx-theme/tree/loading.gif') !important;
 }
-
 .x-tree-node-loading a span {
-  color: $tundora;
+  color: #444444;
   font-style: italic;
 }
-
 .ext-ie .x-tree-node-el input {
   height: 15px;
   width: 15px;
@@ -755,26 +504,15 @@ i.icon-large {
 
 /* accordion header row icons */
 #modx-leftbar .icon,
-.x-tree-node
-
-/*.modx-tree-node-tool-ct*/
-.icon {
+.x-tree-node /*.modx-tree-node-tool-ct*/ .icon {
   background: none;
   border: 0;
   display: inline-block;
   margin: 0;
   padding: 3px;
   text-align: center;
-  opacity: .8;
+  opacity: 0.8;
   filter: alpha(opacity=80); /* for IE <= 8 */
-
-  &.icon-folder:before,
-  &.icon-columns:before,
-  &.icon-th-large:before,
-  &.icon-code:before,
-  &.icon-cogs:before {
-    font-weight: 900;
-  }
 
   i {
     font-style: normal;
@@ -788,8 +526,10 @@ i.icon-large {
 .x-tree-node-ct .x-tree-node .icon {
   position: relative;
   top: -1px;
-  left: -1px;
+  left: 1px;
 }
+
+
 
 /* drag and drop styles */
 .x-tree-node a,
@@ -798,61 +538,44 @@ i.icon-large {
 .x-dd-drag-ghost a span {
   color: $treeColor;
 }
-
 .x-tree-node div.x-tree-drag-insert-below {
-  border-bottom: 2px solid $colorSplashLight !important;
+  border-bottom-color: #686868;
 }
-
 .x-tree-node div.x-tree-drag-insert-above {
-  border-top: 2px solid $colorSplashLight !important;
+  border-top-color: #686868;
 }
-
 .x-tree-dd-underline .x-tree-node div.x-tree-drag-insert-below a {
-  border-bottom: 2px solid $colorSplashLight !important;
+  border-bottom-color: #686868;
 }
-
 .x-tree-dd-underline .x-tree-node div.x-tree-drag-insert-above a {
-  border-top: 2px solid $colorSplashLight !important;
+  border-top-color: #686868;
 }
-
 .x-tree-node .x-tree-drag-append a span {
   background-color: $brandHover;
   border-color: $borderColor;
 }
-
 .x-tree-node .x-tree-node-over {
   background-color: $brandHover;
 }
-
-.x-tree-node .x-tree-selected {
-  background-color: $treeBgSelected;
-}
-
 .x-tree-node .x-tree-expanded {
   color: $brandSelectedColor;
   background-color: $brandHover;
-
   a {
     color: $brandSelectedColor;
-
     span {
       color: $brandSelectedColor;
     }
   }
 }
-
 .x-tree-drop-ok-append .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-add.gif');
 }
-
 .x-tree-drop-ok-above .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-over.gif');
 }
-
 .x-tree-drop-ok-below .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-under.gif');
 }
-
 .x-tree-drop-ok-between .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-between.gif');
 }
@@ -864,13 +587,11 @@ i.icon-large {
 
   // Set the background position to center
   background-position: center !important;
-
   // .. unless the icon is applied to the actual tree node (e.g. Gallery addon), in which case it needs
   // .. to be in the top left a bit.
   &.x-tree-node-el {
     background-position: 5px 5px !important;
   }
-
   min-width: 16px;
   min-height: 16px;
   vertical-align: middle;
@@ -880,26 +601,22 @@ i.icon-large {
     content: ' ';
   }
 }
-
 .icon-rss:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-rss);
+  content: $fa-var-rss;
 }
-
 .icon-cal:before,
 .icon-ical:before,
 .icon-ics:before,
 .icon-vcs:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-calendar);
+  content: $fa-var-calendar;
 }
-
 .icon-db:before,
 .icon-sql:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-database);
+  content: $fa-var-database;
 }
-
 .icon-zip:before,
 .icon-tar:before,
 .icon-tgz:before,
@@ -910,16 +627,14 @@ i.icon-large {
 .icon-dmg:before,
 .icon-iso:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-archive);
+  content: $fa-var-file-archive-o;
 }
-
 .icon-bk:before,
 .icon-bak:before,
 .icon-backup:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-history);
+  content: $fa-var-history;
 }
-
 .icon-jpg:before,
 .icon-jpeg:before,
 .icon-gif:before,
@@ -928,22 +643,19 @@ i.icon-large {
 .icon-tiff:before,
 .icon-svg:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-image);
+  content: $fa-var-file-image-o;
 }
-
 .icon-bat:before,
 .icon-scr:before,
 .icon-sh:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-terminal);
+  content: $fa-var-terminal;
 }
-
 .icon-txt:before,
 .icon-log:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-alt);
+  content: $fa-var-file-text-o;
 }
-
 .icon-aac:before,
 .icon-mp3:before,
 .icon-ogg:before,
@@ -954,9 +666,8 @@ i.icon-large {
 .icon-aif:before,
 .icon-aiff:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-audio);
+  content: $fa-var-file-audio-o;
 }
-
 .icon-avi:before,
 .icon-mpg:before,
 .icon-mpeg:before,
@@ -969,15 +680,13 @@ i.icon-large {
 .icon-swf:before,
 .icon-wmv:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-video);
+  content: $fa-var-file-video-o;
 }
-
 .icon-access:before,
 .icon-htaccess:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-lock);
+  content: $fa-var-lock;
 }
-
 .icon-php:before,
 .icon-cfm:before,
 .icon-rb:before,
@@ -985,185 +694,123 @@ i.icon-large {
 .icon-java:before,
 .icon-jar:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-code);
+  content: $fa-var-file-code-o;
 }
-
 .icon-doc:before,
 .icon-docx:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-word);
+  content: $fa-var-file-word-o;
 }
-
 .icon-csv:before,
 .icon-xls:before,
 .icon-xlsx:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-excel);
+  content: $fa-var-file-excel-o;
 }
-
 .icon-ppt:before,
 .icon-pptx:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-powerpoint);
+  content: $fa-var-file-powerpoint-o;
 }
-
 .icon-pdf:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-pdf);
+  content: $fa-var-file-pdf-o;
 }
-
 .icon-html:before,
 .icon-htm:before,
 .icon-xml:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-code);
+  content: $fa-var-file-code-o;
 }
-
 .icon-js:before,
-.icon-json:before,
 .icon-coffeescript:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-code);
+  content: $fa-var-file-code-o;
 }
-
 .icon-css:before,
 .icon-scss:before,
 .icon-less:before,
 .icon-styl:before {
   @extend %pseudo-font;
-  content: fa-content($fa-var-file-code);
+  content: $fa-var-file-code-o;
 }
+
 
 .icon-action {
   background-image: url($imgPath + 'restyle/icons/application_osx_terminal.png') !important;
   @include legacy-tree-icon;
 }
-
 .icon-namespace {
   background-image: url($imgPath + 'restyle/icons/computer.png') !important;
   @include legacy-tree-icon;
 }
-
+/*.icon-propertyset {
+  background-image: url($imgPath + 'restyle/icons/property-set.png') !important;
+  @extend %hide-font-icon;
+}*/
+/*.icon-resourcegroup {
+  background: url($imgPath + 'restyle/icons/application_cascade.png') no-repeat left top !important;
+  @extend %hide-font-icon;
+}*/
 .icon-list-new {
   background-image: url($imgPath + 'restyle/icons/layout_add.png') !important;
   @include legacy-tree-icon;
 }
-
 .icon-mark-active {
   background-image: url($imgPath + 'restyle/icons/layout_edit.png') !important;
   @include legacy-tree-icon;
 }
-
 .icon-mark-complete {
   background-image: url($imgPath + 'restyle/icons/layout_header.png') !important;
   @include legacy-tree-icon;
 }
-
 .icon-package {
   background-image: url($imgPath + 'restyle/icons/package.png') !important;
   padding-right: 5px !important;
   @include legacy-tree-icon;
 }
-
 .icon-locked {
   background-image: url($imgPath + 'restyle/icons/lock_edit.png') !important;
   @include legacy-tree-icon;
 }
-
 .icon-lock {
+  /*background-image: url($imgPath + 'restyle/icons/lock.png') !important;
+  @include legacy-tree-icon;*/
   @extend %pseudo-font;
-  content: fa-content($fa-var-lock);
+  content: $fa-var-lock;
 }
-
 #modx-resource-tree-panel .x-accordion-hd {
   background-position: 0 0;
 }
-
 #modx-element-tree-panel .x-accordion-hd {
   background-position: 0 -32px;
 }
-
 #modx-file-tree-panel .x-accordion-hd {
   background-position: 0 -64px;
 }
-
 #modx-static-page-settings .x-accordion-hd {
   background-position: 0 -96px;
 }
 
+/*
+.x-tree .x-panel-body {
+  background-color:#fff;
+  border:1px solid #E4E4E4;
+}*/
 .x-tree-node-el .x-tree-node-icon {
   display: inline-block;
 }
-
 .x-tree-node-loading .x-tree-node-icon {
   background-image: url($imgPath + 'modx-theme/tree/loading.gif') !important;
 }
-
 .x-tree-node-loading a span {
-  color: $tundora;
+  color: #444444;
   font-style: italic;
 }
-
-/* icons for the various tree elements */
-.tree-context:before {
-  @extend %pseudo-font;
-  content: fa-content($fa-var-globe);
-}
-
-.tree-resource {
-  &::before {
-    @extend %pseudo-font;
-    content: fa-content($fa-var-file);
-    .x-tree-node-el.unpublished & {
-      font-weight: 400;
-    }
-  }
-  // Resource types
-  &.tree-static-resource {
-    &::before {
-      content: fa-content($fa-var-file-alt);
-    }
-  }
-  &.tree-weblink {
-    &::before {
-      content: fa-content($fa-var-link);
-      // Default link icon only available in solid
-      .x-tree-node-el.unpublished & {
-        font-weight: 900;
-      }
-    }
-  }
-  &.tree-symlink {
-    &::before {
-      content: fa-content($fa-var-copy);
-    }
-  }
-  // Folders
-  &.parent-resource,
-  &.icon-folder {
-    &::before {
-      content: fa-content($fa-var-folder);
-      .x-tree-node-expanded & {
-        content: fa-content($fa-var-folder-open);
-      }
-    }
-  }
-  &.locked-resource {
-    &::before {
-      content: fa-content($fa-var-lock) !important;
-      // Default lock icon only available in solid
-      .x-tree-node-el.unpublished & {
-        font-weight: 900;
-      }
-    }
-  }
-}
-
 .ext-ie .x-tree-node-el input {
   height: 15px;
   width: 15px;
 }
-
 .x-tree-root-ct {
   border-radius: 0;
   overflow: hidden;
@@ -1174,159 +821,106 @@ i.icon-large {
   margin: 0;
 }
 
+
+.x-tree-arrows .x-tree-elbow-plus,
+.x-tree-arrows .x-tree-elbow-minus,
+.x-tree-arrows .x-tree-elbow-end-plus,
+.x-tree-arrows .x-tree-elbow-end-minus {
+  background: none;
+}
+.x-tree-arrows .x-tree-elbow-plus:before,
+.x-tree-arrows .x-tree-elbow-minus:before,
+.x-tree-arrows .x-tree-elbow-end-plus:before,
+.x-tree-arrows .x-tree-elbow-end-minus:before {
+  @extend %pseudo-font;
+  content:$fa-var-caret-right;
+  background: transparent 0 0;
+  display: inline-block;
+  width: 10px;
+  padding-left: 6px;
+  margin: 0;
+}
+.x-tree-arrows .x-tree-elbow-minus:before,
+.x-tree-arrows .x-tree-elbow-end-minus:before {
+  @extend %pseudo-font;
+  content:$fa-var-caret-down;
+  padding-left: 4px;
+  width: 12px;
+}
+
+/* icons for the various tree elements */
+.tree-context:before {
+  @extend %pseudo-font;
+  content:$fa-var-globe;
+}
+.x-tree-node-expanded .tree-folder:before {
+  @extend %pseudo-font;
+  content:$fa-var-folder-open;
+}
+.tree-folder:before {
+  @extend %pseudo-font;
+  content:$fa-var-folder;
+}
+.tree-resource:before {
+  @extend %pseudo-font;
+  content:$fa-var-file;
+}
+.tree-static-resource:before {
+  @extend %pseudo-font;
+  content:$fa-var-file-text-o;
+}
+.tree-weblink:before {
+  @extend %pseudo-font;
+  content:$fa-var-link;
+}
+.tree-symlink:before {
+  @extend %pseudo-font;
+  content:$fa-var-files-o;
+}
+
 .x-tree-node {
   color: $treeColor;
 }
-
-.x-tree-node a,
-.x-dd-drag-ghost a {
+.x-tree-node a, .x-dd-drag-ghost a {
   color: $treeColor;
 }
-
-.x-tree-node a span,
-.x-dd-drag-ghost a span {
+.x-tree-node a span, .x-dd-drag-ghost a span {
   color: $treeColor;
 }
-
 .x-tree-node .x-tree-node-disabled a span {
   color: lighten($treeColor, 50%);
 }
-
 .x-tree-node div.x-tree-drag-insert-below {
-  border-bottom-color: $doveGray;
+  border-bottom-color: #686868;
 }
-
 .x-tree-node div.x-tree-drag-insert-above {
-  border-top-color: $doveGray;
+  border-top-color: #686868;
 }
-
 .x-tree-dd-underline .x-tree-node div.x-tree-drag-insert-below a {
-  border-bottom-color: $doveGray;
+  border-bottom-color: #686868;
 }
-
 .x-tree-dd-underline .x-tree-node div.x-tree-drag-insert-above a {
-  border-top-color: $doveGray;
+  border-top-color: #686868;
 }
-
 .x-tree-node .x-tree-drag-append a span {
-  background-color: $alto;
+  background-color: #ddd;
   border-color: $borderColor;
 }
-
+.x-tree-node .x-tree-node-over {
+  background-color: $brandHover;
+}
+.x-tree-node .x-tree-selected {
+  background-color: $brandHover;
+}
 .x-tree-drop-ok-append .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-add.gif');
 }
-
 .x-tree-drop-ok-above .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-over.gif');
 }
-
 .x-tree-drop-ok-below .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-under.gif');
 }
-
 .x-tree-drop-ok-between .x-dd-drop-icon {
   background-image: url($imgPath + 'modx-theme/tree/drop-between.gif');
-}
-
-#modx-leftbar-header {
-  height: $treeHeaderHeight;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding: 0.67rem 1rem;
-  box-sizing: border-box;
-  color: $darkestGray;
-
-  img {
-    max-width: 33%;
-    max-height: 100%;
-  }
-
-  a {
-    color: $darkestGray;
-    text-decoration: none;
-    font: $fontH2;
-    font-size: 16px;
-
-    &:hover,
-    &:focus {
-      color: $colorSplash;
-    }
-
-    &:after {
-      @extend %pseudo-font;
-      content: fa-content($fa-var-eye);
-      padding: 5px;
-      font-size: 14px;
-      opacity: 0.5;
-    }
-  }
-
-  img+a {
-    padding-left: 0.67rem;
-  }
-}
-
-#modx-leftbar-tabpanel {
-  .x-tab-panel-header {
-    .x-tab-strip-wrap {
-      margin: 0;
-      padding: 0;
-    }
-
-    .x-tab-strip {
-      display: flex;
-      width: 100%;
-
-      li {
-        margin-left: 0;
-        float: none;
-        flex-grow: 1;
-        text-align: center;
-        box-sizing: border-box;
-
-        &#modx-leftbar-tabpanel__modx-trash-link {
-          border-right: none;
-        }
-
-        &:hover {
-          color: $colorSplash;
-        }
-
-        &.x-tab-strip-active {
-          background: $leftbarTabActiveBg;
-
-          &:after {
-            box-shadow: none;
-          }
-
-          &:before {
-            background: transparent;
-          }
-        }
-      }
-
-      .x-clear,
-      .x-tab-edge {
-        display: none;
-      }
-    }
-  }
-}
-
-#modx-leftbar-tabpanel__modx-trash-link {
-  .icon {
-    opacity: .5;
-  }
-
-  &.active {
-    .icon {
-      opacity: 1;
-    }
-
-    &:hover .icon {
-      color: $red;
-    }
-  }
 }

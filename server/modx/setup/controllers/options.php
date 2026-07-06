@@ -45,7 +45,7 @@ if (!empty($_POST['proceed'])) {
     $install->settings->store($settings);
 
     $installmode = $install->settings->get('installmode');
-    if (in_array($installmode, [modInstall::MODE_UPGRADE_REVO_ADVANCED,modInstall::MODE_NEW])) {
+    if (in_array($installmode,array(modInstall::MODE_UPGRADE_REVO_ADVANCED,modInstall::MODE_NEW))) {
         $this->proceed('database');
     } else {
         $this->proceed('summary');
@@ -71,9 +71,12 @@ if (file_exists(MODX_CORE_PATH . 'packages/core/manifest.php')) {
 }
 
 $unpacked= 0;
-if ($manifest && file_exists(MODX_CORE_PATH . 'packages/core/MODX/Revolution/modWorkspace/')) {
+if ($manifest && file_exists(MODX_CORE_PATH . 'packages/core/modWorkspace/')) {
     $unpacked= 1;
 }
+
+$safe_mode= @ ini_get('safe_mode');
+$parser->set('safe_mode', ($safe_mode ? 1 : 0));
 
 $settings = $install->settings->fetch();
 $nfop = !empty($settings['new_folder_permissions']) ? $settings['new_folder_permissions'] : $default_folder_permissions;

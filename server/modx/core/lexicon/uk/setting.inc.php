@@ -36,16 +36,19 @@ $_lang['name_desc'] = 'Назва налаштування. Можна вказ�
 $_lang['namespace'] = 'Простір імен';
 $_lang['namespace_desc'] = 'Простір імен, з яким це налаштування пов\'язане. Тема словника "default" для цього простору імен буде використана під час перегляду.';
 $_lang['namespace_filter'] = 'Фільтр за простором імен...';
+$_lang['search_by_key'] = 'Пошук за ключем...';
+$_lang['setting_create'] = 'Створити новий параметр';
 $_lang['setting_err'] = 'Перевірте свої дані на наступні поля: ';
 $_lang['setting_err_ae'] = 'Налаштування з таким ключем є. Будь ласка, вкажіть інший ключ.';
 $_lang['setting_err_nf'] = 'Налаштування не знайдено.';
 $_lang['setting_err_ns'] = 'Налаштування не вказано';
-$_lang['setting_err_not_editable'] = 'This setting can\'t be edited in the grid. Please use the gear/context menu to edit the value!';
-$_lang['setting_err_remove'] = 'An error occurred while trying to delete the setting.';
+$_lang['setting_err_remove'] = 'При спробі видалення параметра виникла помилка.';
 $_lang['setting_err_save'] = 'Помилка при спробі зберегти налаштування.';
 $_lang['setting_err_startint'] = 'Назва настройки не може починатися з цифри.';
 $_lang['setting_err_invalid_document'] = 'Документ із ID %d не існує. Будь ласка, вкажіть існуючий документ.';
+$_lang['setting_remove'] = 'Видалити налаштування';
 $_lang['setting_remove_confirm'] = 'Ви впевнені, що хочете видалити це налаштування? Це може порушити встановлення MODX.';
+$_lang['setting_update'] = 'Редагувати налаштування';
 $_lang['settings_after_install'] = 'У разі нової установки вам необхідно проконтролювати введені налаштування та, при необхідності, змінити їх. Після того, як ви перевірите налаштування, натисніть «Зберегти» для оновлення налаштувань бази даних.<br /><br />';
 $_lang['settings_desc'] = 'Тут ви можете змінити основні опції та налаштування системи керування MODX, а також сайту. <b>Кожна настройка буде доступна через плейсхолдер [[++key]].</b><br />Двічі натисніть за параметром у колонці «Значення» для редагування, або натисніть правою кнопкою миші для інших дій. Щоб побачити опис налаштування, натисніть «+».';
 $_lang['settings_furls'] = 'Дружні URL';
@@ -127,11 +130,14 @@ $_lang['setting_base_help_url_desc'] = 'URL допомоги у верхньом
 $_lang['setting_blocked_minutes'] = 'Тривалість блокування';
 $_lang['setting_blocked_minutes_desc'] = 'Тут Ви можете вказати час (у хвилинах), на який буде заблоковано користувача в разі перевищення кількості невдалих спроб входу до системи. Будь ласка, вводьте лише цифри (без ком, пробілів тощо)';
 
+$_lang['setting_cache_action_map'] = 'Увімкнути кешування карти дій';
+$_lang['setting_cache_action_map_desc'] = 'Якщо встановлено "Так", карта дій (або карта контролерів) кешуватиметься задля прискорення завантаження сторінок панелі управління.';
+
 $_lang['setting_cache_alias_map'] = 'Увімкнути кешування карти псевдонімів контексту';
 $_lang['setting_cache_alias_map_desc'] = 'Якщо увімкнено, усі URI ресурсів кешуватимуться до контексту. Вмикайте для невеличких сайтів і вимикайте для великих сайтів для збільшення продуктивності.';
 
-$_lang['setting_use_context_resource_table'] = 'Use the context resource table';
-$_lang['setting_use_context_resource_table_desc'] = 'When enabled, context refreshes use the context_resource table. This enables you to programmatically have one resource in multiple contexts. If you do not use those multiple resource contexts via the API, you can set this to false. On large sites you will get a potential performance boost in the manager then.';
+$_lang['setting_use_context_resource_table'] = 'Використовувати таблицю "context_resource" для оновлення кешу контексту';
+$_lang['setting_use_context_resource_table_desc'] = 'Якщо вибрано "Так", під час оновлення кешу контексту використовується таблиця "context_resource". Це дозволяє програмно мати один ресурс у кількох контекстах одночасно. Якщо ви не використовуєте ресурси в декількох контекстах через API, можна встановити це значення рівним "false". На великих сайтах можна отримати потенційний приріст продуктивності в системі управління.';
 
 $_lang['setting_cache_context_settings'] = 'Включити кешування налаштувань контекстів';
 $_lang['setting_cache_context_settings_desc'] = 'Якщо вибрано "Так", параметри контекстів кешуватимуться для прискорення завантаження сторінок.';
@@ -197,6 +203,9 @@ $_lang['setting_compress_js_desc'] = 'Якщо вибрано "Так", MODX н�
 $_lang['setting_compress_js_groups'] = 'Використовувати угруповання під час стиснення JavaScript';
 $_lang['setting_compress_js_groups_desc'] = 'Групувати JavaScript-файли системи керування MODX, використовуючи конфігурацію "groupsConfig" для компресора Google. Виберіть «Так», якщо ви використовуєте розширення suhosin або інші обмеження.';
 
+$_lang['setting_compress_js_max_files'] = 'Максимальна кількість JavaScript-файлів, що стискаються.';
+$_lang['setting_compress_js_max_files_desc'] = 'Максимальна кількість JavaScript-файлів, що стискаються MODX за раз, якщо увімкнено стиснення JavaScript-бібліотек. Зменште значення, якщо виникають проблеми з комп\'ютером Google у системі керування.';
+
 $_lang['setting_concat_js'] = 'Використовувати об\'єднані JavaScript-бібліотеки';
 $_lang['setting_concat_js_desc'] = 'Якщо це ввімкнено, MODX використовуватиме об\'єднану версію своїх загальних JavaScript бібліотек в інтерфейсі менеджера. Це значно зменшує час завантаження та виконання в менеджері. Вимкніть лише у випадку, якщо ви змінюєте основні елементи.';
 
@@ -219,12 +228,6 @@ $_lang['setting_cultureKey_desc'] = 'Виберіть мову для конте
 $_lang['setting_date_timezone'] = 'Часова зона за замовчуванням';
 $_lang['setting_date_timezone_desc'] = 'Контролює налаштування часового поясу за замовчуванням для функцій дати PHP, якщо воно не пусте. Якщо значення пусте й параметр ini PHP date.timezone не встановлено у вашому середовищі, буде прийнято UTC.';
 
-$_lang['setting_manager_datetime_empty_value'] = 'Datetime Empty Value';
-$_lang['setting_manager_datetime_empty_value_desc'] = 'The text (if any) that will show in grids and forms when a datetime field’s value has not been set. (Default: “–” [a single en dash])';
-
-$_lang['setting_manager_datetime_separator'] = 'Datetime Separator';
-$_lang['setting_manager_datetime_separator_desc'] = 'When the date and time are shown as a combined element, these characters will be used to visually separate them. (Default: “, ” [comma and space])';
-
 $_lang['setting_debug'] = 'Налагодження';
 $_lang['setting_debug_desc'] = 'Вмикає/вимикає режим налагодження MODX та/або встановлює рівень відображення помилок для PHP. "" - використовувати поточний "error_reporting", "0" - відключити (error_reporting = 0), "1" - включити (error_reporting = -1), або будь-яке інше значення "error_reporting" (як число).';
 
@@ -240,24 +243,28 @@ $_lang['setting_default_media_source_desc'] = 'Джерело файлів, що
 $_lang['setting_default_media_source_type'] = 'Тип джерела медіа за замовчуванням';
 $_lang['setting_default_media_source_type_desc'] = 'Тип джерела файлів, який використовується за умовчанням під час створення нового джерела файлів.';
 
-$_lang['setting_photo_profile_source'] = 'User Profile Photo Source';
-$_lang['setting_photo_profile_source_desc'] = 'Specifies the Media Source to use for storing and retrieving profile photos/avatars. If not specified, the default Media Source will be used.';
-
 $_lang['setting_default_template'] = 'Шаблон за замовчуванням';
 $_lang['setting_default_template_desc'] = 'Виберіть шаблон, який використовується за умовчанням під час створення нового ресурсу. Ви можете змінити шаблон під час редагування ресурсу.';
 
 $_lang['setting_default_per_page'] = 'За замовчуванням на сторінці';
 $_lang['setting_default_per_page_desc'] = 'Типова кількість результатів, що показуються в сітках у всьому менеджері.';
 
+$_lang['setting_editor_css_path'] = 'Шлях до CSS файлу';
+$_lang['setting_editor_css_path_desc'] = 'Вкажіть шлях до файлу CSS, який має використовуватися візуальним редактором. Найкраще вказати шлях від кореневого каталогу вашого сервера, наприклад: "/assets/site/style.css". Залишіть це поле порожнім, якщо не хочете використовувати стилі в редакторі.';
+
+$_lang['setting_editor_css_selectors'] = 'CSS селекторів для редактора';
+$_lang['setting_editor_css_selectors_desc'] = 'Розділений комами список CSS-селекторів для візуального редактора.';
+
 $_lang['setting_emailsender'] = 'Електронна пошта відправника';
 $_lang['setting_emailsender_desc'] = 'Тут ви можете вказати адресу електронної пошти, яка використовується при надсиланні користувачам їх імені та паролів.';
 $_lang['setting_emailsender_err'] = 'Будь ласка, вкажіть електронну пошту відправника.';
 
+$_lang['setting_emailsubject'] = 'Тема листа про реєстрацію';
+$_lang['setting_emailsubject_desc'] = 'Введіть текст, який буде відображено у листі підтвердження реєстрації, у полі «Тема».';
+$_lang['setting_emailsubject_err'] = 'Будь ласка, установіть поле «Тема» листа про підтвердження реєстрації.';
+
 $_lang['setting_enable_dragdrop'] = 'Увімкнути перетягування у деревоподібних меню';
 $_lang['setting_enable_dragdrop_desc'] = 'Якщо вказано «Ні», перетягування буде недоступним для дерев ресурсів та елементів.';
-
-$_lang['setting_enable_template_picker_in_tree'] = 'Enable the Template Picker in Resource Trees';
-$_lang['setting_enable_template_picker_in_tree_desc'] = 'Enable this to use the template picker modal window when creating a new resource in the tree.';
 
 $_lang['setting_error_page'] = 'ID cторінки помилки';
 $_lang['setting_error_page_desc'] = 'Введіть ID ресурсу, який потрібно використовувати як сторінку помилки 404 «Документ не знайдено». <strong>ВАЖЛИВО: переконайтеся, що цей ID належить існуючому ресурсу, і що цей ресурс опубліковано!</strong>';
@@ -275,6 +282,9 @@ $_lang['setting_enable_gravatar_desc'] = 'Якщо цей параметр ув�
 $_lang['setting_failed_login_attempts'] = 'Ліміт спроб авторизації';
 $_lang['setting_failed_login_attempts_desc'] = 'Кількість невдалих спроб входу до системи, при перевищенні якої користувача буде заблоковано.';
 
+$_lang['setting_fe_editor_lang'] = 'Мова редактора фронт-енду';
+$_lang['setting_fe_editor_lang_desc'] = 'Виберіть мову, яка використовуватиметься у текстовому редакторі фронт-енду сайту.';
+
 $_lang['setting_feed_modx_news'] = 'Стрічка новин MODX';
 $_lang['setting_feed_modx_news_desc'] = 'Вкажіть URL RSS-каналу для віджету «Новини MODX».';
 
@@ -286,6 +296,21 @@ $_lang['setting_feed_modx_security_desc'] = 'Вкажіть URL-адресу RSS
 
 $_lang['setting_feed_modx_security_enabled'] = 'Увімкнення стрічки новин безпеки MODX';
 $_lang['setting_feed_modx_security_enabled_desc'] = 'Якщо вибрано "Ні", MODX буде приховувати стрічку "Сповіщення безпеки MODX" на початковому екрані системи керування.';
+
+$_lang['setting_filemanager_path'] = 'Шлях до файлового менеджера (застарілий)';
+$_lang['setting_filemanager_path_desc'] = 'Застаріле – натомість використовуйте медіаджерела. IIS часто неправильно заповнює параметр document_root, який використовується файловим менеджером для визначення того, що ви можете переглянути. Якщо у вас виникають проблеми з використанням файлового менеджера, переконайтеся, що цей шлях вказує на кореневу папку вашої інсталяції MODX.';
+
+$_lang['setting_filemanager_path_relative'] = 'Шлях для диспетчера файлів відносний? (Застаріло)';
+$_lang['setting_filemanager_path_relative_desc'] = 'Застаріле – натомість використовуйте медіаджерела. Якщо ваш параметр filemanager_path пов’язаний із базовим_шляхом MODX, тоді встановіть для цього параметра значення «Так». Якщо ваш filemanager_path знаходиться за межами docroot, встановіть значення Ні.';
+
+$_lang['setting_filemanager_url'] = 'Шлях до файлового менеджера (застарілий)';
+$_lang['setting_filemanager_url_desc'] = 'Цей параметр застарів – використовуйте джерела файлів. Необов\'язково. Задайте, якщо хочете встановити явну URL-адресу для доступу до файлів у диспетчері файлів MODX (корисно, якщо ви вказали "filemanager_path" зовні кореневої директорії MODX). Переконайтеся, що ця URL-адреса «filemanager_path» доступна. Якщо залишити поле порожнім, MODX спробує автоматично обчислити його.';
+
+$_lang['setting_filemanager_url_relative'] = 'URL диспетчера файлів відносний? (Устарело)';
+$_lang['setting_filemanager_url_relative_desc'] = 'Застаріло – використовуйте Media Sources. Якщо параметр "filemanager_url" відноситься до MODX base_url, встановіть для цього параметра значення "Yes". Якщо filemanager_url знаходиться за межами основного веб-кореня, встановіть для цього параметра значення "No".';
+
+$_lang['setting_forgot_login_email'] = 'Текст листа відновлення пароля';
+$_lang['setting_forgot_login_email_desc'] = 'Шаблон електронного листа, який надсилається при запиті користувачем відновлення імені та/або пароля.';
 
 $_lang['setting_form_customization_use_all_groups'] = 'Враховувати членство у всіх групах користувачів при налаштуванні форм';
 $_lang['setting_form_customization_use_all_groups_desc'] = 'Якщо вибрано "Так", для налаштування форм будуть використовуватися *всі* набори правил для *всіх* груп, до яких входить користувач. В іншому випадку, будуть використовуватися набори правил лише для первинної групи. Важливо: при включенні цієї настройки можливі помилки через конфлікти наборів правил налаштування форм.';
@@ -346,10 +371,10 @@ $_lang['setting_inline_help'] = 'Показувати текст підказк�
 $_lang['setting_inline_help_desc'] = 'Якщо вибрано "Так", поряд з полем буде виводитися текст підказки. Якщо вибрано "Ні", підказка буде "випливаючою".';
 
 $_lang['setting_link_tag_scheme'] = 'Схема URL';
-$_lang['setting_link_tag_scheme_desc'] = 'URL generation scheme for tag [[~id]]. Available options <a href="http://api.modx.com/revolution/2.2/db_core_model_modx_modx.class.html#\modX::makeUrl()" target="_blank">here</a>.';
+$_lang['setting_link_tag_scheme_desc'] = 'Схема генерації URL для тега [[~id]]. Доступні параметри <a href="https://docs.modx.com/current/en/extending-modx/modx-class/reference/modx.makeurl" target="_blank">тут</a>.';
 
 $_lang['setting_locale'] = 'Локаль';
-$_lang['setting_locale_desc'] = 'Встановлює локаль для системи. Залиште порожнім, щоб використовувати локаль за замовчуванням. Зверніться до <a href="http://php.net/setlocale" target="_blank">документації з налаштування локалей у PHP</a> за більш детальною інформацією.';
+$_lang['setting_locale_desc'] = 'Встановлення мови системи. Залишіть порожнім, щоб використовувати значення за промовчанням. Дивіться <a href="https://www.php.net/setlocale" target="_blank">документацію PHP</a> для отримання додаткової інформації.';
 
 $_lang['setting_lock_ttl'] = 'Час життя блокування';
 $_lang['setting_lock_ttl_desc'] = 'Кількість секунд, на яку залишатиметься блокування ресурсу, якщо користувач неактивний.';
@@ -390,11 +415,11 @@ $_lang['setting_mail_smtp_pass_desc'] = 'Пароль, який використ
 $_lang['setting_mail_smtp_port'] = 'SMTP номер порту';
 $_lang['setting_mail_smtp_port_desc'] = 'Вкажіть порт SMTP сервера за замовчуванням.';
 
-$_lang['setting_mail_smtp_secure'] = 'SMTP Secure';
-$_lang['setting_mail_smtp_secure_desc'] = 'Sets SMTP secure encryption type. Options are "", "ssl" or "tls"';
+$_lang['setting_mail_smtp_prefix'] = 'SMTP шифрування';
+$_lang['setting_mail_smtp_prefix_desc'] = 'Встановлює шифрування для SMTP з\'єднання. Налаштування "", "ssl" або "tls"';
 
 $_lang['setting_mail_smtp_autotls'] = 'SMTP Auto TLS';
-$_lang['setting_mail_smtp_autotls_desc'] = 'Whether to enable TLS encryption automatically if a server supports it, even if "SMTP Secure" is not set to "tls"';
+$_lang['setting_mail_smtp_autotls_desc'] = 'Чи вмикати шифрування TLS автоматично, якщо сервер підтримує його, навіть якщо "SMTP шифрування" не встановлено на "tls"';
 
 $_lang['setting_mail_smtp_single_to'] = 'SMTP посилати по одному';
 $_lang['setting_mail_smtp_single_to_desc'] = 'Надайте можливість надсилати повідомлення адресатам з поля «ВІД» по одному замість разового відправлення на всі адреси.';
@@ -404,30 +429,6 @@ $_lang['setting_mail_smtp_timeout_desc'] = 'Визначте час очікув
 
 $_lang['setting_mail_smtp_user'] = 'SMTP користувач';
 $_lang['setting_mail_smtp_user_desc'] = 'Користувач, який використовується під час SMTP авторизації.';
-
-$_lang['setting_mail_dkim_selector'] = 'Селектор DKIM';
-$_lang['setting_mail_dkim_selector_desc'] = 'Доменний селектор DKIM, де зберігаються публічний ключ.';
-
-$_lang['setting_mail_dkim_identity'] = 'Ідентифікація DKIM';
-$_lang['setting_mail_dkim_identity_desc'] = 'Ідентичність DKIM підписана - як зазвичай ваша From адреса відправника ';
-
-$_lang['setting_mail_dkim_domain'] = 'Домен DKIM';
-$_lang['setting_mail_dkim_domain_desc'] = 'Доменне ім\'я DKIM.';
-
-$_lang['setting_mail_dkim_privatekeyfile'] = 'Файл приватного ключа DKIM';
-$_lang['setting_mail_dkim_privatekeyfile_desc'] = 'Шлях до файлу закритого ключа DKIM. Ви можете використовувати рядок приватного ключа DKIM замість цього.';
-
-$_lang['setting_mail_dkim_privatekeystring'] = 'Рядок приватного ключа DKIM';
-$_lang['setting_mail_dkim_privatekeystring_desc'] = 'Займає перевагу над файлом приватного ключа DKIM.';
-
-$_lang['setting_mail_dkim_passphrase'] = 'Парольна фраза DKIM';
-$_lang['setting_mail_dkim_passphrase_desc'] = 'Використовується лише в тому випадку, якщо ваш ключ зашифрований.';
-
-$_lang['mail_inlinestyle_inline'] = 'InlineStyle: Enable style inlining for HTML emails';
-$_lang['mail_inlinestyle_inline_desc'] = 'All styles from &#x3C;style&#x3E; tags will be inlined for HTML emails.';
-
-$_lang['mail_inlinestyle_remove_style_tags'] = 'InlineStyle: Remove &#x3C;style&#x3E; tags';
-$_lang['mail_inlinestyle_remove_style_tags_desc'] = 'After inlining styles, all &#x3C;style&#x3E; tags will be removed. <strong>Warning: This can cause issues with responsive email templates.</strong>';
 
 $_lang['setting_main_nav_parent'] = 'Батьківський елемент для основного меню';
 $_lang['setting_main_nav_parent_desc'] = 'Контейнер містить всі записи основного меню.';
@@ -441,29 +442,29 @@ $_lang['setting_manager_date_format_desc'] = 'Рядок у форматі PHP d
 $_lang['setting_manager_favicon_url'] = 'URL піктограми Менеджера';
 $_lang['setting_manager_favicon_url_desc'] = 'Якщо встановлено, буде використовуватися як URL фавіконки системи керування MODX. Необхідно вказати або URL щодо директорії /manager/ або абсолютний URL.';
 
+$_lang['setting_manager_js_cache_file_locking'] = 'Увімкнути блокування файлів JS/CSS-кешу';
+$_lang['setting_manager_js_cache_file_locking_desc'] = 'Блокировка файлов кэша. Выберите «Нет» если используется файловая система NFS.';
+$_lang['setting_manager_js_cache_max_age'] = 'Час життя кешу JS/CSS-файлів системи управління';
+$_lang['setting_manager_js_cache_max_age_desc'] = 'Максимальний час життя (в секундах) кешу браузера для стислих JS/CSS-файлів системи керування. Використовуйте більше значення для зменшення витрат трафіку.';
+$_lang['setting_manager_js_document_root'] = 'Коренева директорія для компресіі JS/CSS';
+$_lang['setting_manager_js_document_root_desc'] = 'Якщо ваш сервер не визначає змінну "DOCUMENT_ROOT", вкажіть її явно тут, щоб увімкнути стиснення CSS/JS-файлів системи управління. Не змінюйте, якщо ви не розумієте, що означає це налаштування.';
+$_lang['setting_manager_js_zlib_output_compression'] = 'Увімкнути zlib компресію для JS/CSS-файлів системи управління';
+$_lang['setting_manager_js_zlib_output_compression_desc'] = 'Використовувати чи ні компресію zlib для JS/CSS-файлів системи управління. Не вмикайте, якщо не впевнені, що PHP-опція "zlib.output_compression" встановлена ​​в 1. MODX рекомендує вимкнути це налаштування («Ні»).';
+
+$_lang['setting_manager_lang_attribute'] = 'HTML- та XML-атрибути мови у Менеджері';
+$_lang['setting_manager_lang_attribute_desc'] = 'Введіть код мови, який найбільш підходить для обраної Вами мови панелі управління. Це дозволить браузерам відображати вміст у найкращому для Вас форматі.';
+
+$_lang['setting_manager_language'] = 'Мова панелі управління';
+$_lang['setting_manager_language_desc'] = 'Виберіть мову для Менеджера MODX (панелі управління).';
+
 $_lang['setting_manager_login_url_alternate'] = 'Альтернативна URL-адреса сторінки входу в систему управління';
 $_lang['setting_manager_login_url_alternate_desc'] = 'Альтернативна URL-адреса, на яку буде спрямований неавторизований користувач за необхідності авторизації в системі управління. Форма входу має авторизувати користувача у контексті "mgr".';
-
-$_lang['setting_manager_tooltip_enable'] = 'Увімкнути підказки Менеджера';
-$_lang['setting_manager_tooltip_delay'] = 'Час затримки підказок Менеджера';
-
-$_lang['setting_login_background_image'] = 'Фонове зображення входу в систему';
-$_lang['setting_login_background_image_desc'] = 'Фонове зображення для використання в формі входу в систему. Воно автоматично розтягнеться, щоб заповнити екран.';
-
-$_lang['setting_login_logo'] = 'Лого для входу';
-$_lang['setting_login_logo_desc'] = 'Логотип для показу в лівому верхньому кутку адміністративній частині (адмінкє) логін. Якщо залишити порожнім, на ньому з\'явиться логотип MODX.';
-
-$_lang['setting_login_help_button'] = 'Показати кнопку довідки';
-$_lang['setting_login_help_button_desc'] = 'Коли включено, ви знайдете кнопку допомоги на екрані входу в систему. Можна налаштувати інформацію, що відображається наступними записами лексики в core/login: login_help_button_text, login_help_title, and login_help_text.';
 
 $_lang['setting_manager_login_start'] = 'Сторінка входу в систему управління';
 $_lang['setting_manager_login_start_desc'] = 'Введіть ID ресурсу, на який буде перенаправлено користувач після входу в систему управління. <strong>ВАЖЛИВО: переконайтеся, що введений вами ID належить існуючому ресурсу, що він опублікований та доступний для користувача!</strong>';
 
 $_lang['setting_manager_theme'] = 'Тема Менеджера';
 $_lang['setting_manager_theme_desc'] = 'Виберіть тему для системи управління.';
-
-$_lang['setting_manager_logo'] = 'Лого адмінки';
-$_lang['setting_manager_logo_desc'] = 'Логотип для відображення в заголовку Content адміністративній частині (адмінкє).';
 
 $_lang['setting_manager_time_format'] = 'Формат часу у системі управління';
 $_lang['setting_manager_time_format_desc'] = 'Рядок у форматі PHP date(), що визначає формат відображення часу в системі керування.';
@@ -537,6 +538,9 @@ $_lang['setting_proxy_port_desc'] = 'Порт проксі-сервера.';
 $_lang['setting_proxy_username'] = 'Ім\'я користувача проксі-сервера';
 $_lang['setting_proxy_username_desc'] = 'Ім\'я користувача для авторизації на проксі-сервері.';
 
+$_lang['setting_photo_profile_source'] = 'Джерело файлів для аватарок';
+$_lang['setting_photo_profile_source_desc'] = 'Джерело файлів для зберігання власних аватарок. За промовчанням використовується стандартне джерело.';
+
 $_lang['setting_phpthumb_allow_src_above_docroot'] = 'phpThumb Дозволити джерела вище кореневої директорії';
 $_lang['setting_phpthumb_allow_src_above_docroot_desc'] = 'Дозволяє або забороняє використання файлів, розташованих поза кореневою директорією, як джерела. Може бути використаний для систем з безліччю контекстів, розташованих на різних віртуальних хостах.';
 
@@ -607,6 +611,15 @@ $_lang['setting_publish_default'] = 'Публікувати за замовчу�
 $_lang['setting_publish_default_desc'] = 'Виберіть «Так», якщо хочете, щоб усі нові ресурси відразу ставали опублікованими.';
 $_lang['setting_publish_default_err'] = 'Будь ласка, вкажіть, чи ви хочете, щоб нові ресурси за замовчуванням публікувалися.';
 
+$_lang['setting_rb_base_dir'] = 'Шлях до ресурсів';
+$_lang['setting_rb_base_dir_desc'] = 'Введіть фізичний шлях до каталогу ресурсів. Якщо ви використовуєте IIS, MODX може некоректно опрацювати шлях, змушуючи диспетчер файлів видавати помилки. У цьому випадку шлях до каталогу з ресурсами потрібно ввести тут (так, яким ви його бачите у Windows Explorer). <strong>ВАЖЛИВО:</strong> У каталозі повинні міститися підкаталоги «images», «files», «flash» та «media» для коректного функціонування диспетчера файлів.';
+$_lang['setting_rb_base_dir_err'] = 'Кореневий каталог диспетчер файлів (застаріло).';
+$_lang['setting_rb_base_dir_err_invalid'] = 'Кореневий каталог диспетчера файлів не існує або немає доступу до нього. Вкажіть правильний каталог або налаштуйте права доступу';
+
+$_lang['setting_rb_base_url'] = 'Посилання на ресурс';
+$_lang['setting_rb_base_url_desc'] = 'Введіть відносний шлях до каталогу ресурсів. Зазвичай це налаштування встановлюється автоматично. Однак, якщо ви використовуєте IIS, MODX може бути не здатний зробити це, що приведе до помилки в роботі диспетчера файлів. У цьому випадку, ви можете ввести URL тут (URL, як він відображався в Internet Explorer).';
+$_lang['setting_rb_base_url_err'] = 'Будь ласка, вкажіть базову URL-адресу диспетчера файлів.';
+
 $_lang['setting_quick_search_in_content'] = 'Allow search in content';
 $_lang['setting_quick_search_in_content_desc'] = 'If \'Yes\', then the content of the element (resource, template, chunk, etc.) will also be available for quick search.';
 
@@ -624,6 +637,9 @@ $_lang['setting_request_param_alias_desc'] = 'Назва GET-параметра,
 
 $_lang['setting_request_param_id'] = 'Параметр запиту ID';
 $_lang['setting_request_param_id_desc'] = 'Назва GET-параметра, що передає ID ресурсу, коли дружні URL вимкнуто.';
+
+$_lang['setting_resolve_hostnames'] = 'Визначати імена хостів';
+$_lang['setting_resolve_hostnames_desc'] = 'Чи хотіли б ви, щоб MODX намагався визначити імена хостів ваших користувачів при кожному відвідуванні? Визначення імен хостів може викликати додаткове навантаження на сервер, хоча ваші користувачі, в будь-якому випадку, цього не помітять.';
 
 $_lang['setting_resource_tree_node_name'] = 'Поле для назви вузла у дереві ресурсів';
 $_lang['setting_resource_tree_node_name_desc'] = 'Вкажіть поле ресурсу, яке використовуватиметься як назва вузла в дереві ресурсів. За замовчуванням поле "pagetitle", будь-яке поле ресурсу може бути використане: "menutitle", "alias", "longtitle", і т.п.';
@@ -644,11 +660,14 @@ $_lang['setting_search_default_err'] = 'Будь ласка, вкажіть, ч�
 $_lang['setting_server_offset_time'] = 'Різниця у часі';
 $_lang['setting_server_offset_time_desc'] = 'Вкажіть різницю в годиннику між вашим локальним часом і часом сервера.';
 
+$_lang['setting_server_protocol'] = 'Тип сервера';
+$_lang['setting_server_protocol_desc'] = 'Якщо ваш сайт використовує з\'єднання https, будь ласка, вкажіть це тут.';
+$_lang['setting_server_protocol_err'] = 'Будь ласка, вкажіть, чи ваш сайт використовує захищене з\'єднання.';
+$_lang['setting_server_protocol_http'] = 'http';
+$_lang['setting_server_protocol_https'] = 'https';
+
 $_lang['setting_session_cookie_domain'] = 'Домен для сесійних куки';
 $_lang['setting_session_cookie_domain_desc'] = 'Використовуйте це налаштування для вказівки доменного імені для сесійних куки. При порожньому значенні як доменне ім\'я буде використовуватися поточний домен.';
-
-$_lang['setting_session_cookie_samesite'] = 'Атрибут Samesite для сесійних cookie';
-$_lang['setting_session_cookie_samesite_desc'] = 'Виберіть Lax або Strict.';
 
 $_lang['setting_session_cookie_lifetime'] = 'Тривалість зберігання кукі сесій';
 $_lang['setting_session_cookie_lifetime_desc'] = 'Використовуйте це налаштування для вибору тривалості зберігання сесійних куки в секундах. Ця установка використовується для визначення тривалості зберігання клієнтських сесійних куки при виборі опції «запам\'ятати мене» під час автентифікації.';
@@ -662,11 +681,14 @@ $_lang['setting_session_cookie_secure_desc'] = 'Увімкніть це нала
 $_lang['setting_session_cookie_httponly'] = 'Сесійні куки в режимі HttpOnly';
 $_lang['setting_session_cookie_httponly_desc'] = 'Увімкніть це налаштування для встановлення прапора HttpOnly для сесійних кук.';
 
+$_lang['setting_session_cookie_samesite'] = 'Атрибут Samesite для сесійних cookie';
+$_lang['setting_session_cookie_samesite_desc'] = 'Виберіть Lax або Strict.';
+
 $_lang['setting_session_gc_maxlifetime'] = 'Максимальний час життя сесії';
-$_lang['setting_session_gc_maxlifetime_desc'] = 'Allows customization of the session.gc_maxlifetime PHP ini setting when using \'MODX\\Revolution\\modSessionHandler\'.';
+$_lang['setting_session_gc_maxlifetime_desc'] = 'Дозволяє налаштувати PHP-параметр "session.gc_maxlifetime" збирача сміття при використанні обробника "modSessionHandler".';
 
 $_lang['setting_session_handler_class'] = 'Назва класу-обробника сесій';
-$_lang['setting_session_handler_class_desc'] = 'For database managed sessions, use \'MODX\\Revolution\\modSessionHandler\'.  Leave this blank to use standard PHP session management.';
+$_lang['setting_session_handler_class_desc'] = 'Для керування сесіями в базі даних, використовуйте "modSessionHandler". Залишіть це поле порожнім для використання стандартної обробки сесій у PHP.';
 
 $_lang['setting_session_name'] = 'Назва сесii';
 $_lang['setting_session_name_desc'] = 'Використовуйте це налаштування для вказівки сесійного імені, що використовується в сесіях MODX. Залишіть значення порожнім для використання імені PHP-сесії за промовчанням.';
@@ -674,7 +696,7 @@ $_lang['setting_session_name_desc'] = 'Використовуйте це нал�
 $_lang['setting_settings_version'] = 'Версія налаштувань';
 $_lang['setting_settings_version_desc'] = 'Поточна встановлена версія MODX.';
 
-$_lang['setting_settings_distro'] = 'Розповсюдження налаштувань';
+$_lang['setting_settings_distro'] = 'Settings Distribution';
 $_lang['setting_settings_distro_desc'] = 'Поточна встановлена версія MODX.';
 
 $_lang['setting_set_header'] = 'Встановити HTTP-заголовки';
@@ -710,19 +732,19 @@ $_lang['setting_site_unavailable_page_desc'] = 'Введіть ID ресурсу
 $_lang['setting_site_unavailable_page_err'] = 'Будь ласка, вкажіть ID ресурсу для сторінки помилки 503 "Сайт недоступний".';
 
 $_lang['setting_static_elements_automate_templates'] = 'Автоматизувати статичні елементи для шаблонів?';
-$_lang['setting_static_elements_automate_templates_desc'] = 'This will automate the handling of static files, such as creating and deleting static files for templates.';
+$_lang['setting_static_elements_automate_templates_desc'] = 'Це автоматизує обробку, таку як створення і видалення статичних файлів для шаблонів.';
 
-$_lang['setting_static_elements_automate_tvs'] = 'Automate static elements for TVs?';
-$_lang['setting_static_elements_automate_tvs_desc'] = 'This will automate the handling of static files, such as creating and deleting static files for TVs.';
+$_lang['setting_static_elements_automate_tvs'] = 'Автоматизувати статичні елементи для додаткових полів (TV)?';
+$_lang['setting_static_elements_automate_tvs_desc'] = 'Це автоматизує обробку, таку як створення та видалення статичних файлів для додаткових полів (TV).';
 
 $_lang['setting_static_elements_automate_chunks'] = 'Автоматизувати статичні елементи для чанків?';
-$_lang['setting_static_elements_automate_chunks_desc'] = 'This will automate the handling of static files, such as creating and deleting static files for chunks.';
+$_lang['setting_static_elements_automate_chunks_desc'] = 'Це автоматизує обробку, таку як створення та видалення статичних файлів для чанків.';
 
 $_lang['setting_static_elements_automate_snippets'] = 'Автоматизувати статичні елементи для сніпетів?';
-$_lang['setting_static_elements_automate_snippets_desc'] = 'This will automate the handling of static files, such as creating and deleting static files for snippets.';
+$_lang['setting_static_elements_automate_snippets_desc'] = 'Це автоматизує обробку, таку як створення та видалення статичних файлів для сніпетів.';
 
 $_lang['setting_static_elements_automate_plugins'] = 'Автоматизувати статичні елементи для плагінів?';
-$_lang['setting_static_elements_automate_plugins_desc'] = 'This will automate the handling of static files, such as creating and deleting static files for plugins.';
+$_lang['setting_static_elements_automate_plugins_desc'] = 'Це автоматизує обробку, таку як створення та видалення статичних файлів для плагінів.';
 
 $_lang['setting_static_elements_default_mediasource'] = 'Джерело файлів для статичних елементів за промовчанням';
 $_lang['setting_static_elements_default_mediasource_desc'] = 'Вкажіть джерело файлів за промовчанням, де зберігатимуться статичні елементи.';
@@ -739,6 +761,9 @@ $_lang['setting_resource_static_allow_absolute_desc'] = 'Це налаштува
 $_lang['setting_resource_static_path'] = 'Шлях до статичних ресурсів';
 $_lang['setting_resource_static_path_desc'] = 'При відключенні "resource_static_allow_absolute" статичні ресурси можуть знаходитись лише в межах шляху, вказаного тут. Важливо: налаштування може дозволити користувачам читати файли, які вони не повинні читати! Рекомендовано обмежити користувачів певним каталогом, таким як {core_path}static/ або {assets_path}.';
 
+$_lang['setting_strip_image_paths'] = 'Переписувати шляхи для браузера?';
+$_lang['setting_strip_image_paths_desc'] = 'Якщо встановлено значення «Ні», MODX використовуватиме абсолютні посилання для зображень, файлів, flash тощо. Відносні посилання є зручнішими, якщо ви в майбутньому збираєтеся перемістити свій сайт, наприклад, з тестового сервера на кінцевий. Якщо ви не розумієте, про що йдеться, залиште значення «Так».';
+
 $_lang['setting_symlink_merge_fields'] = 'Поєднувати поля ресурсу з полями символічного посилання';
 $_lang['setting_symlink_merge_fields_desc'] = 'Якщо встановлено так, непусті поля символічного посилання замінять поля цільового ресурсу при переадресації з використанням символічного посилання.';
 
@@ -746,8 +771,11 @@ $_lang['setting_syncsite_default'] = 'Очистити кеш за замовч�
 $_lang['setting_syncsite_default_desc'] = 'Если выбрано «Да», при сохранении ресурса кэш будет очищаться по умолчанию.';
 $_lang['setting_syncsite_default_err'] = 'Будь ласка, вкажіть, чи ви хочете чи ні, щоб кеш очищався за умовчанням при збереженні ресурсу.';
 
-$_lang['setting_topmenu_show_descriptions'] = 'Show Descriptions in Main Menu';
-$_lang['setting_topmenu_show_descriptions_desc'] = 'If set to \'No\', MODX will hide the descriptions from main menu items in the manager.';
+$_lang['setting_topmenu_show_descriptions'] = 'Показувати опис пунктів у верхньому меню';
+$_lang['setting_topmenu_show_descriptions_desc'] = 'Якщо встановлено значення "Ні", MODX буде приховувати додатковий опис для пунктів верхнього меню.';
+
+$_lang['setting_topmenu_subitems_max'] = 'Максимум елементів у списках верхнього рядка меню';
+$_lang['setting_topmenu_subitems_max_desc'] = 'Максимальна кількість елементів, що відображаються у списках верхньої панелі меню. Решта елементів буде прихована в елементі \'...\'.';
 
 $_lang['setting_tree_default_sort'] = 'Поле сортування дерева ресурсів за промовчанням';
 $_lang['setting_tree_default_sort_desc'] = 'Поле, яким сортується дерево ресурсів під час завантаження.';
@@ -756,32 +784,42 @@ $_lang['setting_tree_root_id'] = 'Кореневий ID дерева';
 $_lang['setting_tree_root_id_desc'] = 'Вкажіть ID ресурсу, який буде коренем дерева ресурсів. Користувач матиме змогу бачити лише дочірні ресурси цього ресурсу.';
 
 $_lang['setting_tvs_below_content'] = 'Розмістити TV нижче контенту';
-$_lang['setting_tvs_below_content_desc'] = 'Set this to Yes to move TVs below the Content when editing Resources.';
+$_lang['setting_tvs_below_content_desc'] = 'Якщо вибрано «Так», TV будуть розміщені нижче поля «Вміст» під час редагування ресурсу.';
 
 $_lang['setting_ui_debug_mode'] = 'Режим налагодження інтерфейсу';
 $_lang['setting_ui_debug_mode_desc'] = 'Якщо вибрано «Так», у консоль браузера будуть виводитись налагоджувальні повідомлення інтерфейсу системи управління. Ви повинні використовувати браузер, який підтримує console.log.';
+
+$_lang['setting_udperms_allowroot'] = 'Дозволити доступ до кореня сайту';
+$_lang['setting_udperms_allowroot_desc'] = 'Чи хочете Ви дозволити Вашим користувачам створювати нові ресурси у кореневому каталозі сайту?';
 
 $_lang['setting_unauthorized_page'] = 'Сторінка помилки 401 «Доступ заборонено»';
 $_lang['setting_unauthorized_page_desc'] = 'Введіть ID ресурсу, який ви хочете виводити користувачам при запиті захищених ресурсів, що вимагають авторизації. <strong>ВАЖЛИВО: переконайтеся, що введений ID належить існуючому ресурсу, і цей ресурс опублікований та публічно доступний!</strong>';
 $_lang['setting_unauthorized_page_err'] = 'Будь ласка, вкажіть ID ресурсу, який буде сторінкою помилки 401 «Доступ заборонено».';
 
+$_lang['setting_upload_check_exists'] = 'Перевіряти файли на існування під час завантаження';
+$_lang['setting_upload_check_exists_desc'] = 'Якщо увімкнено, під час завантаження файлу з таким же ім\'ям буде показано повідомлення з помилкою. Якщо вимкнено, існуючий файл буде перезаписано новим.';
+
 $_lang['setting_upload_files'] = 'Завантажувані типи файлів';
 $_lang['setting_upload_files_desc'] = 'Тут можна вказати список типів файлів, які можна завантажувати за допомогою диспетчера файлів. Будь ласка, введіть розширення файлів, розділяючи їх комами.';
 
-$_lang['setting_upload_file_exists'] = 'Перевіряти файли на існування під час завантаження';
-$_lang['setting_upload_file_exists_desc'] = 'Якщо увімкнено, під час завантаження файлу з таким же ім\'ям буде показано повідомлення з помилкою. Якщо вимкнено, існуючий файл буде перезаписано новим.';
+$_lang['setting_upload_flash'] = 'Завантажувані типи Flash';
+$_lang['setting_upload_flash_desc'] = 'Тут можна ввести список типів файлів, які можна завантажувати в каталог "assets/flash/", використовуючи диспетчер файлів. Будь ласка, введіть розширення файлів, розділяючи їх комами.';
+
+$_lang['setting_upload_images'] = 'Дозволені до завантаження зображення';
+$_lang['setting_upload_images_desc'] = 'Тут можна ввести список типів файлів, які можна завантажувати в каталог "assets/images/", використовуючи диспетчер файлів. Будь ласка, введіть розширення файлів-зображень, розділяючи їх комами.';
 
 $_lang['setting_upload_maxsize'] = 'Максимальний розмір завантаження';
 $_lang['setting_upload_maxsize_desc'] = 'Введіть максимальний розмір файлу для завантаження через диспетчер файлів. Розмір файлу має бути введений у байтах.';
 
-$_lang['setting_upload_translit'] = 'Транслітерйтезувати імена завантажених файлів?';
-$_lang['setting_upload_translit_desc'] = 'Якщо увімкнено цю опцію, назва завантаженого файлу буде транслітерація відповідно до глобальних правил перекладу.';
-
-$_lang['setting_upload_translit_restrict_chars_pattern'] = 'File Name Character Restriction Pattern';
-$_lang['setting_upload_translit_restrict_chars_pattern_desc'] = 'A valid RegEx pattern for restricting characters used in an uploaded file’s name.';
+$_lang['setting_upload_media'] = 'Дозволені до завантаження медіа-файли';
+$_lang['setting_upload_media_desc'] = 'Тут можна ввести список типів файлів, які можна завантажувати в каталог "assets/media/", використовуючи диспетчер файлів. Будь ласка, введіть розширення медіа-файлів, розділяючи їх комами.';
 
 $_lang['setting_use_alias_path'] = 'Використовувати вкладені URL';
 $_lang['setting_use_alias_path_desc'] = 'Встановлення значення «Так» для цієї опції зробить висновок повного шляху до ресурсу, якщо ресурс має псевдонім. Наприклад, якщо ресурс із псевдонімом "child" розташований всередині ресурсу-контейнера із псевдонімом "parent", то повний шлях до ресурсу буде виведений так: "/parent/child.html".<br /><strong>ВАЖЛИВО: Встановлюючи значення « Так» для цієї опції, використовуйте повний шлях для вказівки шляху до таких файлів, як зображення, CSS, JavaScript тощо: наприклад, "/assets/images", а не "assets/images". Або ж використовуйте тег &lt;base /&gt; для явної вказівки базової URL-адреси.</strong>';
+
+$_lang['setting_use_browser'] = 'Дозволити диспетчер файлів';
+$_lang['setting_use_browser_desc'] = 'Виберіть «Так», щоб увімкнути диспетчер файлів. Це дозволить користувачам переглядати та завантажувати медіа-файли на сервер.';
+$_lang['setting_use_browser_err'] = 'Будь ласка, вкажіть, чи хочете ви чи ні використовувати диспетчер файлів.';
 
 $_lang['setting_use_editor'] = 'Використовувати текстовий редактор';
 $_lang['setting_use_editor_desc'] = 'Чи хотіли б ви використовувати текстовий редактор? Якщо вам зручніше використовувати HTML, ви можете вимкнути текстовий редактор за допомогою цієї опції. Майте на увазі, що ця опція застосовується до всіх документів та користувачів!';
@@ -798,6 +836,14 @@ $_lang['setting_use_weblink_target_desc'] = 'Якщо вибрано "Так", M
 
 $_lang['setting_user_nav_parent'] = 'Батьківський елемент для меню користувача';
 $_lang['setting_user_nav_parent_desc'] = 'Контейнер містить всі записи меню користувача.';
+
+$_lang['setting_webpwdreminder_message'] = 'Реєстрація веб-користувача';
+$_lang['setting_webpwdreminder_message_desc'] = 'Тут ви можете створити повідомлення, яке надсилатиметься користувачам, коли вони запитують нагадування пароля. <br /><strong>ПРИМІТКА:</strong> Наступні плейсхолдери відобразять відповідні дані при відправленні листа: <[ /sname]] - назва сайту, <br />[[+saddr]] - e-mail адреса сайту, <br />[[+surl]] - URL сайту, <br />[[+uid]] - логін або id користувача, <[ /pwd]] - пароль користувача , <br />[[+ufn]] - повне ім\'я користувача. <br /><br /><strong>Переконайтеся, що в повідомленні присутні поля [[+uid]] та [[+pwd]], інакше користувач не дізнається свої логін та пароль</strong>';
+$_lang['setting_webpwdreminder_message_default'] = 'Доброго дня [[+uid]]\n\n Для активації нового пароля перейдіть за посиланням: \n\n[[+surl]]\n\n після успішного переходу за посиланням Ви можете використовувати наступний пароль для входу:\n\nПароль : [[+pwd]]\n\nЯкщо Ви не запитували нагадування пароля, проігноруйте цей лист.\n\nЗ повагою,\n адміністратор сайту';
+
+$_lang['setting_websignupemail_message'] = 'Реєстрація веб-користувача';
+$_lang['setting_websignupemail_message_desc'] = 'Тут можна створити повідомлення, яке надсилатиметься веб-користувачам, коли створюється обліковий запис нового веб-користувача. Лист повинен містити логін та пароль. <br /><strong>ПРИМІТКА:</strong> наступні плейсхолдери відобразять відповідні дані під час відправлення листа: <[ /sname]] - назва сайту, <br />[[+saddr]] - email адреса сайту, <br />[[+surl]] - URL сайту, <br />[[+uid]] - логін або ID користувача, <br />[[+pwd]] - пароль користувача, < br />[[+ufn]] - повне ім\'я користувача. <br /><br /><strong>Переконайтеся, що в повідомленні присутні поля [[+uid]] та [[+pwd]], інакше користувач не дізнається свої логін та пароль!</strong>';
+$_lang['setting_websignupemail_message_default'] = 'Привіт [[+uid]] \n\nЦе Ваші дані для входу на [[+sname]]:\n\nВаш логін: [[+uid]]\nВаш пароль: [[+pwd]]\n\nОдразу ж після входу на [[+sname]] ([[+surl]]), Ви зможете змінити Ваш пароль.\n\nЗ повагою,\nадміністратор сайту';
 
 $_lang['setting_welcome_screen'] = 'Показати заставку';
 $_lang['setting_welcome_screen_desc'] = 'Якщо вибрано «Так», спливаюче вікно привітання буде відображатися одноразово під час наступного завантаження початкового екрана.';
@@ -839,13 +885,7 @@ $_lang['setting_error_log_filename'] = 'Ім\'я файлу журналу по�
 $_lang['setting_error_log_filename_desc'] = 'Введіть назву файлу журналу помилок MODX (включаючи розширення файлу).';
 
 $_lang['setting_error_log_filepath'] = 'Шлях до журналу помилок';
-$_lang['setting_error_log_filepath_desc'] = 'Optionally set a absolute path the a custom error log location. You might use placeholders like {cache_path}.';
+$_lang['setting_error_log_filepath_desc'] = 'Додатково вкажіть абсолютний шлях до файлу файлів помилок. Можна використовувати плейсхолдер {cache_path}.';
 
-$_lang['setting_passwordless_activated'] = 'Активувати вхід без пароля';
-$_lang['setting_passwordless_activated_desc'] = 'When enabled, users will enter their email address to receive a one-time login link, rather than entering a username and password.';
-
-$_lang['setting_passwordless_expiration'] = 'Passwordless login expiration';
-$_lang['setting_passwordless_expiration_desc'] = 'How long a one-time login link is valid in seconds.';
-
-$_lang['setting_static_elements_html_extension'] = 'Розширення файлів для статичних елементів';
-$_lang['setting_static_elements_html_extension_desc'] = 'Розширення для файлів, що використовуються статичними елементами з вмістом HTML.';
+$_lang['static_elements_html_extension'] = 'Розширення файлів для статичних елементів';
+$_lang['static_elements_html_extension_desc'] = 'Розширення для файлів, що використовуються статичними елементами з вмістом HTML.';

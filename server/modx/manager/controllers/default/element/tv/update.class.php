@@ -8,14 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modCategory;
-use MODX\Revolution\modContext;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modSystemEvent;
-use MODX\Revolution\modTemplateVar;
-use MODX\Revolution\Sources\modMediaSource;
-use MODX\Revolution\Sources\modMediaSourceElement;
-
 /**
  * Load create template page
  *
@@ -28,7 +20,7 @@ class ElementTVUpdateManagerController extends modManagerController {
     /** @var modTemplateVar $tv */
     public $tv;
     /** @var array $tvArray */
-    public $tvArray = [];
+    public $tvArray = array();
     /** @var string $onTVFormRender */
     public $onTVFormRender = '';
     /** @var string $onTVFormPrerender */
@@ -58,6 +50,8 @@ class ElementTVUpdateManagerController extends modManagerController {
         <script>
         // <![CDATA[
         MODx.onTVFormRender = "'.$this->onTVFormRender.'";
+        MODx.perm.tree_show_element_ids = '.($this->modx->hasPermission('tree_show_element_ids') ? 1 : 0).';
+        MODx.perm.unlock_element_properties = "'.($this->modx->hasPermission('unlock_element_properties') ? 1 : 0).'";
         Ext.onReady(function() {
             MODx.load({
                 xtype: "modx-page-tv-update"
@@ -74,35 +68,35 @@ class ElementTVUpdateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* load tv */
-        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((int)$scriptProperties['id'])) {
+        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((integer)$scriptProperties['id'])) {
             return $this->failure($this->modx->lexicon('tv_err_ns'));
         }
-        $this->tv = $this->modx->getObject(modTemplateVar::class, ['id' => $scriptProperties['id']]);
+        $this->tv = $this->modx->getObject('modTemplateVar', array('id' => $scriptProperties['id']));
         if ($this->tv == null) return $this->failure($this->modx->lexicon('tv_err_nf'));
         if (!$this->tv->checkPolicy('view')) return $this->failure($this->modx->lexicon('access_denied'));
 
         /* get properties */
         $properties = $this->tv->get('properties');
-        if (!is_array($properties)) $properties = [];
+        if (!is_array($properties)) $properties = array();
 
-        $data = [];
+        $data = array();
         foreach ($properties as $property) {
-            $data[] = [
+            $data[] = array(
                 $property['name'],
                 $property['desc'],
                 !empty($property['type']) ? $property['type'] : 'textfield',
-                !empty($property['options']) ? $property['options'] : [],
+                !empty($property['options']) ? $property['options'] : array(),
                 $property['value'],
                 !empty($property['lexicon']) ? $property['lexicon'] : '',
                 false, /* overridden set to false */
                 $property['desc_trans'],
                 !empty($property['area']) ? $property['area'] : '',
                 !empty($property['area_trans']) ? $property['area_trans'] : '',
-            ];
+            );
         }
         $this->tvArray = $this->tv->toArray();
         $this->tvArray['properties'] = $data;
@@ -136,31 +130,32 @@ class ElementTVUpdateManagerController extends modManagerController {
     }
 
 
-    public function getElementSources()
-    {
-        $c = $this->modx->newQuery(modContext::class);
-        $c->leftJoin(modMediaSourceElement::class, 'SourceElements', [
+    public function getElementSources() {
+        $c = $this->modx->newQuery('modContext');
+        $c->leftJoin('sources.modMediaSourceElement','SourceElements',array(
             'SourceElements.object' => $this->tv->get('id'),
             'SourceElements.object_class' => $this->tv->_class,
             'SourceElements.context_key = modContext.key',
-        ]);
-        $c->leftJoin(modMediaSource::class, 'Source', 'SourceElements.source = Source.id');
-        $c->select($this->modx->getSelectColumns(modContext::class, 'modContext'));
-        $c->select($this->modx->getSelectColumns(modMediaSourceElement::class, 'SourceElements'));
-        $c->select($this->modx->getSelectColumns(modMediaSource::class, 'Source', '', ['name']));
-        $c->where(['key:!=' => 'mgr']);
-        $c->sortby($this->modx->escape('rank'));
-        $c->sortby($this->modx->escape('key'), 'DESC');
-        $contexts = $this->modx->getCollection(modContext::class, $c);
-        $list = [];
+        ));
+        $c->leftJoin('sources.modMediaSource','Source','SourceElements.source = Source.id');
+        $c->select($this->modx->getSelectColumns('modContext','modContext'));
+        $c->select($this->modx->getSelectColumns('sources.modMediaSourceElement','SourceElements'));
+        $c->select($this->modx->getSelectColumns('sources.modMediaSource','Source','',array('name')));
+        $c->where(array(
+            'key:!=' => 'mgr',
+        ));
+        $c->sortby($this->modx->escape('rank'),'ASC');
+        $c->sortby($this->modx->escape('key'),'DESC');
+        $contexts = $this->modx->getCollection('modContext',$c);
+        $list = array();
         /** @var modContext $context */
         foreach ($contexts as $context) {
             $source = $context->get('source');
-            $list[] = [
+            $list[] = array(
                 $context->get('key'),
-                !empty($source) ? $source : $this->modx->getOption('default_media_source', null, 1),
+                !empty($source) ? $source : $this->modx->getOption('default_media_source',null,1),
                 $context->get('name'),
-            ];
+            );
         }
         return $list;
     }
@@ -169,17 +164,15 @@ class ElementTVUpdateManagerController extends modManagerController {
      * Invoke OnTVFormPrerender event
      * @return void
      */
-    public function firePreRenderEvents()
-    {
-        /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML into the panel */
-        $this->onTVFormPrerender = $this->modx->invokeEvent('OnTVFormPrerender', [
+    public function firePreRenderEvents() {
+        /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML
+        into the panel */
+        $this->onTVFormPrerender = $this->modx->invokeEvent('OnTVFormPrerender',array(
             'id' => $this->tvArray['id'],
             'tv' => &$this->tv,
             'mode' => modSystemEvent::MODE_UPD,
-        ]);
-        if (is_array($this->onTVFormPrerender)) {
-            $this->onTVFormPrerender = implode('', $this->onTVFormPrerender);
-        }
+        ));
+        if (is_array($this->onTVFormPrerender)) $this->onTVFormPrerender = implode('',$this->onTVFormPrerender);
         $this->setPlaceholder('onTVFormPrerender', $this->onTVFormPrerender);
     }
 
@@ -188,13 +181,13 @@ class ElementTVUpdateManagerController extends modManagerController {
      * @return string
      */
     public function fireRenderEvent() {
-        $this->onTVFormRender = $this->modx->invokeEvent('OnTVFormRender', [
+        $this->onTVFormRender = $this->modx->invokeEvent('OnTVFormRender',array(
             'id' => $this->tvArray['id'],
             'tv' => &$this->tv,
             'mode' => modSystemEvent::MODE_UPD,
-        ]);
+        ));
         if (is_array($this->onTVFormRender)) $this->onTVFormRender = implode('',$this->onTVFormRender);
-        $this->onTVFormRender = str_replace(['"',"\n","\r"], ['\"','',''],$this->onTVFormRender);
+        $this->onTVFormRender = str_replace(array('"',"\n","\r"),array('\"','',''),$this->onTVFormRender);
         return $this->onTVFormRender;
     }
 
@@ -220,7 +213,7 @@ class ElementTVUpdateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['tv','category','tv_widget','propertyset','element'];
+        return array('tv','category','tv_widget','propertyset','element');
     }
 
     /**

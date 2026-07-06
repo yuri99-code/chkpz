@@ -12,11 +12,12 @@ MODx.page.UpdateUserGroup = function(config) {
     Ext.applyIf(config,{
         formpanel: 'modx-panel-user-group'
         ,buttons: [{
-            process: 'Security/Group/Update'
+            process: 'security/group/update'
             ,text: _('save')
             ,id: 'modx-abtn-save'
             ,cls: 'primary-button'
             ,method: 'remote'
+            // ,checkDirty: true
             ,keys: [{
                 key: MODx.config.keymap_save || 's'
                 ,ctrl: true
@@ -28,7 +29,7 @@ MODx.page.UpdateUserGroup = function(config) {
                 MODx.loadPage('security/permission')
             }
         },{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,id: 'modx-abtn-help'
             ,handler: MODx.loadHelpPane
         }]

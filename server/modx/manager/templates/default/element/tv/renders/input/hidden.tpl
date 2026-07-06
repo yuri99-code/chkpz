@@ -2,18 +2,16 @@
 
 <script>
 // <![CDATA[
-document.getElementById('tv{$tv->id}').setAttribute('autocomplete', globalAutoCompleteSetting);
 {literal}
 MODx.on('ready',function() {
-    const fld = MODx.load({
+    var fld = MODx.load({
     {/literal}
         xtype: 'hidden'
-        ,itemId: 'tv{$tv->id}'
         ,applyTo: 'tv{$tv->id}'
         ,value: '{$tv->get('value')|escape:'javascript'}'
     {literal}
     });
-    const p = Ext.getCmp('modx-panel-resource');
+    var p = Ext.getCmp('modx-panel-resource');
     if (p) {
         p.add(fld);
         p.doLayout();

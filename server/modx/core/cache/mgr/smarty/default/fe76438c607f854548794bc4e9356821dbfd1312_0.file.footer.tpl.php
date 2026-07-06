@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-06-27 17:30:30
+/* Smarty version 3.1.48, created on 2026-07-01 17:09:55
   from '/var/www/html/manager/templates/default/footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.5.6',
-  'unifunc' => 'content_6a4008b602beb4_49380677',
+  'version' => '3.1.48',
+  'unifunc' => 'content_6a4549e3f078b7_64121296',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fe76438c607f854548794bc4e9356821dbfd1312' => 
     array (
       0 => '/var/www/html/manager/templates/default/footer.tpl',
-      1 => 1782222764,
+      1 => 1742327582,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6a4008b602beb4_49380677 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6a4549e3f078b7_64121296 (Smarty_Internal_Template $_smarty_tpl) {
 ?>    </div>
     <!-- #modx-content-->
     <div id="modx-footer"></div>
 </div>
 <!-- #modx-container -->
 
-<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['jsbody']->value, 'scr');
-$_smarty_tpl->tpl_vars['scr']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['scr']->value) {
-$_smarty_tpl->tpl_vars['scr']->do_else = false;
-?>
-    <?php echo $_smarty_tpl->tpl_vars['scr']->value;?>
-
-<?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-
 </body>
-</html>
-<?php }
+</html><?php }
 }

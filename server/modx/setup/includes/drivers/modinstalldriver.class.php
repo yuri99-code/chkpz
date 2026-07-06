@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use xPDO\xPDO;
-
 /**
  * Defines the base driver class and methods required for all derivative
  * driver implementations. All abstract methods must be defined in derivative

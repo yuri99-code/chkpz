@@ -8,10 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modCacheManager;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\Transport\modTransportProvider;
-
 /**
  * Loads the workspace manager
  *
@@ -19,7 +15,7 @@ use MODX\Revolution\Transport\modTransportProvider;
  * @subpackage manager.controllers
  */
 class WorkspacesManagerController extends modManagerController {
-    public $errors = [];
+    public $errors = array();
     /**
      * The template file for this controller
      * @var string $templateFile
@@ -68,7 +64,7 @@ class WorkspacesManagerController extends modManagerController {
         $this->addHtml("<script>
             Ext.onReady(function() {
                 MODx.errors = ".$this->modx->toJSON($this->errors).";
-                MODx.defaultProvider = '".$this->providerId."';MODx.provider = '".$this->providerId."';MODx.providerName = '".$this->providerName."';MODx.curlEnabled = ".(int)$this->curlEnabled."; Ext.ux.Lightbox.register('a.lightbox');
+                MODx.defaultProvider = '".$this->providerId."';MODx.provider = '".$this->providerId."';MODx.providerName = '".$this->providerName."';MODx.curlEnabled = ".(integer)$this->curlEnabled."; Ext.ux.Lightbox.register('a.lightbox');
                 MODx.add('modx-page-workspace');
             });</script>");
         $this->addJavascript($mgrUrl.'assets/modext/workspace/index.js');
@@ -79,14 +75,14 @@ class WorkspacesManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
+    public function process(array $scriptProperties = array()) {
         /* ensure directories for Package Management are created */
         /** @var modCacheManager $cacheManager */
         $cacheManager = $this->modx->getCacheManager();
-        $directoryOptions = [
+        $directoryOptions = array(
             'new_folder_permissions' => $this->modx->getOption('new_folder_permissions',null,0775),
-        ];
-        $errors = [];
+        );
+        $errors = array();
 
         /* create assets/ */
         $assetsPath = $this->modx->getOption('assets_path',null,MODX_ASSETS_PATH);
@@ -94,7 +90,7 @@ class WorkspacesManagerController extends modManagerController {
             $cacheManager->writeTree($assetsPath,$directoryOptions);
         }
         if (!is_dir($assetsPath) || !is_writable($assetsPath)) {
-            $errors[] = $this->modx->lexicon('dir_err_assets', ['path' => $assetsPath]);
+            $errors[] = $this->modx->lexicon('dir_err_assets',array('path' => $assetsPath));
         }
         unset($assetsPath);
 
@@ -104,7 +100,7 @@ class WorkspacesManagerController extends modManagerController {
             $cacheManager->writeTree($assetsCompPath,$directoryOptions);
         }
         if (!is_dir($assetsCompPath) || !is_writable($assetsCompPath)) {
-            $errors[] = $this->modx->lexicon('dir_err_assets_comp', ['path' => $assetsCompPath]);
+            $errors[] = $this->modx->lexicon('dir_err_assets_comp',array('path' => $assetsCompPath));
         }
         unset($assetsCompPath);
 
@@ -114,7 +110,7 @@ class WorkspacesManagerController extends modManagerController {
             $cacheManager->writeTree($coreCompPath,$directoryOptions);
         }
         if (!is_dir($coreCompPath) || !is_writable($coreCompPath)) {
-            $errors[] = $this->modx->lexicon('dir_err_core_comp', ['path' => $coreCompPath]);
+            $errors[] = $this->modx->lexicon('dir_err_core_comp',array('path' => $coreCompPath));
         }
 
         if (!function_exists('curl_init') || !in_array('curl',get_loaded_extensions())) {
@@ -138,19 +134,19 @@ class WorkspacesManagerController extends modManagerController {
      */
     public function getDefaultProvider() {
         $default = $this->modx->getOption('default_provider');
-        $c = $this->modx->newQuery(modTransportProvider::class);
+        $c = $this->modx->newQuery('transport.modTransportProvider');
         if ($default) {
-            $c->where([
+            $c->where(array(
                 'id' => $default,
-            ]);
+            ));
         } else {
-            $c->where([
+            $c->where(array(
                 'name:=' => 'modxcms.com',
                 'OR:name:=' => 'modx.com',
-            ]);
+            ));
         }
         /** @var modTransportProvider $provider */
-        $provider = $this->modx->getObject(modTransportProvider::class, $c);
+        $provider = $this->modx->getObject('transport.modTransportProvider',$c);
         if ($provider) {
             $this->providerId = $provider->get('id');
             $this->providerName = $provider->get('name');
@@ -182,7 +178,7 @@ class WorkspacesManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['workspace','namespace'];
+        return array('workspace','namespace');
     }
 
     /**

@@ -9,13 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model;
-
-use MODX\Revolution\modCacheManager;
-use MODX\Revolution\modParser;
-use MODX\Revolution\modX;
-use MODX\Revolution\MODxTestCase;
-use stdClass;
 
 /**
  * Tests related to the main modX class.
@@ -27,13 +20,9 @@ use stdClass;
  */
 class modXTest extends MODxTestCase
 {
-    /**
-     * @before
-     * @throws \xPDO\xPDOException
-     */
-    public function setUpFixtures()
+    public function setUp()
     {
-        parent::setUpFixtures();
+        parent::setUp();
 
         /*
          * This map following the next pattern:
@@ -57,57 +46,42 @@ class modXTest extends MODxTestCase
          *                                   └──18 SubCategory
          *                                      └──19 SubCategory
          */
-        $this->modx->resourceMap = [
-            0 => [1, 2, 6],
-            2 => [3],
-            3 => [4],
-            4 => [5],
-            6 => [7],
-            7 => [8],
-            8 => [9],
-            9 => [10],
-            10 => [11],
-            11 => [12],
-            12 => [13],
-            13 => [14],
-            14 => [15],
-            15 => [16],
-            16 => [17],
-            17 => [18],
-            18 => [19]
-        ];
+        $this->modx->resourceMap = array(
+            0 => array(1, 2, 6),
+            2 => array(3),
+            3 => array(4),
+            4 => array(5),
+            6 => array(7),
+            7 => array(8),
+            8 => array(9),
+            9 => array(10),
+            10 => array(11),
+            11 => array(12),
+            12 => array(13),
+            13 => array(14),
+            14 => array(15),
+            15 => array(16),
+            16 => array(17),
+            17 => array(18),
+            18 => array(19)
+        );
 
         $ctx = new stdClass();
-        $ctx->resourceMap = [
-            21 => [22],
-            22 => [23],
-            23 => [24],
-            24 => [25]
-        ];
+        $ctx->resourceMap = array(
+            21 => array(22),
+            22 => array(23),
+            23 => array(24),
+            24 => array(25)
+        );
         $this->modx->contexts['custom'] = $ctx;
     }
 
 
-    /**
-     * Check the call to a single instance
-     *
-     * @after
-     */
-    public function testSingleInstance()
-    {
-        $this->modx->setOption('test_option', 'test');
-        $this->assertTrue($this->modx->getOption('test_option') === modX::getInstance()->getOption('test_option'));
-    }
 
-    /**
-     * Tear down fixtures after each test.
-     *
-     * @after
-     */
-    public function tearDownFixtures() {
-        parent::tearDownFixtures();
-        $this->modx->placeholders = [];
-        $this->modx->resourceMap = [[1]];
+    public function tearDown() {
+        parent::tearDown();
+        $this->modx->placeholders = array();
+        $this->modx->resourceMap = array(array(1));
         unset($this->modx->contexts['custom']);
     }
     /**
@@ -115,7 +89,7 @@ class modXTest extends MODxTestCase
      */
     public function testGetCacheManager() {
         $this->modx->getCacheManager();
-        $this->assertInstanceOf(modCacheManager::class,$this->modx->cacheManager, "Failed to load a modCacheManager instance");
+        $this->assertInstanceOf('modCacheManager',$this->modx->cacheManager, "Failed to load a modCacheManager instance");
     }
 
     /**
@@ -125,8 +99,8 @@ class modXTest extends MODxTestCase
      * @param string $allowedTags
      * @dataProvider providerSanitizeString
      */
-    public function testSanitizeString($expected,$string,$chars = ['/',"'",'"','(',')',';','>','<'],$allowedTags = '') {
-        if ($chars == null) $chars = ['/',"'",'"','(',')',';','>','<'];
+    public function testSanitizeString($expected,$string,$chars = array('/',"'",'"','(',')',';','>','<'),$allowedTags = '') {
+        if ($chars == null) $chars = array('/',"'",'"','(',')',';','>','<');
         if ($allowedTags == null) $allowedTags = '';
 
         $result = $this->modx->sanitizeString($string,$chars,$allowedTags);
@@ -136,10 +110,10 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerSanitizeString() {
-        return [
-            ['test','test'],
-            ['Get this','Get (this)'],
-        ];
+        return array(
+            array('test','test'),
+            array('Get this','Get (this)'),
+        );
     }
 
     /**
@@ -155,13 +129,13 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerToQueryString() {
-        return [
-            [['r' => 1],'r=1'],
-            [['r' => 1,'s' => 2],'r=1&s=2'],
-            [['r' => 1,'s' => 2,'t'],'r=1&s=2&0=t'],
-            [['z' => 'Test space'],'z=Test+space'],
-            [['a' => 'test/slash'],'a=test%2Fslash'],
-        ];
+        return array(
+            array(array('r' => 1),'r=1'),
+            array(array('r' => 1,'s' => 2),'r=1&s=2'),
+            array(array('r' => 1,'s' => 2,'t'),'r=1&s=2&0=t'),
+            array(array('z' => 'Test space'),'z=Test+space'),
+            array(array('a' => 'test/slash'),'a=test%2Fslash'),
+        );
     }
 
     /**
@@ -180,10 +154,10 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerSetDebug() {
-        return [
-            [true],
-            [false],
-        ];
+        return array(
+            array(true),
+            array(false),
+        );
     }
 
     /**
@@ -191,7 +165,7 @@ class modXTest extends MODxTestCase
      */
     public function testGetParser() {
         $this->modx->getParser();
-        $this->assertInstanceOf(modParser::class, $this->modx->parser, "Failed to load a modParser instance");
+        $this->assertInstanceOf('modParser',$this->modx->parser, "Failed to load a modParser instance");
         $this->modx->parser = null;
     }
 
@@ -208,10 +182,10 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerSetPlaceholder() {
-        return [
-            ['name', 'Joe'],
-            ['testArray', ['one' => 1,'two' => 2]],
-        ];
+        return array(
+            array('name', 'Joe'),
+            array('testArray', array('one' => 1,'two' => 2)),
+        );
     }
 
     /**
@@ -229,10 +203,10 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerSetPlaceholders() {
-        return [
-            [['one' => 1,'two' => 2],'two',2],
-            [['one' => 1,'two' => 2],'test.two',2,'test.'],
-        ];
+        return array(
+            array(array('one' => 1,'two' => 2),'two',2),
+            array(array('one' => 1,'two' => 2),'test.two',2,'test.'),
+        );
     }
 
     /**
@@ -252,11 +226,11 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerToPlaceholders() {
-        return [
-            [['one' => 1,'two' => 2],'two',2],
-            [['one' => 1,'two' => 2],'test.two',2,'test'],
-            [['one' => 1,'two' => 2],'test-two',2,'test','-'],
-        ];
+        return array(
+            array(array('one' => 1,'two' => 2),'two',2),
+            array(array('one' => 1,'two' => 2),'test.two',2,'test'),
+            array(array('one' => 1,'two' => 2),'test-two',2,'test','-'),
+        );
     }
 
     /**
@@ -276,11 +250,11 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerToPlaceholder() {
-        return [
-            ['two',2,'two'],
-            ['two',2,'test.two','test'],
-            ['two',2,'test-two','test','-'],
-        ];
+        return array(
+            array('two',2,'two'),
+            array('two',2,'test.two','test'),
+            array('two',2,'test-two','test','-'),
+        );
     }
 
     /**
@@ -297,11 +271,11 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerGetPlaceholder() {
-        return [
-            ['test','one'],
-            ['one', ['two' => 2]],
-            ['123',456],
-        ];
+        return array(
+            array('test','one'),
+            array('one',array('two' => 2)),
+            array('123',456),
+        );
     }
 
     /**
@@ -318,11 +292,11 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerUnsetPlaceholder() {
-        return [
-            ['test','one'],
-            ['one', ['two' => 2]],
-            [3,534],
-        ];
+        return array(
+            array('test','one'),
+            array('one',array('two' => 2)),
+            array(3,534),
+        );
     }
 
     /**
@@ -340,10 +314,10 @@ class modXTest extends MODxTestCase
      * @return array
      */
     public function providerUnsetPlaceholders() {
-        return [
-            [['test' => 'testing'], ['test'],'test'],
-            [['test' => 'testing','one' => 1], ['one'],'one'],
-        ];
+        return array(
+            array(array('test' => 'testing'),array('test'),'test'),
+            array(array('test' => 'testing','one' => 1),array('one'),'one'),
+        );
     }
 
     /**
@@ -355,19 +329,19 @@ class modXTest extends MODxTestCase
      */
     public function testGetTree($start, $depth, array $options, array $result)
     {
-        $tree = $this->modx->getTree($start, is_null($depth) ? 10 : $depth, $options ?: []);
+        $tree = $this->modx->getTree($start, is_null($depth) ? 10 : $depth, $options ?: array());
         $this->assertEquals($result, $tree);
     }
 
     public function providerGetTree()
     {
-        return [
-            [0, 0, [], [1 => 1, 2 => 2, 6 => 6]],
-            [0, 1, [], [1 => 1, 2 => [3 => 3], 6 => [7 => 7]]],
-            [7, 5, [], [8 => [9 => [10 => [11 => [12 => [13 => 13]]]]]]],
-            [6, null, [], [7 => [8 => [9 => [10 => [11 => [12 => [13 => [14 => [15 => [16 => [17 => 17]]]]]]]]]]]],
-            [21, 3, ['context' => 'custom'], [22 => [23 => [24 => [25 => 25]]]]]
-        ];
+        return array(
+            array(0, 0, array(), array(1 => 1, 2 => 2, 6 => 6)),
+            array(0, 1, array(), array(1 => 1, 2 => array(3 => 3), 6 => array(7 => 7))),
+            array(7, 5, array(), array(8 => array(9 => array(10 => array(11 => array(12 => array(13 => 13))))))),
+            array(6, null, array(), array(7 => array(8 => array(9 => array(10 => array(11 => array(12 => array(13 => array(14 => array(15 => array(16 => array(17 => 17)))))))))))),
+            array(21, 3, array('context' => 'custom'), array(22 => array(23 => array(24 => array(25 => 25)))))
+        );
     }
 
     /**
@@ -385,12 +359,12 @@ class modXTest extends MODxTestCase
 
     public function providerGetChildIds()
     {
-        return [
-            [0, 0, [], []],
-            [0, 1, [], [1, 2, 6]],
-            [6, 5, [], [7, 8, 9, 10, 11]],
-            [6, null, [], [7, 8, 9, 10, 11, 12, 13, 14, 15, 16]],
-            [22, 2, ['context' => 'custom'], [23, 24]]
-        ];
+        return array(
+            array(0, 0, array(), array()),
+            array(0, 1, array(), array(1, 2, 6)),
+            array(6, 5, array(), array(7, 8, 9, 10, 11)),
+            array(6, null, array(), array(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)),
+            array(22, 2, array('context' => 'custom'), array(23, 24))
+        );
     }
 }

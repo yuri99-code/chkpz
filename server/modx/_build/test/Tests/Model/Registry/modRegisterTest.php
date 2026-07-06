@@ -9,12 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Registry;
-
-
-use MODX\Revolution\modX;
-use MODX\Revolution\MODxTestCase;
-use MODX\Revolution\MODxTestHarness;
 
 /**
  * Tests related to the modRegister class.
@@ -26,24 +20,18 @@ use MODX\Revolution\MODxTestHarness;
  * @group modRegister
  */
 class modRegisterTest extends MODxTestCase {
-    /**
-     * @beforeClass
-     * @throws \xPDO\xPDOException
-     */
-    public static function setUpFixturesBeforeClass() {
+    public static function setUpBeforeClass() {
         /** @var modX $modx */
-        $modx =& MODxTestHarness::getFixture(modX::class, 'modx');
+        $modx =& MODxTestHarness::getFixture('modX', 'modx');
         $modx->getService('registry', 'registry.modRegistry');
-        $modx->registry->addRegister('register', modMemoryRegister::class, ['directory' => 'register']);
+        $modx->loadClass('registry.modRegister', '', false, true);
+        include_once dirname(__FILE__) . '/modmemoryregister.mock.php';
+        $modx->registry->addRegister('register', 'modMemoryRegister', array('directory' => 'register'));
     }
 
-    /**
-     * @afterClass
-     * @throws \xPDO\xPDOException
-     */
-    public static function tearDownFixturesAfterClass() {
+    public static function tearDownAfterClass() {
         /** @var modX $modx */
-        $modx =& MODxTestHarness::getFixture(modX::class, 'modx');
+        $modx =& MODxTestHarness::getFixture('modX', 'modx');
         $modx->getService('registry', 'registry.modRegistry');
         $modx->registry->removeRegister('register');
     }
@@ -67,13 +55,13 @@ class modRegisterTest extends MODxTestCase {
         $this->assertTrue(in_array($topic, $this->modx->registry->register->subscriptions), "Could not subscribe to register topic {$topic}");
     }
     public function providerSubscribe() {
-        return [
-            ['/food'],
-            ['/food/'],
-            ['/beer/'],
-            ['/beer'],
-            ['/food/beer/'],
-        ];
+        return array(
+            array('/food'),
+            array('/food/'),
+            array('/beer/'),
+            array('/beer'),
+            array('/food/beer/'),
+        );
     }
 
     /**
@@ -88,11 +76,11 @@ class modRegisterTest extends MODxTestCase {
         $this->assertEquals($expected, $this->modx->registry->register->getCurrentTopic(), "Could not set current topic.");
     }
     public function providerSetCurrentTopic() {
-        return [
-            ['/', ''],
-            ['/food/', 'food'],
-            ['/beer/', '/beer'],
-            ['/food/beer/', '/food/beer/'],
-        ];
+        return array(
+            array('/', ''),
+            array('/food/', 'food'),
+            array('/beer/', '/beer'),
+            array('/food/beer/', '/food/beer/'),
+        );
     }
 }

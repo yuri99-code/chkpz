@@ -9,12 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Sources;
-
-
-use MODX\Revolution\MODxTestCase;
-use MODX\Revolution\Sources\modFileMediaSource;
-use MODX\Revolution\Sources\modMediaSource;
 
 /**
  * Tests related to the modMediaSource class.
@@ -30,28 +24,22 @@ class modMediaSourceTest extends MODxTestCase {
     public $source;
 
     /**
-     * Setup fixtures before each test.
-     *
-     * @before
+     * @return void
      */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
+    public function setUp() {
+        parent::setUp();
 
-        $this->source = $this->modx->newObject(modMediaSource::class);
-        $this->source->fromArray([
+        $this->modx->loadClass('sources.modMediaSource');
+        $this->source = $this->modx->newObject('sources.modMediaSource');
+        $this->source->fromArray(array(
             'name' => 'UnitTestSource',
             'description' => '',
-            'class_key' => modFileMediaSource::class,
-            'properties' => [],
-        ],'',true);
+            'class_key' => 'sources.modFileMediaSource',
+            'properties' => array(),
+        ),'',true);
     }
-    /**
-     * Tear down fixtures after each test.
-     *
-     * @after
-     */
-    public function tearDownFixtures() {
-        parent::tearDownFixtures();
+    public function tearDown() {
+        parent::tearDown();
         $this->source = null;
     }
 

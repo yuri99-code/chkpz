@@ -9,21 +9,20 @@
 MODx.tree.Menu = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        rootIconCls: 'icon-navicon'
-        ,rootId: 'n_'
-        ,rootName: _('menu_top')
-        ,rootVisible: false
+        root_id: 'n_'
+        ,root_name: _('menu_top')
+        ,rootVisible: true
         ,expandFirst: true
         ,enableDrag: true
         ,enableDrop: true
         ,url: MODx.config.connector_url
-        ,action: 'System/Menu/GetNodes'
-        ,sortAction: 'System/Menu/Sort'
+        ,action: 'system/menu/getNodes'
+        ,sortAction: 'system/menu/sort'
         ,primaryKey: 'text'
         ,useDefaultToolbar: true
         ,ddGroup: 'modx-menu'
         ,tbar: [{
-            text: _('create')
+            text: _('menu_create')
             ,cls:'primary-button'
             ,handler: this.createMenu
             ,scope: this
@@ -34,27 +33,9 @@ MODx.tree.Menu = function(config) {
 Ext.extend(MODx.tree.Menu, MODx.tree.Tree, {
     windows: {}
 
-    ,_handleDrop: function (dropEvent) {
-        var node = dropEvent.target;
-        if (node.isRoot) return false;
-
-        if ((dropEvent.point === 'above') || (dropEvent.point === 'below')) {
-            if (dropEvent.target.parentNode.isRoot) {
-                return false;
-            }
-        }
-
-        if (!Ext.isEmpty(node.attributes.treeHandler)) {
-            var h = Ext.getCmp(node.attributes.treeHandler);
-            if (h) {
-                return h.handleDrop(this,dropEvent);
-            }
-        }
-    }
-
     ,createMenu: function(n,e) {
         var r = {
-            parent: 'topnav'
+            parent: ''
         };
         if (this.cm && this.cm.activeNode && this.cm.activeNode.attributes && this.cm.activeNode.attributes.data) {
             r['parent'] = this.cm.activeNode.attributes.data.text;
@@ -81,7 +62,6 @@ Ext.extend(MODx.tree.Menu, MODx.tree.Tree, {
         });
         this.windows.update_menu = MODx.load({
             xtype: 'modx-window-menu-update'
-            ,isRoot: this.cm.activeNode.parentNode.isRoot
             ,record: r
             ,listeners: {
                 'success': {fn:function(r) { this.refresh(); },scope:this}
@@ -92,15 +72,13 @@ Ext.extend(MODx.tree.Menu, MODx.tree.Tree, {
     }
 
     ,removeMenu: function(n,e) {
-        var node = this.cm.activeNode;
         MODx.msg.confirm({
-            text: _('menu_confirm_remove',{
-                menu: node.attributes.text
-            })
+            title: _('warning')
+            ,text: _('menu_confirm_remove')
             ,url: this.config.url
             ,params: {
-                action: 'System/Menu/Remove'
-                ,text: node.attributes.pk
+                action: 'system/menu/remove'
+                ,text: this.cm.activeNode.attributes.pk
             }
             ,listeners: {
                 'success':{fn:this.refresh,scope:this}
@@ -108,27 +86,27 @@ Ext.extend(MODx.tree.Menu, MODx.tree.Tree, {
         });
     }
 
-    ,getMenu: function(node, event) {
-        var m = [
-            {
-                text: _('create'),
-                handler: this.createMenu
-            }
-        ];
-
-        if (!node.parentNode.isRoot) {
-            m.push('-');
-            m.push({
-                text: _('edit'),
-                handler: this.updateMenu
-            });
-            m.push('-');
-            m.push({
-                text: _('delete'),
-                handler: this.removeMenu
-            });
+    ,getMenu: function(n,e) {
+        var m = [];
+        switch (n.attributes.type) {
+            case 'menu':
+                m.push({
+                    text: _('menu_update')
+                    ,handler: this.updateMenu
+                });
+                m.push('-');
+                m.push({
+                    text: _('menu_remove')
+                    ,handler: this.removeMenu
+                });
+                break;
+            default:
+                m.push({
+                    text: _('menu_create')
+                    ,handler: this.createMenu
+                });
+                break;
         }
-
         return m;
     }
 
@@ -153,17 +131,17 @@ MODx.window.CreateMenu = function(config) {
     config = config || {};
     this.ident = config.ident || 'modx-cmenu-'+Ext.id();
     Ext.applyIf(config,{
-        title: _('create')
+        title: _('menu_create')
         ,width: 600
+        // ,height: 400
         ,url: MODx.config.connector_url
-        ,action: 'System/Menu/Create'
+        ,action: 'system/menu/create'
         ,fields: [{
             xtype: 'modx-combo-menu'
             ,name: 'parent'
             ,hiddenName: 'parent'
             ,anchor: '100%'
             ,fieldLabel: _('parent')
-            ,showNone: 0
         },{
             layout: 'column'
             ,border: false
@@ -188,6 +166,7 @@ MODx.window.CreateMenu = function(config) {
                     ,allowBlank: false
                     ,anchor: '100%'
                     ,id: this.ident+'-text'
+                    //,readOnly: config.update ? true : false
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: this.ident+'-text'
@@ -242,6 +221,7 @@ MODx.window.CreateMenu = function(config) {
                     ,xtype: 'textfield'
                     ,anchor: '100%'
                     ,id: this.ident+'-action-id'
+                    //,allowBlank: false
                 },{
                     xtype: MODx.expandHelp ? 'label' : 'hidden'
                     ,forId: this.ident+'-action-id'
@@ -305,8 +285,8 @@ Ext.reg('modx-window-menu-create',MODx.window.CreateMenu);
 MODx.window.UpdateMenu = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        title: _('edit')
-        ,action: 'System/Menu/Update'
+        title: _('menu_update')
+        ,action: 'system/menu/update'
     });
     MODx.window.UpdateMenu.superclass.constructor.call(this,config);
 };
@@ -328,14 +308,15 @@ MODx.combo.Menu = function(config) {
         ,hiddenName: 'menu'
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Menu/GetList'
+            action: 'system/menu/getlist'
             ,combo: true
             ,limit: 0
-            ,showNone: (config.showNone === undefined) ? true : config.showNone
+            ,showNone: true
         }
         ,fields: ['text','text_lex']
         ,displayField: 'text_lex'
         ,valueField: 'text'
+        // ,listWidth: 300
         ,editable: false
     });
     MODx.combo.Menu.superclass.constructor.call(this,config);

@@ -9,11 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Filters;
-
-
-use MODX\Revolution\modPlaceholderTag;
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modOutputFilter class, including testing of core output filters.
@@ -28,13 +23,8 @@ class modOutputFilterTest extends MODxTestCase {
     /** @var modPlaceholderTag $tag */
     public $tag;
 
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
+    public function setUp() {
+        parent::setUp();
         $this->modx->getParser();
         $this->tag = new modPlaceholderTag($this->modx);
         $this->tag->setCacheable(false);
@@ -59,11 +49,11 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerCat() {
-        return [
-            ['','',''],
-            ['This dog',' went home','This dog went home'],
-            ['','hello?','hello?'],
-        ];
+        return array(
+            array('','',''),
+            array('This dog',' went home','This dog went home'),
+            array('','hello?','hello?'),
+        );
     }
 
     /**
@@ -83,12 +73,12 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerUppercase() {
-        return [
-            ['',''],
-            ['ALREADY THERE','ALREADY THERE'],
-            ['booyah','BOOYAH'],
-            ['i\'m not yelling','I\'M NOT YELLING'],
-        ];
+        return array(
+            array('',''),
+            array('ALREADY THERE','ALREADY THERE'),
+            array('booyah','BOOYAH'),
+            array('i\'m not yelling','I\'M NOT YELLING'),
+        );
     }
 
     /**
@@ -108,12 +98,12 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerLowercase() {
-        return [
-            ['',''],
-            ['BOOYAH','booyah'],
-            ['BoOyAh','booyah'],
-            ['THiS CaT WENt To THe  cITy','this cat went to the  city'],
-        ];
+        return array(
+            array('',''),
+            array('BOOYAH','booyah'),
+            array('BoOyAh','booyah'),
+            array('THiS CaT WENt To THe  cITy','this cat went to the  city'),
+        );
     }
 
     /**
@@ -133,12 +123,12 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerUCWords() {
-        return [
-            ['',''],
-            ['test','Test'],
-            ['A big fat elephant','A Big Fat Elephant'],
-            ['Have you read a Dr. Seuss Book?','Have You Read A Dr. Seuss Book?'],
-        ];
+        return array(
+            array('',''),
+            array('test','Test'),
+            array('A big fat elephant','A Big Fat Elephant'),
+            array('Have you read a Dr. Seuss Book?','Have You Read A Dr. Seuss Book?'),
+        );
     }
 
     /**
@@ -158,12 +148,12 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerUCFirst() {
-        return [
-            ['',''],
-            ['test','Test'],
-            ['green eggers and hammond','Green eggers and hammond'],
-            ['bocce ball, anyone?','Bocce ball, anyone?'],
-        ];
+        return array(
+            array('',''),
+            array('test','Test'),
+            array('green eggers and hammond','Green eggers and hammond'),
+            array('bocce ball, anyone?','Bocce ball, anyone?'),
+        );
     }
 
     /**
@@ -184,10 +174,10 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerStripString() {
-        return [
-            ['','',''],
-            ['Don\'t even think about it','Don\'t even ','think about it'],
-        ];
+        return array(
+            array('','',''),
+            array('Don\'t even think about it','Don\'t even ','think about it'),
+        );
     }
 
     /**
@@ -208,11 +198,11 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerReplace() {
-        return [
-            ['','',''],
-            ['Strip it all out','it all==none','Strip none out'],
-            ['foobar','foo==bar','barbar'],
-        ];
+        return array(
+            array('','',''),
+            array('Strip it all out','it all==none','Strip none out'),
+            array('foobar','foo==bar','barbar'),
+        );
     }
 
     /**
@@ -232,12 +222,12 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerStripTags() {
-        return [
-            ['Hi!<br />','Hi!'],
-            ['<strong>Boo!</strong> No.','Boo! No.'],
-            ['Dogs are cool <p>Cats are weird','Dogs are cool Cats are weird'],
-            ['',''],
-        ];
+        return array(
+            array('Hi!<br />','Hi!'),
+            array('<strong>Boo!</strong> No.','Boo! No.'),
+            array('Dogs are cool <p>Cats are weird','Dogs are cool Cats are weird'),
+            array('',''),
+        );
     }
 
     /**
@@ -257,11 +247,11 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerStrLen() {
-        return [
-            ['abcdefghijklmnopqrstuvwxyz',26],
-            ['',0],
-            ['a big dog',9],
-        ];
+        return array(
+            array('abcdefghijklmnopqrstuvwxyz',26),
+            array('',0),
+            array('a big dog',9),
+        );
     }
 
     /**
@@ -281,11 +271,11 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerEsrever() {
-        return [
-            ['a brown fox','xof nworb a'],
-            ['level','level'],
-            ['somemeninterpretninememos','somemeninterpretninememos'],
-        ];
+        return array(
+            array('a brown fox','xof nworb a'),
+            array('level','level'),
+            array('somemeninterpretninememos','somemeninterpretninememos'),
+        );
     }
 
     /**
@@ -306,17 +296,13 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerLimit() {
-        return [
-            [
-                'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
-            ,10,'Lurem ipso'
-            ],
-            [
-                'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
-            ,1000000,'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
-            ],
-            ['','',''],
-        ];
+        return array(
+            array('Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
+            ,10,'Lurem ipso'),
+            array('Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
+            ,1000000,'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'),
+            array('','',''),
+        );
     }
 
     /**
@@ -337,17 +323,13 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerEllipsis() {
-        return [
-            [
-                'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
-            ,10,'Lurem ipsoom&#8230;'
-            ],
-            [
-                'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
-            ,1000000,'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
-            ],
-            ['','',''],
-        ];
+        return array(
+            array('Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
+            ,10,'Lurem ipsoom&#8230;'),
+            array('Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'
+            ,1000000,'Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Ut depeeboos dooee fel megna oornere-a eleeqooem. Preesent ioo messa ut sepeeee sulleecitoodin mulesteee-a. Preesent looctoos, turtur sulleecitoodin sulleecitoodin fooceeboos, iret deeem imperdeeet moorees, nun iecoolees sepeeee mee qooees deeem. Qooeesqooe-a iooeesmud tempoos joostu. Ut iget neesl. Noolla feceelisi. Noolla nun felees. Um gesh dee bork, bork! Prueen iooeesmud toorpees nun toorpees. Um gesh dee bork, bork! Integer ioo iret sed neebh purta pleceret. Um de hur de hur de hur. Iteeem lectoos neebh, mettees feetee-a, deegnissim a, ileeeffend ec, deeem. Coom suceeis netuqooe-a peneteeboos it megnees dees pertooreeent muntes, nescetoor reedicooloos moos. Um gesh dee bork, bork! Iteeem nec felees fel mee teencidoont rhuncoos. Um gesh dee bork, bork! Moorees depeeboos. Um gesh dee bork, bork! Foosce-a qooem reesoos, pleceret sed, deegnissim rootroom, ileeeffend sed, leu. Lurem ipsoom dulur seet emet, cunsectetooer edeepiscing ileet. Um de hur de hur de hur. Eleeqooem lurem.'),
+            array('','',''),
+        );
     }
 
     /**
@@ -367,14 +349,12 @@ class modOutputFilterTest extends MODxTestCase {
      * @return array
      */
     public function providerNL2BR() {
-        return [
-            [
-                'A test paragraph
+        return array(
+            array('A test paragraph
 goes here','A test paragraph<br />
-goes here'
-            ],
-            ['',''],
-        ];
+goes here'),
+            array('',''),
+        );
     }
 
     /**
@@ -395,12 +375,12 @@ goes here'
      * @return array
      */
     public function providerAdd() {
-        return [
-            ['',0,0],
-            ['123',1,124],
-            [-1,1,0],
-            [5,-1,4],
-        ];
+        return array(
+            array('',0,0),
+            array('123',1,124),
+            array(-1,1,0),
+            array(5,-1,4),
+        );
     }
 
     /**
@@ -421,13 +401,13 @@ goes here'
      * @return array
      */
     public function providerSubtract() {
-        return [
-            ['',0,0],
-            ['123',1,122],
-            [-1,1,-2],
-            [1,1,0],
-            [5,-1,6],
-        ];
+        return array(
+            array('',0,0),
+            array('123',1,122),
+            array(-1,1,-2),
+            array(1,1,0),
+            array(5,-1,6),
+        );
     }
 
     /**
@@ -448,12 +428,12 @@ goes here'
      * @return array
      */
     public function providerMultiply() {
-        return [
-            ['',0,0],
-            [1,5,5],
-            [4,7,28],
-            ['100',2,200],
-        ];
+        return array(
+            array('',0,0),
+            array(1,5,5),
+            array(4,7,28),
+            array('100',2,200),
+        );
     }
 
     /**
@@ -474,11 +454,11 @@ goes here'
      * @return array
      */
     public function providerDivide() {
-        return [
-            [1,0,.5],
-            [0,0,0],
-            [10,5,2],
-        ];
+        return array(
+            array(1,0,.5),
+            array(0,0,0),
+            array(10,5,2),
+        );
     }
 
     /**
@@ -499,13 +479,13 @@ goes here'
      * @return array
      */
     public function providerModulus() {
-        return [
-            [4,2,0],
-            [9,3,0],
-            [0,0,0],
-            [4,3,1],
-            [10,4,2],
-        ];
+        return array(
+            array(4,2,0),
+            array(9,3,0),
+            array(0,0,0),
+            array(4,3,1),
+            array(10,4,2),
+        );
     }
 
     /**
@@ -526,10 +506,10 @@ goes here'
      * @return array
      */
     public function providerDefault() {
-        return [
-            ['','foo','foo'],
-            ['z','a','z'],
-        ];
+        return array(
+            array('','foo','foo'),
+            array('z','a','z'),
+        );
     }
 
     /**
@@ -550,11 +530,11 @@ goes here'
      * @return array
      */
     public function providerNotEmpty() {
-        return [
-            ['','foo',''],
-            ['z','a','a'],
-            ['name','John','John'],
-        ];
+        return array(
+            array('','foo',''),
+            array('z','a','a'),
+            array('name','John','John'),
+        );
     }
 
     /**
@@ -573,10 +553,10 @@ goes here'
      * @return array
      */
     public function providerStrToTime() {
-        return [
-            ['2011-05-01 10:23:11'],
-            [''],
-        ];
+        return array(
+            array('2011-05-01 10:23:11'),
+            array(''),
+        );
     }
 
     /**
@@ -595,10 +575,10 @@ goes here'
      * @return array
      */
     public function providerMD5() {
-        return [
-            ['coolio'],
-            [''],
-        ];
+        return array(
+            array('coolio'),
+            array(''),
+        );
     }
 
     /**
@@ -618,10 +598,10 @@ goes here'
      * @return array
      */
     public function providerCData() {
-        return [
-            ['code here','<![CDATA[code here]]>'],
-            ['','<![CDATA[]]>'],
-        ];
+        return array(
+            array('code here','<![CDATA[code here]]>'),
+            array('','<![CDATA[]]>'),
+        );
     }
 
     /**
@@ -641,10 +621,10 @@ goes here'
      * @return array
      */
     public function providerUrlEncode() {
-        return [
-            ['test','test'],
-            ['test with space','test+with+space'],
-        ];
+        return array(
+            array('test','test'),
+            array('test with space','test+with+space'),
+        );
     }
 
     /**
@@ -664,10 +644,10 @@ goes here'
      * @return array
      */
     public function providerUrlDecode() {
-        return [
-            ['test','test'],
-            ['test+with+space','test with space'],
-        ];
+        return array(
+            array('test','test'),
+            array('test+with+space','test with space'),
+        );
     }
 
     /**
@@ -691,10 +671,10 @@ goes here'
      * @return array
      */
     public function providerCssToHead() {
-        return [
-            ['assets/css/style.css',true],
-            ['<link rel="stylesheet" href="assets/css/style.css" type="text/css" />',false],
-        ];
+        return array(
+            array('assets/css/style.css',true),
+            array('<link rel="stylesheet" href="assets/css/style.css" type="text/css" />',false),
+        );
     }
 
     /**
@@ -714,9 +694,9 @@ goes here'
      * @return array
      */
     public function providerHtmlToHead() {
-        return [
-            ['<style>'],
-        ];
+        return array(
+            array('<style>'),
+        );
     }
 
     /**
@@ -736,9 +716,9 @@ goes here'
      * @return array
      */
     public function providerHtmlToBottom() {
-        return [
-            ['<footer>'],
-        ];
+        return array(
+            array('<footer>'),
+        );
     }
 
     /**
@@ -763,11 +743,11 @@ goes here'
      * @return array
      */
     public function providerJsToBottom() {
-        return [
-            ['assets/js/script.js',true,false],
-            ['<script src="assets/js/script2.js"></script>',false,false],
-            ['assets/js/script3.js',false,true],
-        ];
+        return array(
+            array('assets/js/script.js',true,false),
+            array('<script src="assets/js/script2.js"></script>',false,false),
+            array('assets/js/script3.js',false,true),
+        );
     }
 
     /**
@@ -792,136 +772,11 @@ goes here'
      * @return array
      */
     public function providerJsToHead() {
-        return [
-            ['assets/js/hscript.js',true,false],
-            ['<script src="assets/js/hscript2.js"></script>',false,false],
-            ['assets/js/hscript3.js',false,true],
-        ];
-    }
-
-    /**
-     * Tests :dirname filter
-     *
-     * @param string $filepath
-     * @param array $expected
-     * @dataProvider providerDirname
-     */
-    public function testDirname($filepath, $expected)
-    {
-        $this->modx->setPlaceholder('filepath', $filepath);
-        $this->tag->set('name', 'filepath:dirname');
-        $o = $this->tag->process();
-        $this->modx->unsetPlaceholder('filepath');
-        $this->assertEquals($expected, $o);
-    }
-    /**
-     * @return array
-     */
-    public function providerDirname()
-    {
-        return [
-            ['/icon.ico', '/'],
-            ['/assets/images/logo.jpg', '/assets/images'],
-            ['./assets/files/doc.pdf', './assets/files'],
-            // last three tests for pathinfo() function documentation notes
-            ['/test/test.inc.php', '/test'],
-            ['/test/test', '/test'],
-            ['/test/.test', '/test'],
-        ];
-    }
-
-    /**
-     * Tests :basename filter
-     *
-     * @param string $filepath
-     * @param array $expected
-     * @dataProvider providerBasename
-     */
-    public function testBasename($filepath, $expected)
-    {
-
-        $this->modx->setPlaceholder('filepath', $filepath);
-        $this->tag->set('name', 'filepath:basename');
-        $o = $this->tag->process();
-        $this->modx->unsetPlaceholder('filepath');
-        $this->assertEquals($expected, $o);
-    }
-    /**
-     * @return array
-     */
-    public function providerBasename()
-    {
-        return [
-            ['/icon.ico', 'icon.ico'],
-            ['/assets/images/logo.jpg', 'logo.jpg'],
-            ['./assets/files/doc.pdf', 'doc.pdf'],
-            // last three tests for pathinfo() function documentation notes
-            ['/test/test.inc.php', 'test.inc.php'],
-            ['/test/test', 'test'],
-            ['/test/.test', '.test'],
-        ];
-    }
-
-    /**
-     * Tests :filename filter
-     *
-     * @param string $filepath
-     * @param array $expected
-     * @dataProvider providerFilename
-     */
-    public function testFilename($filepath, $expected)
-    {
-        $this->modx->setPlaceholder('filepath', $filepath);
-        $this->tag->set('name', 'filepath:filename');
-        $o = $this->tag->process();
-        $this->modx->unsetPlaceholder('filepath');
-        $this->assertEquals($expected, $o);
-    }
-    /**
-     * @return array
-     */
-    public function providerFilename()
-    {
-        return [
-            ['/icon.ico', 'icon'],
-            ['/assets/images/logo.jpg', 'logo'],
-            ['./assets/files/doc.pdf', 'doc'],
-            // last three tests for pathinfo() function documentation notes
-            ['/test/test.inc.php', 'test.inc'],
-            ['/test/test', 'test'],
-            ['/test/.test', ''],
-        ];
-    }
-
-    /**
-     * Tests :extension filter
-     *
-     * @param string $filepath
-     * @param array $expected
-     * @dataProvider providerExtension
-     */
-    public function testExtension($filepath, $expected)
-    {
-        $this->modx->setPlaceholder('filepath', $filepath);
-        $this->tag->set('name', 'filepath:extension');
-        $o = $this->tag->process();
-        $this->modx->unsetPlaceholder('filepath');
-        $this->assertEquals($expected, $o);
-    }
-    /**
-     * @return array
-     */
-    public function providerExtension()
-    {
-        return [
-            ['/icon.ico', 'ico'],
-            ['/assets/images/logo.jpg', 'jpg'],
-            ['./assets/files/doc.pdf', 'pdf'],
-            // last three tests for pathinfo() function documentation notes
-            ['/test/test.inc.php', 'php'],
-            ['/test/test', ''],
-            ['/test/.test', 'test'],
-        ];
+        return array(
+            array('assets/js/hscript.js',true,false),
+            array('<script src="assets/js/hscript2.js"></script>',false,false),
+            array('assets/js/hscript3.js',false,true),
+        );
     }
 
     /**
@@ -944,9 +799,9 @@ goes here'
      * @return array
      */
     public function providerToPlaceholder() {
-        return [
-            ['myPlaceholder','Test'],
-            ['emptyPlaceholder',''],
-        ];
+        return array(
+            array('myPlaceholder','Test'),
+            array('emptyPlaceholder',''),
+        );
     }
 }

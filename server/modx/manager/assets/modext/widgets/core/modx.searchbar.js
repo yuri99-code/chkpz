@@ -1,3 +1,4 @@
+
 MODx.SearchBar = function(config) {
     config = config || {};
 
@@ -8,27 +9,26 @@ MODx.SearchBar = function(config) {
         ,id: 'modx-uberbar'
         ,maxHeight: this.getViewPortSize()
         ,typeAhead: true
-        ,listAlign: [ 'tl-bl?', [-12, 12] ] // account for padding + border width of container (added by Ext JS)
+        // ,listAlign: [ 'tl-bl?', [0, 0] ] // this is default
+        ,listAlign: [ 'tl-bl?', [-12, 0] ] // account for padding + border width of container (added by Ext JS)
         ,triggerConfig: {
             tag: 'button'
-            ,id: 'modx-uberbar-trigger'
-            ,type: 'submit'
-            ,'aria-label': 'Go'
+            ,type: "submit"
+            ,"aria-label": "Go"
             ,cls: 'x-form-trigger icon icon-large icon-search'
         }
         ,defaultAutoCreate: {
-            tag: 'input'
-            ,type: 'text'
-            ,size: '24'
-            ,tabindex: '0'
-            ,hasfocus:true
-            ,'aria-label' : _('search')
+            tag: "input"
+            ,type: "text"
+            ,size: "24"
+            ,autocomplete: "off"
+            ,"aria-label" : _('search')
         }
-        ,hasfocus:true
         ,minChars: 1
         ,displayField: 'name'
         ,valueField: '_action'
-        ,width: 380
+        ,width: 259
+        ,maxWidth: 437 // Increase to animate + grow when focused
         ,itemSelector: '.x-combo-list-item'
         ,tpl: new Ext.XTemplate(
             '<tpl for=".">',
@@ -57,13 +57,13 @@ MODx.SearchBar = function(config) {
 
                     if (values.class) {
                         switch (values.class) {
-                            case 'MODX\\Revolution\\modDocument':
+                            case 'modDocument':
                                 return 'file';
-                            case 'MODX\\Revolution\\modSymLink':
+                            case 'modSymLink':
                                 return 'files-o';
-                            case 'MODX\\Revolution\\modWebLink':
+                            case 'modWebLink':
                                 return 'link';
-                            case 'MODX\\Revolution\\modStaticResource':
+                            case 'modStaticResource':
                                 return 'file-text-o';
                             default:
                                 break;
@@ -107,7 +107,7 @@ MODx.SearchBar = function(config) {
         ,store: new Ext.data.JsonStore({
             url: MODx.config.connector_url
             ,baseParams: {
-                action: 'Search/Search'
+                action: 'search/search'
             }
             ,root: 'results'
             ,totalProperty: 'total'
@@ -129,21 +129,29 @@ MODx.SearchBar = function(config) {
             }
             ,focus: this.focusBar
             ,blur: this.blurBar
-            ,afterrender: function() {
-                document.getElementById('modx-manager-search').onclick = function(e) {
-                    e.stopPropagation();
-                };
-            }, scope: this
+            ,scope: this
         }
     });
     MODx.SearchBar.superclass.constructor.call(this, config);
-    this.blur();
     this.setKeyMap();
 };
 Ext.extend(MODx.SearchBar, Ext.form.ComboBox, {
 
     // Initialize the keyboard shortcuts to focus the bar (ctrl + alt + /) and hide it (esc)
     setKeyMap: function() {
+        // This keymap is conflicting with typing certain characters, see #11974
+        /*new Ext.KeyMap(document, {
+            key: [191, 0]
+            ,ctrl: true
+            ,alt: true
+            ,handler: function() {
+                this.hideBar();
+                this.toggle();
+            }
+            ,scope: this
+            ,stopEvent: true
+        });*/
+
         // Escape to hide SearchBar
         new Ext.KeyMap(document, {
             key: 27
@@ -168,10 +176,7 @@ Ext.extend(MODx.SearchBar, Ext.form.ComboBox, {
                 shadow: this.shadow,
                 cls: [cls, this.listClass].join(' '),
                 constrain:false,
-                zindex: this.getZIndex(listParent),
-            });
-            this.list.on('click', function(e) {
-                e.stopPropagation();
+                zindex: this.getZIndex(listParent)
             });
 
             var lw = this.listWidth || Math.max(this.wrap.getWidth(), this.minListWidth);
@@ -218,6 +223,12 @@ Ext.extend(MODx.SearchBar, Ext.form.ComboBox, {
                 deferEmptyText: false
             });
 
+            // Original view listeners
+            // this.mon(this.view, {
+            //    containerclick : this.onViewClick,
+            //    click : this.onViewClick,
+            //    scope :this
+            // });
             this.view.on('click', function(view, index, node, vent) {
                 /**
                  * Force node selection to make sure it is available in onViewClick
@@ -271,12 +282,40 @@ Ext.extend(MODx.SearchBar, Ext.form.ComboBox, {
 
         MODx.loadPage(target);
     }
+    /**
+     * Toggle the search drawer visibility
+     *
+     * @param {Boolean} hide Whether or not to force-hide MODx.SearchBar
+     */
+    ,toggle: function(hide) {
+        var uberbar = Ext.get( this.container.id );
+        if (uberbar.hasClass('visible') || hide ) {
+            this.blurBar();
+            uberbar.removeClass('visible');
+        } else {
+            uberbar.addClass('visible');
+            this.focusBar();
+        }
+    }
     ,hideBar: function() {
+        this.toggle(true);
     }
     ,focusBar: function() {
         this.selectText();
+        this.animate();
     }
     ,blurBar: function() {
+        this.animate(true);
+    }
+    /**
+     * Animate the input "grow"
+     *
+     * @param {Boolean} blur Whether or not the input loses focus (to "minimize" the input width)
+     */
+    ,animate: function(blur) {
+        var to = blur ? this.width : this.maxWidth;
+        this.wrap.setWidth(to, true);
+        this.el.setWidth(to - this.getTriggerWidth(), true);
     }
     /**
      * Compute the available max height so results could be scrollable if required

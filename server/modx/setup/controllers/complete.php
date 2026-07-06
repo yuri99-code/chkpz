@@ -12,6 +12,7 @@
  * @var modInstall $install
  * @var modInstallParser $parser
  * @var modInstallRequest $this
+ * @package setup
  */
 
 if (!empty($_POST['proceed'])) {
@@ -19,22 +20,19 @@ if (!empty($_POST['proceed'])) {
     $this->proceed('login');
 }
 
-$errors = $install->verify();
-
+$errors= $install->verify();
 $cleanupErrors = $install->cleanup();
 if (is_array($cleanupErrors) && !empty($cleanupErrors)) {
-    $errors = array_merge($errors, $cleanupErrors);
+    $errors= array_merge($errors,$cleanupErrors);
 }
 
 if (!empty ($errors)) {
-    $parser->set('errors', $errors);
+    $parser->set('errors',$errors);
 }
 
 /* check delete setup/ if not using git version [#2512] */
-if (!defined('MODX_SETUP_KEY')) {
-    define('MODX_SETUP_KEY', '@git@');
-}
-
-$parser->set('cleanup', trim(MODX_SETUP_KEY, '@') !== 'git');
+if (!defined('MODX_SETUP_KEY')) { define('MODX_SETUP_KEY','@git@'); }
+$distro = trim(MODX_SETUP_KEY,'@');
+$parser->set('cleanup',$distro != 'git' ? true : false);
 
 return $parser->render('complete.tpl');

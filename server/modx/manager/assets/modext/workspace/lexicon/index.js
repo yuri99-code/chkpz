@@ -11,7 +11,7 @@ MODx.page.LexiconManagement = function(config) {
             xtype: 'modx-panel-lexicon'
         }]
         ,buttons: [{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,handler: MODx.loadHelpPane
         }]
     });

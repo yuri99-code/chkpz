@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads the dashboard create page
  *
@@ -32,8 +30,8 @@ class SystemDashboardsCreateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return array
      */
-    public function process(array $scriptProperties = []) {
-        return [];
+    public function process(array $scriptProperties = array()) {
+        return array();
 
     }
 
@@ -71,7 +69,7 @@ class SystemDashboardsCreateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['dashboards','user'];
+        return array('dashboards','user');
     }
 
     /**

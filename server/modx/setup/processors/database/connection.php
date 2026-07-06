@@ -34,21 +34,19 @@ if (!$install->driver->verifyPDOExtension()) {
 /* get an instance of xPDO using the install settings */
 $xpdo = $install->getConnection($mode);
 
-$errors = [];
+$errors = array();
 $dbExists = false;
-if (!is_object($xpdo) || !($xpdo instanceof \xPDO\xPDO)) {
-    if (is_bool($xpdo) || is_null($xpdo)) {
+if (!is_object($xpdo) || !($xpdo instanceof xPDO)) {
+    if (is_bool($xpdo)) {
         $this->error->failure($install->lexicon('xpdo_err_ins'));
     } else {
         $this->error->failure($xpdo);
     }
 }
-$xpdo->setLogTarget(
-    [
+$xpdo->setLogTarget(array(
     'target' => 'ARRAY'
-    ,'options' => ['var' => & $errors]
-    ]
-);
+    ,'options' => array('var' => & $errors)
+));
 
 /* try to get a connection to the actual database */
 $dbExists = $xpdo->connect();
@@ -63,22 +61,20 @@ if (!$dbExists) {
                 ,$install->settings->get('database_password')
                 ,$install->settings->get('table_prefix')
         );
-        if (!is_object($xpdo) || !($xpdo instanceof \xPDO\xPDO)) {
+        if (!is_object($xpdo) || !($xpdo instanceof xPDO)) {
             $this->error->failure($install->lexicon('xpdo_err_ins'), $errors);
         }
-        $xpdo->setLogTarget(
-            [
+        $xpdo->setLogTarget(array(
             'target' => 'ARRAY'
-            ,'options' => ['var' => & $errors]
-            ]
-        );
+            ,'options' => array('var' => & $errors)
+        ));
         if (!$xpdo->connect()) {
             $this->error->failure($install->lexicon('db_err_connect_server'), $errors);
         }
     }
 }
 
-$data = [];
+$data = array();
 
 /* verify database versions */
 $server = $install->driver->verifyServerVersion();
@@ -118,30 +114,10 @@ if ($dbCharsets === null) {
 }
 $data['charsets'] = array_values($dbCharsets);
 
-$install->settings->store(
-    [
+$install->settings->store(array(
     'database_charset' => $data['charset'],
     'database_connection_charset' => $data['connection_charset'],
     'database_collation' => $data['collation'],
-    ]
-);
-
-/* test table prefix */
-$count = null;
-$database = $install->settings->get('dbase');
-$prefix = $install->settings->get('table_prefix');
-$stmt = $xpdo->query($install->driver->testTablePrefix($database,$prefix));
-if ($stmt) {
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($row) {
-        $count = (int) $row['ct'];
-    }
-    $stmt->closeCursor();
-}
-if ($mode === modInstall::MODE_NEW && $count !== null) {
-    $this->error->failure($install->lexicon('test_table_prefix_inuse'), $errors);
-} elseif (($mode === modInstall::MODE_UPGRADE_REVO || $mode === modInstall::MODE_UPGRADE_REVO_ADVANCED) && $count === null) {
-    $this->error->failure($install->lexicon('test_table_prefix_nf'), $errors);
-}
+));
 
 $this->error->success($install->lexicon('db_success'), $data);

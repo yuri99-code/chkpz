@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of MODX Revolution.
  *
@@ -9,20 +8,13 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modDashboard;
-use MODX\Revolution\modDashboardWidget;
-use MODX\Revolution\modDashboardWidgetPlacement;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modUserGroup;
-
 /**
  * Loads the dashboard update page
  *
  * @package modx
  * @subpackage manager.controllers
  */
-class SystemDashboardsUpdateManagerController extends modManagerController
-{
+class SystemDashboardsUpdateManagerController extends modManagerController {
     /** @var modDashboard $dashboard */
     public $dashboard;
     /** @var array $dashboardArray */
@@ -32,74 +24,55 @@ class SystemDashboardsUpdateManagerController extends modManagerController
      * Check for any permissions or requirements to load page
      * @return bool
      */
-    public function checkPermissions()
-    {
+    public function checkPermissions() {
         return $this->modx->hasPermission('dashboards');
     }
 
-
     /**
-     * @param array $scriptProperties
+     * Custom logic code here for setting placeholders, etc
      *
+     * @param array $scriptProperties
      * @return array
      */
-    public function process(array $scriptProperties = [])
-    {
-        if (empty($this->scriptProperties['id']) || strlen($this->scriptProperties['id']) !== strlen((int)$this->scriptProperties['id'])) {
-            $this->failure($this->modx->lexicon('dashboard_err_ns'));
-            return [];
+    public function process(array $scriptProperties = array()) {
+        if (empty($this->scriptProperties['id']) || strlen($this->scriptProperties['id']) !== strlen((integer)$this->scriptProperties['id'])) {
+            return $this->failure($this->modx->lexicon('dashboard_err_ns'));
         }
-        $this->dashboard = $this->modx->getObject(modDashboard::class, ['id' => $this->scriptProperties['id']]);
-        if (empty($this->dashboard)) {
-            $this->failure($this->modx->lexicon('dashboard_err_nf'));
-            return [];
-        }
+        $this->dashboard = $this->modx->getObject('modDashboard', array('id' => $this->scriptProperties['id']));
+        if (empty($this->dashboard)) return $this->failure($this->modx->lexicon('dashboard_err_nf'));
 
         $this->dashboardArray = $this->dashboard->toArray();
-
-        $coreDashboards = modDashboard::getCoreDashboards();
-        $dashboardKey = $this->dashboardArray['name'];
-        if (in_array($dashboardKey, $coreDashboards)) {
-            $this->dashboardArray['isProtected'] = true;
-            $this->dashboardArray['reserved'] = true;
-        }
-
         $this->dashboardArray['widgets'] = $this->getWidgets();
 
         return $this->dashboardArray;
+
     }
 
     /**
      * Get all the Widgets placed on this Dashboard
      * @return array
      */
-    public function getWidgets()
-    {
-        $c = $this->modx->newQuery(modDashboardWidgetPlacement::class);
-        $c->where([
+    public function getWidgets() {
+        $c = $this->modx->newQuery('modDashboardWidgetPlacement');
+        $c->where(array(
             'dashboard' => $this->dashboard->get('id'),
-            'user' => 0,
-        ]);
-        $c->sortby('modDashboardWidgetPlacement.rank', 'ASC');
-        $placements = $this->modx->getCollection(modDashboardWidgetPlacement::class, $c);
-        $list = [];
+        ));
+        $c->sortby('modDashboardWidgetPlacement.rank','ASC');
+        $placements = $this->modx->getCollection('modDashboardWidgetPlacement',$c);
+        $list = array();
         /** @var modDashboardWidgetPlacement $placement */
         foreach ($placements as $placement) {
             $placement->getOne('Widget');
+
             if (!($placement->Widget instanceof modDashboardWidget)) {
                 continue;
             }
+
             if ($placement->Widget->get('lexicon') != 'core:dashboards') {
                 $this->modx->lexicon->load($placement->Widget->get('lexicon'));
             }
             $widgetArray = $placement->Widget->toArray();
-            // Currently Dashboards do not have action-specific permissions, so hard code them
-            // here to true since view permission is needed to get to this point
-            $widgetArray['permissions'] = [
-                'edit' => true,
-                'delete' => true
-            ];
-            $list[] = [
+            $list[] = array(
                 $placement->get('dashboard'),
                 $placement->get('widget'),
                 $placement->get('rank'),
@@ -107,8 +80,7 @@ class SystemDashboardsUpdateManagerController extends modManagerController
                 $widgetArray['name_trans'],
                 $widgetArray['description'],
                 $widgetArray['description_trans'],
-                $widgetArray['permissions']
-            ];
+            );
         }
         return $list;
     }
@@ -117,37 +89,34 @@ class SystemDashboardsUpdateManagerController extends modManagerController
      * Get all the User Groups assigned to this Dashboard
      * @return array
      */
-    public function getUserGroups()
-    {
-        $list = [];
-        $c = $this->modx->newQuery(modUserGroup::class);
-        $c->where([
+    public function getUserGroups() {
+        $c = $this->modx->newQuery('modUserGroup');
+        $c->where(array(
             'dashboard' => $this->dashboard->get('id'),
-        ]);
-        $c->sortby('name', 'ASC');
-        $usergroups = $this->modx->getIterator(modUserGroup::class, $c);
+        ));
+        $c->sortby('name','ASC');
+        $usergroups = $this->modx->getCollection('modUserGroup',$c);
+        $list = array();
         /** @var modUserGroup $usergroup */
         foreach ($usergroups as $usergroup) {
-            $list[] = [$usergroup->get('id'), $usergroup->get('name')];
+            $list[] = array($usergroup->get('id'),$usergroup->get('name'));
         }
-
         return $list;
     }
-
 
     /**
      * Register custom CSS/JS for the page
      * @return void
      */
-    public function loadCustomCssJs()
-    {
-        $this->addJavascript($this->modx->getOption('manager_url') . "assets/modext/widgets/system/modx.panel.dashboard.js");
-        $this->addJavascript($this->modx->getOption('manager_url') . 'assets/modext/sections/system/dashboards/update.js');
-        $data = json_encode([
-            'xtype' => 'modx-page-dashboard-update',
-            'record' => $this->dashboardArray,
-        ], JSON_INVALID_UTF8_SUBSTITUTE);
-        $this->addHtml('<script>Ext.onReady(function(){MODx.load(' . $data . ')});</script>');
+    public function loadCustomCssJs() {
+        $this->addJavascript($this->modx->getOption('manager_url')."assets/modext/widgets/system/modx.panel.dashboard.js");
+        $this->addJavascript($this->modx->getOption('manager_url').'assets/modext/sections/system/dashboards/update.js');
+        $this->addHtml('<script>Ext.onReady(function() {
+    MODx.load({
+        xtype: "modx-page-dashboard-update"
+        ,record: '.$this->modx->toJSON($this->dashboardArray).'
+    });
+});</script>');
     }
 
     /**
@@ -155,17 +124,15 @@ class SystemDashboardsUpdateManagerController extends modManagerController
      *
      * @return string
      */
-    public function getPageTitle()
-    {
-        return $this->modx->lexicon('dashboards') . ': ' . $this->dashboardArray['name'];
+    public function getPageTitle() {
+        return $this->modx->lexicon('dashboards');
     }
 
     /**
      * Return the location of the template file
      * @return string
      */
-    public function getTemplateFile()
-    {
+    public function getTemplateFile() {
         return '';
     }
 
@@ -173,17 +140,15 @@ class SystemDashboardsUpdateManagerController extends modManagerController
      * Specify the language topics to load
      * @return array
      */
-    public function getLanguageTopics()
-    {
-        return ['dashboards','user'];
+    public function getLanguageTopics() {
+        return array('dashboards','user');
     }
 
     /**
      * Get the Help URL
      * @return string
      */
-    public function getHelpUrl()
-    {
+    public function getHelpUrl() {
         return 'Dashboards';
     }
 }

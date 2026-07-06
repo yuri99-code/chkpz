@@ -9,13 +9,17 @@ MODx.window.PackageUninstall = function(config) {
     Ext.applyIf(config,{
         title: _('package_uninstall')
         ,url: MODx.config.connector_url
-        ,action: 'Workspace/Packages/Uninstall'
+        ,action: 'workspace/packages/uninstall'
+        // ,height: 400
+        // ,width: 400
         ,id: 'modx-window-package-uninstall'
         ,cls: 'modx-confirm'
         ,saveBtnText: _('uninstall')
         ,fields: [{
             html: _('preexisting_mode_select')
             ,cls: 'win-desc panel-desc'
+            // ,border: false
+            // ,autoHeight: true
         },{
             xtype: 'radio'
             ,name: 'preexisting_mode'
@@ -60,7 +64,7 @@ MODx.window.RemovePackage = function(config) {
         title: _('package_remove')
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Workspace/Packages/Uninstall'
+            action: 'workspace/packages/uninstall'
         }
         ,cls: 'modx-confirm'
         ,defaults: { border: false }
@@ -93,7 +97,7 @@ Ext.extend(MODx.window.RemovePackage,MODx.Window,{
         if (this.fp.getForm().isValid()) {
             Ext.getCmp('modx-package-grid').loadConsole(Ext.getBody(),r.topic);
             this.fp.getForm().baseParams = {
-                action: 'Workspace/Packages/Remove'
+                action: 'workspace/packages/remove'
                 ,signature: r.signature
                 ,register: 'mgr'
                 ,topic: r.topic
@@ -137,7 +141,7 @@ MODx.window.PurgePackages = function(config) {
         title: _('packages_purge')
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Workspace/Packages/Purge'
+            action: 'workspace/packages/purge'
         }
         ,cls: 'modx-confirm'
         ,defaults: { border: false }
@@ -159,7 +163,7 @@ Ext.extend(MODx.window.PurgePackages,MODx.Window,{
         if (this.fp.getForm().isValid()) {
             Ext.getCmp('modx-package-grid').loadConsole(Ext.getBody(),r.topic);
             this.fp.getForm().baseParams = {
-                action: 'Workspace/Packages/Purge'
+                action: 'workspace/packages/purge'
                 ,register: 'mgr'
                 ,topic: r.topic
             };
@@ -256,7 +260,6 @@ MODx.window.ChangeProvider = function(config) {
         title: _('provider_select')
         ,width: 600 // prevents primary button text from being cut off if it is a long string
 		,layout: 'form'
-        ,closeAction: 'hide'
 		,items:[{
 			xtype: 'modx-template-panel'
 			,id: 'modx-cp-panel'
@@ -267,17 +270,15 @@ MODx.window.ChangeProvider = function(config) {
 			xtype: 'form'
 			,id: 'change-provider-form'
 			,border: false
+			// ,bodyCssClass: 'main-wrapper'
 			,items:[{
 				fieldLabel: _('provider')
 				,xtype: 'modx-combo-provider'
 				,id: 'modx-pdselprov-provider'
                 ,anchor: '100%'
 				,allowBlank: false
-                ,msgTarget: 'under'
-                ,labelSeparator: ''
-                ,blankText: _('provider_err_not_selected')
 				,baseParams: {
-                    action: 'Workspace/Providers/GetList'
+                    action: 'workspace/providers/getList'
                     ,showNone: false
                 }
 			}]
@@ -285,9 +286,7 @@ MODx.window.ChangeProvider = function(config) {
 		,buttons :[{
 			text: config.cancelBtnText || _('cancel')
             ,scope: this
-            ,handler: function() {
-                this.hide();
-            }
+            ,handler: function() { this.hide(); }
 		},{
 			text: _('save_and_go_to_browser')
             ,cls: 'primary-button'
@@ -296,13 +295,7 @@ MODx.window.ChangeProvider = function(config) {
 			,scope: this
 		}]
     });
-
     MODx.window.ChangeProvider.superclass.constructor.call(this,config);
-
-    this.on('beforehide', function(){
-        var form = Ext.getCmp('change-provider-form').getForm();
-        form.clearInvalid();
-    });
 };
 Ext.extend(MODx.window.ChangeProvider,Ext.Window,{ //Using MODx.Window would create an empty unused form (It's not a bug))
 	submit: function(o) {
@@ -316,7 +309,7 @@ Ext.extend(MODx.window.ChangeProvider,Ext.Window,{ //Using MODx.Window would cre
             if (tree.rendered) {
                 var loader = tree.getLoader();
                 loader.baseParams = {
-                    action: 'Workspace/Packages/Rest/GetNodes'
+                    action: 'workspace/packages/rest/getNodes'
                     ,provider: vs.provider
                 };
                 loader.load(tree.root);

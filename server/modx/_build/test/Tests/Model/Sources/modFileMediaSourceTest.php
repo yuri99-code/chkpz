@@ -9,13 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Sources;
-
-
-use League\Flysystem\Filesystem;
-use MODX\Revolution\modContext;
-use MODX\Revolution\MODxTestCase;
-use MODX\Revolution\Sources\modFileMediaSource;
 
 /**
  * Tests related to the modFileMediaSource class.
@@ -31,44 +24,32 @@ class modFileMediaSourceTest extends MODxTestCase {
     public $source;
 
     /**
-     * Setup fixtures before each test.
-     *
-     * @before
+     * @return void
      */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
+    public function setUp() {
+        parent::setUp();
 
-        $this->source = $this->modx->newObject(modFileMediaSource::class);
-        $this->source->fromArray([
+        $this->modx->loadClass('sources.modMediaSource');
+        $this->modx->loadClass('sources.modFileMediaSource');
+        $this->source = $this->modx->newObject('sources.modFileMediaSource');
+        $this->source->fromArray(array(
             'name' => 'UnitTestFileSource',
             'description' => '',
-            'class_key' => modFileMediaSource::class,
-            'properties' => [],
-        ],'',true);
+            'class_key' => 'sources.modFileMediaSource',
+            'properties' => array(),
+        ),'',true);
     }
-    /**
-     * Tear down fixtures after each test.
-     *
-     * @after
-     */
-    public function tearDownFixtures() {
-        parent::tearDownFixtures();
+    public function tearDown() {
+        parent::tearDown();
         $this->source = null;
     }
 
     public function testInitialize() {
         $this->source->initialize();
-
-        /** @var Filesystem $filesystem */
-        $filesystem = $this->source->getFilesystem();
-
-        /** @var modContext $context */
-        $context = $this->source->getContext();
-
-        $this->assertNotEmpty($filesystem);
-        $this->assertInstanceOf('League\Flysystem\Filesystem', $filesystem);
-        $this->assertNotEmpty($context);
-        $this->assertInstanceOf(modContext::class, $context);
+        $this->assertNotEmpty($this->source->fileHandler);
+        $this->assertInstanceOf('modFileHandler',$this->source->fileHandler);
+        $this->assertNotEmpty($this->source->ctx);
+        $this->assertInstanceOf('modContext',$this->source->ctx);
     }
 
     /**

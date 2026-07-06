@@ -8,10 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modCategory;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modSystemEvent;
-
 /**
  * Load create snippet page
  *
@@ -45,6 +41,7 @@ class ElementSnippetCreateManagerController extends modManagerController {
         <script>
         // <![CDATA[
         MODx.onSnipFormRender = "'.$this->onSnipFormRender.'";
+        MODx.perm.unlock_element_properties = "'.($this->modx->hasPermission('unlock_element_properties') ? 1 : 0).'";
         Ext.onReady(function() {
             MODx.load({
                 xtype: "modx-page-snippet-create"
@@ -62,14 +59,13 @@ class ElementSnippetCreateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = [])
-    {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* grab category if preset */
         if (isset($scriptProperties['category'])) {
-            $this->category = $this->modx->getObject(modCategory::class, $scriptProperties['category']);
-            if ($this->category !== null) {
+            $this->category = $this->modx->getObject('modCategory',$scriptProperties['category']);
+            if ($this->category != null) {
                 $placeholders['category'] = $this->category;
             }
         }
@@ -87,10 +83,10 @@ class ElementSnippetCreateManagerController extends modManagerController {
     public function firePreRenderEvents() {
         /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML
         into the panel */
-        $this->onSnipFormPrerender = $this->modx->invokeEvent('OnSnipFormPrerender', [
+        $this->onSnipFormPrerender = $this->modx->invokeEvent('OnSnipFormPrerender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onSnipFormPrerender)) $this->onSnipFormPrerender = implode('',$this->onSnipFormPrerender);
         $this->setPlaceholder('onSnipFormPrerender', $this->onSnipFormPrerender);
     }
@@ -100,12 +96,12 @@ class ElementSnippetCreateManagerController extends modManagerController {
      * @return string
      */
     public function fireRenderEvent() {
-        $this->onSnipFormRender = $this->modx->invokeEvent('OnSnipFormRender', [
+        $this->onSnipFormRender = $this->modx->invokeEvent('OnSnipFormRender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onSnipFormRender)) $this->onSnipFormRender = implode('',$this->onSnipFormRender);
-        $this->onSnipFormRender = str_replace(['"',"\n","\r"], ['\"','',''],$this->onSnipFormRender);
+        $this->onSnipFormRender = str_replace(array('"',"\n","\r"),array('\"','',''),$this->onSnipFormRender);
         return $this->onSnipFormRender;
     }
 
@@ -131,7 +127,7 @@ class ElementSnippetCreateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['snippet','category','system_events','propertyset','element'];
+        return array('snippet','category','system_events','propertyset','element');
     }
 
     /**

@@ -5,6 +5,7 @@ MODx.Console = function(config) {
         title: _('console')
         ,modal: Ext.isIE ? false : true
         ,closeAction: 'hide'
+        // ,shadow: true
         ,resizable: false
         ,collapsible: false
         ,closable: true
@@ -61,6 +62,7 @@ MODx.Console = function(config) {
             } catch (e) {}
         }
         this.fireEvent('shutdown');
+        //this.getComponent('body').el.update('');
         this.destroy();
     });
     this.on('complete',this.onComplete,this);
@@ -79,7 +81,7 @@ Ext.extend(MODx.Console,Ext.Window,{
             ,url: MODx.config.connector_url
             ,interval: 1000
             ,baseParams: {
-                action: 'System/Console'
+                action: 'system/console'
                 ,register: this.config.register || ''
                 ,topic: this.config.topic || ''
                 ,clear: false
@@ -119,12 +121,12 @@ Ext.extend(MODx.Console,Ext.Window,{
         MODx.Ajax.request({
             url: MODx.config.connector_url
             ,params: {
-                action: 'System/DownloadOutput'
+                action: 'system/downloadoutput'
                 ,data: c
             }
             ,listeners: {
                 'success':{fn:function(r) {
-                    location.href = MODx.config.connector_url+'?action=System/DownloadOutput&HTTP_MODAUTH='+MODx.siteId+'&download='+r.message;
+                    location.href = MODx.config.connector_url+'?action=system/downloadOutput&HTTP_MODAUTH='+MODx.siteId+'&download='+r.message;
                 },scope:this}
             }
         });

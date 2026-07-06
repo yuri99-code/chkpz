@@ -7,15 +7,6 @@
  * For complete copyright and license information, see the COPYRIGHT and LICENSE
  * files found in the top-level directory of this distribution.
  */
-
-use MODX\Revolution\modWorkspace;
-use xPDO\Transport\xPDOTransport;
-use xPDO\xPDO;
-
-/**
- * @package modx
- * @subpackage setup
- */
 abstract class modInstallRunner {
     const RESULT_FAILURE = 'failed';
     const RESULT_ERROR = 'error';
@@ -27,21 +18,21 @@ abstract class modInstallRunner {
     /** @var xPDO $xpdo */
     public $xpdo;
     /** @var array $config */
-    public $config = [];
+    public $config = array();
 
     public $success = false;
 
     /** @var modInstallVersion $versioner */
     public $versioner;
     /** @var array $results */
-    public $results = [];
+    public $results = array();
 
-    function __construct(modInstall $install,array $config = []) {
+    function __construct(modInstall $install,array $config = array()) {
         $this->install =& $install;
         $this->xpdo =& $install->xpdo;
-        $this->config = array_merge([
+        $this->config = array_merge(array(
 
-        ],$config);
+        ),$config);
     }
 
     public function run($mode) {
@@ -54,10 +45,10 @@ abstract class modInstallRunner {
     }
 
     public function addResult($type,$message) {
-        $this->results[] = [
+        $this->results[] = array(
             'class' => $type,
             'msg' => $message,
-        ];
+        );
     }
 
     public function getResults() {
@@ -78,7 +69,7 @@ abstract class modInstallRunner {
             $this->versioner = new $className($this);
             return $this->versioner;
         } else {
-            $this->install->_fatalError($this->install->lexicon('versioner_err_nf', ['path' => $path]));
+            $this->install->_fatalError($this->install->lexicon('versioner_err_nf',array('path' => $path)));
         }
         return $this->versioner;
     }
@@ -90,9 +81,9 @@ abstract class modInstallRunner {
     public function updateWorkspace() {
         $updated = false;
         /* @var modWorkspace $workspace set default workspace path */
-        $workspace = $this->install->xpdo->getObject(modWorkspace::class, [
+        $workspace = $this->install->xpdo->getObject('modWorkspace', array (
             'active' => 1
-        ]);
+        ));
         if ($workspace) {
             $path = $workspace->get('path');
             if (!empty($path)) {
@@ -118,12 +109,13 @@ abstract class modInstallRunner {
      */
     public function installPackage() {
         /* add required core data */
+        $this->install->xpdo->loadClass('transport.xPDOTransport', XPDO_CORE_PATH, true, true);
+
         $packageDirectory = MODX_CORE_PATH . 'packages/';
         $packageState = $this->install->settings->get('unpacked') == 1 ? xPDOTransport::STATE_UNPACKED : xPDOTransport::STATE_PACKED;
         $package = xPDOTransport :: retrieve($this->install->xpdo, $packageDirectory . 'core.transport.zip', $packageDirectory, $packageState);
         if (!is_object($package) || !($package instanceof xPDOTransport)) {
-            $this->addResult(modInstallRunner::RESULT_FAILURE,'<p class="notok">'.$this->install->lexicon('package_execute_err_retrieve',
-                    ['path' => $this->install->settings->get('core_path')]).'</p>');
+            $this->addResult(modInstallRunner::RESULT_FAILURE,'<p class="notok">'.$this->install->lexicon('package_execute_err_retrieve',array('path' => $this->install->settings->get('core_path'))).'</p>');
             return false;
         }
 
@@ -149,11 +141,11 @@ abstract class modInstallRunner {
         if (!defined('MODX_CONNECTORS_URL'))
             define('MODX_CONNECTORS_URL', $this->install->settings->get('context_connectors_url'));
 
-        return $package->install([
+        return $package->install(array (
             xPDOTransport::RESOLVE_FILES => ($this->install->settings->get('inplace') == 0 ? 1 : 0)
             ,xPDOTransport::INSTALL_FILES => ($this->install->settings->get('inplace') == 0 ? 1 : 0)
             , xPDOTransport::PREEXISTING_MODE => xPDOTransport::REMOVE_PREEXISTING
-        ]);
+        ));
     }
 
 
@@ -166,6 +158,15 @@ abstract class modInstallRunner {
         $written = false;
         $configTpl = MODX_CORE_PATH . 'docs/config.inc.tpl';
         $configFile = MODX_CORE_PATH . 'config/' . MODX_CONFIG_KEY . '.inc.php';
+
+        /**
+         * Sanitize MySQL Password before writing to config, escaping '
+         * I'm sure there's a better way to do this, but this works for now.
+         * Otherwise, we risk fatal PHP errors if the entered Password
+         * contains any single quotes as they would escape the string.
+         * See GitHub issue 12502 for more information. https://github.com/modxcms/revolution/issues/12502
+         */
+        $this->install->settings->settings['database_password'] = addslashes($this->install->settings->settings['database_password']);
 
         $settings = $this->install->settings->fetch();
         $settings['last_install_time'] = time();
@@ -181,13 +182,8 @@ abstract class modInstallRunner {
                 $content = @ fread($tplHandle, filesize($configTpl));
                 @ fclose($tplHandle);
                 if ($content) {
-                    $replace = [];
+                    $replace = array ();
                     foreach ($settings as $key => $value) {
-                        // Sanitize MySQL Password before writing to config, escaping single quotes and backslashes (https://github.com/modxcms/revolution/issues/12502)
-                        if ($key == 'database_password') {
-                            $value = str_replace("\\", "\\\\", $value);
-                            $value = str_replace("'", "\\'", $value);
-                        }
                         if (is_scalar($value)) {
                             $replace['{' . $key . '}'] = "{$value}";
                         } elseif (is_array($value)) {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-06-27 17:25:24
+/* Smarty version 3.1.48, created on 2026-07-01 17:09:23
   from '/var/www/html/setup/templates/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.5.6',
-  'unifunc' => 'content_6a4007840c8bf2_61492236',
+  'version' => '3.1.48',
+  'unifunc' => 'content_6a4549c3c046d4_00910530',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6cc7fb633ff7f8d61caef456d817a1c85ef11b62' => 
     array (
       0 => '/var/www/html/setup/templates/header.tpl',
-      1 => 1782222764,
+      1 => 1742327582,
       2 => 'file',
     ),
   ),
@@ -20,123 +20,79 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6a4007840c8bf2_61492236 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6a4549c3c046d4_00910530 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
-<html lang="en">
-
+<html xml:lang="en" lang="en">
 <head>
     <title><?php echo $_smarty_tpl->tpl_vars['app_name']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['app_version']->value;?>
  &raquo; <?php echo $_smarty_tpl->tpl_vars['_lang']->value['install'];?>
 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="all" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="assets/css/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="assets/css/960.css" />
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/modx.css" type="text/css" media="screen" />
 
-    <base href="<?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-">
+    <link rel="stylesheet" href="assets/css/print.css" type="text/css" media="print" />
 
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link href="assets/css/installer.css" type="text/css" rel="stylesheet" />
-
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     <?php if ($_smarty_tpl->tpl_vars['_lang']->value['additional_css'] != '') {?>
-        <style type="text/css"> <?php echo $_smarty_tpl->tpl_vars['_lang']->value['additional_css'];?>
- </style>
+    <style type="text/css"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['additional_css'];?>
+</style>
     <?php }?>
-
     <?php echo '<script'; ?>
  src="assets/js/ext-core.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  src="assets/js/modx.setup.js"><?php echo '</script'; ?>
 >
-    <?php echo '<script'; ?>
+    <!--[if lt IE 7]>
+    
+        <?php echo '<script'; ?>
+ src="assets/js/inc/say.no.to.ie.6.js"><?php echo '</script'; ?>
 >
-        window.onload = function () {
-            var url_string = window.location.href;
-            var url = new URL(url_string);
-            var action = url.searchParams.get('action');
-
-            switch (action) {
-                case 'welcome':
-                    setCurrent(0);
-                    break;
-                case 'options':
-                    setCurrent(1);
-                    break;
-                case 'database':
-                    setCurrent(2);
-                    break;
-                case 'contexts':
-                    setCurrent(3);
-                    break;
-                case 'summary':
-                    setCurrent(4);
-                    break;
-                case 'install':
-                    setCurrent(5);
-                    break;
-                case 'complete':
-                    setCurrent(6);
-                    break;
-                default:
-                    setCurrent(0);
-            }
-
-            function setCurrent(index) {
-                for (let i = 0; i < index; i++) {
-                    document.querySelectorAll('.modx-installer-steps li')[i].classList.add('active');
-                }
-                document.querySelectorAll('.modx-installer-steps li')[index].classList.add('current');
-            }
+        <style type="text/css">
+        body {
+            behavior:url("assets/js/inc/csshover2.htc");
         }
-    <?php echo '</script'; ?>
->
+        .pngfix {
+            behavior:url("assets/js/inc/iepngfix.htc");
+        }
+        </style>
+        
+    <![endif]-->
 
 </head>
 
 <body>
-    <!-- start header -->
-    <header>
-        <div class="wrapper">
-            <div class="wrapper_logo">
-                <a href="https://modx.com/" title="MODX" class="logo" target="_blank">MODX</a>
+<!-- start header -->
+<div id="header">
+    <div class="container_12">
+        <div id="metaheader">
+            <div class="grid_6">
+                <div id="mainheader">
+                    <h1 id="logo" class="pngfix"><span>MODX</span></h1>
+                </div>
             </div>
-            <div class="wrapper_version">
-                <?php echo $_smarty_tpl->tpl_vars['app_name']->value;?>
+            <div id="metanav" class="grid_6">
+<a href="#"><strong><?php echo $_smarty_tpl->tpl_vars['app_name']->value;?>
+</strong>&nbsp;<em><?php echo $_smarty_tpl->tpl_vars['_lang']->value['version'];?>
  <?php echo $_smarty_tpl->tpl_vars['app_version']->value;?>
-
-            </div>
-            <div class="steps-outer">
-                <ul class="modx-installer-steps">
-                    <li><span class="icon"></span> <span class="title"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['step_welcome'];?>
-</span></li>
-                    <li><span class="icon"></span> <span class="title"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['step_options'];?>
-</span></li>
-                    <li><span class="icon"></span> <span class="title"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['step_connect'];?>
-</span></li>
-                    <li><span class="icon"></span> <span class="title"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['step_contexts'];?>
-</span></li>
-                    <li><span class="icon"></span> <span class="title"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['step_test'];?>
-</span></li>
-                    <li><span class="icon"></span> <span class="title"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['step_install'];?>
-</span></li>
-                    <li><span class="icon"></span> <span class="title"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['step_complete'];?>
-</span></li>
-                </ul>
+</em></a>
             </div>
         </div>
-    </header>
-    <!-- end header -->
+        <div class="clear">&nbsp;</div>
+    </div>
+</div>
+<!-- end header -->
 
-    <div id="content">
-        <div class="content-inside">
-            <div class="wrapper">
-                <div class="content_header">
-                    <div class="content_header_title">
-                        <?php echo $_smarty_tpl->tpl_vars['_lang']->value['modx_installer'];?>
+<div id="contentarea">
+    <div class="container_16">
+       <!-- start content -->
+        <div id="content" class="grid_12">
 
-                    </div>
-                </div>
 <?php }
 }

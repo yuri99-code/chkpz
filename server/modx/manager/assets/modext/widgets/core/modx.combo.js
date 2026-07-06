@@ -59,9 +59,10 @@ MODx.combo.ComboBox = function(config,getStore) {
         ,triggerAction: 'all'
         ,fields: ['id','name']
         ,baseParams: {
-            action: 'GetList'
+            action: 'getList'
         }
         ,width: 150
+        // ,listWidth: 300
         ,editable: false
         ,resizable: true
         ,typeAhead: false
@@ -108,6 +109,7 @@ MODx.combo.ComboBox = function(config,getStore) {
         // Workaround to let the combobox know the store is loaded (to help hide/display the pagination if required)
         this.fireEvent('loaded', this);
         this.loaded = true;
+
         // Show the pagination panel if it didn't show up earlier
         if (this.isExpanded() && this.pageSize < this.store.getTotalCount()
             && typeof this.pageTb !== 'undefined' && this.pageTb.hidden === true) {
@@ -125,10 +127,10 @@ Ext.extend(MODx.combo.ComboBox,Ext.form.ComboBox, {
             return;
         }
 
-        // unfortunately there is no default indicator for whether a combo is open or not, so we add a class here
+        // unfortunately there is no default indicator wether a combo is open or not, so we add a class here
         this.wrap.addClass('x-trigger-wrap-open');
 
-        if (this.mode === 'remote' && !this.loaded && this.tries < 4) {
+        if (this.mode == 'remote' && !this.loaded && this.tries < 4) {
             // Store not yet loaded, let's wait a little bit
             this.tries += 1;
             Ext.defer(this.expand, 250, this);
@@ -172,13 +174,12 @@ Ext.extend(MODx.combo.ComboBox,Ext.form.ComboBox, {
 });
 Ext.reg('modx-combo',MODx.combo.ComboBox);
 
-Ext.util.Format.comboRenderer = function (combo, val) {
-    return function (v, md, rec, ri, ci, s) {
+Ext.util.Format.comboRenderer = function (combo,val) {
+    return function (v,md,rec,ri,ci,s) {
         if (!s) return v;
         if (!combo.findRecord) return v;
         var record = combo.findRecord(combo.valueField, v);
-        val = record ? record.get(combo.displayField) : val;
-        return Ext.util.Format.htmlEncode(val);
+        return record ? record.get(combo.displayField) : val;
     }
 };
 
@@ -248,7 +249,7 @@ MODx.combo.User = function(config) {
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/User/GetList'
+            action: 'security/user/getlist'
         }
         ,typeAhead: true
         ,editable: true
@@ -266,10 +267,11 @@ MODx.combo.UserGroup = function(config) {
         ,displayField: 'name'
         ,valueField: 'id'
         ,fields: ['name','id','description']
+        // ,listWidth: 300
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/Group/GetList'
+            action: 'security/group/getlist'
         }
         ,tpl: new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item"><span style="font-weight: bold">{name:htmlEncode}</span>'
             ,'<br />{description:htmlEncode}</div></tpl>')
@@ -290,7 +292,7 @@ MODx.combo.UserGroupRole = function(config) {
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/Role/GetList'
+            action: 'security/role/getlist'
         }
     });
     MODx.combo.UserGroupRole.superclass.constructor.call(this,config);
@@ -309,7 +311,7 @@ MODx.combo.EventGroup = function(config) {
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Event/GroupList'
+            action: 'system/event/grouplist'
         }
         ,tpl: new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item"><span style="font-weight: bold">{name:htmlEncode}</span>','</div></tpl>')
     });
@@ -329,7 +331,7 @@ MODx.combo.ResourceGroup = function(config) {
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/ResourceGroup/GetList'
+            action: 'security/resourcegroup/getlist'
         }
     });
     MODx.combo.ResourceGroup.superclass.constructor.call(this,config);
@@ -348,7 +350,7 @@ MODx.combo.Context = function(config) {
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Context/GetList',
+            action: 'context/getlist',
             exclude: config.exclude || ''
         }
         ,tpl: new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item"><span style="font-weight: bold">{name:htmlEncode}</span> <span style="font-style: italic; font-size: small;">({key:htmlEncode})</span></div></tpl>')
@@ -371,7 +373,7 @@ MODx.combo.Policy = function(config) {
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/Access/Policy/GetList'
+            action: 'security/access/policy/getlist'
         }
     });
     MODx.combo.Policy.superclass.constructor.call(this,config);
@@ -382,45 +384,22 @@ Ext.reg('modx-combo-policy',MODx.combo.Policy);
 MODx.combo.Template = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        url         : MODx.config.connector_url,
-        baseParams  : {
-            action      : 'Element/Template/GetList',
-            combo       : true
-        },
-        fields      : ['id', 'templatename', 'description', 'category_name', 'preview', 'time'],
-        name        : 'template',
-        hiddenName  : 'template',
-        displayField : 'templatename',
-        valueField  : 'id',
-        pageSize    : 20,
-        allowBlank  : true,
-        editable    : true,
-        typeAhead   : true,
-        tpl         : new Ext.XTemplate('<tpl for=".">' +
-            '<tpl if="!Ext.isEmpty(this.getGroup(values.category_name, values.time))">' +
-            '<div class="x-combo-list-group">{this.label:htmlEncode}</div>' +
-            '</tpl>' +
-            '<div class="x-combo-list-item x-combo-list-item-grouped">' +
-            '<div class="x-combo-list-title">{templatename:htmlEncode}</div>' +
-            '{description:htmlEncode()}' +
-            '</div>' +
-            '</tpl>', {
-            group    : null,
-            label    : null,
-            getGroup : function(label, time) {
-                var group = time + '_' + label;
-
-                if (group !== this.group) {
-                    if (!Ext.isEmpty(group)) {
-                        this.group = group;
-
-                        return this.label = label;
-                    }
-                }
-
-                return null;
-            }
-        })
+        name: 'template'
+        ,hiddenName: 'template'
+        ,displayField: 'templatename'
+        ,valueField: 'id'
+        ,pageSize: 20
+        ,fields: ['id','templatename','description','category_name']
+        ,tpl: new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item"><span style="font-weight: bold">{templatename:htmlEncode}</span>'
+            ,'<tpl if="category_name"> - <span style="font-style:italic">{category_name:htmlEncode}</span></tpl>'
+            ,'<br />{description:htmlEncode()}</div></tpl>')
+        ,url: MODx.config.connector_url
+        ,baseParams: {
+            action: 'element/template/getlist'
+            ,combo: 1
+        }
+        // ,listWidth: 350
+        ,allowBlank: true
     });
     MODx.combo.Template.superclass.constructor.call(this,config);
 };
@@ -434,6 +413,7 @@ MODx.combo.Category = function(config) {
         ,hiddenName: 'category'
         ,displayField: 'name'
         ,valueField: 'id'
+        ,mode: 'remote'
         ,fields: ['id','category','parent','name']
         ,forceSelection: true
         ,typeAhead: false
@@ -443,7 +423,7 @@ MODx.combo.Category = function(config) {
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Element/Category/GetList'
+            action: 'element/category/getlist'
             ,showNone: true
             ,limit: 0
         }
@@ -471,9 +451,10 @@ MODx.combo.Language = function(config) {
         ,minChars: 1
         ,editable: true
         ,allowBlank: true
+        // ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Language/GetList'
+            action: 'system/language/getlist'
         }
     });
     MODx.combo.Language.superclass.constructor.call(this,config);
@@ -493,9 +474,10 @@ MODx.combo.Charset = function(config) {
         ,typeAhead: false
         ,editable: false
         ,allowBlank: false
+        // ,listWidth: 300
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Charset/GetList'
+            action: 'system/charset/getlist'
         }
     });
     MODx.combo.Charset.superclass.constructor.call(this,config);
@@ -515,9 +497,10 @@ MODx.combo.RTE = function(config) {
         ,typeAhead: false
         ,editable: false
         ,allowBlank: false
+        // ,listWidth: 300
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Rte/GetList'
+            action: 'system/rte/getlist'
         }
     });
     MODx.combo.RTE.superclass.constructor.call(this,config);
@@ -534,10 +517,11 @@ MODx.combo.Role = function(config) {
         ,typeAhead: false
         ,editable: false
         ,allowBlank: false
+        // ,listWidth: 300
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/Role/GetList'
+            action: 'security/role/getlist'
             ,addNone: true
         }
     });
@@ -555,10 +539,11 @@ MODx.combo.ContentType = function(config) {
         ,typeAhead: false
         ,editable: false
         ,allowBlank: false
+        // ,listWidth: 300
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/ContentType/GetList'
+            action: 'system/contenttype/getlist'
         }
     });
     MODx.combo.ContentType.superclass.constructor.call(this,config);
@@ -589,6 +574,26 @@ MODx.combo.ContentDisposition = function(config) {
 Ext.extend(MODx.combo.ContentDisposition,MODx.combo.ComboBox);
 Ext.reg('modx-combo-content-disposition',MODx.combo.ContentDisposition);
 
+MODx.combo.ClassMap = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        name: 'class'
+        ,hiddenName: 'class'
+        ,url: MODx.config.connector_url
+        ,baseParams: {
+            action: 'system/classmap/getlist'
+        }
+        ,displayField: 'class'
+        ,valueField: 'class'
+        ,fields: ['class']
+        ,editable: false
+        ,pageSize: 20
+    });
+    MODx.combo.ClassMap.superclass.constructor.call(this,config);
+};
+Ext.extend(MODx.combo.ClassMap,MODx.combo.ComboBox);
+Ext.reg('modx-combo-class-map',MODx.combo.ClassMap);
+
 MODx.combo.ClassDerivatives = function(config) {
     config = config || {};
     Ext.applyIf(config,{
@@ -596,8 +601,9 @@ MODx.combo.ClassDerivatives = function(config) {
         ,hiddenName: 'class'
         ,url: MODx.config.connector_url
         ,baseParams: {
-            'action': 'System/Derivatives/GetList',
-            'class': 'MODX\\Revolution\\modResource'
+            action: 'system/derivatives/getList'
+            ,skip: 'modXMLRPCResource'
+            ,'class': 'modResource'
         }
         ,displayField: 'name'
         ,valueField: 'id'
@@ -606,12 +612,34 @@ MODx.combo.ClassDerivatives = function(config) {
         ,typeAhead: false
         ,editable: false
         ,allowBlank: false
+        // ,listWidth: 300
         ,pageSize: 20
     });
     MODx.combo.ClassDerivatives.superclass.constructor.call(this,config);
 };
 Ext.extend(MODx.combo.ClassDerivatives,MODx.combo.ComboBox);
 Ext.reg('modx-combo-class-derivatives',MODx.combo.ClassDerivatives);
+
+MODx.combo.Object = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        name: 'object'
+        ,hiddenName: 'object'
+        ,url: MODx.config.connector_url
+        ,baseParams: {
+            action: 'workspace/builder/getAssocObject'
+            ,class_key: 'modResource'
+        }
+        ,displayField: 'name'
+        ,valueField: 'id'
+        ,fields: ['id','name']
+        ,pageSize: 10
+        ,editable: false
+    });
+    MODx.combo.Object.superclass.constructor.call(this,config);
+};
+Ext.extend(MODx.combo.Object,MODx.combo.ComboBox);
+Ext.reg('modx-combo-object',MODx.combo.Object);
 
 MODx.combo.Namespace = function(config) {
     config = config || {};
@@ -620,14 +648,15 @@ MODx.combo.Namespace = function(config) {
         ,hiddenName: 'namespace'
         ,typeAhead: true
         ,minChars: 1
-        ,queryParam: 'query'
+        ,queryParam: 'search'
         ,editable: true
         ,allowBlank: true
         ,preselectValue: false
+        // ,listWidth: 300
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Workspace/PackageNamespace/GetList'
+            action: 'workspace/namespace/getlist'
         }
         ,fields: ['name']
         ,displayField: 'name'
@@ -684,26 +713,29 @@ Ext.extend(MODx.combo.Browser,Ext.form.TriggerField,{
         if (this.disabled){
             return false;
         }
-        this.browser = MODx.load({
-            xtype: 'modx-browser'
-            ,closeAction: 'close'
-            ,id: Ext.id()
-            ,multiple: true
-            ,source: this.config.source || MODx.config.default_media_source
-            ,hideFiles: this.config.hideFiles || false
-            ,rootVisible: this.config.rootVisible || false
-            ,allowedFileTypes: this.config.allowedFileTypes || ''
-            ,wctx: this.config.wctx || 'web'
-            ,openTo: this.config.openTo || ''
-            ,rootId: this.config.rootId || '/'
-            ,hideSourceCombo: this.config.hideSourceCombo || false
-            ,listeners: {
-                'select': {fn: function(data) {
-                    this.setValue(data.relativeUrl);
-                    this.fireEvent('select',data);
-                },scope:this}
-            }
-        });
+
+        //if (this.browser === null) {
+            this.browser = MODx.load({
+                xtype: 'modx-browser'
+                ,closeAction: 'close'
+                ,id: Ext.id()
+                ,multiple: true
+                ,source: this.config.source || MODx.config.default_media_source
+                ,hideFiles: this.config.hideFiles || false
+                ,rootVisible: this.config.rootVisible || false
+                ,allowedFileTypes: this.config.allowedFileTypes || ''
+                ,wctx: this.config.wctx || 'web'
+                ,openTo: this.config.openTo || ''
+                ,rootId: this.config.rootId || '/'
+                ,hideSourceCombo: this.config.hideSourceCombo || false
+                ,listeners: {
+                    'select': {fn: function(data) {
+                        this.setValue(data.relativeUrl);
+                        this.fireEvent('select',data);
+                    },scope:this}
+                }
+            });
+        //}
         this.browser.show(btn);
         return true;
     }
@@ -721,8 +753,7 @@ MODx.combo.Country = function(config) {
         ,hiddenName: 'country'
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Country/GetList'
-            ,combo: true
+            action: 'system/country/getlist'
         }
         ,displayField: 'country'
         ,valueField: 'iso'
@@ -732,31 +763,13 @@ MODx.combo.Country = function(config) {
             'value' // Deprecated (available for BC)
         ]
         ,editable: true
+        ,value: 0
         ,typeAhead: true
     });
     MODx.combo.Country.superclass.constructor.call(this,config);
 };
 Ext.extend(MODx.combo.Country,MODx.combo.ComboBox);
 Ext.reg('modx-combo-country',MODx.combo.Country);
-
-MODx.combo.Gender = function(config) {
-    config = config || {};
-    Ext.applyIf(config,{
-        store: new Ext.data.SimpleStore({
-            fields: ['d','v']
-            ,data: [['',0],[_('user_male'),1],[_('user_female'),2],[_('user_other'),3]]
-        })
-        ,displayField: 'd'
-        ,valueField: 'v'
-        ,mode: 'local'
-        ,triggerAction: 'all'
-        ,editable: false
-        ,selectOnFocus: false
-    });
-    MODx.combo.Gender.superclass.constructor.call(this,config);
-};
-Ext.extend(MODx.combo.Gender,Ext.form.ComboBox);
-Ext.reg('modx-combo-gender',MODx.combo.Gender);
 
 MODx.combo.PropertySet = function(config) {
     config = config || {};
@@ -765,7 +778,7 @@ MODx.combo.PropertySet = function(config) {
         ,hiddenName: 'propertyset'
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Element/PropertySet/GetList'
+            action: 'element/propertyset/getlist'
         }
         ,displayField: 'name'
         ,valueField: 'id'
@@ -816,9 +829,7 @@ Ext.extend(MODx.ChangeParentField,Ext.form.TriggerField,{
         this.setValue(p.d);
         this.oldValue = false;
 
-        if(this.config.parentcmp !== 'modx-template-picker-parent-id') {
-            Ext.getCmp(this.config.formpanel).fireEvent('fieldChange');
-        }
+        Ext.getCmp(this.config.formpanel).fireEvent('fieldChange');
     }
     ,onTriggerClick: function() {
         if (this.disabled) { return false; }
@@ -911,7 +922,7 @@ MODx.combo.TVWidget = function(config) {
         ,editable: false
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Element/TemplateVar/Renders/GetOutputs'
+            action: 'element/tv/renders/getOutputs'
         }
         ,value: 'default'
     });
@@ -931,7 +942,7 @@ MODx.combo.TVInputType = function(config) {
         ,fields: ['value','name']
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Element/TemplateVar/Renders/GetInputs'
+            action: 'element/tv/renders/getInputs'
         }
         ,value: 'text'
     });
@@ -939,6 +950,26 @@ MODx.combo.TVInputType = function(config) {
 };
 Ext.extend(MODx.combo.TVInputType,MODx.combo.ComboBox);
 Ext.reg('modx-combo-tv-input-type',MODx.combo.TVInputType);
+
+MODx.combo.Action = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        name: 'action'
+        ,hiddenName: 'action'
+        ,displayField: 'controller'
+        ,valueField: 'id'
+        ,fields: ['id','controller','namespace']
+        ,pageSize: 20
+        ,url: MODx.config.connector_url
+        ,baseParams: {
+            action: 'system/action/getlist'
+        }
+        ,tpl: new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item"><tpl if="namespace">{namespace:htmlEncode} - </tpl>{controller:htmlEncode}</div></tpl>')
+    });
+    MODx.combo.Action.superclass.constructor.call(this,config);
+};
+Ext.extend(MODx.combo.Action,MODx.combo.ComboBox);
+Ext.reg('modx-combo-action',MODx.combo.Action);
 
 MODx.combo.Dashboard = function(config) {
     config = config || {};
@@ -948,10 +979,11 @@ MODx.combo.Dashboard = function(config) {
         ,displayField: 'name'
         ,valueField: 'id'
         ,fields: ['id','name','description']
+        // ,listWidth: 400
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Dashboard/GetList'
+            action: 'system/dashboard/getlist'
         }
         ,tpl: new Ext.XTemplate('<tpl for=".">'
             ,'<div class="x-combo-list-item">'
@@ -972,10 +1004,11 @@ MODx.combo.MediaSource = function(config) {
         ,displayField: 'name'
         ,valueField: 'id'
         ,fields: ['id','name','description']
+        // ,listWidth: 400
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Source/GetList'
+            action: 'source/getlist'
         }
         ,tpl: new Ext.XTemplate('<tpl for=".">'
             ,'<div class="x-combo-list-item">'
@@ -996,10 +1029,11 @@ MODx.combo.MediaSourceType = function(config) {
         ,displayField: 'name'
         ,valueField: 'class'
         ,fields: ['id','class','name','description']
+        // ,listWidth: 400
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Source/Type/GetList'
+            action: 'source/type/getlist'
         }
         ,tpl: new Ext.XTemplate('<tpl for=".">'
             ,'<div class="x-combo-list-item">'
@@ -1022,10 +1056,11 @@ MODx.combo.Authority = function(config) {
         ,typeAhead: false
         ,editable: false
         ,allowBlank: false
+        // ,listWidth: 300
         ,pageSize: 20
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/Role/GetAuthorityList'
+            action: 'security/role/getAuthorityList'
             ,addNone: true
         }
     });
@@ -1044,7 +1079,7 @@ MODx.combo.ManagerTheme = function(config) {
         ,fields: ['theme']
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Workspace/Theme/GetList'
+            action: 'workspace/theme/getlist'
         }
         ,typeAhead: false
         ,editable: false
@@ -1064,64 +1099,16 @@ MODx.combo.SettingKey = function(config) {
         ,fields: ['key']
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'System/Settings/GetList'
+            action: 'system/settings/getlist'
         }
+        ,typeAhead: false
         ,triggerAction: 'all'
         ,editable: true
         ,forceSelection: false
+        ,queryParam: 'key'
         ,pageSize: 20
     });
     MODx.combo.SettingKey.superclass.constructor.call(this,config);
 };
 Ext.extend(MODx.combo.SettingKey,MODx.combo.ComboBox);
 Ext.reg('modx-combo-setting-key',MODx.combo.SettingKey);
-
-MODx.combo.Visibility = function(config) {
-    config = config || {};
-    Ext.applyIf(config,{
-        name: 'visibility'
-        ,hiddenName: 'visibility'
-        ,store: new Ext.data.SimpleStore({
-            fields: ['d','v']
-            ,data: [[_('file_folder_visibility_public'),'public'],[_('file_folder_visibility_private'),'private']]
-        })
-        ,displayField: 'd'
-        ,valueField: 'v'
-        ,mode: 'local'
-        ,triggerAction: 'all'
-        ,editable: false
-        ,selectOnFocus: false
-        ,preventRender: true
-        ,forceSelection: true
-        ,enableKeyEvents: true
-    });
-    MODx.combo.Visibility.superclass.constructor.call(this,config);
-};
-Ext.extend(MODx.combo.Visibility,MODx.combo.ComboBox);
-Ext.reg('modx-combo-visibility',MODx.combo.Visibility);
-
-MODx.combo.Permission = function(config) {
-    config = config || {};
-    Ext.applyIf(config,{
-        name: 'permission'
-        ,hiddenName: 'permission'
-        ,displayField: 'name'
-        ,valueField: 'name'
-        ,fields: ['name','description']
-        ,editable: true
-        ,typeAhead: false
-        ,forceSelection: false
-        ,enableKeyEvents: true
-        ,autoSelect: false
-        ,pageSize: 20
-        ,tpl: new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item"><span style="font-weight: bold">{name:htmlEncode}</span>'
-            ,'<p style="margin: 0; font-size: 11px; color: gray;">{description:htmlEncode}</p></div></tpl>')
-        ,url: MODx.config.connector_url
-        ,baseParams: {
-            action: 'Security/Access/Permission/GetList'
-        }
-    });
-    MODx.combo.Permission.superclass.constructor.call(this,config);
-};
-Ext.extend(MODx.combo.Permission,MODx.combo.ComboBox);
-Ext.reg('modx-combo-permission',MODx.combo.Permission);

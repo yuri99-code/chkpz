@@ -9,12 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Mail;
-
-
-use MODX\Revolution\Mail\modMail;
-use MODX\Revolution\MODxTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * Tests related to the modMail class.
@@ -27,18 +21,14 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class modMailTest extends MODxTestCase {
     /**
-     * @var modMail|MockObject $mail
+     * @var modMail|PHPUnit_Framework_MockObject_MockObject $mail
      */
     public $mail;
 
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
-        $this->mail = $this->getMockForAbstractClass(modMail::class, [&$this->modx]);
+    public function setUp() {
+        parent::setUp();
+        $this->modx->loadClass('mail.modMail',MODX_CORE_PATH.'model/modx/',true,true);
+        $this->mail = $this->getMockForAbstractClass('modMail',array(&$this->modx));
         $this->mail->expects($this->any())
                    ->method('_getMailer')
                    ->will($this->returnValue(true));
@@ -57,10 +47,10 @@ class modMailTest extends MODxTestCase {
      * @return array
      */
     public function providerSet() {
-        return [
-            ['mail_use_smtp',true],
-            ['mail_use_smtp',false],
-        ];
+        return array(
+            array('mail_use_smtp',true),
+            array('mail_use_smtp',false),
+        );
     }
 
     /**
@@ -78,10 +68,10 @@ class modMailTest extends MODxTestCase {
      * @return array
      */
     public function providerGet() {
-        return [
-            ['mail_use_smtp',true],
-            ['mail_use_smtp',false],
-        ];
+        return array(
+            array('mail_use_smtp',true),
+            array('mail_use_smtp',false),
+        );
     }
 
     /**
@@ -107,10 +97,10 @@ class modMailTest extends MODxTestCase {
      * @return array
      */
     public function providerAttach() {
-        return [
-            ['test/file.txt'],
-            [['tmp_name' => 'test/file.txt','error' => 0,'name' => 'file.txt']],
-        ];
+        return array(
+            array('test/file.txt'),
+            array(array('tmp_name' => 'test/file.txt','error' => 0,'name' => 'file.txt')),
+        );
     }
 
     /**
@@ -136,9 +126,9 @@ class modMailTest extends MODxTestCase {
      * @return array
      */
     public function providerHeader() {
-        return [
-            ['Content-type:text/html','Content-type','text/html'],
-        ];
+        return array(
+            array('Content-type:text/html','Content-type','text/html'),
+        );
     }
 
 }

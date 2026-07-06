@@ -2,11 +2,31 @@
   'config' => 
   array (
   ),
+  'aliasMap' => 
+  array (
+    'index.html' => 1,
+    'каталог/' => 2,
+    'api.json' => 4,
+    'test.html' => 6,
+    'гайка.html' => 3,
+    'vector-search.json' => 5,
+  ),
   'resourceMap' => 
   array (
     0 => 
     array (
       0 => 1,
+      1 => 2,
+      2 => 4,
+      3 => 6,
+    ),
+    2 => 
+    array (
+      0 => 3,
+    ),
+    4 => 
+    array (
+      0 => 5,
     ),
   ),
   'webLinkMap' => 
@@ -14,13 +34,35 @@
   ),
   'eventMap' => 
   array (
+    'OnDocFormSave' => 
+    array (
+      1 => '1',
+    ),
   ),
   'pluginCache' => 
   array (
+    1 => 
+    array (
+      'id' => 1,
+      'source' => 1,
+      'property_preprocess' => 0,
+      'name' => 'Ollama',
+      'description' => '',
+      'editor_type' => 0,
+      'category' => 0,
+      'cache_type' => 0,
+      'plugincode' => '',
+      'locked' => 0,
+      'properties' => 'a:0:{}',
+      'disabled' => 0,
+      'moduleguid' => '',
+      'static' => 1,
+      'static_file' => 'app/plugins/ollama.php',
+    ),
   ),
   'policies' => 
   array (
-    'MODX\\Revolution\\modAccessContext' => 
+    'modAccessContext' => 
     array (
       'web' => 
       array (
@@ -59,17 +101,17 @@
             'delete_chunk' => true,
             'delete_context' => true,
             'delete_document' => true,
+            'delete_weblink' => true,
+            'delete_symlink' => true,
+            'delete_static_resource' => true,
             'delete_eventlog' => true,
             'delete_plugin' => true,
             'delete_propertyset' => true,
             'delete_role' => true,
             'delete_snippet' => true,
-            'delete_static_resource' => true,
-            'delete_symlink' => true,
             'delete_template' => true,
             'delete_tv' => true,
             'delete_user' => true,
-            'delete_weblink' => true,
             'directory_chmod' => true,
             'directory_create' => true,
             'directory_list' => true,
@@ -79,17 +121,17 @@
             'edit_chunk' => true,
             'edit_context' => true,
             'edit_document' => true,
+            'edit_weblink' => true,
+            'edit_symlink' => true,
+            'edit_static_resource' => true,
             'edit_locked' => true,
             'edit_plugin' => true,
             'edit_propertyset' => true,
             'edit_role' => true,
             'edit_snippet' => true,
-            'edit_static_resource' => true,
-            'edit_symlink' => true,
             'edit_template' => true,
             'edit_tv' => true,
             'edit_user' => true,
-            'edit_weblink' => true,
             'element_tree' => true,
             'empty_cache' => true,
             'error_log_erase' => true,
@@ -101,31 +143,29 @@
             'file_manager' => true,
             'file_remove' => true,
             'file_tree' => true,
-            'file_unpack' => true,
             'file_update' => true,
             'file_upload' => true,
+            'file_unpack' => true,
             'file_view' => true,
             'flush_sessions' => true,
             'frames' => true,
             'help' => true,
             'home' => true,
-            'language' => true,
+            'import_static' => true,
             'languages' => true,
             'lexicons' => true,
             'list' => true,
             'load' => true,
             'logout' => true,
-            'mgr_log_view' => true,
-            'mgr_log_erase' => true,
+            'logs' => true,
+            'menus' => true,
             'menu_reports' => true,
             'menu_security' => true,
             'menu_site' => true,
             'menu_support' => true,
             'menu_system' => true,
             'menu_tools' => true,
-            'menu_trash' => true,
             'menu_user' => true,
-            'menus' => true,
             'messages' => true,
             'namespaces' => true,
             'new_category' => true,
@@ -161,9 +201,6 @@
             'remove' => true,
             'remove_locks' => true,
             'resource_duplicate' => true,
-            'resource_quick_create' => true,
-            'resource_quick_update' => true,
-            'resource_tree' => true,
             'resourcegroup_delete' => true,
             'resourcegroup_edit' => true,
             'resourcegroup_new' => true,
@@ -171,6 +208,9 @@
             'resourcegroup_resource_list' => true,
             'resourcegroup_save' => true,
             'resourcegroup_view' => true,
+            'resource_quick_create' => true,
+            'resource_quick_update' => true,
+            'resource_tree' => true,
             'save' => true,
             'save_category' => true,
             'save_chunk' => true,
@@ -186,11 +226,11 @@
             'search' => true,
             'set_sudo' => true,
             'settings' => true,
+            'sources' => true,
             'source_delete' => true,
             'source_edit' => true,
             'source_save' => true,
             'source_view' => true,
-            'sources' => true,
             'steal_locks' => true,
             'tree_show_element_ids' => true,
             'tree_show_resource_ids' => true,

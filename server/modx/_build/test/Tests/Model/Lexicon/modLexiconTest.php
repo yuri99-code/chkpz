@@ -9,11 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Lexicon;
-
-
-use MODX\Revolution\modLexicon;
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modMail class.
@@ -28,22 +23,13 @@ class modLexiconTest extends MODxTestCase {
     /** @var modLexicon $lexicon */
     public $lexicon;
 
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
+    public function setUp() {
+        parent::setUp();
+        $this->modx->loadClass('modLexicon',null,true,true);
         $this->lexicon = new modLexicon($this->modx);
     }
 
-    /**
-     * Tear down fixtures after each test.
-     *
-     * @after
-     */
-    public function tearDownFixtures() {
+    public function tearDown() {
         $this->lexicon->clear();
     }
 
@@ -63,11 +49,10 @@ class modLexiconTest extends MODxTestCase {
      */
     public function providerTotal() {
         require_once dirname(dirname(dirname(dirname(dirname(__DIR__))))) . '/core/lexicon/en/about.inc.php';
-        /** @var array $_lang */
         $total = count($_lang);
-        return [
-            ['about', $total],
-        ];
+        return array(
+            array('about', $total),
+        );
     }
 
     /**
@@ -90,13 +75,13 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerLoad() {
-        return [
-            ['user'],
-            ['context'],
-            ['core:element'],
-            ['en:core:action'],
-            ['fr:core:action'],
-        ];
+        return array(
+            array('user'),
+            array('context'),
+            array('core:element'),
+            array('en:core:action'),
+            array('fr:core:action'),
+        );
     }
 
     /**
@@ -125,14 +110,14 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerGetCacheKey() {
-        return [
-            ['lexicon/en/core/user','core','user','en'],
-            ['lexicon/en/core/about','core','about','en'],
-            ['lexicon/fr/core/user','core','user','fr'],
-            ['lexicon/fr/core/about','core','about','fr'],
-            ['lexicon/en/formit/default','formit','default','en'],
-            ['lexicon/de/formit/default','formit','default','de'],
-        ];
+        return array(
+            array('lexicon/en/core/user','core','user','en'),
+            array('lexicon/en/core/about','core','about','en'),
+            array('lexicon/fr/core/user','core','user','fr'),
+            array('lexicon/fr/core/about','core','about','fr'),
+            array('lexicon/en/formit/default','formit','default','en'),
+            array('lexicon/de/formit/default','formit','default','de'),
+        );
     }
 
     /**
@@ -149,11 +134,11 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerGetFileTopic() {
-        return [
-            ['en','core','default'],
-            ['fr','core','default'],
-            ['en','core','action'],
-        ];
+        return array(
+            array('en','core','default'),
+            array('fr','core','default'),
+            array('en','core','action'),
+        );
     }
 
     /**
@@ -170,9 +155,9 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerGetNamespacePath() {
-        return [
-            ['core',''],
-        ];
+        return array(
+            array('core',''),
+        );
     }
 
     /**
@@ -189,11 +174,11 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerGetTopicList() {
-        return [
-            ['en','core'],
-            ['fr','core'],
-            ['de','core'],
-        ];
+        return array(
+            array('en','core'),
+            array('fr','core'),
+            array('de','core'),
+        );
     }
 
     /**
@@ -209,9 +194,9 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerGetLanguageList() {
-        return [
-            ['core'],
-        ];
+        return array(
+            array('core'),
+        );
     }
 
     /**
@@ -231,13 +216,13 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerProcess() {
-        return [
-            ['chunk','chunk', [],'Chunk'],
-            ['chunk','chunks', [],'Chunks'],
-            ['chunk','chunk_err_nfs', ['id' => 1],'Chunk not found with id: 1'],
-            ['chunk','chunk_err_nfs', ['id' => 123],'Chunk not found with id: 123'],
-            ['chunk','chunk_err_nfs', ['id' => 'potatoes'],'Chunk not found with id: potatoes'],
-        ];
+        return array(
+            array('chunk','chunk',array(),'Chunk'),
+            array('chunk','chunks',array(),'Chunks'),
+            array('chunk','chunk_err_nfs',array('id' => 1),'Chunk not found with id: 1'),
+            array('chunk','chunk_err_nfs',array('id' => 123),'Chunk not found with id: 123'),
+            array('chunk','chunk_err_nfs',array('id' => 'potatoes'),'Chunk not found with id: potatoes'),
+        );
     }
 
     /**
@@ -256,12 +241,12 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerExists() {
-        return [
-            ['chunk','chunk_err_nf',true],
-            ['chunk','chunks',true],
-            ['chunk','potatoes',false],
-            ['respect','for_programmers',false],
-        ];
+        return array(
+            array('chunk','chunk_err_nf',true),
+            array('chunk','chunks',true),
+            array('chunk','potatoes',false),
+            array('respect','for_programmers',false),
+        );
     }
 
     /**
@@ -283,11 +268,11 @@ class modLexiconTest extends MODxTestCase {
      * @return array
      */
     public function providerFetch() {
-        return [
-            ['about','help_about'],
-            ['chunk','chunks'],
-            ['element','tv_elements','tv_'],
-            ['element','elements','tv_',true],
-        ];
+        return array(
+            array('about','help_about'),
+            array('chunk','chunks'),
+            array('element','tv_elements','tv_'),
+            array('element','elements','tv_',true),
+        );
     }
 }

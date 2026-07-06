@@ -8,12 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modCategory;
-use MODX\Revolution\modContext;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modSystemEvent;
-use MODX\Revolution\Sources\modMediaSource;
-
 /**
  * Load create tv page
  *
@@ -50,6 +44,7 @@ class ElementTVCreateManagerController extends modManagerController {
 <script>
 // <![CDATA[
 MODx.onTVFormRender = "'.$this->onTVFormRender.'";
+MODx.perm.unlock_element_properties = "'.($this->modx->hasPermission('unlock_element_properties') ? 1 : 0).'";
 Ext.onReady(function() {
     MODx.load({
         xtype: "modx-page-tv-create"
@@ -68,13 +63,13 @@ Ext.onReady(function() {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* grab category if preset */
         if (isset($scriptProperties['category'])) {
-            $this->category = $this->modx->getObject(modCategory::class,$scriptProperties['category']);
-            if ($this->category !== null) {
+            $this->category = $this->modx->getObject('modCategory',$scriptProperties['category']);
+            if ($this->category != null) {
                 $placeholders['category'] = $this->category;
             }
         }
@@ -86,23 +81,24 @@ Ext.onReady(function() {
     }
 
     public function getElementSources() {
-        $c = $this->modx->newQuery(modContext::class);
-        $c->where([
+        $c = $this->modx->newQuery('modContext');
+        $c->where(array(
             'key:!=' => 'mgr',
-        ]);
-        $c->sortby($this->modx->escape('rank'));
+        ));
+        $c->sortby($this->modx->escape('rank'),'ASC');
         $c->sortby($this->modx->escape('key'),'DESC');
-        $contexts = $this->modx->getCollection(modContext::class, $c);
-        $list = [];
+        $contexts = $this->modx->getCollection('modContext',$c);
+        $list = array();
+        $this->modx->loadClass('sources.modMediaSource');
         /** @var $source modMediaSource */
         $source = modMediaSource::getDefaultSource($this->modx);
         /** @var modContext $context */
         foreach ($contexts as $context) {
-            $list[] = [
+            $list[] = array(
                 $context->get('key'),
                 $source->get('id'),
                 $source->get('name'),
-            ];
+            );
         }
         return $list;
     }
@@ -114,10 +110,10 @@ Ext.onReady(function() {
     public function firePreRenderEvents() {
         /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML
         into the panel */
-        $this->onTVFormPrerender = $this->modx->invokeEvent('OnTVFormPrerender', [
+        $this->onTVFormPrerender = $this->modx->invokeEvent('OnTVFormPrerender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onTVFormPrerender)) $this->onTVFormPrerender = implode('',$this->onTVFormPrerender);
         $this->setPlaceholder('onTVFormPrerender', $this->onTVFormPrerender);
     }
@@ -127,12 +123,12 @@ Ext.onReady(function() {
      * @return string
      */
     public function fireRenderEvent() {
-        $this->onTVFormRender = $this->modx->invokeEvent('OnTVFormRender', [
+        $this->onTVFormRender = $this->modx->invokeEvent('OnTVFormRender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onTVFormRender)) $this->onTVFormRender = implode('',$this->onTVFormRender);
-        $this->onTVFormRender = str_replace(['"',"\n","\r"], ['\"','',''],$this->onTVFormRender);
+        $this->onTVFormRender = str_replace(array('"',"\n","\r"),array('\"','',''),$this->onTVFormRender);
         return $this->onTVFormRender;
     }
 
@@ -158,7 +154,7 @@ Ext.onReady(function() {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['tv','category','tv_widget','propertyset','element'];
+        return array('tv','category','tv_widget','propertyset','element');
     }
 
     /**

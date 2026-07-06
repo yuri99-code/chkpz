@@ -9,16 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Processors\Element;
-
-
-use MODX\Revolution\Processors\ProcessorResponse;
-use MODX\Revolution\modTemplate;
-use MODX\Revolution\MODxTestCase;
-use MODX\Revolution\Processors\Element\Template\Create;
-use MODX\Revolution\Processors\Element\Template\Get;
-use MODX\Revolution\Processors\Element\Template\GetList;
-use MODX\Revolution\Processors\Element\Template\Remove;
 
 /**
  * Tests related to element/template/ processors
@@ -31,29 +21,27 @@ use MODX\Revolution\Processors\Element\Template\Remove;
  * @group TemplateProcessors
  */
 class TemplateProcessorsTest extends MODxTestCase {
+    const PROCESSOR_LOCATION = 'element/template/';
+
     /**
-     * Setup fixtures before each test.
-     *
-     * @before
+     * Setup some basic data for this test.
      */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
+    public function setUp() {
+        parent::setUp();
         $this->modx->error->reset();
         /** @var modTemplate $template */
-        $template = $this->modx->newObject(modTemplate::class);
-        $template->fromArray(['templatename' => 'UnitTestTemplate']);
+        $template = $this->modx->newObject('modTemplate');
+        $template->fromArray(array('templatename' => 'UnitTestTemplate'));
         $template->save();
 
     }
 
     /**
      * Cleanup data after this test.
-     *
-     * @after
      */
-    public function tearDownFixtures() {
-        parent::tearDownFixtures();
-        $templates = $this->modx->getCollection(modTemplate::class, ['templatename:LIKE' => '%UnitTest%']);
+    public function tearDown() {
+        parent::tearDown();
+        $templates = $this->modx->getCollection('modTemplate',array('templatename:LIKE' => '%UnitTest%'));
         /** @var modTemplate $template */
         foreach ($templates as $template) {
             $template->remove();
@@ -70,14 +58,14 @@ class TemplateProcessorsTest extends MODxTestCase {
      */
     public function testTemplateCreate($shouldPass,$templatePk) {
         if (empty($templatePk)) return;
-        $result = $this->modx->runProcessor(Create::class, [
+        $result = $this->modx->runProcessor(self::PROCESSOR_LOCATION.'create',array(
             'templatename' => $templatePk,
-        ]);
+        ));
         if (empty($result)) {
-            $this->fail('Could not load '.Create::class.' processor');
+            $this->fail('Could not load '.self::PROCESSOR_LOCATION.'create processor');
         }
         $s = $this->checkForSuccess($result);
-        $ct = $this->modx->getCount(modTemplate::class, ['templatename' => $templatePk]);
+        $ct = $this->modx->getCount('modTemplate',array('templatename' => $templatePk));
         $passed = $s && $ct > 0;
         $passed = $shouldPass ? $passed : !$passed;
         $this->assertTrue($passed,'Could not create Template: `'.$templatePk.'`: '.$result->getMessage());
@@ -87,11 +75,11 @@ class TemplateProcessorsTest extends MODxTestCase {
      * @return array
      */
     public function providerTemplateCreate() {
-        return [
-            [true,'UnitTestTemplate2'],
-            [true,'UnitTestTemplate3'],
-            [false,'UnitTestTemplate'],
-        ];
+        return array(
+            array(true,'UnitTestTemplate2'),
+            array(true,'UnitTestTemplate3'),
+            array(false,'UnitTestTemplate'),
+        );
     }
 
     /**
@@ -103,17 +91,17 @@ class TemplateProcessorsTest extends MODxTestCase {
     public function testTemplateGet($shouldPass,$templatePk) {
         if (empty($templatePk)) return;
 
-        $template = $this->modx->getObject(modTemplate::class, ['templatename' => $templatePk]);
+        $template = $this->modx->getObject('modTemplate',array('templatename' => $templatePk));
         if (empty($template) && $shouldPass) {
             $this->fail('No Template found "'.$templatePk.'" as specified in test provider.');
             return;
         }
 
-        $result = $this->modx->runProcessor(Get::class, [
+        $result = $this->modx->runProcessor(self::PROCESSOR_LOCATION.'get',array(
             'id' => $template ? $template->get('id') : $templatePk,
-        ]);
+        ));
         if (empty($result)) {
-            $this->fail('Could not load '.Get::class.' processor');
+            $this->fail('Could not load '.self::PROCESSOR_LOCATION.'get processor');
         }
         $passed = $this->checkForSuccess($result);
         $passed = $shouldPass ? $passed : !$passed;
@@ -124,10 +112,10 @@ class TemplateProcessorsTest extends MODxTestCase {
      * @return array
      */
     public function providerTemplateGet() {
-        return [
-            [true,'UnitTestTemplate'],
-            [false,234],
-        ];
+        return array(
+            array(true,'UnitTestTemplate'),
+            array(false,234),
+        );
     }
 
     /**
@@ -140,12 +128,12 @@ class TemplateProcessorsTest extends MODxTestCase {
      * @dataProvider providerTemplateGetList
      */
     public function testTemplateGetList($sort = 'key',$dir = 'ASC',$limit = 10,$start = 0) {
-        $result = $this->modx->runProcessor(GetList::class, [
+        $result = $this->modx->runProcessor(self::PROCESSOR_LOCATION.'getlist',array(
             'sort' => $sort,
             'dir' => $dir,
             'limit' => $limit,
             'start' => $start,
-        ]);
+        ));
         $results = $this->getResults($result);
         $this->assertTrue(!empty($results),'Could not get list of Templates: '.$result->getMessage());
     }
@@ -154,9 +142,9 @@ class TemplateProcessorsTest extends MODxTestCase {
      * @return array
      */
     public function providerTemplateGetList() {
-        return [
-            ['templatename','ASC',5,0],
-        ];
+        return array(
+            array('templatename','ASC',5,0),
+        );
     }
 
     /**
@@ -170,17 +158,17 @@ class TemplateProcessorsTest extends MODxTestCase {
         if (empty($templatePk)) return;
 
         /** @var modTemplate $template */
-        $template = $this->modx->getObject(modTemplate::class, ['templatename' => $templatePk]);
+        $template = $this->modx->getObject('modTemplate',array('templatename' => $templatePk));
         if (empty($template) && $shouldPass) {
             $this->fail('No Template found "'.$templatePk.'" as specified in test provider.');
             return;
         }
-        /** @var ProcessorResponse $result */
-        $result = $this->modx->runProcessor(Remove::class, [
+        /** @var modProcessorResponse $result */
+        $result = $this->modx->runProcessor(self::PROCESSOR_LOCATION.'remove',array(
             'id' => $template ? $template->get('id') : $templatePk,
-        ]);
+        ));
         if (empty($result)) {
-            $this->fail('Could not load '.Remove::class.' processor');
+            $this->fail('Could not load '.self::PROCESSOR_LOCATION.'remove processor');
         }
         $passed = $this->checkForSuccess($result);
         $passed = $shouldPass ? $passed : !$passed;
@@ -191,9 +179,9 @@ class TemplateProcessorsTest extends MODxTestCase {
      * @return array
      */
     public function providerTemplateRemove() {
-        return [
-            [true,'UnitTestTemplate'],
-            [false,234],
-        ];
+        return array(
+            array(true,'UnitTestTemplate'),
+            array(false,234),
+        );
     }
 }

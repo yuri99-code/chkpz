@@ -8,10 +8,6 @@
  * files found in the top-level directory of this distribution.
  *
  */
-namespace MODX\Revolution\Tests\Controllers\Context;
-
-
-use MODX\Revolution\MODxControllerTestCase;
 
 /**
  * Tests related to the Update Context controller
@@ -24,19 +20,14 @@ use MODX\Revolution\MODxControllerTestCase;
  * @group ContextUpdateController
  */
 class ContextUpdateControllerTest extends MODxControllerTestCase {
-    /** @var \ContextUpdateManagerController $controller */
+    /** @var ContextUpdateManagerController $controller */
     public $controller;
 
     public $controllerName = 'ContextUpdateManagerController';
     public $controllerPath = 'context/update';
 
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
+    public function setUp() {
+        parent::setUp();
         $this->controller->setProperty('key','web');
     }
 

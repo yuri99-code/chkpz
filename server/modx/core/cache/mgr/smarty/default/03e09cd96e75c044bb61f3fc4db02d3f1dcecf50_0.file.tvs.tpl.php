@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-06-27 17:44:00
+/* Smarty version 3.1.48, created on 2026-07-01 17:17:40
   from '/var/www/html/manager/templates/default/resource/sections/tvs.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.5.6',
-  'unifunc' => 'content_6a400be00549d0_43377489',
+  'version' => '3.1.48',
+  'unifunc' => 'content_6a454bb412afa9_83740749',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '03e09cd96e75c044bb61f3fc4db02d3f1dcecf50' => 
     array (
       0 => '/var/www/html/manager/templates/default/resource/sections/tvs.tpl',
-      1 => 1782222764,
+      1 => 1742327582,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6a400be00549d0_43377489 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/var/www/html/core/vendor/smarty/smarty/libs/plugins/function.cycle.php','function'=>'smarty_function_cycle',),));
+function content_6a454bb412afa9_83740749 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/var/www/html/core/model/smarty/plugins/function.cycle.php','function'=>'smarty_function_cycle',),));
 echo $_smarty_tpl->tpl_vars['OnResourceTVFormPrerender']->value;?>
 
 
@@ -61,7 +61,7 @@ if ((isset($_smarty_tpl->tpl_vars['__smarty_foreach_tv']->value['last']) ? $_sma
         <label for="tv<?php echo $_smarty_tpl->tpl_vars['tv']->value->id;?>
 " class="x-form-item-label modx-tv-label">
             <div class="modx-tv-label-title">
-                <?php if ((($tmp = $_smarty_tpl->tpl_vars['showCheckbox']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?><input type="checkbox" name="tv<?php echo $_smarty_tpl->tpl_vars['tv']->value->id;?>
+                <?php if ((($tmp = @$_smarty_tpl->tpl_vars['showCheckbox']->value)===null||$tmp==='' ? '' : $tmp)) {?><input type="checkbox" name="tv<?php echo $_smarty_tpl->tpl_vars['tv']->value->id;?>
 -checkbox" class="modx-tv-checkbox" value="1" /><?php }?>
                 <span class="modx-tv-caption" id="tv<?php echo $_smarty_tpl->tpl_vars['tv']->value->id;?>
 -caption"><?php if ($_smarty_tpl->tpl_vars['tv']->value->caption) {
@@ -82,7 +82,7 @@ echo $_smarty_tpl->tpl_vars['tv']->value->name;
 </span><?php }?>
         <div class="x-form-element modx-tv-form-element">
             <input type="hidden" id="tvdef<?php echo $_smarty_tpl->tpl_vars['tv']->value->id;?>
-" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['tv']->value->default_text, ENT_QUOTES, 'UTF-8', true);?>
+" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['tv']->value->default_text, ENT_QUOTES, 'UTF-8', true);?>
 " />
             <?php echo $_smarty_tpl->tpl_vars['tv']->value->get('formElement');?>
 
@@ -95,7 +95,7 @@ echo $_smarty_tpl->tpl_vars['tv']->value->name;
 >
 <?php } else { ?>
     <input type="hidden" id="tvdef<?php echo $_smarty_tpl->tpl_vars['tv']->value->id;?>
-" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['tv']->value->default_text, ENT_QUOTES, 'UTF-8', true);?>
+" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['tv']->value->default_text, ENT_QUOTES, 'UTF-8', true);?>
 " />
     <?php echo $_smarty_tpl->tpl_vars['tv']->value->get('formElement');?>
 
@@ -149,6 +149,10 @@ Ext.onReady(function() {
         id = id[3];
         MODx.resetTV(id);
     });
+    MODx.refreshTVs = function() {
+        if (MODx.unloadTVRTE) { MODx.unloadTVRTE(); }
+        Ext.getCmp('modx-panel-resource-tv').refreshTVs();
+    };
     <?php if ($_smarty_tpl->tpl_vars['tvcount']->value > 0) {?>
     MODx.load({
         xtype: 'modx-vtabs'

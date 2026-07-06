@@ -9,12 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Element;
-
-
-use MODX\Revolution\modSnippet;
-use MODX\Revolution\modSystemEvent;
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modSnippet class.
@@ -31,33 +25,23 @@ class modSnippetTest extends MODxTestCase {
     /** @var modSnippet $snippet */
     public $snippet;
 
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
-        $this->snippet = $this->modx->newObject(modSnippet::class);
-        $this->snippet->fromArray([
+    public function setUp() {
+        parent::setUp();
+        $this->snippet = $this->modx->newObject('modSnippet');
+        $this->snippet->fromArray(array(
             'name' => 'Unit Test Snippet',
             'description' => 'A snippet for unit testing.',
             'snippet' => str_replace('<?php','',file_get_contents(MODX_BASE_PATH.'_build/test/data/snippets/modSnippetTest/modSnippetTest.snippet.php')),
             'category' => 0,
             'locked' => false,
-        ],'',true,true);
-        $this->snippet->setProperties(['name' => 'John']);
+        ),'',true,true);
+        $this->snippet->setProperties(array('name' => 'John'));
         $this->snippet->setCacheable(false);
         $this->snippet->save();
         $this->modx->event= new modSystemEvent();
     }
-    /**
-     * Tear down fixtures after each test.
-     *
-     * @after
-     */
-    public function tearDownFixtures() {
-        parent::tearDownFixtures();
+    public function tearDown() {
+        parent::tearDown();
         $this->snippet->remove();
         $this->snippet = null;
     }
@@ -82,9 +66,9 @@ class modSnippetTest extends MODxTestCase {
      * @return array
      */
     public function providerSetContent() {
-        return [
-            ['return "Goodbye.";'],
-        ];
+        return array(
+            array('return "Goodbye.";'),
+        );
     }
 
 
@@ -102,9 +86,9 @@ class modSnippetTest extends MODxTestCase {
      * @return array
      */
     public function providerProcess() {
-        return [
-            ['Hello, John'],
-            ['Hello, Mark', ['name' => 'Mark']],
-        ];
+        return array(
+            array('Hello, John'),
+            array('Hello, Mark',array('name' => 'Mark')),
+        );
     }
 }

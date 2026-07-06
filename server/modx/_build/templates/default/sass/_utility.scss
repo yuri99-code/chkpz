@@ -4,73 +4,67 @@
 // @extend %ir;
 
 @mixin ir {
-  /* IE 6/7 fallback */
-  *text-indent: -9999px;
-  background-color: transparent;
-  border: 0;
-  overflow: hidden;
-
-  &:before {
-    content: "";
-    display: block;
-    height: 150%;
-    width: 0;
-  }
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    &:before {
+      content: "";
+      display: block;
+      height: 150%;
+      width: 0;
+    }
 }
 
 // Image Replacement
 %ir {
-  @include ir;
+    @include ir;
 }
 
 %outer-container {
-  @include grid-container;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px;
+  @include outer-container;
 }
 
 @mixin awesome-font() {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-
-  font-family: 'Font Awesome 5 Free', 'Font Awesome 5 Brands';
-  font-weight: 900;
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;    
 }
 
 %pseudo-font {
-  @include awesome-font;
+    @include awesome-font;
 }
 
 @mixin absolute-corners {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;    
 }
 
 %absolute-corners {
-  @include absolute-corners;
+    @include absolute-corners;
 }
 
 %pseudo-font-x-btn {
-  @extend %pseudo-font;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  line-height: 100%;
-  width: 100%;
-  height: 100%;
-  font-size: 14px;
-  color: inherit;
-  text-align: center;
+    @extend %pseudo-font;
+    position:absolute;
+    top:0px;
+    left:0;
+    right:0;
+    bottom:0;
+    line-height:100%;
+    width:100%;
+    height:100%;
+    font-size:14px;
+    color:inherit;
+    text-align:center;
 }
 
 %nav-item {
@@ -124,13 +118,13 @@
   .lt-ie8 {
     *zoom: 1;
   }
-
   &:before,
   &:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
   }
-
   &:after {
     clear: both;
   }
@@ -140,10 +134,11 @@
 
 @-moz-document url-prefix() {
   %mozbox {
-    box-sizing: border-box;
+    -moz-box-sizing: border-box;
     width: 100%;
   }
 }
+
 
 /* Instead of writing the same code for every nav bar */
 @mixin navigation-list {
@@ -151,13 +146,11 @@
   margin: 0;
   overflow: hidden;
   padding: 0;
-
-  >li {
+  > li {
     display: block;
     float: left;
-
     &:last-child {
-      margin-right: 0;
+      margin-right: 0px;
     }
   }
 }
@@ -167,75 +160,43 @@
   margin: 0;
   overflow: hidden;
   padding: 0;
-
-  >li {
+  > li {
     @media only screen and (min-width: $break) {
       display: block;
       float: left;
-
       &:last-child {
-        margin-right: 0;
+        margin-right: 0px;
       }
     }
   }
 }
 
 @mixin responsive-table-bar() {
-  table:not(#modx-tree-panel-usergroup table, #modx-grid-lexicon table, #modx-panel-property-sets) {
-    display: block;
-
+  table:not(#modx-tree-panel-usergroup table, #modx-grid-lexicon table, #modx-panel-property-sets) { // #janky
+    display:block;
     tbody {
-      display: block;
-
+      display:block;
       tr {
-        @include grid-container;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 1200px;
-        display: flex;
-        flex-wrap: wrap;
-
+        display:block;
+        @include outer-container;
+        @include display(flex);
+        @include flex-wrap(wrap);
         td {
-          display: inline-block;
-          float: left;
-          padding: 0 !important;
-          margin-bottom: 1em;
-          flex-grow: 1;
-
-          .x-btn {
-            margin-left: 3px;
-            margin-right: 3px;
-          }
+          width:auto;
+          display:inline-block;
+          float:left;
+          margin:5px;
+          padding:0;
+        @include flex-grow(1);
+        &:first-of-type {
+          @include flex-basis(100%);
+        }
+        .x-btn {
+          margin-left:3px;
+          margin-right:3px;
+        }
         }
       }
     }
   }
-}
-
-@mixin textLink {
-    color: $colorSplash;
-    text-decoration-style: dotted;
-    text-decoration-color: scale-color($colorSplash, $lightness: 50%);
-    &:hover {
-      color: $black;
-      border-bottom-color: scale-color($black, $lightness: 40%);
-    }
-}
-
-@mixin main-navbar-side-border($side: right, $size: 2px, $length: 25px) {
-  content: "";
-  position: absolute;
-  #{$side}: 0;
-  @if $side == top or $side == bottom {
-    left: 50%;
-    transform: translateX(-50%);
-    width: $length;
-    height: $size;
-  } @else {
-    top: 50%;
-    transform: translateY(-50%);
-    width: $size;
-    height: $length;
-  }
-  background-color: $navbarBorder;
 }

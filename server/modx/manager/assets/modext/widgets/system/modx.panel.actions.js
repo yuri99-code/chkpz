@@ -16,10 +16,9 @@ MODx.panel.Actions = function(config) {
         ,items: [{
             html: _('topmenu')
             ,xtype: 'modx-header'
-        },MODx.getPageStructure([{
-            title: _('topmenu')
-            ,layout: 'form'
-            ,itemId: 'form-menu'
+        },{
+            itemId: 'form-menu'
+            ,bwrapCssClass: 'shadowbox'
             ,items: [{
                 html: '<p>'+_('topmenu_desc')+'</p>'
                 ,xtype: 'modx-description'
@@ -29,7 +28,7 @@ MODx.panel.Actions = function(config) {
                 ,id: 'modx-tree-menu'
                 ,cls: 'main-wrapper'
             }]
-        }])]
+        }]
     });
     MODx.panel.Actions.superclass.constructor.call(this,config);
 };

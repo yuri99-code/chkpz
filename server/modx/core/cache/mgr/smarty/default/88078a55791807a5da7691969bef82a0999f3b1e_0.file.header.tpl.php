@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-06-27 17:30:29
+/* Smarty version 3.1.48, created on 2026-07-01 17:09:55
   from '/var/www/html/manager/templates/default/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.5.6',
-  'unifunc' => 'content_6a4008b5bc4fa9_56414124',
+  'version' => '3.1.48',
+  'unifunc' => 'content_6a4549e39bd035_22917878',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '88078a55791807a5da7691969bef82a0999f3b1e' => 
     array (
       0 => '/var/www/html/manager/templates/default/header.tpl',
-      1 => 1782222764,
+      1 => 1742327582,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6a4008b5bc4fa9_56414124 (Smarty_Internal_Template $_smarty_tpl) {
-?><!doctype html>
-<html dir="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_direction'];?>
-" lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['cultureKey'];?>
-" xml:lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['cultureKey'];?>
+function content_6a4549e39bd035_22917878 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_direction'];?>
+" lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_lang_attribute'];?>
+" xml:lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_lang_attribute'];?>
 ">
 <head>
 <title><?php if ($_smarty_tpl->tpl_vars['_pagetitle']->value) {
-echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['_pagetitle']->value, ENT_QUOTES, 'UTF-8', true);?>
+echo htmlspecialchars($_smarty_tpl->tpl_vars['_pagetitle']->value, ENT_QUOTES, 'UTF-8', true);?>
  | <?php }
-echo htmlspecialchars((string)preg_replace('!<[^>]*?>!', ' ', (string) $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
+echo htmlspecialchars(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_smarty_tpl->tpl_vars['_config']->value['modx_charset'];?>
 " />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="google" content="notranslate" />
 
-<?php if ($_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url']) {?><link rel="shortcut icon" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url'];?>
+    <?php if ($_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url']) {?><link rel="shortcut icon" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url'];?>
 " /><?php }?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
@@ -67,31 +66,21 @@ assets/ext3/ext-all.js"><?php echo '</script'; ?>
 <?php }
 echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
-assets/modext/core/modx.js?mv=<?php echo $_smarty_tpl->tpl_vars['versionToken']->value;?>
-"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
-assets/lib/popper.min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['connectors_url'];?>
-lang.js.php?ctx=mgr&topic=topmenu,file,resource,<?php echo $_smarty_tpl->tpl_vars['_lang_topics']->value;?>
-&action=<?php echo htmlspecialchars((($tmp = $_GET['a'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp));?>
+assets/modext/core/modx.js?v=<?php echo $_smarty_tpl->tpl_vars['versionToken']->value;?>
 "><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['connectors_url'];?>
-modx.config.js.php?action=<?php echo htmlspecialchars((($tmp = $_GET['a'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp));
+lang.js.php?ctx=mgr&topic=topmenu,file,resource,trash,<?php echo $_smarty_tpl->tpl_vars['_lang_topics']->value;?>
+&action=<?php echo htmlspecialchars((($tmp = @$_GET['a'])===null||$tmp==='' ? '' : $tmp));?>
+"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['connectors_url'];?>
+modx.config.js.php?action=<?php echo htmlspecialchars((($tmp = @$_GET['a'])===null||$tmp==='' ? '' : $tmp));
 if ($_smarty_tpl->tpl_vars['_ctx']->value) {?>&wctx=<?php echo $_smarty_tpl->tpl_vars['_ctx']->value;
-}?>&HTTP_MODAUTH=<?php echo htmlspecialchars((($tmp = $_smarty_tpl->tpl_vars['_authToken']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp));?>
+}?>&HTTP_MODAUTH=<?php echo htmlspecialchars((($tmp = @$_smarty_tpl->tpl_vars['_authToken']->value)===null||$tmp==='' ? '' : $tmp));?>
 "><?php echo '</script'; ?>
->
-
-<?php echo '<script'; ?>
->
-    const tvPanelOverrides = [];
-<?php echo '</script'; ?>
 >
 
 <?php echo $_smarty_tpl->tpl_vars['maincssjs']->value;?>
@@ -109,130 +98,70 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 <?php echo '<script'; ?>
 >
-    MODx.config.search_enabled = <?php echo $_smarty_tpl->tpl_vars['_search']->value;?>
-;
-    if (!Ext.isEmpty(tvPanelOverrides)) {
-        let fn = {},
-            vd = {},
-            ld = {}
-            ;
-        tvPanelOverrides.forEach(obj => {
-            if (obj.hasOwnProperty('fn')) {
-                fn = Object.assign(fn, obj.fn);
-            }
-            if (obj.hasOwnProperty('validatorDefs')) {
-                vd = Object.assign(vd, obj.validatorDefs);
-            }
-            if (obj.hasOwnProperty('listenerDefs')) {
-                ld = Object.assign(ld, obj.listenerDefs);
-            }
-        });
-        Ext.override(MODx.panel.TV, {
-            initComponent: function() {
-                tvPanelOverrides.forEach(obj => {
-                    if (obj.hasOwnProperty('initComponent')) {
-                        if (obj.initComponent.hasOwnProperty('sharedComponentOverrides')) {
-                            Ext.applyIf(this.sharedComponentOverrides, obj.initComponent.sharedComponentOverrides);
-                        }
-                        if (obj.initComponent.hasOwnProperty('validatorRefMap')) {
-                            Ext.applyIf(this.validatorRefMap, obj.initComponent.validatorRefMap);
-                        }
-                        if (obj.initComponent.hasOwnProperty('addNewLoaderType')) {
-                            this.addNewLoaderType(...obj.initComponent.addNewLoaderType);
-                        }
-                    }
-                });
-                this.validatorCustomDefs = vd;
-                this.listenerCustomDefs = ld;
-
-                MODx.panel.TV.superclass.initComponent.call(this);
-            },
-            fn
-        });
-    }
-    document.addEventListener('DOMContentLoaded', e => {
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-            let isInitialOrientationCheck = true;
-            const
-                query = window.matchMedia('(orientation: portrait)'),
-                onOrientationChange = e => {
-                    if (!isInitialOrientationCheck) {
-                        const cmp = Ext.getCmp('modx-layout');
-                        if (cmp) {
-                            cmp.doLayout();
-                        }
-                    }
-                    isInitialOrientationCheck = false;
-                }
-            ;
-            onOrientationChange(query);
-            query.addEventListener('change', onOrientationChange);
+    Ext.onReady(function() {
+        // Enable site name tooltip (on overflow only)
+        if( Ext.get('site_name').dom.scrollWidth > Ext.get('site_name').dom.clientWidth ){
+          new Ext.ToolTip({
+              title: Ext.get('site_name').dom.title
+              ,target: Ext.get('site_name')
+          });
         }
+        <?php if ($_smarty_tpl->tpl_vars['_search']->value) {?>
+        new MODx.SearchBar;
+        <?php }?>
     });
 <?php echo '</script'; ?>
 >
+
 </head>
 <body id="modx-body-tag">
 
-<section aria-label="skip links">
-    <ul class="skiplinks">
-        <li><a href="#modx-home-dashboard">skip to main navigation</a></li>
-        <li><a href="#modx-leftbar">skip to sidebar</a></li>
-        <li><a href="#modx-content">skip to main content</a></li>
-    </ul>
-</section>
-
 <div id="modx-browser"></div>
 <div id="modx-container">
-    <section id="modx-header" aria-label="Navigation">
+    <div id="modx-header">
         <div id="modx-navbar">
-            <ul id="modx-headnav">
-                <li id="modx-home-dashboard">
-                    <a href="?" title="<?php echo htmlspecialchars((string)preg_replace('!<[^>]*?>!', ' ', (string) $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
-">
-                        <img src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
-templates/<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_theme'];?>
-/images/modx-icon-color.svg" title="<?php echo htmlspecialchars((string)preg_replace('!<[^>]*?>!', ' ', (string) $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
-">
-                    </a>
-                </li>
-                <li id="modx-site-info">
-                    <div class="info-item full_appname"><?php echo htmlspecialchars((string)preg_replace('!<[^>]*?>!', ' ', (string) $_smarty_tpl->tpl_vars['_version']->value['full_version']), ENT_QUOTES, 'UTF-8', true);?>
-</div>
-                </li>
-                <li id="modx-leftbar-trigger">
-                    <a href="javascript:;">
-                        <i class="icon"></i>
-                    </a>
-                </li>
-                <?php if ($_smarty_tpl->tpl_vars['_search']->value) {?>
-                    <li id="modx-manager-search-icon" class="top">
-                        <a href="javascript:;" title="<?php echo $_smarty_tpl->tpl_vars['_lang']->value['search'];?>
-" onclick="setTimeout(function(){ Ext.getCmp('modx-uberbar').selectText() },50)">
-                            <i class="icon icon-search"></i>
-                        </a>
-                    </li>
-                <?php }?>
-            </ul>
-            <?php if ($_smarty_tpl->tpl_vars['_search']->value) {?>
-                <div class="modx-subnav" id="modx-manager-search-icon-submenu">
-                    <div class="modx-subnav-arrow"></div>
-                    <div id="modx-manager-search" role="search"></div>
-                </div>
-            <?php }?>
-            <ul id="modx-topnav">
-                <?php $_template = new Smarty_Internal_Template('eval:'.$_smarty_tpl->tpl_vars['navb']->value, $_smarty_tpl->smarty, $_smarty_tpl);echo $_template->fetch(); ?>
-            </ul>
-            <?php $_template = new Smarty_Internal_Template('eval:'.$_smarty_tpl->tpl_vars['navb_submenus']->value, $_smarty_tpl->smarty, $_smarty_tpl);echo $_template->fetch(); ?>
             <ul id="modx-user-menu">
                                 <?php $_template = new Smarty_Internal_Template('eval:'.$_smarty_tpl->tpl_vars['userNav']->value, $_smarty_tpl->smarty, $_smarty_tpl);echo $_template->fetch(); ?>
             </ul>
-            <?php $_template = new Smarty_Internal_Template('eval:'.$_smarty_tpl->tpl_vars['userNav_submenus']->value, $_smarty_tpl->smarty, $_smarty_tpl);echo $_template->fetch(); ?>
+
+            <ul id="modx-topnav">
+                <li id="modx-home-dashboard">
+                    <a href="?" title="MODX <?php echo $_smarty_tpl->tpl_vars['_config']->value['settings_version'];?>
+ (<?php echo $_smarty_tpl->tpl_vars['_config']->value['settings_distro'];?>
+)
+<?php echo $_smarty_tpl->tpl_vars['_lang']->value['dashboard'];?>
+"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['dashboard'];?>
+</a>
+                </li>
+                <li id="modx-site-info">
+                    <div id="site_name" class="info-item site_name" title="<?php echo htmlspecialchars(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
+"><?php echo htmlspecialchars(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
+</div>
+                                        <div class="info-item full_appname">MODX Revolution <?php echo $_smarty_tpl->tpl_vars['_config']->value['settings_version'];?>
+</div>
+                </li>
+                <?php if ($_smarty_tpl->tpl_vars['_search']->value) {?>
+                <li id="modx-manager-search-icon">
+                    <a href="javascript:;" onclick="Ext.getCmp('modx-uberbar').toggle()" title="<?php echo $_smarty_tpl->tpl_vars['_lang']->value['search'];?>
+">
+                        <span class="icon-stack icon-lg">
+                          <i class="icon icon-square icon-stack-2x"></i>
+                          <i class="icon icon-search icon-stack-1x"></i>
+                        </span>
+                    </a>
+                </li>
+                <?php }?>
+                <?php $_template = new Smarty_Internal_Template('eval:'.$_smarty_tpl->tpl_vars['navb']->value, $_smarty_tpl->smarty, $_smarty_tpl);echo $_template->fetch(); ?>
+            </ul>
+            <?php if ($_smarty_tpl->tpl_vars['_search']->value) {?>
+            <div id="modx-manager-search" role="search"></div>
+            <?php }?>
         </div>
-    </section>
+    </div>
+        <div id="modAB"></div>
         <div id="modx-leftbar"></div>
-    <div id="modx-action-buttons-container"></div>
-    <div id="modx-content">
-        <div id="modx-panel-holder"></div>
+        <div id="modx-action-buttons-container"></div>
+        <div id="modx-content">
+            <div id="modx-panel-holder"></div>
 <?php }
 }

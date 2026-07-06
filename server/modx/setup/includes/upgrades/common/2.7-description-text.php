@@ -7,11 +7,8 @@
  */
 
 /* modify modResource.description field */
-
-use MODX\Revolution\modResource;
-
-$class = modResource::class;
+$class = 'modResource';
 $table = $modx->getTableName($class);
 
-$description = $this->install->lexicon('alter_column', ['column' => 'description','table' => $table]);
-$this->processResults($class, $description, [$modx->manager, 'alterField'], [$class, 'description']);
+$description = $this->install->lexicon('alter_column',array('column' => 'description','table' => $table));
+$this->processResults($class, $description, array($modx->manager, 'alterField'), array($class, 'description'));

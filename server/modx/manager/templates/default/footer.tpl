@@ -4,9 +4,5 @@
 </div>
 <!-- #modx-container -->
 
-{foreach from=$jsbody item=scr}
-    {$scr}
-{/foreach}
-
 </body>
 </html>

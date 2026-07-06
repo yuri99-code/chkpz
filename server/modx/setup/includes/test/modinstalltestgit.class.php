@@ -41,9 +41,9 @@ class modInstallTestGit extends modInstallTest {
 
         $this->title('zip_memory_limit',$this->install->lexicon('test_zip_memory_limit').' ');
         if ($success) {
-            $this->pass('zip_memory_limit',$this->install->lexicon('test_memory_limit_success', ['memory' => $ml]));
+            $this->pass('zip_memory_limit',$this->install->lexicon('test_memory_limit_success',array('memory' => $ml)));
         } else {
-            $this->fail('zip_memory_limit','',$this->install->lexicon('test_zip_memory_limit_fail', ['memory' => $ml]));
+            $this->fail('zip_memory_limit','',$this->install->lexicon('test_zip_memory_limit_fail',array('memory' => $ml)));
         }
     }
 
@@ -52,8 +52,7 @@ class modInstallTestGit extends modInstallTest {
      */
     protected function _checkAdvPaths() {
         /* web_path */
-        $this->title('context_web_writable',$this->install->lexicon('test_directory_writable',
-            ['dir' => $this->install->settings->get('context_web_path')]));
+        $this->title('context_web_writable',$this->install->lexicon('test_directory_writable',array('dir' => $this->install->settings->get('context_web_path'))));
         $webDir = $this->install->settings->get('context_web_path');
         if (!$this->is_writable2($webDir)) {
             $this->fail('context_web_writable');
@@ -62,8 +61,7 @@ class modInstallTestGit extends modInstallTest {
         }
 
         /* mgr_path */
-        $this->title('context_mgr_writable',$this->install->lexicon('test_directory_writable',
-            ['dir' => $this->install->settings->get('context_mgr_path')]));
+        $this->title('context_mgr_writable',$this->install->lexicon('test_directory_writable',array('dir' => $this->install->settings->get('context_mgr_path'))));
         $mgrDir = $this->install->settings->get('context_mgr_path');
         if (!$this->is_writable2($mgrDir)) {
             $this->fail('context_mgr_writable');
@@ -72,8 +70,7 @@ class modInstallTestGit extends modInstallTest {
         }
 
         /* connectors_path */
-        $this->title('context_connectors_writable',$this->install->lexicon('test_directory_writable',
-            ['dir' => $this->install->settings->get('context_connectors_path')]));
+        $this->title('context_connectors_writable',$this->install->lexicon('test_directory_writable',array('dir' => $this->install->settings->get('context_connectors_path'))));
         $conDir = $this->install->settings->get('context_connectors_path');
         if (!$this->is_writable2($conDir)) {
             $this->fail('context_connectors_writable');

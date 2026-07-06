@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads message management
  *
@@ -35,6 +33,9 @@ class SecurityMessageManagerController extends modManagerController {
         $this->addJavascript($mgrUrl.'assets/modext/sections/security/message/list.js');
         $this->addHtml('<script>
             Ext.onReady(function() {
+                MODx.perm.view_user = '.($this->modx->hasPermission('view_user') ? 1 : 0).';
+                MODx.perm.view_role = '.($this->modx->hasPermission('view_role') ? 1 : 0).';
+                MODx.perm.view_usergroup = '.($this->modx->hasPermission('usergroup_view') ? 1 : 0).';
                 MODx.load({
                     xtype: "modx-page-messages"
                 });
@@ -46,7 +47,7 @@ class SecurityMessageManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {}
+    public function process(array $scriptProperties = array()) {}
 
     /**
      * Return the pagetitle
@@ -70,6 +71,6 @@ class SecurityMessageManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['user','messages'];
+        return array('user','messages');
     }
 }

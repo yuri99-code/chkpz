@@ -12,13 +12,7 @@
  * Common classes for the MODX installation and provisioning services.
  *
  * @package setup
- */
-
-use MODX\Revolution\modCacheManager;
-use MODX\Revolution\modX;
-use xPDO\Transport\xPDOTransport;
-use xPDO\xPDO;
-use xPDO\xPDOException;
+*/
 
 /**
  * Provides common functionality and data for installation and provisioning.
@@ -33,7 +27,7 @@ class modInstall {
 
     /** @var xPDO $xpdo */
     public $xpdo = null;
-    public $options = [];
+    public $options = array ();
     /** @var modInstallRequest $request */
     public $request = null;
     /** @var modInstallSettings $settings */
@@ -47,7 +41,7 @@ class modInstall {
     /** @var modInstallRunner $runner */
     public $runner;
     /** @var array $config */
-    public $config = [];
+    public $config = array ();
     public $action = '';
     public $finished = false;
 
@@ -57,20 +51,13 @@ class modInstall {
      * @constructor
      * @param array $options An array of configuration options.
      */
-    function __construct(array $options = []) {
+    function __construct(array $options = array()) {
         if (isset ($_REQUEST['action'])) {
             $this->action = preg_replace('/[\.]{2,}/', '', htmlspecialchars($_REQUEST['action']));
         }
         if (is_array($options)) {
             $this->options = $options;
         }
-        if (!file_exists(MODX_CORE_PATH . 'vendor/autoload.php')) {
-            $errorMessage = 'Site temporarily unavailable; missing dependencies.';
-            @include(MODX_CORE_PATH . 'error/unavailable.include.php');
-            echo "<html><title>Error 503: Site temporarily unavailable</title><body><h1>Error 503</h1><p>{$errorMessage}</p></body></html>";
-            exit();
-        }
-        require_once MODX_CORE_PATH . 'vendor/autoload.php';
     }
 
     /**
@@ -102,19 +89,17 @@ class modInstall {
      * @param array $config
      * @return Object|null
      */
-    public function getService($name,$class,$path = '',array $config = []) {
+    public function getService($name,$class,$path = '',array $config = array()) {
         if (empty($this->$name)) {
             $className = $this->loadClass($class,$path);
             if (!empty($className)) {
                 $this->$name = new $className($this,$config);
             } else {
-                $this->_fatalError($this->lexicon('service_err_nf',
-                                                  [
+                $this->_fatalError($this->lexicon('service_err_nf',array(
                     'name' => $name,
                     'class' => $class,
                     'path' => $path,
-                                                  ]
-                ));
+                )));
             }
         }
         return $this->$name;
@@ -134,7 +119,7 @@ class modInstall {
             if (!empty($className)) {
                 $this->settings = new $className($this);
             } else {
-                $this->_fatalError($this->lexicon('settings_handler_err_nf', ['path' => $className]));
+                $this->_fatalError($this->lexicon('settings_handler_err_nf',array('path' => $className)));
             }
         }
         return $this->settings;
@@ -147,7 +132,7 @@ class modInstall {
      * @param array $placeholders
      * @return string
      */
-    public function lexicon($key,array $placeholders = []) {
+    public function lexicon($key,array $placeholders = array()) {
         return $this->lexicon->get($key,$placeholders);
     }
 
@@ -155,18 +140,16 @@ class modInstall {
      * Get an xPDO connection to the database.
      *
      * @param int $mode
-     *
-     * @return xPDO|string A copy of the xpdo object.
-     * @throws xPDOException
+     * @return xPDO A copy of the xpdo object.
      */
     public function getConnection($mode = 0) {
         if ($this->settings && empty($mode)) $mode = (int)$this->settings->get('installmode');
         if (empty($mode)) $mode = modInstall::MODE_NEW;
         if ($mode === modInstall::MODE_UPGRADE_REVO) {
-            $errors = [];
+            $errors = array ();
             $this->xpdo = $this->_modx($errors);
         } else if (!is_object($this->xpdo)) {
-            $options = [];
+            $options = array();
             if ($this->settings->get('new_folder_permissions')) $options['new_folder_permissions'] = $this->settings->get('new_folder_permissions');
             if ($this->settings->get('new_file_permissions')) $options['new_file_permissions'] = $this->settings->get('new_file_permissions');
             $this->xpdo = $this->_connect(
@@ -188,7 +171,7 @@ class modInstall {
 
             if ($mode === modInstall::MODE_UPGRADE_REVO_ADVANCED) {
                 if ($this->xpdo->connect()) {
-                    $errors = [];
+                    $errors = array ();
                     $this->xpdo = $this->_modx($errors);
                 } else {
                     return $this->lexicon('db_err_connect_upgrade');
@@ -196,19 +179,14 @@ class modInstall {
             }
         }
         if (is_object($this->xpdo) && $this->xpdo instanceof xPDO) {
-            $this->xpdo->setLogTarget(
-                [
+            $this->xpdo->setLogTarget(array(
                 'target' => 'FILE',
-                'options' => [
-                    'filename' => 'install.' . MODX_CONFIG_KEY . '.' . date('Y-m-d\TH.i.s').'.log'
-                ]
-                ]
-            );
+                'options' => array(
+                    'filename' => 'install.' . MODX_CONFIG_KEY . '.' . strftime('%Y-%m-%dT%H.%M.%S').'.log'
+                )
+            ));
             $this->xpdo->setLogLevel(xPDO::LOG_LEVEL_ERROR);
-            $this->xpdo->setPackage('Revolution', MODX_CORE_PATH . 'src/', $this->settings->get('table_prefix'));
-            $this->xpdo->addPackage('Revolution\Registry\Db', MODX_CORE_PATH . 'src/', $this->settings->get('table_prefix'));
-            $this->xpdo->addPackage('Revolution\Sources', MODX_CORE_PATH . 'src/', $this->settings->get('table_prefix'));
-            $this->xpdo->addPackage('Revolution\Transport', MODX_CORE_PATH . 'src/', $this->settings->get('table_prefix'));
+            $this->xpdo->setPackage('modx', MODX_CORE_PATH . 'model/', $this->settings->get('table_prefix'));
         }
         return $this->xpdo;
     }
@@ -221,7 +199,7 @@ class modInstall {
      * @param array $config
      * @return modInstallTest|void
      */
-    public function loadTestHandler($class = 'test.modInstallTest',$path = '',array $config = []) {
+    public function loadTestHandler($class = 'test.modInstallTest',$path = '',array $config = array()) {
         $className = $this->loadClass($class,$path);
         if (!empty($className)) {
             $this->lexicon->load('test');
@@ -229,11 +207,11 @@ class modInstall {
             $distributionClass = 'test.'.$className.ucfirst(trim(MODX_SETUP_KEY, '@'));
             $distributionClassName = $this->loadClass($distributionClass,$path);
             if (empty($distributionClassName)) {
-                $this->_fatalError($this->lexicon('test_version_class_nf', ['path' => $distributionClass]));
+                $this->_fatalError($this->lexicon('test_version_class_nf',array('path' => $distributionClass)));
             }
             $this->test = new $distributionClassName($this);
         } else {
-            $this->_fatalError($this->lexicon('test_class_nf', ['path' => $path]));
+            $this->_fatalError($this->lexicon('test_class_nf',array('path' => $path)));
         }
         return $this->test;
     }
@@ -257,7 +235,7 @@ class modInstall {
      * @return array An array of error messages collected during the process.
      */
     public function verify() {
-        $errors = [];
+        $errors = array ();
         $modx = $this->_modx($errors);
         if (is_object($modx) && $modx instanceof modX) {
             if ($modx->getCacheManager()) {
@@ -274,8 +252,8 @@ class modInstall {
      * @param array $options
      * @return array
      */
-    public function cleanup(array $options = []) {
-        $errors = [];
+    public function cleanup(array $options = array ()) {
+        $errors = array();
         $modx = $this->_modx($errors);
         if (empty($modx) || !($modx instanceof modX)) {
             $errors['modx_class'] = $this->lexicon('modx_err_instantiate');
@@ -285,9 +263,9 @@ class modInstall {
         /* create the directories for Package Management */
         /** @var modCacheManager $cacheManager */
         $cacheManager = $modx->getCacheManager();
-        $directoryOptions = [
+        $directoryOptions = array(
             'new_folder_permissions' => $modx->getOption('new_folder_permissions',null,0775),
-        ];
+        );
 
         /* create assets/ */
         $assetsPath = $this->settings->get('assets_path',$this->settings->get('web_path',$modx->getOption('base_path')).'assets/');
@@ -329,8 +307,8 @@ class modInstall {
      * @param array $options
      * @return array
      */
-    public function removeSetupDirectory(array $options = []) {
-        $errors = [];
+    public function removeSetupDirectory(array $options = array()) {
+        $errors = array();
 
         $modx = $this->_modx($errors);
         if ($modx) {
@@ -370,12 +348,12 @@ class modInstall {
      * @param array $attributes An array of installation attributes.
      * @return array An array of error messages collected during the process.
      */
-    public function installPackage($pkg, array $attributes = []) {
-        $errors = [];
+    public function installPackage($pkg, array $attributes = array ()) {
+        $errors = array ();
 
         /* instantiate the modX class */
-        if (class_exists('MODX\Revolution\modX')) {
-            $modx = \MODX\Revolution\modX::getInstance();
+        if (@ require_once (MODX_CORE_PATH . 'model/modx/modx.class.php')) {
+            $modx = new modX(MODX_CORE_PATH . 'config/');
             if (!is_object($modx) || !($modx instanceof modX)) {
                 $errors[] = '<p>'.$this->lexicon('modx_err_instantiate').'</p>';
             } else {
@@ -384,17 +362,21 @@ class modInstall {
                 if (!$modx->isInitialized()) {
                     $errors[] = '<p>'.$this->lexicon('modx_err_instantiate_mgr').'</p>';
                 } else {
+                    $loaded = $modx->loadClass('transport.xPDOTransport', XPDO_CORE_PATH, true, true);
+                    if (!$loaded)
+                        $errors[] = '<p>'.$this->lexicon('transport_class_err_load').'</p>';
+
                     $packageDirectory = MODX_CORE_PATH . 'packages/';
                     $packageState = (isset ($attributes[xPDOTransport::PACKAGE_STATE]) ? $attributes[xPDOTransport::PACKAGE_STATE] : xPDOTransport::STATE_PACKED);
                     $package = xPDOTransport :: retrieve($modx, $packageDirectory . $pkg . '.transport.zip', $packageDirectory, $packageState);
                     if ($package) {
                         if (!$package->install($attributes)) {
-                            $errors[] = '<p>'.$this->lexicon('package_err_install', ['package' => $pkg]).'</p>';
+                            $errors[] = '<p>'.$this->lexicon('package_err_install',array('package' => $pkg)).'</p>';
                         } else {
-                            $modx->log(xPDO::LOG_LEVEL_INFO,$this->lexicon('package_installed', ['package' => $pkg]));
+                            $modx->log(xPDO::LOG_LEVEL_INFO,$this->lexicon('package_installed',array('package' => $pkg)));
                         }
                     } else {
-                        $errors[] = '<p>'.$this->lexicon('package_err_nf', ['package' => $pkg]).'</p>';
+                        $errors[] = '<p>'.$this->lexicon('package_err_nf',array('package' => $pkg)).'</p>';
                     }
                 }
             }
@@ -415,7 +397,7 @@ class modInstall {
 
         /* instantiate the modX class */
         if (@ require_once (MODX_CORE_PATH . 'model/modx/modx.class.php')) {
-            $modx = \MODX\Revolution\modX::getInstance();
+            $modx = new modX(MODX_CORE_PATH . 'config/');
             if (is_object($modx) && $modx instanceof modX) {
                 /* try to initialize the mgr context */
                 $modx->initialize('mgr');
@@ -458,32 +440,27 @@ class modInstall {
      * Creates the database connection for the installation process.
      *
      * @access private
-     * @return xPDO|string The xPDO instance to be used by the installation.
-     * @throws xPDOException
+     * @return xPDO The xPDO instance to be used by the installation.
      */
-    public function _connect($dsn, $user = '', $password = '', $prefix = '', array $options = []) {
-        require_once MODX_CORE_PATH . 'vendor/autoload.php';
-        if (class_exists('\xPDO\xPDO')) {
-            $this->xpdo = new xPDO($dsn, $user, $password, array_merge(
-                [
+    public function _connect($dsn, $user = '', $password = '', $prefix = '', array $options = array()) {
+        if (include_once (MODX_CORE_PATH . 'xpdo/xpdo.class.php')) {
+            $this->xpdo = new xPDO($dsn, $user, $password, array_merge(array(
                     xPDO::OPT_CACHE_PATH => MODX_CORE_PATH . 'cache/',
                     xPDO::OPT_TABLE_PREFIX => $prefix,
                     xPDO::OPT_SETUP => true,
-                ], $options),
-                                   [PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT]
+                ), $options),
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT)
             );
-            $this->xpdo->setLogTarget(
-                [
+            $this->xpdo->setLogTarget(array(
                 'target' => 'FILE',
-                'options' => [
-                    'filename' => 'install.' . MODX_CONFIG_KEY . '.' . date('Ymd\THis') . '.log'
-                ]
-                ]
-            );
+                'options' => array(
+                    'filename' => 'install.' . MODX_CONFIG_KEY . '.' . strftime('%Y%m%dT%H%M%S') . '.log'
+                )
+            ));
             $this->xpdo->setLogLevel(xPDO::LOG_LEVEL_ERROR);
             return $this->xpdo;
         } else {
-            return $this->lexicon('xpdo_err_nf', ['path' => MODX_CORE_PATH.'vendor/xpdo/xpdo/src/xPDO/xPDO.php']);
+            return $this->lexicon('xpdo_err_nf', array('path' => MODX_CORE_PATH.'xpdo/xpdo.class.php'));
         }
     }
 
@@ -497,21 +474,19 @@ class modInstall {
         $modx = null;
 
         /* to validate installation, instantiate the modX class and run a few tests */
-        if (class_exists(modX::class)) {
-            $modx = \MODX\Revolution\modX::getInstance(null, [
+        if (include_once (MODX_CORE_PATH . 'model/modx/modx.class.php')) {
+            $modx = new modX(MODX_CORE_PATH . 'config/', array(
                 xPDO::OPT_SETUP => true,
-            ]);
+            ));
             if (!is_object($modx) || !($modx instanceof modX)) {
                 $errors[] = '<p>'.$this->lexicon('modx_err_instantiate').'</p>';
             } else {
-                $modx->setLogTarget(
-                    [
+                $modx->setLogTarget(array(
                     'target' => 'FILE',
-                    'options' => [
-                        'filename' => 'install.' . MODX_CONFIG_KEY . '.' . date('Ymd\THis') . '.log'
-                    ]
-                    ]
-                );
+                    'options' => array(
+                        'filename' => 'install.' . MODX_CONFIG_KEY . '.' . strftime('%Y%m%dT%H%M%S') . '.log'
+                    )
+                ));
 
                 /* try to initialize the mgr context */
                 $modx->initialize('mgr');
@@ -530,12 +505,12 @@ class modInstall {
      * Finds the core directory, if possible. If core cannot be found, loads the
      * findcore controller.
      *
-     * @return boolean Returns true if core directory is found.
+     * @return Returns true if core directory is found.
      */
     public function findCore() {
         $exists = false;
         if (defined('MODX_CORE_PATH') && file_exists(MODX_CORE_PATH) && is_dir(MODX_CORE_PATH)) {
-            if (file_exists(MODX_CORE_PATH . 'vendor/xpdo/xpdo/src/xPDO/xPDO.php') && file_exists(MODX_CORE_PATH . 'model/src/modX.php')) {
+            if (file_exists(MODX_CORE_PATH . 'xpdo/xpdo.class.php') && file_exists(MODX_CORE_PATH . 'model/modx/modx.class.php')) {
                 $exists = true;
             }
         }
@@ -553,7 +528,7 @@ class modInstall {
      */
     public function doPreloadChecks() {
         $this->lexicon->load('preload');
-        $errors= [];
+        $errors= array();
 
         if (!extension_loaded('pdo')) {
             $errors[] = $this->lexicon('preload_err_pdo');
@@ -562,7 +537,7 @@ class modInstall {
             $errors[] = $this->lexicon('preload_err_core_path');
         }
         if (!file_exists(MODX_CORE_PATH . 'cache/') || !is_dir(MODX_CORE_PATH . 'cache/') || !$this->is_writable2(MODX_CORE_PATH . 'cache/')) {
-            $errors[] = $this->lexicon('preload_err_cache', ['path' => MODX_CORE_PATH]);
+            $errors[] = $this->lexicon('preload_err_cache',array('path' => MODX_CORE_PATH));
         }
 
         if (!empty($errors)) {
@@ -643,13 +618,13 @@ class modInstall {
         if (!empty($className)) {
             $this->driver = new $className($this);
         } else {
-            $this->_fatalError($this->lexicon('driver_class_err_nf', ['path' => $class]));
+            $this->_fatalError($this->lexicon('driver_class_err_nf',array('path' => $class)));
         }
         return !empty($className);
     }
 
     public function lock() {
-        $errors = [];
+        $errors = array();
 
         $modx = $this->_modx($errors);
         if ($modx) {

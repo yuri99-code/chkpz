@@ -180,7 +180,6 @@ Ext.extend(MODx.orm.Tree,Ext.tree.TreePanel,{
                         var nd = this.getSelectedNode();
                         nd.setId(r.name);
                         nd.setText(r.name);
-                        nd.attributes.name = r.name;
                         this.markFormPanelDirty();
                     },scope:this}
                 }
@@ -189,11 +188,6 @@ Ext.extend(MODx.orm.Tree,Ext.tree.TreePanel,{
         this.windows.renameContainer.setValues(r);
         this.windows.renameContainer.show(e.target);
     }
-
-    ,renderItemText: function(item) {
-        return item.text;
-    }
-
     ,addAttribute: function(btn,e,node) {
         var r = {};
         if (node) { r.parent = node.id; }
@@ -323,7 +317,6 @@ Ext.extend(MODx.orm.Form,Ext.Panel,{
         var val = f.findField(this.config.prefix+'_value').getValue();
         n.attributes.id = f.findField(this.config.prefix+'_id').getValue();
         n.attributes.text = txt;
-        n.attributes.name = txt;
         n.attributes.value = val;
         n.setText(txt+' - <i>'+Ext.util.Format.ellipsis(val,33)+'</i>');
         fp.markDirty();
@@ -339,6 +332,8 @@ MODx.window.AddOrmAttribute = function(config) {
     Ext.applyIf(config,{
         title: _('orm_attribute_add')
         ,id: this.ident
+        // ,height: 150
+        // ,width: 350
         ,fields: [{
             xtype: 'hidden'
             ,name: 'parent'
@@ -390,6 +385,8 @@ MODx.window.AddOrmContainer = function(config) {
     Ext.applyIf(config,{
         title: _('orm_container_add')
         ,id: this.ident
+        // ,height: 150
+        // ,width: 350
         ,fields: [{
             xtype: 'hidden'
             ,name: 'parent'
@@ -434,6 +431,8 @@ MODx.window.RenameOrmContainer = function(config) {
     Ext.applyIf(config,{
         title: _('orm_container_rename')
         ,id: this.ident
+        // ,height: 150
+        // ,width: 350
         ,fields: [{
             xtype: 'hidden'
             ,name: 'parent'

@@ -9,18 +9,13 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution;
-
-use MODX\Revolution\Processors\ProcessorResponse;
-use xPDO\xPDOException;
-use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
 
 /**
  * Extends the basic PHPUnit TestCase class to provide MODX specific methods
  *
  * @package modx-test
  */
-abstract class MODxTestCase extends XTestCase {
+abstract class MODxTestCase extends \PHPUnit\Framework\TestCase {
     /**
      * @var modX $modx
      */
@@ -32,12 +27,9 @@ abstract class MODxTestCase extends XTestCase {
 
     /**
      * Ensure all tests have a reference to the MODX object
-     *
-     * @before
-     * @throws xPDOException
      */
-    public function setUpFixtures() {
-        $this->modx = MODxTestHarness::getFixture(modX::class, 'modx');
+    public function setUp() {
+        $this->modx =& MODxTestHarness::getFixture('modX', 'modx');
         if ($this->modx->request) {
             $this->modx->request->loadErrorHandler();
             $this->modx->error->reset();
@@ -50,31 +42,29 @@ abstract class MODxTestCase extends XTestCase {
 
     /**
      * Remove reference at end of test case
-     *
-     * @after
      */
-    public function tearDownFixtures() {}
+    public function tearDown() {}
 
     /**
      * Check a MODX return result for a success flag
      *
-     * @param ProcessorResponse $result The result response
+     * @param modProcessorResponse $result The result response
      * @return boolean
      */
     public function checkForSuccess(&$result) {
-        if (empty($result) || !($result instanceof ProcessorResponse)) return false;
+        if (empty($result) || !($result instanceof modProcessorResponse)) return false;
         return !$result->isError();
     }
 
     /**
      * Check a MODX processor response and return results
      *
-     * @param ProcessorResponse $result The response
+     * @param string $result The response
      * @return array
      */
     public function getResults(&$result) {
         $response = ltrim(rtrim($result->response,')'),'(');
-        $response = json_decode($response, true);
-        return !empty($response['results']) ? $response['results'] : [];
+        $response = $this->modx->fromJSON($response);
+        return !empty($response['results']) ? $response['results'] : array();
     }
 }

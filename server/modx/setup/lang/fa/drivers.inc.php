@@ -15,3 +15,6 @@ $_lang['mysql_version_fail'] = 'مادایکس نیاز به نسخه 4.1.20 ی�
 $_lang['mysql_version_server_nf'] = 'مادایکس به وسیله تابع ()mysql_get_server_info، موفق به تشخیص نسخه‌ی MySQL server شما نشد. لطفا قبل از ادامه‌ی مراحل، بصورت دستی نسخه‌ی MySQL server خود را پیدا کرده و اطمینان حاصل کنید که برابر یا جدیدتر از نسخه‌ی 4.1.20 باشد.';
 $_lang['mysql_version_server_start'] = 'بررسی نسخه‌ی MySQL server:';
 $_lang['mysql_version_success'] = 'بسیار خوب! نسخه‌ی کنونی: [[+version]]';
+
+$_lang['sqlsrv_version_success'] = 'تأیید!';
+$_lang['sqlsrv_version_client_success'] = 'تأیید!';

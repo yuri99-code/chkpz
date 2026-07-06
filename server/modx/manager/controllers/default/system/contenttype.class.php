@@ -7,9 +7,6 @@
  * For complete copyright and license information, see the COPYRIGHT and LICENSE
  * files found in the top-level directory of this distribution.
  */
-
-use MODX\Revolution\modManagerController;
-
 class SystemContentTypeManagerController extends modManagerController {
     /**
      * Check for any permissions or requirements to load page
@@ -37,7 +34,7 @@ class SystemContentTypeManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {}
+    public function process(array $scriptProperties = array()) {}
 
     /**
      * Return the pagetitle
@@ -61,7 +58,7 @@ class SystemContentTypeManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['content_type'];
+        return array('content_type');
     }
 
     /**

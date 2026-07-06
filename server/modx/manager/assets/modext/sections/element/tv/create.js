@@ -11,12 +11,13 @@ MODx.page.CreateTV = function(config) {
     Ext.applyIf(config,{
         formpanel: 'modx-panel-tv'
         ,buttons: [{
-            process: 'Element/Tv/Create'
+            process: 'element/tv/create'
             ,reload: true
             ,text: _('save')
             ,id: 'modx-abtn-save'
             ,cls: 'primary-button'
             ,method: 'remote'
+            // ,checkDirty: true
             ,keys: [{
                 key: MODx.config.keymap_save || 's'
                 ,ctrl: true
@@ -24,11 +25,8 @@ MODx.page.CreateTV = function(config) {
         },{
             text: _('cancel')
             ,id: 'modx-abtn-cancel'
-            ,handler: function() {
-                MODx.loadPage('?');
-            }
         },{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,id: 'modx-abtn-help'
             ,handler: MODx.loadHelpPane
         }]

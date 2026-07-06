@@ -8,11 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modFormCustomizationProfile;
-use MODX\Revolution\modFormCustomizationProfileUserGroup;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modUserGroup;
-
 /**
  * Loads form customization profile editing panel
  *
@@ -20,7 +15,7 @@ use MODX\Revolution\modUserGroup;
  * @subpackage manager.controllers
  */
 class SecurityFormsProfileUpdateManagerController extends modManagerController {
-    public $profileArray = [];
+    public $profileArray = array();
 
     /**
      * Check for any permissions or requirements to load page
@@ -58,32 +53,31 @@ class SecurityFormsProfileUpdateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
-        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((int)$scriptProperties['id'])) {
+        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((integer)$scriptProperties['id'])) {
             return $this->failure($this->modx->lexicon('profile_err_ns'));
         }
-        $profile = $this->modx->getObject(modFormCustomizationProfile::class, ['id' => $scriptProperties['id']]);
-        if (empty($profile)) return $this->failure($this->modx->lexicon('profile_err_nfs',
-            ['id' => $scriptProperties['id']]));
+        $profile = $this->modx->getObject('modFormCustomizationProfile', array('id' => $scriptProperties['id']));
+        if (empty($profile)) return $this->failure($this->modx->lexicon('profile_err_nfs',array('id' => $scriptProperties['id'])));
 
         $this->profileArray = $profile->toArray();
 
-        $c = $this->modx->newQuery(modUserGroup::class);
-        $c->innerJoin(modFormCustomizationProfileUserGroup::class,'FormCustomizationProfiles');
-        $c->where([
+        $c = $this->modx->newQuery('modUserGroup');
+        $c->innerJoin('modFormCustomizationProfileUserGroup','FormCustomizationProfiles');
+        $c->where(array(
             'FormCustomizationProfiles.profile' => $profile->get('id'),
-        ]);
+        ));
         $c->sortby('name','ASC');
-        $usergroups = $this->modx->getCollection(modUserGroup::class, $c);
+        $usergroups = $this->modx->getCollection('modUserGroup',$c);
 
-        $this->profileArray['usergroups'] = [];
+        $this->profileArray['usergroups'] = array();
         foreach ($usergroups as $usergroup) {
-            $this->profileArray['usergroups'][] = [
+            $this->profileArray['usergroups'][] = array(
                 $usergroup->get('id'),
                 $usergroup->get('name'),
-            ];
+            );
         }
 
         $placeholders['profile'] = $this->profileArray;
@@ -97,7 +91,7 @@ class SecurityFormsProfileUpdateManagerController extends modManagerController {
      * @return string
      */
     public function getPageTitle() {
-        return $this->modx->lexicon('form_customization').': '.$this->profileArray['name'];
+        return $this->modx->lexicon('form_customization');
     }
 
     /**
@@ -113,7 +107,7 @@ class SecurityFormsProfileUpdateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['user','access','policy','formcustomization'];
+        return array('user','access','policy','formcustomization');
     }
 
     /**

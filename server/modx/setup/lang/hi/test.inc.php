@@ -35,9 +35,9 @@ $_lang['test_nocompress_skip'] = 'परीक्षण लंघन, चयन�
 $_lang['test_php_version_fail'] = 'आप PHP पर चल रहे हैं [[+version]], और ModX क्रांति पीएचपी 5.1.1 या बाद में की आवश्यकता है। कम से कम 5.1.1 करने के लिए PHP अपग्रेड करें। ModX कम से कम 5.3.2+ के उन्नयन की सिफारिश की।';
 $_lang['test_php_version_start'] = 'PHP संस्करण की जाँच:';
 $_lang['test_php_version_success'] = 'ठीक है! रनिंग: [[+version]]';
-$_lang['test_session_gc'] = 'Checking if <a href="https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">sessions garbage collector</a> are properly configured: ';
-$_lang['test_session_gc_fail'] = 'The sessions garbage collector does not start! The current configuration "session.gc_probability" is set to [[+gc_probability]] and "session.gc_divisor" is set to [[+gc_divisor]]. <br>By default, MODX stores sessions in the database, so misconfiguration of these options can cause the session table to grow in size.';
-$_lang['test_session_gc_success'] = 'OK! The current configuration "session.gc_probability" is set to [[+gc_probability]] and "session.gc_divisor" is set to [[+gc_divisor]]. <br>By default, MODX stores sessions in the database, so misconfiguration of these options can cause the session table to grow in size.';
+$_lang['test_safe_mode_start'] = 'Safe_mode बंद है सुनिश्चित करने के लिए जाँच:';
+$_lang['test_safe_mode_fail'] = 'MODX safe_mode पर होना करने के लिए मिला है। आप आगे बढ़ने के लिए अपने PHP विन्यास में safe_mode को अक्षम करना होगा।';
+$_lang['test_sessions_start'] = 'जाँच यदि सत्र ठीक से कॉन्फ़िगर किया गया हैं:';
 $_lang['test_simplexml'] = 'SimpleXML के लिए की जाँच:';
 $_lang['test_simplexml_nf'] = 'SimpleXML ढूँढ नहीं सकता है!';
 $_lang['test_simplexml_nf_msg'] = 'ModX अपने PHP पर्यावरण पर SimpleXML नहीं मिल सकता है। Package Management और अन्य कार्यक्षमता स्थापित इस के बिना काम नहीं करेगा। आप स्थापना के साथ जारी रख सकते हैं, लेकिन ModX उन्नत सुविधाओं और कार्यक्षमता के लिए SimpleXML को सक्षम करने की सिफारिश की।';

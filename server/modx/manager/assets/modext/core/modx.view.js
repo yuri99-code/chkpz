@@ -93,7 +93,7 @@ Ext.extend(MODx.DataView,Ext.DataView,{
         this.store = new Ext.data.JsonStore({
             url: config.url
             ,baseParams: config.baseParams || {
-                action: 'Browser/Directory/GetList'
+                action: 'browser/directory/getList'
                 ,wctx: config.wctx || MODx.ctx
                 ,dir: config.openTo || ''
                 ,source: config.source || 0

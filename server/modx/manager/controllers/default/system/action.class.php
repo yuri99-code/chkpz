@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads the System Actions page
  *
@@ -45,7 +43,7 @@ class SystemActionManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {}
+    public function process(array $scriptProperties = array()) {}
 
     /**
      * Return the pagetitle
@@ -69,7 +67,7 @@ class SystemActionManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['topmenu','menu','namespace'];
+        return array('topmenu','menu','namespace');
     }
 
     public function getHelpUrl() {

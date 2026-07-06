@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads the system settings page
  *
@@ -50,7 +48,7 @@ class SystemSettingsManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
+    public function process(array $scriptProperties = array()) {
         $onSiteSettingsRender = $this->modx->invokeEvent('OnSiteSettingsRender');
         if (is_array($onSiteSettingsRender)) {
             $this->onSiteSettingsRender = implode("\"\n+ \"",$onSiteSettingsRender);
@@ -79,7 +77,7 @@ class SystemSettingsManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['setting','events'];
+        return array('setting','events');
     }
 
     /**

@@ -75,6 +75,10 @@ Ext.onReady(function() {
         id = id[3];
         MODx.resetTV(id);
     });
+    MODx.refreshTVs = function() {
+        if (MODx.unloadTVRTE) { MODx.unloadTVRTE(); }
+        Ext.getCmp('modx-panel-resource-tv').refreshTVs();
+    };
     {/literal}{if $tvcount GT 0}{literal}
     MODx.load({
         xtype: 'modx-vtabs'

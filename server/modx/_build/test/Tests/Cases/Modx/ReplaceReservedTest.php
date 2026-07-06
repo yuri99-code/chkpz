@@ -1,12 +1,15 @@
 <?php
-namespace MODX\Revolution\Tests\Cases\Modx;
 
-use MODX\Revolution\modX;
-use stdClass;
-use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
-
-class ReplaceReservedTest extends XTestCase
+class ReplaceReservedTest extends \PHPUnit\Framework\TestCase
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        include_once dirname(dirname(dirname(dirname(dirname(__DIR__))))) . '/core/model/modx/modx.class.php';
+    }
+
     public function testEmptyString()
     {
         $this->assertEquals(
@@ -41,29 +44,29 @@ class ReplaceReservedTest extends XTestCase
         );
 
         $this->assertEquals(
-            [$replacing => $replacing],
-            modX::replaceReserved([
+            array($replacing => $replacing),
+            modX::replaceReserved(array(
                 $source => $source
-            ])
+            ))
         );
 
         $this->assertEquals(
-            [
-                $replacing => [
+            array(
+                $replacing => array(
                     $replacing => $replacing
-                ]
-            ],
-            modX::replaceReserved([
-                $source => [
+                )
+            ),
+            modX::replaceReserved(array(
+                $source => array(
                     $source => $source
-                ]
-            ])
+                )
+            ))
         );
     }
 
     public function testChangingProperty()
     {
-        $property = ['[' => '', ']' => '&#93;'];
+        $property = array('[' => '', ']' => '&#93;');
 
         $this->assertEquals(
             'clear string',
@@ -79,27 +82,27 @@ class ReplaceReservedTest extends XTestCase
         );
 
         $this->assertEquals(
-            [$replacing => $replacing],
+            array($replacing => $replacing),
             modX::replaceReserved(
-                [
+                array(
                     $source => $source
-                ],
+                ),
                 $property
             )
         );
 
         $this->assertEquals(
-            [
-                $replacing => [
+            array(
+                $replacing => array(
                     $replacing => $replacing
-                ]
-            ],
+                )
+            ),
             modX::replaceReserved(
-                [
-                    $source => [
+                array(
+                    $source => array(
                         $source => $source
-                    ]
-                ],
+                    )
+                ),
                 $property
             )
         );

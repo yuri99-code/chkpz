@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-06-27 17:24:47
+/* Smarty version 3.1.48, created on 2026-07-01 17:09:15
   from '/var/www/html/setup/templates/install.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.5.6',
-  'unifunc' => 'content_6a40075f8c4e35_87416938',
+  'version' => '3.1.48',
+  'unifunc' => 'content_6a4549bbce3b50_02347025',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0b4adf421a18211db922505f774c45a40e164502' => 
     array (
       0 => '/var/www/html/setup/templates/install.tpl',
-      1 => 1782222764,
+      1 => 1742327582,
       2 => 'file',
     ),
   ),
@@ -20,42 +20,59 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6a40075f8c4e35_87416938 (Smarty_Internal_Template $_smarty_tpl) {
-?><form id="install" action="?action=install" method="post">
-    <div class="setup_body">
-        <h2><?php echo $_smarty_tpl->tpl_vars['_lang']->value['install_summary'];?>
+function content_6a4549bbce3b50_02347025 (Smarty_Internal_Template $_smarty_tpl) {
+echo '<script'; ?>
+ src="assets/js/sections/install.js"><?php echo '</script'; ?>
+>
+<form id="install" action="?action=install" method="post">
+<h2><?php echo $_smarty_tpl->tpl_vars['_lang']->value['install_summary'];?>
 </h2>
-        <p><?php if ($_smarty_tpl->tpl_vars['failed']->value) {
-echo $_smarty_tpl->tpl_vars['_lang']->value['errors_occurred'];
-} else {
-echo $_smarty_tpl->tpl_vars['_lang']->value['install_success'];
-}?></p>
-        <ul class="checklist">
-        <?php
+<?php if ($_smarty_tpl->tpl_vars['failed']->value) {?>
+<p><?php echo $_smarty_tpl->tpl_vars['_lang']->value['errors_occurred'];?>
+</p>
+<?php } else { ?>
+<p>
+    <?php echo $_smarty_tpl->tpl_vars['_lang']->value['install_success'];?>
+
+    <br />(<a style="font-size: .9em" href="#continuebtn"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['skip_to_bottom'];?>
+</a>)
+    <br /><br />
+    <a href="javascript:void(0);" class="modx-toggle-success"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['toggle_success'];?>
+</a> |
+    <a href="javascript:void(0);" class="modx-toggle-warning"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['toggle_warnings'];?>
+</a>
+</p>
+<?php }?>
+<ul class="checklist">
+<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['results']->value, 'result');
 $_smarty_tpl->tpl_vars['result']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['result']->value) {
 $_smarty_tpl->tpl_vars['result']->do_else = false;
 ?>
-            <li class="<?php echo $_smarty_tpl->tpl_vars['result']->value['class'];?>
- finalsuccess"> <?php echo $_smarty_tpl->tpl_vars['result']->value['msg'];?>
- </li>
-        <?php
+<li class="<?php echo $_smarty_tpl->tpl_vars['result']->value['class'];?>
+ finalsuccess" <?php if (!$_smarty_tpl->tpl_vars['failed']->value) {?>style="display: none;"<?php }?>><?php echo $_smarty_tpl->tpl_vars['result']->value['msg'];?>
+</li>
+<?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-        </ul>
-    </div>
-    <div class="setup_navbar">
-        <?php if ($_smarty_tpl->tpl_vars['failed']->value) {?>
-            <input type="button" onclick="MODx.go('install');" value="<?php echo $_smarty_tpl->tpl_vars['_lang']->value['retry'];?>
- &#xf021;" id="modx-next" class="button">
-            <input type="button" onclick="MODx.go('summary');" value="&#xf053; <?php echo $_smarty_tpl->tpl_vars['_lang']->value['back'];?>
-" id="modx-back" class="button">
-        <?php } else { ?>
-            <input type="submit" id="modx-next" class="button" name="proceed" value="<?php echo $_smarty_tpl->tpl_vars['_lang']->value['next'];?>
- &#xf054;" autofocus="autofocus">
-        <?php }?>
-    </div>
+</ul>
+
+<br />
+
+<a id="continuebtn"></a>
+
+<div class="setup_navbar">
+<?php if ($_smarty_tpl->tpl_vars['failed']->value) {?>
+    <button type="button" id="modx-next" onclick="MODx.go('install');"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['retry'];?>
+</button>
+    <button type="button" id="modx-back" onclick="MODx.go('summary');"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['back'];?>
+</button>
+<?php } else { ?>
+    <input type="submit" id="modx-next" name="proceed" value="<?php echo $_smarty_tpl->tpl_vars['_lang']->value['next'];?>
+" autofocus="autofocus" />
+<?php }?>
+</div>
 </form>
 <?php }
 }

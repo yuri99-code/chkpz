@@ -10,15 +10,15 @@ MODx.panel.Search = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'modx-panel-search'
-        ,cls: 'container form-with-labels'
+		,cls: 'container form-with-labels'
         ,labelAlign: 'top'
         ,autoHeight: true
         ,items: [{
             html: _('search')
             ,xtype: 'modx-header'
         },MODx.getPageStructure([{
-            title: _('search_criteria')
-            ,layout: 'form'
+            layout: 'form'
+            ,title: _('search_criteria')
             ,defaults: {
                 collapsible: false
                 ,autoHeight: true
@@ -218,7 +218,7 @@ Ext.extend(MODx.panel.Search,MODx.FormPanel,{
 
     ,filter: function(tf,newValue,oldValue) {
         var p = this.getForm().getValues();
-        p.action = 'Resource/Search';
+        p.action = 'resource/search';
 
         var g = Ext.getCmp('modx-grid-search');
         if (g) {
@@ -251,7 +251,7 @@ MODx.grid.Search = function(config) {
         ,id: 'modx-grid-search'
         ,url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Resource/Search'
+            action: 'resource/search'
         }
         ,fields: ['id','pagetitle','description','published','deleted','menu']
         ,paging: true
@@ -265,12 +265,6 @@ MODx.grid.Search = function(config) {
             header: _('pagetitle')
             ,dataIndex: 'pagetitle'
             ,sortable: true
-            ,renderer: { fn: function(v,md,record) {
-                return this.renderLink(v, {
-                    href: '?a=resource/update&id=' + record.data.id
-                    ,target: '_blank'
-                });
-            }, scope: this }
         },{
             header: _('description')
             ,dataIndex: 'description'

@@ -10,8 +10,8 @@
 
 /**
  * @package modx
- * @var \MODX\Revolution\modX $modx
+ * @var modX $modx
  */
 define('MODX_CONNECTOR_INCLUDED', 1);
 require_once __DIR__ .'/index.php';
-$modx->request->handleRequest(['location' => 'system','action' => 'System\ConfigJs']);
+$modx->request->handleRequest(array('location' => 'system','action' => 'config.js'));

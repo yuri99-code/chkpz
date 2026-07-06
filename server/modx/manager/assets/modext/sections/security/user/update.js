@@ -1,26 +1,27 @@
 /**
  * Loads the update user page
- *
+ * 
  * @class MODx.page.UpdateUser
  * @extends MODx.Component
  * @param {Object} config An object of config properties
  * @xtype modx-page-user-update
  */
 MODx.page.UpdateUser = function(config) {
-    config = config || {};
-    Ext.applyIf(config,{
-        formpanel: 'modx-panel-user'
-        ,actions: {
-            'new': 'Security/User/Create'
-            ,edit: 'Security/User/Update'
+	config = config || {};
+	Ext.applyIf(config,{
+       formpanel: 'modx-panel-user'
+       ,actions: {
+            'new': 'security/user/create'
+            ,edit: 'security/user/update'
             ,cancel: 'security/user'
-        }
+       }
         ,buttons: [{
-            process: 'Security/User/Update'
+            process: 'security/user/update'
             ,text: _('save')
             ,id: 'modx-abtn-save'
             ,cls: 'primary-button'
             ,method: 'remote'
+            // ,checkDirty: true
             ,keys: [{
                 key: MODx.config.keymap_save || 's'
                 ,ctrl: true
@@ -32,12 +33,12 @@ MODx.page.UpdateUser = function(config) {
                 MODx.loadPage('security/user')
             }
         },{
-            text: '<i class="icon icon-trash-o"></i>'
+            text: _('delete')
             ,id: 'modx-abtn-delete'
             ,handler: this.removeUser
             ,scope: this
         },{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,id: 'modx-abtn-help'
             ,handler: MODx.loadHelpPane
         }]
@@ -49,17 +50,17 @@ MODx.page.UpdateUser = function(config) {
             ,extendedFields: config.extendedFields
             ,name: ''
         }]
-    });
-    MODx.page.UpdateUser.superclass.constructor.call(this,config);
+	});
+	MODx.page.UpdateUser.superclass.constructor.call(this,config);
 };
 Ext.extend(MODx.page.UpdateUser,MODx.Component,{
     removeUser: function(btn,e) {
         MODx.msg.confirm({
-            title: _('delete')
+            title: _('user_remove')
             ,text: _('user_confirm_remove')
             ,url: MODx.config.connector_url
             ,params: {
-                action: 'Security/User/Delete'
+                action: 'security/user/delete'
                 ,id: this.config.user
             }
             ,listeners: {

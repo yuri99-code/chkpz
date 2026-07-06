@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads the search page
  *
@@ -38,7 +36,7 @@ class SearchManagerController extends modManagerController {
         $this->addHtml("<script type=\"text/javascript\">Ext.onReady(function() {
     MODx.load({
         xtype: 'modx-page-search'
-        ,record: " . json_encode(['q' => $this->searchQuery], JSON_INVALID_UTF8_SUBSTITUTE)  . "
+        ,record: " . json_encode(['q' => $this->searchQuery])  . "
     });
 });</script>");
     }
@@ -48,7 +46,7 @@ class SearchManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
+    public function process(array $scriptProperties = array()) {
         if (!empty($this->scriptProperties['q'])) {
             $this->searchQuery = str_replace("'","\'",urldecode($this->scriptProperties['q']));
         }
@@ -76,6 +74,6 @@ class SearchManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['resource'];
+        return array('resource');
     }
 }

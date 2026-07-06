@@ -1,36 +1,28 @@
 <?php
 /**
  * Resolve Default Policies to their PolicyTemplates
- *
- * @var xPDOTransport $transport
  */
-
-use MODX\Revolution\modAccessPolicy;
-use MODX\Revolution\modAccessPolicyTemplate;
-use xPDO\xPDO;
-
 $success= false;
 
 /* map of Policy -> Template */
-$map = [
-    modAccessPolicy::POLICY_RESOURCE => modAccessPolicyTemplate::TEMPLATE_RESOURCE,
-    modAccessPolicy::POLICY_ADMINISTRATOR => modAccessPolicyTemplate::TEMPLATE_ADMINISTRATOR,
-    modAccessPolicy::POLICY_CONTENT_EDITOR => modAccessPolicyTemplate::TEMPLATE_ADMINISTRATOR,
-    modAccessPolicy::POLICY_DEVELOPER => modAccessPolicyTemplate::TEMPLATE_ADMINISTRATOR,
-    modAccessPolicy::POLICY_LOAD_ONLY => modAccessPolicyTemplate::TEMPLATE_OBJECT,
-    modAccessPolicy::POLICY_LOAD_LIST_VIEW => modAccessPolicyTemplate::TEMPLATE_OBJECT,
-    modAccessPolicy::POLICY_OBJECT => modAccessPolicyTemplate::TEMPLATE_OBJECT,
-    modAccessPolicy::POLICY_CONTEXT => modAccessPolicyTemplate::TEMPLATE_CONTEXT,
-    modAccessPolicy::POLICY_ELEMENT => modAccessPolicyTemplate::TEMPLATE_ELEMENT,
-    modAccessPolicy::POLICY_MEDIA_SOURCE_ADMIN => modAccessPolicyTemplate::TEMPLATE_MEDIA_SOURCE,
-    modAccessPolicy::POLICY_MEDIA_SOURCE_USER => modAccessPolicyTemplate::TEMPLATE_MEDIA_SOURCE,
-    modAccessPolicy::POLICY_HIDDEN_NAMESPACE => modAccessPolicyTemplate::TEMPLATE_NAMESPACE,
-];
+$map = array(
+    'Resource' => 'ResourceTemplate',
+    'Administrator' => 'AdministratorTemplate',
+    'Content Editor' => 'AdministratorTemplate',
+    'Load Only' => 'ObjectTemplate',
+    'Load, List and View' => 'ObjectTemplate',
+    'Object' => 'ObjectTemplate',
+    'Context' => 'ContextTemplate',
+    'Element' => 'ElementTemplate',
+    'Media Source Admin' => 'MediaSourceTemplate',
+    'Media Source User' => 'MediaSourceTemplate',
+    'Hidden Namespace' => 'NamespaceTemplate',
+);
 
-$policies = $transport->xpdo->getCollection(modAccessPolicy::class);
+$policies = $transport->xpdo->getCollection('modAccessPolicy');
 foreach ($policies as $policy) {
     if (isset($map[$policy->get('name')])) {
-        $template = $transport->xpdo->getObject(modAccessPolicyTemplate::class, ['name' => $map[$policy->get('name')]]);
+        $template = $transport->xpdo->getObject('modAccessPolicyTemplate',array('name' => $map[$policy->get('name')]));
         if ($template) {
             $policy->set('template',$template->get('id'));
             $success = $policy->save();

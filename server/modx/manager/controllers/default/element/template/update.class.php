@@ -8,11 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modCategory;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modSystemEvent;
-use MODX\Revolution\modTemplate;
-
 /**
  * Load update template page
  *
@@ -61,6 +56,8 @@ class ElementTemplateUpdateManagerController extends modManagerController {
             });
         });
         MODx.onTempFormRender = "'.$this->onTempFormRender.'";
+        MODx.perm.tree_show_element_ids = '.($this->modx->hasPermission('tree_show_element_ids') ? 1 : 0).';
+        MODx.perm.unlock_element_properties = "'.($this->modx->hasPermission('unlock_element_properties') ? 1 : 0).'";
         // ]]>
         </script>');
     }
@@ -70,35 +67,35 @@ class ElementTemplateUpdateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* load template */
-        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((int)$scriptProperties['id'])) {
+        if (empty($scriptProperties['id']) || strlen($scriptProperties['id']) !== strlen((integer)$scriptProperties['id'])) {
             return $this->failure($this->modx->lexicon('template_err_ns'));
         }
-        $this->template = $this->modx->getObject(modTemplate::class, ['id' => $scriptProperties['id']]);
+        $this->template = $this->modx->getObject('modTemplate', array('id' => $scriptProperties['id']));
         if ($this->template == null) return $this->failure($this->modx->lexicon('template_err_nf'));
         if (!$this->template->checkPolicy('view')) return $this->failure($this->modx->lexicon('access_denied'));
 
         /* get properties */
         $properties = $this->template->get('properties');
-        if (!is_array($properties)) $properties = [];
+        if (!is_array($properties)) $properties = array();
 
-        $data = [];
+        $data = array();
         foreach ($properties as $property) {
-            $data[] = [
+            $data[] = array(
                 $property['name'],
                 $property['desc'],
                 !empty($property['type']) ? $property['type'] : 'textfield',
-                !empty($property['options']) ? $property['options'] : [],
+                !empty($property['options']) ? $property['options'] : array(),
                 $property['value'],
                 !empty($property['lexicon']) ? $property['lexicon'] : '',
                 false, /* overridden set to false */
                 $property['desc_trans'],
                 !empty($property['area']) ? $property['area'] : '',
                 !empty($property['area_trans']) ? $property['area_trans'] : '',
-            ];
+            );
         }
         $this->templateArray = $this->template->toArray();
         $this->templateArray['properties'] = $data;
@@ -136,11 +133,11 @@ class ElementTemplateUpdateManagerController extends modManagerController {
     public function firePreRenderEvents() {
         /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML
         into the panel */
-        $this->onTempFormPrerender = $this->modx->invokeEvent('OnTempFormPrerender', [
+        $this->onTempFormPrerender = $this->modx->invokeEvent('OnTempFormPrerender',array(
             'id' => $this->templateArray['id'],
             'template' => &$this->template,
             'mode' => modSystemEvent::MODE_UPD,
-        ]);
+        ));
         if (is_array($this->onTempFormPrerender)) $this->onTempFormPrerender = implode('',$this->onTempFormPrerender);
         $this->setPlaceholder('onTempFormPrerender', $this->onTempFormPrerender);
     }
@@ -150,13 +147,13 @@ class ElementTemplateUpdateManagerController extends modManagerController {
      * @return string
      */
     public function fireRenderEvent() {
-        $this->onTempFormRender = $this->modx->invokeEvent('OnTempFormRender', [
+        $this->onTempFormRender = $this->modx->invokeEvent('OnTempFormRender',array(
             'id' => $this->templateArray['id'],
             'template' => &$this->template,
             'mode' => modSystemEvent::MODE_UPD,
-        ]);
+        ));
         if (is_array($this->onTempFormRender)) $this->onTempFormRender = implode('',$this->onTempFormRender);
-        $this->onTempFormRender = str_replace(['"',"\n","\r"], ['\"','',''],$this->onTempFormRender);
+        $this->onTempFormRender = str_replace(array('"',"\n","\r"),array('\"','',''),$this->onTempFormRender);
         return $this->onTempFormRender;
     }
 
@@ -182,7 +179,7 @@ class ElementTemplateUpdateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['template','category','system_events','propertyset','element','tv'];
+        return array('template','category','system_events','propertyset','element','tv');
     }
 
     /**

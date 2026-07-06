@@ -8,8 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modManagerController;
-
 /**
  * Loads lexicon management
  *
@@ -47,7 +45,7 @@ class WorkspacesLexiconManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {}
+    public function process(array $scriptProperties = array()) {}
 
     /**
      * Return the pagetitle
@@ -71,7 +69,7 @@ class WorkspacesLexiconManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['package_builder','lexicon','namespace'];
+        return array('package_builder','lexicon','namespace');
     }
 
     /**

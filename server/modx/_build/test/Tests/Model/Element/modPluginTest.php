@@ -9,11 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Element;
-
-
-use MODX\Revolution\modPlugin;
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modPlugin class.
@@ -30,15 +25,10 @@ class modPluginTest extends MODxTestCase {
     /** @var modPlugin $plugin */
     public $plugin;
 
-    /**
-     * Setup fixtures before each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
-        $this->plugin = $this->modx->newObject(modPlugin::class);
-        $this->plugin->fromArray([
+    public function setUp() {
+        parent::setUp();
+        $this->plugin = $this->modx->newObject('modPlugin');
+        $this->plugin->fromArray(array(
             'id' => 12345,
             'name' => 'Unit Test Plugin',
             'description' => 'A plugin for unit testing.',
@@ -46,17 +36,12 @@ class modPluginTest extends MODxTestCase {
             'category' => 0,
             'locked' => false,
             'disabled' => false,
-        ],'',true,true);
-        $this->plugin->setProperties(['name' => 'John']);
+        ),'',true,true);
+        $this->plugin->setProperties(array('name' => 'John'));
         $this->plugin->setCacheable(false);
     }
-    /**
-     * Tear down fixtures after each test.
-     *
-     * @after
-     */
-    public function tearDownFixtures() {
-        parent::tearDownFixtures();
+    public function tearDown() {
+        parent::tearDown();
         $this->plugin = null;
     }
 
@@ -80,9 +65,9 @@ class modPluginTest extends MODxTestCase {
      * @return array
      */
     public function providerSetContent() {
-        return [
-            ['return "Goodbye.";'],
-        ];
+        return array(
+            array('return "Goodbye.";'),
+        );
     }
 
 }

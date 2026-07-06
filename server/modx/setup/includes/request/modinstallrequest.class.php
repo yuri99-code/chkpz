@@ -20,7 +20,7 @@
  * @package setup
  */
 
-error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
 @ ini_set('display_errors', 1);
 
 class modInstallRequest {
@@ -59,7 +59,6 @@ class modInstallRequest {
 
         $currentVersion = include MODX_CORE_PATH . 'docs/version.inc.php';
 
-        $this->parser->set('base_url', str_replace('index.php', '', MODX_SETUP_URL));
         $this->parser->set('app_name', 'MODX '.$currentVersion['code_name']);
         $this->parser->set('app_version', $currentVersion['full_version']);
 
@@ -95,7 +94,7 @@ class modInstallRequest {
      * @param array $config An array of config attributes.
      * @return array A copy of the config attributes array.
      */
-    public function getConfig($mode = 0, array $config = []) {
+    public function getConfig($mode = 0, array $config = array ()) {
         switch ($mode) {
             case modInstall::MODE_UPGRADE_EVO :
                 $this->loadConfigReader('config.modEvolutionConfigReader');
@@ -124,10 +123,10 @@ class modInstallRequest {
      * @param array $config
      * @return array
      */
-    public function setDefaultPaths(array $config = []) {
+    public function setDefaultPaths(array $config = array()) {
         $webUrl= substr($_SERVER['SCRIPT_NAME'], 0, strpos($_SERVER['SCRIPT_NAME'], 'setup/'));
         $webUrl= rtrim($webUrl,'/').'/';
-        $defaults = [];
+        $defaults = array();
         $defaults['context_web_path'] = rtrim(MODX_INSTALL_PATH,'/').'/';
         $defaults['context_web_url'] = $webUrl;
         $defaults['context_mgr_path'] = rtrim(MODX_INSTALL_PATH,'/') . '/manager/';
@@ -149,9 +148,13 @@ class modInstallRequest {
         $defaults['mgr_url'] = $defaults['context_mgr_url'];
         $defaults['connectors_path'] = $defaults['context_connectors_path'];
         $defaults['connectors_url'] = $defaults['context_connectors_url'];
+        $defaults['web_path_auto'] = 0;
+        $defaults['web_url_auto'] = 0;
+        $defaults['mgr_path_auto'] = 0;
+        $defaults['mgr_url_auto'] = 0;
         $defaults['connectors_path_auto'] = 0;
         $defaults['connectors_url_auto'] = 0;
-        $defaults['processors_path'] = MODX_CORE_PATH . 'src/Revolution/Processors/';
+        $defaults['processors_path'] = MODX_CORE_PATH . 'model/modx/processors/';
         $defaults['assets_path'] = $defaults['web_path'] . 'assets/';
         $defaults['assets_url'] = $defaults['web_url'] . 'assets/';
 
@@ -174,6 +177,9 @@ class modInstallRequest {
     public function getDatabaseDSN($databaseType,$databaseServer,$database,$databaseConnectionCharset = '') {
         $dsn = '';
         switch ($databaseType) {
+            case 'sqlsrv':
+                $dsn = "{$databaseType}:server={$databaseServer};database={$database}";
+                break;
             case 'mysql':
                 $dsn = "{$databaseType}:host={$databaseServer};dbname={$database};charset={$databaseConnectionCharset}";
                 break;

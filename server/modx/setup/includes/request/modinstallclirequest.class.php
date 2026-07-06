@@ -8,9 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 require_once strtr(realpath(MODX_SETUP_PATH.'includes/request/modinstallrequest.class.php'),'\\','/');
-
-use xPDO\xPDO;
-
 /**
  * modInstallCLIRequest
  *
@@ -101,9 +98,9 @@ class modInstallCLIRequest extends modInstallRequest {
             foreach ($results['fail'] as $field => $result) {
                 $msg .= $field.': '.$result['title'].' - '.$result['message'];
             }
-            $msg = $this->install->lexicon('cli_tests_failed', [
+            $msg = $this->install->lexicon('cli_tests_failed',array(
                 'errors' => $msg,
-            ]);
+            ));
             $this->end($msg);
         }
 
@@ -113,7 +110,7 @@ class modInstallCLIRequest extends modInstallRequest {
         /* Run installer */
         $this->install->getService('runner','runner.modInstallRunnerWeb');
         $failed = true;
-        $errors = [];
+        $errors = array();
         if ($this->install->runner) {
             $success = $this->install->runner->run($mode);
             $results = $this->install->runner->getResults();
@@ -134,9 +131,9 @@ class modInstallCLIRequest extends modInstallRequest {
             foreach ($errors as $field => $result) {
                 $msg .= $result['msg'];
             }
-            $msg = $this->install->lexicon('cli_install_failed', [
+            $msg = $this->install->lexicon('cli_install_failed',array(
                 'errors' => $msg,
-            ]);
+            ));
             $this->end($msg);
         }
 
@@ -154,9 +151,9 @@ class modInstallCLIRequest extends modInstallRequest {
             $this->install->removeSetupDirectory();
         }
         $this->endTimer();
-        $this->end(''.$this->install->lexicon('installation_finished', [
+        $this->end(''.$this->install->lexicon('installation_finished',array(
             'time' => $this->timeTotal,
-            ]));
+        )));
     }
 
     /**
@@ -165,7 +162,7 @@ class modInstallCLIRequest extends modInstallRequest {
      * @param array $config
      * @return array
      */
-    public function getConfig($mode = 0, array $config = []) {
+    public function getConfig($mode = 0, array $config = array()) {
         /* load the config file */
         $config = array_merge($this->loadConfigFile(), $config);
         $config = parent::getConfig($mode, $config);
@@ -180,7 +177,7 @@ class modInstallCLIRequest extends modInstallRequest {
      * @return array
      */
     public function loadConfigFile() {
-        $settings = [];
+        $settings = array();
         $configFile = $this->install->settings->get('config');
         if (empty($configFile)) $configFile = MODX_INSTALL_PATH.'setup/config.xml';
         if (!empty($configFile)) {
@@ -207,7 +204,7 @@ class modInstallCLIRequest extends modInstallRequest {
             $settings['site_sessionname'] = 'SN' . uniqid('');
         }
         if (empty($settings['config_options'])) {
-            $settings['config_options'] = [];
+            $settings['config_options'] = array();
         }
         if (empty($settings['database']) && !empty($settings['dbase'])) {
             $settings['database'] = $settings['dbase'];
@@ -218,7 +215,7 @@ class modInstallCLIRequest extends modInstallRequest {
         }
         $this->install->settings->fromArray($settings);
 
-        $this->setDefaultSetting('processors_path',$this->install->settings->get('core_path').'src/Revolution/Processors/');
+        $this->setDefaultSetting('processors_path',$this->install->settings->get('core_path').'model/modx/processors/');
         $this->setDefaultSetting('connectors_path',$this->install->settings->get('context_connectors_path'));
         $this->setDefaultSetting('connectors_url',$this->install->settings->get('context_connectors_url'));
         $this->setDefaultSetting('mgr_path',$this->install->settings->get('context_mgr_path'));
@@ -252,7 +249,7 @@ class modInstallCLIRequest extends modInstallRequest {
         $contents = file_get_contents($file);
         $xml = new SimpleXMLElement($contents);
 
-        $settings = [];
+        $settings = array();
         foreach ($xml as $k => $v) {
             $settings[(string)$k] = (string)$v;
         }
@@ -287,16 +284,16 @@ class modInstallCLIRequest extends modInstallRequest {
             if ($mode == modInstall::MODE_NEW && $xpdo->getManager()) {
                 /* otherwise try to create the database */
                 $dbExists = $xpdo->manager->createSourceContainer(
-                    [
+                    array(
                         'dbname' => $this->install->settings->get('dbase')
                         ,'host' => $this->install->settings->get('database_server')
-                    ]
+                    )
                     ,$this->install->settings->get('database_user')
                     ,$this->install->settings->get('database_password')
-                    , [
+                    ,array(
                         'charset' => $this->install->settings->get('database_connection_charset')
                         ,'collation' => $this->install->settings->get('database_collation')
-                    ]
+                    )
                 );
                 if (!$dbExists) {
                     $this->end($this->install->lexicon('db_err_create_database'));
@@ -323,7 +320,7 @@ class modInstallCLIRequest extends modInstallRequest {
             if ($stmt) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($row) {
-                    $count = (int) $row['ct'];
+                    $count = (integer) $row['ct'];
                 }
                 $stmt->closeCursor();
             }

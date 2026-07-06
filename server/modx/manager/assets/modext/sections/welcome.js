@@ -11,6 +11,7 @@ MODx.page.Welcome = function(config) {
     Ext.applyIf(config,{
         components: [{
             xtype: 'modx-panel-welcome'
+            ,renderTo: 'modx-panel-welcome-div'
             ,dashboard: config.dashboard || {}
         }]
     });
@@ -27,25 +28,7 @@ MODx.loadWelcomePanel = function(url) {
         ,height: 500
         ,modal: true
         ,layout: 'fit'
-        ,items: [{
-            xtype: 'container'
-            ,layout: {
-                type: 'vbox'
-                ,align: 'stretch'
-            }
-            ,width: '100%'
-            ,height: '100%'
-            ,items: [{
-                autoEl: {
-                    tag: 'iframe'
-                    ,src: url
-                    ,width: '100%'
-                    ,height: '100%'
-                    ,frameBorder: 0
-                    ,onload: 'parent.MODx.helpWindow.getEl().unmask();'
-                }
-            }]
-        }]
+        ,html: '<iframe onload="parent.MODx.helpWindow.getEl().unmask();" src="' + url + '" width="100%" height="100%" frameborder="0"></iframe>'
     });
     MODx.helpWindow.show(Ext.getBody());
 };

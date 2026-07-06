@@ -12,15 +12,16 @@ MODx.page.UpdateAccessPolicyTemplate = function(config) {
         formpanel: 'modx-panel-access-policy-template'
         ,actions: {
             'new': 'security/access/policy/template'
-            ,edit: 'Security/Access/Policy/Template/Update'
+            ,edit: 'security/access/policy/template/update'
             ,cancel: 'security/permission'
         }
         ,buttons: [{
-            process: 'Security/Access/Policy/Template/Update'
+            process: 'security/access/policy/template/update'
             ,text: _('save')
             ,id: 'modx-abtn-save'
             ,cls: 'primary-button'
             ,method: 'remote'
+            // ,checkDirty: false
             ,keys: [{
                 key: MODx.config.keymap_save || 's'
                 ,ctrl: true
@@ -31,11 +32,11 @@ MODx.page.UpdateAccessPolicyTemplate = function(config) {
             ,id: 'modx-abtn-cancel'
             ,params: {a:'security/permission'}
         },{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,id: 'modx-abtn-help'
             ,handler: MODx.loadHelpPane
         }]
-        ,components: [{
+        ,components: [{ 
             xtype: 'modx-panel-access-policy-template'
             ,template: config.template
             ,record: config.record || {}

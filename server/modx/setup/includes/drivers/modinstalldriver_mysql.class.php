@@ -14,9 +14,6 @@ require_once (strtr(realpath(dirname(__FILE__)), '\\', '/') . '/modinstalldriver
  * @package setup
  * @subpackage drivers
  */
-
-use xPDO\xPDO;
-
 class modInstallDriver_mysql extends modInstallDriver {
     /**
      * MySQL only needs PDO extension
@@ -57,10 +54,10 @@ class modInstallDriver_mysql extends modInstallDriver {
         $collations = null;
         $stmt = $this->xpdo->query("SHOW COLLATION");
         if ($stmt && $stmt instanceof PDOStatement) {
-            $collations = [];
+            $collations = array();
             if (empty($collation)) $collation = $this->getCollation();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $col = [];
+                $col = array();
                 $col['selected'] = ($row['Collation']==$collation ? ' selected="selected"' : '');
                 $col['value'] = $row['Collation'];
                 $col['name'] = $row['Collation'];
@@ -95,10 +92,10 @@ class modInstallDriver_mysql extends modInstallDriver {
         $charsets = null;
         $stmt = $this->xpdo->query('SHOW CHARSET');
         if ($stmt && $stmt instanceof PDOStatement) {
-            $charsets = [];
+            $charsets = array();
             if (empty($charset)) $charset = $this->getCharset();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $col = [];
+                $col = array();
                 $col['selected'] = $row['Charset']==$charset ? ' selected="selected"' : '';
                 $col['value'] = $row['Charset'];
                 $col['name'] = $row['Charset'];
@@ -140,7 +137,7 @@ class modInstallDriver_mysql extends modInstallDriver {
             $this->install->settings->set('config_options', $config_options);
             $this->install->settings->store();
 
-            return ['result' => 'warning', 'message' => $this->install->lexicon('mysql_version_server_nf'),'version' => $mysqlVersion];
+            return array('result' => 'warning', 'message' => $this->install->lexicon('mysql_version_server_nf'),'version' => $mysqlVersion);
         }
 
         $mysql_ver_comp = version_compare($mysqlVersion,'4.1.20','>=');
@@ -161,20 +158,11 @@ class modInstallDriver_mysql extends modInstallDriver {
         }
 
         if (!$mysql_ver_comp) { /* ancient driver warning */
-            return [
-                'result' => 'failure','message' => $this->install->lexicon('mysql_version_fail',
-                    ['version' => $mysqlVersion]),'version' => $mysqlVersion
-            ];
+            return array('result' => 'failure','message' => $this->install->lexicon('mysql_version_fail',array('version' => $mysqlVersion)),'version' => $mysqlVersion);
         } else if ($mysql_ver_comp_5051 || $mysql_ver_comp_5051a) { /* 5.0.51a. bad. berry bad. */
-            return [
-                'result' => 'failure','message' => $this->install->lexicon('mysql_version_5051',
-                    ['version' => $mysqlVersion]),'version' => $mysqlVersion
-            ];
+            return array('result' => 'failure','message' => $this->install->lexicon('mysql_version_5051',array('version' => $mysqlVersion)),'version' => $mysqlVersion);
         } else {
-            return [
-                'result' => 'success','message' => $this->install->lexicon('mysql_version_success',
-                    ['version' => $mysqlVersion]),'version' => $mysqlVersion
-            ];
+            return array('result' => 'success','message' => $this->install->lexicon('mysql_version_success',array('version' => $mysqlVersion)),'version' => $mysqlVersion);
         }
     }
 
@@ -186,20 +174,14 @@ class modInstallDriver_mysql extends modInstallDriver {
         $mysqlVersion = $this->xpdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
         $mysqlVersion = $this->_sanitizeVersion($mysqlVersion);
         if (empty($mysqlVersion)) {
-            return ['result' => 'warning','message' => $this->install->lexicon('mysql_version_client_nf'),'version' => $mysqlVersion];
+            return array('result' => 'warning','message' => $this->install->lexicon('mysql_version_client_nf'),'version' => $mysqlVersion);
         }
 
         $mysql_ver_comp = version_compare($mysqlVersion,'4.1.20','>=');
         if (!$mysql_ver_comp) {
-            return [
-                'result' => 'warning','message' => $this->install->lexicon('mysql_version_client_old',
-                    ['version' => $mysqlVersion]),'version' => $mysqlVersion
-            ];
+            return array('result' => 'warning','message' => $this->install->lexicon('mysql_version_client_old',array('version' => $mysqlVersion)),'version' => $mysqlVersion);
         } else {
-            return [
-                'result' => 'success','message' => $this->install->lexicon('mysql_version_success',
-                    ['version' => $mysqlVersion]),'version' => $mysqlVersion
-            ];
+            return array('result' => 'success','message' => $this->install->lexicon('mysql_version_success',array('version' => $mysqlVersion)),'version' => $mysqlVersion);
         }
     }
 
@@ -237,11 +219,11 @@ class modInstallDriver_mysql extends modInstallDriver {
      * @return string The sanitized version
      */
     protected function _sanitizeVersion($mysqlVersion) {
-        $mysqlVersion = str_replace([
+        $mysqlVersion = str_replace(array(
             'mysqlnd ',
             '-dev',
             ' ',
-        ],'',$mysqlVersion);
+        ),'',$mysqlVersion);
         return $mysqlVersion;
     }
 }

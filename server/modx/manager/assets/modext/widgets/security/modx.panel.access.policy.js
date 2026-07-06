@@ -10,7 +10,7 @@ MODx.panel.AccessPolicy = function(config) {
     Ext.applyIf(config,{
         url: MODx.config.connector_url
         ,baseParams: {
-            action: 'Security/Access/Policy/Update'
+            action: 'security/access/policy/update'
             ,id: MODx.request.id
         }
         ,id: 'modx-panel-access-policy'
@@ -19,7 +19,11 @@ MODx.panel.AccessPolicy = function(config) {
         ,plugin: ''
         ,bodyStyle: ''
         ,defaults: { collapsible: false ,autoHeight: true }
-        ,items: [this.getPageHeader(config),{
+        ,items: [{
+            html: _('policy')+(config.record ? ': '+config.record.name : '')
+            ,id: 'modx-policy-header'
+            ,xtype: 'modx-header'
+        },{
             xtype: 'modx-tabs'
             ,defaults: {
                 autoHeight: true
@@ -41,16 +45,13 @@ MODx.panel.AccessPolicy = function(config) {
                     ,layout: 'form'
                     ,labelAlign: 'top'
                     ,labelSeparator: ''
-                    ,defaults: {
-                        msgTarget: 'under'
-                    }
                     ,items: [{
                         xtype: 'hidden'
                         ,name: 'id'
                         ,value: config.plugin
                     },{
                         xtype: 'textfield'
-                        ,fieldLabel: _('name')
+                        ,fieldLabel: _('name')+'<span class="required">*</span>'
                         ,description: MODx.expandHelp ? '' : _('policy_desc_name')
                         ,name: 'name'
                         ,maxLength: 255
@@ -59,8 +60,8 @@ MODx.panel.AccessPolicy = function(config) {
                         ,anchor: '100%'
                         ,listeners: {
                             'keyup': {scope:this,fn:function(f,e) {
-                                Ext.getCmp('modx-header-breadcrumbs').updateHeader(Ext.util.Format.htmlEncode(f.getValue()));
-                            }}
+                                    Ext.getCmp('modx-policy-header').getEl().update(_('policy')+': '+f.getValue());
+                                }}
                         }
                     },{
                         xtype: MODx.expandHelp ? 'label' : 'hidden'
@@ -122,9 +123,8 @@ Ext.extend(MODx.panel.AccessPolicy,MODx.FormPanel,{
         }
         if (!this.initialized) {
             var r = this.config.record;
-            this.getForm().setValues(r);
-            Ext.getCmp('modx-header-breadcrumbs').updateHeader(Ext.util.Format.htmlEncode(r.name));
 
+            this.getForm().setValues(r);
             var g = Ext.getCmp('modx-grid-policy-permissions');
             if (g) { g.getStore().loadData(r.permissions); }
 
@@ -133,38 +133,24 @@ Ext.extend(MODx.panel.AccessPolicy,MODx.FormPanel,{
             this.initialized = true;
         }
     }
-
     ,beforeSubmit: function(o) {
-        const policyGrid = Ext.getCmp('modx-grid-policy-permissions');
-        policyGrid.clearFilter();
+        var g = Ext.getCmp('modx-grid-policy-permissions');
         Ext.apply(o.form.baseParams,{
-            permissions: policyGrid ? policyGrid.encode() : {}
+            permissions: g ? g.encode() : {}
         });
     }
 
     ,success: function(o) {
         Ext.getCmp('modx-grid-policy-permissions').getStore().commitChanges();
     }
-
-    ,getPageHeader: function(config) {
-        return MODx.util.getHeaderBreadCrumbs('modx-policy-header', [{
-            text: _('user_group_management'),
-            href: MODx.getPage('security/permission')
-        }]);
-    }
 });
 Ext.reg('modx-panel-access-policy',MODx.panel.AccessPolicy);
 
-/**
- * @class MODx.grid.PolicyPermissions
- * @extends MODx.grid.LocalGrid
- * @constructor
- * @param {Object} config An object of options.
- * @xtype modx-grid-policy-permissions
- */
+
+
 MODx.grid.PolicyPermissions = function(config) {
     config = config || {};
-    const enabledCheckCol = new Ext.ux.grid.CheckColumn({
+    var ac = new Ext.ux.grid.CheckColumn({
         header: _('enabled')
         ,dataIndex: 'enabled'
         ,width: 40
@@ -172,16 +158,13 @@ MODx.grid.PolicyPermissions = function(config) {
     });
     Ext.applyIf(config,{
         id: 'modx-grid-policy-permissions'
-        ,showActionsColumn: false
+        ,url: MODx.config.connector_url
+        ,baseParams: {
+            action: 'security/access/policy/getAttributes'
+        }
         ,cls: 'modx-grid modx-policy-permissions-grid'
-        ,fields: [
-            'name',
-            'description',
-            'description_trans',
-            'value',
-            'enabled'
-        ]
-        ,plugins: enabledCheckCol
+        ,fields: ['name','description','description_trans','value','enabled']
+        ,plugins: ac
         ,columns: [{
             header: _('name')
             ,dataIndex: 'name'
@@ -192,65 +175,7 @@ MODx.grid.PolicyPermissions = function(config) {
             ,dataIndex: 'description_trans'
             ,width: 250
             ,editable: false
-        },
-            enabledCheckCol
-        ]
-        ,tbar: [
-            '->',
-            {
-                xtype: 'checkbox',
-                id: 'filter-name-only',
-                boxLabel: _('policy_query_name_only'),
-                listeners: {
-                    check: {
-                        fn: function(cmp, isChecked) {
-                            const queryValue = Ext.getCmp('filter-query').getValue();
-                            if (!Ext.isEmpty(queryValue)) {
-                                this.applyQueryFilter(cmp, queryValue);
-                            }
-                        },
-                        scope: this
-                    }
-                }
-            },
-            {
-                xtype: 'textfield',
-                id: 'filter-query',
-                cls: 'x-form-filter',
-                emptyText: _('search'),
-                listeners: {
-                    change: {
-                        fn: this.applyQueryFilter,
-                        scope: this
-                    },
-                    render: {
-                        fn: function(cmp) {
-                            new Ext.KeyMap(cmp.getEl(), {
-                                key: Ext.EventObject.ENTER,
-                                fn: this.blur,
-                                scope: cmp
-                            });
-                        },
-                        scope: this
-                    }
-                }
-            },
-            {
-                text: _('filter_clear'),
-                cls: 'x-form-filter-clear',
-                listeners: {
-                    click: {
-                        fn: this.clearFilter,
-                        scope: this
-                    },
-                    mouseout: {
-                        fn: function(evt){
-                            this.removeClass('x-btn-focus');
-                        }
-                    }
-                }
-            }
-        ]
+        },ac]
         ,data: []
         ,width: '90%'
         ,height: 300
@@ -270,29 +195,31 @@ Ext.extend(MODx.grid.PolicyPermissions,MODx.grid.LocalGrid,{
         var r = s.getAt(ri);
         r.set('enabled',r.get('enabled') ? false : true);
         r.commit();
-    },
-    applyQueryFilter: function(cmp, newValue) {
-        const store = this.getStore(),
-              nameOnlyCb = Ext.getCmp('filter-name-only')
-        ;
-        if(newValue) {
-            if (nameOnlyCb.checked) {
-                store.filter('name', String.escape(newValue), true, false);
-            } else {
-                const query = new RegExp(Ext.escapeRe(newValue), 'i');
-                store.filter({
-                    fn: function(record) {
-                        return query.test(record.get('name')) || query.test(record.get('description_trans'));
-                    }
-                });
-            }
-        } else {
-            this.clearFilter();
-        }
-    },
-    clearFilter: function() {
-        Ext.getCmp('filter-query').setValue('');
-        this.getStore().clearFilter();
     }
 });
 Ext.reg('modx-grid-policy-permissions',MODx.grid.PolicyPermissions);
+
+
+MODx.combo.AccessPolicyTemplate = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        name: 'template'
+        ,hiddenName: 'template'
+        ,fields: ['id','name','description']
+        ,forceSelection: true
+        ,typeAhead: false
+        ,editable: false
+        ,allowBlank: false
+        // ,listWidth: 300
+        ,pageSize: 20
+        ,url: MODx.config.connector_url
+        ,baseParams: {
+            action: 'security/access/policy/template/getlist'
+        }
+        ,tpl: new Ext.XTemplate('<tpl for="."><div class="x-combo-list-item"><span style="font-weight: bold">{name:htmlEncode}</span>'
+            ,'<p style="margin: 0; font-size: 11px; color: gray;">{description:htmlEncode}</p></div></tpl>')
+    });
+    MODx.combo.AccessPolicyTemplate.superclass.constructor.call(this,config);
+};
+Ext.extend(MODx.combo.AccessPolicyTemplate,MODx.combo.ComboBox);
+Ext.reg('modx-combo-access-policy-template',MODx.combo.AccessPolicyTemplate);

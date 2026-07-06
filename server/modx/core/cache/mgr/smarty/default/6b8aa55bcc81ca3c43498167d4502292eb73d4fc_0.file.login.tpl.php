@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.5.6, created on 2026-06-27 17:29:44
+/* Smarty version 3.1.48, created on 2026-07-01 17:09:33
   from '/var/www/html/manager/templates/default/security/login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.5.6',
-  'unifunc' => 'content_6a4008883e4e29_89916636',
+  'version' => '3.1.48',
+  'unifunc' => 'content_6a4549cdb7c912_76422274',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6b8aa55bcc81ca3c43498167d4502292eb73d4fc' => 
     array (
       0 => '/var/www/html/manager/templates/default/security/login.tpl',
-      1 => 1782222764,
+      1 => 1742327582,
       2 => 'file',
     ),
   ),
@@ -20,273 +20,188 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6a4008883e4e29_89916636 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/var/www/html/core/vendor/smarty/smarty/libs/plugins/modifier.capitalize.php','function'=>'smarty_modifier_capitalize',),));
+function content_6a4549cdb7c912_76422274 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/var/www/html/core/model/smarty/plugins/modifier.replace.php','function'=>'smarty_modifier_replace',),));
 ?>
 <!doctype html>
-<html <?php if ($_smarty_tpl->tpl_vars['_config']->value['manager_direction'] == 'rtl') {?>dir="rtl"<?php }?> lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['cultureKey'];?>
-" xml:lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['cultureKey'];?>
+<html <?php if ($_smarty_tpl->tpl_vars['_config']->value['manager_direction'] == 'rtl') {?>dir="rtl"<?php }?> lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_lang_attribute'];?>
+" xml:lang="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_lang_attribute'];?>
 ">
-    <head>
-        <meta charset="<?php echo $_smarty_tpl->tpl_vars['_config']->value['modx_charset'];?>
-">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_title'];?>
- | <?php echo htmlspecialchars((string)preg_replace('!<[^>]*?>!', ' ', (string) $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
+<head>
+    <title><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_title'];?>
+ | <?php echo htmlspecialchars(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
 </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_smarty_tpl->tpl_vars['_config']->value['modx_charset'];?>
+" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <?php if ($_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url']) {?><link rel="shortcut icon" type="image/x-icon" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url'];?>
+" /><?php }?>
 
-        <?php if ($_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url']) {?>
-            <link rel="shortcut icon" type="image/x-icon" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url'];?>
-">
-            <link rel="apple-touch-icon" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_favicon_url'];?>
-">
-        <?php }?>
+    <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
+assets/ext3/resources/css/ext-all-notheme-min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
+templates/default/css/index<?php if ($_smarty_tpl->tpl_vars['_config']->value['compress_css']) {?>-min<?php }?>.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
+templates/default/css/login<?php if ($_smarty_tpl->tpl_vars['_config']->value['compress_css']) {?>-min<?php }?>.css" />
 
-        <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
-templates/default/css/login<?php if ($_smarty_tpl->tpl_vars['_config']->value['compress_css']) {?>-min<?php }?>.css">
-    </head>
-    <body id="login">
-        <?php echo $_smarty_tpl->tpl_vars['onManagerLoginFormPrerender']->value;?>
-
-
-        <div class="l-content">
-            <header class="l-header">
-                <img alt="MODX CMS/CMF" src="<?php echo $_smarty_tpl->tpl_vars['logo']->value;?>
-" class="c-logo">
-            </header>
-
-            <main class="l-main">
-                <?php if ($_smarty_tpl->tpl_vars['show_help']->value) {?>
-                    <div id="modx-login-help-block" class="c-help">
-                        <h2><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_help_title'];?>
-</h2>
-                        <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_help_text'];?>
-
-                    </div>
-                <?php }?>
-
-                <h1><?php echo $_smarty_tpl->tpl_vars['greeting']->value;?>
-</h1>
-
-                <?php if ($_smarty_tpl->tpl_vars['_config']->value['passwordless_activated']) {?>
-                                        <form id="modx-login-form" class="c-form" action="" method="post">
-                        <input type="hidden" name="login_context" value="mgr">
-                        <input type="hidden" name="modhash" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['modhash']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-">
-                        <input type="hidden" name="returnUrl" value="<?php echo $_smarty_tpl->tpl_vars['returnUrl']->value;?>
-">
-
-                        <p class="lead"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_note_passwordless'];?>
-</p>
-
-                        <?php if ((($tmp = $_smarty_tpl->tpl_vars['error_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                            <p class="is-error"><?php echo (($tmp = $_smarty_tpl->tpl_vars['error_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                        <?php } elseif ((($tmp = $_smarty_tpl->tpl_vars['success_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                            <p class="is-success"><?php echo (($tmp = $_smarty_tpl->tpl_vars['success_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                        <?php }?>
-
-                        <label>
-                            <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_email'];?>
-
-                            <input
-                                    type="text"
-                                    id="modx-login-passwordless"
-                                    name="passwordless_login_email"
-                                    value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['_post']->value['passwordless_login'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-"
-                                    placeholder="<?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_magiclink_email_placeholder'];?>
-"
-                                    required>
-                        </label>
-
-                        <button class="c-button" name="magiclink" type="submit" value="1" id="modx-magiclink-btn"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_magiclink_email_button'];?>
-</button>
-                    </form>
-
-                <?php } else { ?>
-
-                    <?php if (!(($tmp = $_smarty_tpl->tpl_vars['_post']->value['modhash'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                        <form id="modx-login-form" class="c-form can-toggle <?php if ((($tmp = $_smarty_tpl->tpl_vars['_post']->value['username_reset'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>is-hidden<?php }?>" action="" method="post">
-                            <input type="hidden" name="login_context" value="mgr">
-                            <input type="hidden" name="modhash" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['modhash']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-">
-                            <input type="hidden" name="returnUrl" value="<?php echo $_smarty_tpl->tpl_vars['returnUrl']->value;?>
-">
-
-                            <p class="lead"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_note'];?>
-</p>
-
-                            <?php if ((($tmp = $_smarty_tpl->tpl_vars['error_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                                <p class="is-error"><?php echo (($tmp = $_smarty_tpl->tpl_vars['error_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                            <?php } elseif ((($tmp = $_smarty_tpl->tpl_vars['success_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                                <p class="is-success"><?php echo (($tmp = $_smarty_tpl->tpl_vars['success_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                            <?php }?>
-
-                            <label>
-                                <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_username'];?>
-
-                                <input type="text" id="modx-login-username" name="username" autocomplete="on" autofocus value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['_post']->value['username'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" required>
-                            </label>
-
-                            <label>
-                                <div class="c-password-label">
-                                    <span><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_password'];?>
-</span>
-                                    <?php if ((($tmp = $_smarty_tpl->tpl_vars['allow_forgot_password']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                                        <a class="" id="modx-fl-link" name="forgotpassword"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_forget_your_login'];?>
-</a>
-                                    <?php }?>
-                                </div>
-                                <input type="password" id="modx-login-password" name="password" autocomplete="on" required>
-                            </label>
-
-                            <div id="rememberme-checkbox">
-                                <input type="checkbox" id="modx-login-rememberme" name="rememberme" autocomplete="on" <?php if ((($tmp = $_smarty_tpl->tpl_vars['_post']->value['rememberme'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>checked="checked"<?php }?> value="1">
-                                <label for="modx-login-rememberme">
-                                    <?php echo $_smarty_tpl->tpl_vars['rememberme']->value;?>
-
-                                </label>
-                            </div>
-
-                            <?php echo $_smarty_tpl->tpl_vars['onManagerLoginFormRender']->value;?>
-
-
-                            <button class="c-button" id="modx-login-btn" name="login" type="submit" value="1"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_button'];?>
-</button>
-                            <a class="c-button c-button--ghost" href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['site_url'];?>
-">
-                                <svg class="c-arrow c-arrow--left" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                    <g fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
-                                        <path class="arrow-icon--arrow" d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"></path>
-                                    </g>
-                                </svg>
-                                <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_return_site'];?>
-
-                            </a>
-                        </form>
-
-                        <?php if ((($tmp = $_smarty_tpl->tpl_vars['allow_forgot_password']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                            <form action="" method="post" id="modx-forgot-login-form" class="c-form can-toggle <?php if (!(($tmp = $_smarty_tpl->tpl_vars['_post']->value['username_reset'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>is-hidden<?php }?>">
-                                <p class="lead"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_forget_your_login_note'];?>
-</p>
-
-                                <?php if ((isset($_smarty_tpl->tpl_vars['error_message']->value)) && $_smarty_tpl->tpl_vars['error_message']->value) {?>
-                                    <p class="is-error"><?php echo (($tmp = $_smarty_tpl->tpl_vars['error_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                                <?php } elseif ((isset($_smarty_tpl->tpl_vars['success_message']->value)) && $_smarty_tpl->tpl_vars['success_message']->value) {?>
-                                    <p class="is-success"><?php echo (($tmp = $_smarty_tpl->tpl_vars['success_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                                <?php }?>
-
-                                <label>
-                                    <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_username_or_email'];?>
-
-                                    <input type="text" id="modx-login-username-reset" name="username_reset" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['_post']->value['username_reset'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" required>
-                                </label>
-
-                                <button class="c-button" name="forgotlogin" type="submit" value="1" id="modx-fl-btn"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_send_activation_email'];?>
-</button>
-                                <button name="modx-fl-back-to-login-link" id="modx-fl-back-to-login-link" class="c-button c-button--ghost">
-                                    <svg class="c-arrow c-arrow--left" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                        <g fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
-                                            <path class="arrow-icon--arrow" d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"></path>
-                                        </g>
-                                    </svg>
-                                    <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_back_to_login'];?>
-
-                                </button>
-                            </form>
-                        <?php }?>
-                    <?php } else { ?>
-                        <form action="" method="post" id="modx-new-password-form" class="c-form">
-                            <input type="hidden" name="modhash" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['_post']->value['modhash'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-">
-                            <p class="lead"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_new_password_note'];?>
-</p>
-
-                            <?php if ((($tmp = $_smarty_tpl->tpl_vars['error_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                                <p class="is-error"><?php echo (($tmp = $_smarty_tpl->tpl_vars['error_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                            <?php } elseif ((($tmp = $_smarty_tpl->tpl_vars['success_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
-                                <p class="is-success"><?php echo (($tmp = $_smarty_tpl->tpl_vars['success_message']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-</p>
-                            <?php }?>
-
-                            <label>
-                                <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_new_password'];?>
-
-                                <input type="password" id="modx-login-specified-password" name="specifiedpassword" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['_post']->value['specifiedpassword'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-" autofocus>
-                            </label>
-                            <label>
-                                <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_confirm_password'];?>
-
-                                <input type="password" id="modx-login-confirm-password" name="confirmpassword" value="<?php echo (($tmp = $_smarty_tpl->tpl_vars['_post']->value['confirmpassword'] ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
-">
-                            </label>
-
-                            <?php echo $_smarty_tpl->tpl_vars['onManagerLoginFormRender']->value;?>
-
-
-                            <button class="c-button" name="login" type="submit" value="1"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_button'];?>
-</button>
-                            <a href="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
-" class="c-button c-button--ghost">
-                                <svg class="c-arrow c-arrow--left" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                    <g fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
-                                        <path class="arrow-icon--arrow" d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"></path>
-                                    </g>
-                                </svg>
-                                <?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_back_to_login'];?>
-
-                            </a>
-                        </form>
-                    <?php }?>
-                <?php }?>
-            </main>
-            <footer class="l-footer">
-                <div class="c-languageselect">
-                    <select name="manager_language" id="modx-login-language-select" class="c-languageselect__select" aria-label="<?php echo $_smarty_tpl->tpl_vars['_config']->value['cultureKey'];?>
-">
-                        <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['languages']->value, 'native', false, 'language');
-$_smarty_tpl->tpl_vars['native']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['language']->value => $_smarty_tpl->tpl_vars['native']->value) {
-$_smarty_tpl->tpl_vars['native']->do_else = false;
-?>
-                            <option lang="<?php echo $_smarty_tpl->tpl_vars['language']->value;?>
-" aria-label="<?php echo smarty_modifier_capitalize($_smarty_tpl->tpl_vars['native']->value);?>
-" value="<?php echo $_smarty_tpl->tpl_vars['language']->value;?>
-"<?php if ($_smarty_tpl->tpl_vars['language']->value == $_smarty_tpl->tpl_vars['_config']->value['cultureKey']) {?> selected<?php }?>><?php echo smarty_modifier_capitalize($_smarty_tpl->tpl_vars['native']->value);?>
-</option>
-                        <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                    </select>
-                    <span class="c-languageselect__arrow"></span>
-                </div>
-                <?php if ($_smarty_tpl->tpl_vars['show_help']->value) {?>
-                    <a href="#help" class="c-helplink" id="modx-login-help-trigger"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_help_button_text'];?>
-</a>
-                <?php }?>
-            </footer>
-        </div>
-        <div class="l-background" style="background-image:url(<?php echo $_smarty_tpl->tpl_vars['background']->value;?>
-)"></div>
-
-        <?php echo '<script'; ?>
+<?php if ((isset($_smarty_tpl->tpl_vars['_config']->value['ext_debug'])) && $_smarty_tpl->tpl_vars['_config']->value['ext_debug']) {?>
+    <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
-assets/modext/sections/login.js"><?php echo '</script'; ?>
+assets/ext3/adapter/ext/ext-base-debug.js"><?php echo '</script'; ?>
 >
-    </body>
+    <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
+assets/ext3/ext-all-debug.js"><?php echo '</script'; ?>
+>
+<?php } else { ?>
+    <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
+assets/ext3/adapter/ext/ext-base.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
+assets/ext3/ext-all.js"><?php echo '</script'; ?>
+>
+<?php }?>
+    <?php echo '<script'; ?>
+ src="assets/modext/core/modx.js"><?php echo '</script'; ?>
+>
+
+    <?php echo '<script'; ?>
+ src="assets/modext/core/modx.component.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="assets/modext/util/utilities.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="assets/modext/widgets/core/modx.panel.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="assets/modext/widgets/core/modx.window.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="assets/modext/sections/login.js"><?php echo '</script'; ?>
+>
+
+    <meta name="robots" content="noindex, nofollow" />
+</head>
+
+<body id="login">
+<?php echo $_smarty_tpl->tpl_vars['onManagerLoginFormPrerender']->value;?>
+
+<br />
+
+<div id="container">
+    <div id="modx-login-logo">
+        <img alt="MODX CMS/CMF" src="<?php echo $_smarty_tpl->tpl_vars['_config']->value['manager_url'];?>
+templates/default/images/modx-logo-color.svg" />
+    </div>
+
+    <div id="modx-panel-login-div" class="x-panel modx-form x-form-label-right">
+        <form id="modx-login-form" action="" method="post">
+            <input type="hidden" name="login_context" value="mgr" />
+            <input type="hidden" name="modahsh" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['modahsh']->value)===null||$tmp==='' ? '' : $tmp);?>
+" />
+            <input type="hidden" name="returnUrl" value="<?php echo $_smarty_tpl->tpl_vars['returnUrl']->value;?>
+" />
+
+            <div class="x-panel x-panel-noborder">
+                <div class="x-panel-bwrap">
+                    <div class="x-panel-body x-panel-body-noheader">
+                        <h2><?php echo htmlspecialchars(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['_config']->value['site_name']), ENT_QUOTES, 'UTF-8', true);?>
+</h2>
+                        <br class="clear" />
+                        <?php if ((isset($_smarty_tpl->tpl_vars['error_message']->value)) && $_smarty_tpl->tpl_vars['error_message']->value) {?>
+                            <p class="error"><?php echo (($tmp = @$_smarty_tpl->tpl_vars['error_message']->value)===null||$tmp==='' ? '' : $tmp);?>
+</p>
+                        <?php } elseif ((isset($_smarty_tpl->tpl_vars['success_message']->value)) && $_smarty_tpl->tpl_vars['success_message']->value) {?>
+                            <p class="success"><?php echo (($tmp = @$_smarty_tpl->tpl_vars['success_message']->value)===null||$tmp==='' ? '' : $tmp);?>
+</p>
+                        <?php }?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="x-form-item login-form-item login-form-item-first">
+                <label for="modx-login-username"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_username'];?>
+</label>
+                <div class="x-form-element login-form-element">
+                    <input type="text" id="modx-login-username" name="username" autocomplete="on" autofocus value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['_post']->value['username'])===null||$tmp==='' ? '' : $tmp);?>
+" class="x-form-text x-form-field" aria-required="true" required />
+                </div>
+            </div>
+
+            <div class="x-form-item login-form-item">
+                <label for="modx-login-password"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_password'];?>
+</label>
+                <div class="x-form-element login-form-element">
+                    <input type="password" id="modx-login-password" name="password" autocomplete="on" class="x-form-text x-form-field" aria-required="true" required />
+                </div>
+            </div>
+
+            <div class="login-cb-row">
+                <div class="login-cb-col one">
+                    <div class="modx-login-fl-link">
+<?php if ((($tmp = @$_smarty_tpl->tpl_vars['allow_forgot_password']->value)===null||$tmp==='' ? '' : $tmp)) {?>
+                        <a href="javascript:void(0);" id="modx-fl-link" style="<?php if ((($tmp = @$_smarty_tpl->tpl_vars['_post']->value['username_reset'])===null||$tmp==='' ? '' : $tmp)) {?>display:none;<?php }?>"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_forget_your_login'];?>
+</a>
+<?php }?>
+                    </div>
+                </div>
+                <div class="login-cb-col two">
+                    <div class="x-form-check-wrap modx-login-rm-cb">
+                        <input type="checkbox" id="modx-login-rememberme" name="rememberme" autocomplete="on" <?php if ((($tmp = @$_smarty_tpl->tpl_vars['_post']->value['rememberme'])===null||$tmp==='' ? '' : $tmp)) {?>checked="checked"<?php }?> class="x-form-checkbox x-form-field" value="1" />
+                        <label for="modx-login-rememberme" class="x-form-cb-label"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_remember'];?>
+</label>
+                    </div>
+                    <button class="x-btn x-btn-small x-btn-icon-small-left primary-button x-btn-noicon login-form-btn" name="login" type="submit" value="1" id="modx-login-btn"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_button'];?>
+</button>
+                </div>
+            </div>
+
+            <?php echo $_smarty_tpl->tpl_vars['onManagerLoginFormRender']->value;?>
+
+        </form>
+
+<?php if ((($tmp = @$_smarty_tpl->tpl_vars['allow_forgot_password']->value)===null||$tmp==='' ? '' : $tmp)) {?>
+        <div class="modx-forgot-login">
+            <form id="modx-fl-form" action="" method="post">
+                <div id="modx-forgot-login-form" style="<?php if (!(($tmp = @$_smarty_tpl->tpl_vars['_post']->value['username_reset'])===null||$tmp==='' ? '' : $tmp)) {?>display: none;<?php }?>">
+                    <div class="x-form-item login-form-item">
+                        <div class="x-form-element login-form-element">
+                            <input type="text" id="modx-login-username-reset" name="username_reset" class="x-form-text x-form-field" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['_post']->value['username_reset'])===null||$tmp==='' ? '' : $tmp);?>
+" placeholder="<?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_username_or_email'];?>
+" />
+                        </div>
+                        <div class="x-form-clear-left"></div>
+                    </div>
+
+                    <button class="x-btn x-btn-small x-btn-icon-small-left primary-button x-btn-noicon login-form-btn" name="forgotlogin" type="submit" value="1" id="modx-fl-btn"><?php echo $_smarty_tpl->tpl_vars['_lang']->value['login_send_activation_email'];?>
+</button>
+                </div>
+            </form>
+        </div>
+<?php }?>
+        <br class="clear" />
+    </div>
+
+    <p class="loginLicense"><?php ob_start();
+echo date('Y');
+$_prefixVariable1 = ob_get_clean();
+echo smarty_modifier_replace($_smarty_tpl->tpl_vars['_lang']->value['login_copyright'],'[[+current_year]]',$_prefixVariable1);?>
+</p>
+</div>
+
+<div id="modx-login-language-select-div">
+    <label id="modx-login-language-select-label"><?php echo $_smarty_tpl->tpl_vars['language_str']->value;?>
+:
+        <select name="cultureKey" id="modx-login-language-select" aria-labeled-by="modx-login-language-select-label">
+<?php echo preg_replace('!^!m',str_repeat(' ',12),$_smarty_tpl->tpl_vars['languages']->value);?>
+
+        </select>
+    </label>
+</div>
+</body>
 </html>
 <?php }
 }

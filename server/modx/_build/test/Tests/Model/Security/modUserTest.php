@@ -9,11 +9,6 @@
  *
  * @package modx-test
 */
-namespace MODX\Revolution\Tests\Model\Security;
-
-
-use MODX\Revolution\modUser;
-use MODX\Revolution\MODxTestCase;
 
 /**
  * Tests related to the modUser class.
@@ -27,27 +22,23 @@ use MODX\Revolution\MODxTestCase;
 class modUserTest extends MODxTestCase {
     /** @var modUser $user */
     public $user;
-    /**
-     * Setup dummy data for each test.
-     *
-     * @before
-     */
-    public function setUpFixtures() {
-        parent::setUpFixtures();
-        $this->user = $this->modx->newObject(modUser::class);
-        $this->user->fromArray([
+
+    public function setUp() {
+        parent::setUp();
+        $this->user = $this->modx->newObject('modUser');
+        $this->user->fromArray(array(
             'id' => 123456,
             'username' => 'unit-test-user',
             'password' => md5('boogles'),
             'cachepwd' => '',
-            'class_key' => modUser::class,
+            'class_key' => 'modUser',
             'active' => true,
             'remote_key' => '',
-            'remote_data' => [],
+            'remote_data' => array(),
             'hash_class' => 'hashing.modMD5',
             'salt' => '',
             'primary_group' => 1,
-        ],'',true,true);
+        ),'',true,true);
     }
 
     /**
@@ -67,10 +58,10 @@ class modUserTest extends MODxTestCase {
      * @return array
      */
     public function providerSet() {
-        return [
-            ['password','boogie',md5('boogie')],
-            ['cachepwd','boogie',md5('boogie')],
-        ];
+        return array(
+            array('password','boogie',md5('boogie')),
+            array('cachepwd','boogie',md5('boogie')),
+        );
     }
 
     /**
@@ -88,19 +79,19 @@ class modUserTest extends MODxTestCase {
      * @param array $options
      * @dataProvider providerGeneratePassword
      */
-    public function testGeneratePassword($length, array $options = []) {
-        $password = $this->user->generatePassword($length, $options);
+    public function testGeneratePassword($length,array $options = array()) {
+        $password = $this->user->generatePassword($length,$options);
         $this->assertNotEmpty($password);
-        $this->assertEquals($length, strlen($password));
+        $this->assertEquals($length,strlen($password));
     }
     /**
      * @return array
      */
     public function providerGeneratePassword() {
-        return [
-            [12],
-            [18],
-        ];
+        return array(
+            array(10),
+            array(8),
+        );
     }
 
     public function testGeneratePasswordWithPasswordLengthOption()
@@ -109,24 +100,24 @@ class modUserTest extends MODxTestCase {
         $this->assertNotEmpty($password);
         $this->assertNotEquals(12, strlen($password));
 
-        $this->modx->setOption('password_generated_length', 12);
+        $this->modx->setOption('password_generated_length',12);
         $anotherPassword = $this->user->generatePassword();
         $this->assertNotEmpty($anotherPassword);
         $this->assertEquals(12, strlen($anotherPassword));
 
-        $this->modx->setOption('password_generated_length', '');
+        $this->modx->setOption('password_generated_length','');
         $yetAnotherPassword = $this->user->generatePassword();
         $this->assertNotEmpty($yetAnotherPassword);
-        $this->assertEquals(16, strlen($yetAnotherPassword));
+        $this->assertEquals(10, strlen($yetAnotherPassword));
     }
 
     public function testGeneratePasswordMinLength()
     {
-        $defaultPasswordMinLength = $this->modx->getOption('password_min_length', 12);
+        $defaultPasswordMinLength = $this->modx->getOption('password_min_length', 8);
         $password = $this->user->generatePassword();
         $this->assertGreaterThanOrEqual($defaultPasswordMinLength, strlen($password));
 
-        $passwordGeneratedLength = 16;
+        $passwordGeneratedLength = 10;
         $passwordMinLength = 12;
         $this->modx->setOption('password_generated_length', $passwordGeneratedLength);
         $this->modx->setOption('password_min_length', $passwordMinLength);

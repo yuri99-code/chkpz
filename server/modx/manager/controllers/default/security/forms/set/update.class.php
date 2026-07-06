@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of MODX Revolution.
  *
@@ -9,25 +8,19 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modFormCustomizationSet;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modTemplate;
-
 /**
  * Loads form customization set editing panel
  *
  * @package modx
  * @subpackage manager.controllers
  */
-class SecurityFormsSetUpdateManagerController extends modManagerController
-{
-    public $setArray = [];
+class SecurityFormsSetUpdateManagerController extends modManagerController {
+    public $setArray = array();
     /**
      * Check for any permissions or requirements to load page
      * @return bool
      */
-    public function checkPermissions()
-    {
+    public function checkPermissions() {
         return $this->modx->hasPermission('customize_forms');
     }
 
@@ -35,19 +28,18 @@ class SecurityFormsSetUpdateManagerController extends modManagerController
      * Register custom CSS/JS for the page
      * @return void
      */
-    public function loadCustomCssJs()
-    {
-        $mgrUrl = $this->modx->getOption('manager_url', null, MODX_MANAGER_URL);
-        $this->addJavascript($mgrUrl . 'assets/modext/widgets/fc/modx.fc.common.js');
-        $this->addJavascript($mgrUrl . 'assets/modext/widgets/fc/modx.panel.fcset.js');
-        $this->addJavascript($mgrUrl . 'assets/modext/sections/fc/set/update.js');
+    public function loadCustomCssJs() {
+        $mgrUrl = $this->modx->getOption('manager_url',null,MODX_MANAGER_URL);
+        $this->addJavascript($mgrUrl.'assets/modext/widgets/fc/modx.fc.common.js');
+        $this->addJavascript($mgrUrl.'assets/modext/widgets/fc/modx.panel.fcset.js');
+        $this->addJavascript($mgrUrl.'assets/modext/sections/fc/set/update.js');
         $this->addHtml('<script>
         // <![CDATA[
         Ext.onReady(function() {
             MODx.load({
                 xtype: "modx-page-fc-set-update"
-                ,set: "' . $this->setArray['id'] . '"
-                ,record: ' . $this->modx->toJSON($this->setArray) . '
+                ,set: "'.$this->setArray['id'].'"
+                ,record: '.$this->modx->toJSON($this->setArray).'
             });
         });
         // ]]>
@@ -59,27 +51,24 @@ class SecurityFormsSetUpdateManagerController extends modManagerController
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = [])
-    {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* get profile */
-        if (empty($scriptProperties['id'])) {
-            return $this->failure($this->modx->lexicon('set_err_ns'));
-        }
-        $c = $this->modx->newQuery(modFormCustomizationSet::class);
-        $c->leftJoin(modTemplate::class, 'Template');
-        $c->select($this->modx->getSelectColumns(modFormCustomizationSet::class, 'modFormCustomizationSet'));
-        $c->select([
+        if (empty($scriptProperties['id'])) return $this->failure($this->modx->lexicon('set_err_ns'));
+        $c = $this->modx->newQuery('modFormCustomizationSet');
+        $c->leftJoin('modTemplate','Template');
+        $c->select($this->modx->getSelectColumns('modFormCustomizationSet','modFormCustomizationSet'));
+        $c->select(array(
             'Template.templatename',
-        ]);
-        $c->where([
+        ));
+        $c->where(array(
             'id' => $scriptProperties['id'],
-        ]);
+        ));
         /** @var modFormCustomizationSet $set */
-        $set = $this->modx->getObject(modFormCustomizationSet::class, $c);
+        $set = $this->modx->getObject('modFormCustomizationSet',$c);
         if (empty($set)) {
-            return $this->failure($this->modx->lexicon('set_err_nfs', [
+            return $this->failure($this->modx->lexicon('set_err_nfs',[
                 'id' => htmlentities($scriptProperties['id'], ENT_QUOTES, 'UTF-8')
             ]));
         }
@@ -88,10 +77,10 @@ class SecurityFormsSetUpdateManagerController extends modManagerController
         $setData = $set->getData();
 
         /* format fields */
-        $this->setArray['fields'] = [];
+        $this->setArray['fields'] = array();
         if (!empty($setData['fields'])) {
             foreach ($setData['fields'] as $field) {
-                $this->setArray['fields'][] = [
+                $this->setArray['fields'][] = array(
                     $field['id'],
                     $field['action'],
                     $field['name'],
@@ -99,53 +88,51 @@ class SecurityFormsSetUpdateManagerController extends modManagerController
                     (int)$field['tab_rank'],
                     $field['other'],
                     (int)$field['rank'],
-                    (bool)$field['visible'],
+                    (boolean)$field['visible'],
                     $field['label'],
                     $field['default_value'],
-                ];
+                );
             }
         }
 
         /* format tabs */
-        $this->setArray['tabs'] = [];
+        $this->setArray['tabs'] = array();
         if (!empty($setData['tabs'])) {
             foreach ($setData['tabs'] as $tab) {
-                $this->setArray['tabs'][] = [
+                $this->setArray['tabs'][] = array(
                     (int)$tab['id'],
                     $tab['action'],
                     $tab['name'],
                     !empty($tab['form']) ? $tab['form'] : '',
                     !empty($tab['other']) ? $tab['other'] : '',
                     (int)$tab['rank'],
-                    (bool)$tab['visible'],
+                    (boolean)$tab['visible'],
                     $tab['label'],
                     $tab['type'],
                     'core',
-                ];
+                );
             }
         }
 
         /* format tvs */
-        $this->setArray['tvs'] = [];
+        $this->setArray['tvs'] = array();
         if (!empty($setData['tvs'])) {
             foreach ($setData['tvs'] as $tv) {
-                $this->setArray['tvs'][] = [
+                $this->setArray['tvs'][] = array(
                     (int)$tv['id'],
                     $tv['name'],
                     $tv['tab'],
                     (int)$tv['rank'],
-                    (bool)$tv['visible'],
+                    (boolean)$tv['visible'],
                     $tv['label'],
                     $tv['default_value'],
                     !empty($tv['category_name']) ? $tv['category_name'] : $this->modx->lexicon('none'),
-                    htmlspecialchars($tv['default_text'], ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5, $this->modx->getOption('modx_charset', null, 'UTF-8')),
-                ];
+                    htmlspecialchars($tv['default_text'],null,$this->modx->getOption('modx_charset',null,'UTF-8')),
+                );
             }
         }
 
-        if (empty($this->setArray['template'])) {
-            $this->setArray['template'] = 0;
-        }
+        if (empty($this->setArray['template'])) $this->setArray['template'] = 0;
 
         $placeholders['set'] = $this->setArray;
 
@@ -157,17 +144,15 @@ class SecurityFormsSetUpdateManagerController extends modManagerController
      *
      * @return string
      */
-    public function getPageTitle()
-    {
-        return $this->modx->lexicon('form_customization') . ': ' . $this->modx->lexicon('set');
+    public function getPageTitle() {
+        return $this->modx->lexicon('form_customization');
     }
 
     /**
      * Return the location of the template file
      * @return string
      */
-    public function getTemplateFile()
-    {
+    public function getTemplateFile() {
         return '';
     }
 
@@ -175,17 +160,15 @@ class SecurityFormsSetUpdateManagerController extends modManagerController
      * Specify the language topics to load
      * @return array
      */
-    public function getLanguageTopics()
-    {
-        return ['user','access','policy','formcustomization'];
+    public function getLanguageTopics() {
+        return array('user','access','policy','formcustomization');
     }
 
     /**
      * Get the Help URL
      * @return string
      */
-    public function getHelpUrl()
-    {
+    public function getHelpUrl() {
         return 'Form+Customization+Sets';
     }
 }

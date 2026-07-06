@@ -8,10 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modCategory;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modSystemEvent;
-
 /**
  * Load create template page
  *
@@ -46,6 +42,7 @@ class ElementTemplateCreateManagerController extends modManagerController {
         <script>
         // <![CDATA[
         MODx.onTempFormRender = "'.$this->onTempFormRender.'";
+        MODx.perm.unlock_element_properties = "'.($this->modx->hasPermission('unlock_element_properties') ? 1 : 0).'";
         Ext.onReady(function() {
             MODx.load({
                 xtype: "modx-page-template-create"
@@ -63,13 +60,13 @@ class ElementTemplateCreateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = []) {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* grab category if preset */
         if (isset($scriptProperties['category'])) {
-            $this->category = $this->modx->getObject(modCategory::class, $scriptProperties['category']);
-            if ($this->category !== null) {
+            $this->category = $this->modx->getObject('modCategory',$scriptProperties['category']);
+            if ($this->category != null) {
                 $placeholders['category'] = $this->category;
             }
         }
@@ -87,10 +84,10 @@ class ElementTemplateCreateManagerController extends modManagerController {
     public function firePreRenderEvents() {
         /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML
         into the panel */
-        $this->onTempFormPrerender = $this->modx->invokeEvent('OnTempFormPrerender', [
+        $this->onTempFormPrerender = $this->modx->invokeEvent('OnTempFormPrerender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onTempFormPrerender)) $this->onTempFormPrerender = implode('',$this->onTempFormPrerender);
         $this->setPlaceholder('onTempFormPrerender', $this->onTempFormPrerender);
     }
@@ -100,12 +97,12 @@ class ElementTemplateCreateManagerController extends modManagerController {
      * @return string
      */
     public function fireRenderEvent() {
-        $this->onTempFormRender = $this->modx->invokeEvent('OnTempFormRender', [
+        $this->onTempFormRender = $this->modx->invokeEvent('OnTempFormRender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onTempFormRender)) $this->onTempFormRender = implode('',$this->onTempFormRender);
-        $this->onTempFormRender = str_replace(['"',"\n","\r"], ['\"','',''],$this->onTempFormRender);
+        $this->onTempFormRender = str_replace(array('"',"\n","\r"),array('\"','',''),$this->onTempFormRender);
         return $this->onTempFormRender;
     }
 
@@ -131,7 +128,7 @@ class ElementTemplateCreateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['template','category','propertyset','element','tv'];
+        return array('template','category','propertyset','element','tv');
     }
 
     /**

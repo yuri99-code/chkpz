@@ -8,10 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-use MODX\Revolution\modCategory;
-use MODX\Revolution\modManagerController;
-use MODX\Revolution\modSystemEvent;
-
 /**
  * Load create plugin page
  *
@@ -54,6 +50,7 @@ class ElementPluginCreateManagerController extends modManagerController {
             });
         });
         MODx.onPluginFormRender = "'.$this->onPluginFormRender.'";
+        MODx.perm.unlock_element_properties = "'.($this->modx->hasPermission('unlock_element_properties') ? 1 : 0).'";
         // ]]>
         </script>');
     }
@@ -63,14 +60,13 @@ class ElementPluginCreateManagerController extends modManagerController {
      * @param array $scriptProperties
      * @return mixed
      */
-    public function process(array $scriptProperties = [])
-    {
-        $placeholders = [];
+    public function process(array $scriptProperties = array()) {
+        $placeholders = array();
 
         /* grab category if preset */
         if (isset($scriptProperties['category'])) {
-            $this->category = $this->modx->getObject(modCategory::class, $scriptProperties['category']);
-            if ($this->category !== null) {
+            $this->category = $this->modx->getObject('modCategory',$scriptProperties['category']);
+            if ($this->category != null) {
                 $placeholders['category'] = $this->category;
             }
         }
@@ -88,10 +84,10 @@ class ElementPluginCreateManagerController extends modManagerController {
     public function firePreRenderEvents() {
         /* PreRender events inject directly into the HTML, as opposed to the JS-based Render event which injects HTML
         into the panel */
-        $this->onPluginFormPrerender = $this->modx->invokeEvent('OnPluginFormPrerender', [
+        $this->onPluginFormPrerender = $this->modx->invokeEvent('OnPluginFormPrerender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onPluginFormPrerender)) $this->onPluginFormPrerender = implode('',$this->onPluginFormPrerender);
         $this->setPlaceholder('onPluginFormPrerender', $this->onPluginFormPrerender);
     }
@@ -101,12 +97,12 @@ class ElementPluginCreateManagerController extends modManagerController {
      * @return string
      */
     public function fireRenderEvent() {
-        $this->onPluginFormRender = $this->modx->invokeEvent('OnPluginFormRender', [
+        $this->onPluginFormRender = $this->modx->invokeEvent('OnPluginFormRender',array(
             'id' => 0,
             'mode' => modSystemEvent::MODE_NEW,
-        ]);
+        ));
         if (is_array($this->onPluginFormRender)) $this->onPluginFormRender = implode('',$this->onPluginFormRender);
-        $this->onPluginFormRender = str_replace(['"',"\n","\r"], ['\"','',''],$this->onPluginFormRender);
+        $this->onPluginFormRender = str_replace(array('"',"\n","\r"),array('\"','',''),$this->onPluginFormRender);
         return $this->onPluginFormRender;
     }
 
@@ -132,7 +128,7 @@ class ElementPluginCreateManagerController extends modManagerController {
      * @return array
      */
     public function getLanguageTopics() {
-        return ['plugin','category','system_events','propertyset','element'];
+        return array('plugin','category','system_events','propertyset','element');
     }
 
     /**

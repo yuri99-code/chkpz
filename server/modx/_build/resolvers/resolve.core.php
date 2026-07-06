@@ -1,9 +1,4 @@
 <?php
-/**
- * @var modX $modx
- * @var xPDOTransport $transport
- * @var array $fileMeta
- */
 $success= false;
 switch (MODX_SETUP_KEY) {
     case '@traditional':
@@ -27,3 +22,4 @@ switch (MODX_SETUP_KEY) {
         }
 }
 return $success;
+?>

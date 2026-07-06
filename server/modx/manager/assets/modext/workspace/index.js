@@ -13,7 +13,7 @@ MODx.page.Workspace = function(config) {
             xtype: 'modx-panel-workspace'
         }]
         ,buttons: [{
-            text: '<i class="icon icon-question-circle"></i>'
+            text: _('help_ex')
             ,handler: MODx.loadHelpPane
         }]
     });

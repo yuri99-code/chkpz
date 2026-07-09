@@ -17,7 +17,10 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<p>You have successfully installed MODX Revolution&nbsp;[[++settings_version]]!</p>
+    'content' => '[[*id]]
+[[*pagetitle]]
+
+<p>You have successfully installed MODX Revolution&nbsp;[[++settings_version]]!</p>
 <p>Now that MODX is installed you can login to the manager to create your templates, manage content and install third party extras to add functionality to your&nbsp;website. </p>
 
 <h2>New to&nbsp;MODX?</h2>
@@ -42,7 +45,7 @@
     'createdby' => 1,
     'createdon' => 1782925754,
     'editedby' => 1,
-    'editedon' => 1783359740,
+    'editedon' => 1783434058,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -308,7 +311,10 @@
 <div class="container">
     <section>
         <h1>Поздравляем!</h1>
-        <p>You have successfully installed MODX Revolution&nbsp;2.9.0-dev!</p>
+        1
+Главная
+
+<p>You have successfully installed MODX Revolution&nbsp;2.9.0-dev!</p>
 <p>Now that MODX is installed you can login to the manager to create your templates, manage content and install third party extras to add functionality to your&nbsp;website. </p>
 
 <h2>New to&nbsp;MODX?</h2>
@@ -428,6 +434,7 @@
   array (
     '[[*pagetitle]]' => 'Главная',
     '[[*longtitle:default=`Главная`]]' => 'Поздравляем!',
+    '[[*id]]' => 1,
   ),
   'sourceCache' => 
   array (

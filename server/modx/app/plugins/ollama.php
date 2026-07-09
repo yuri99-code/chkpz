@@ -43,6 +43,8 @@ switch ($modx->event->name) {
             $stmt = $pdo->prepare("
                 INSERT INTO resource_embeddings (resource_id, embedding, created_at)
                 VALUES (:resource_id, :embedding, NOW())
+                ON CONFLICT (resource_id)
+                DO UPDATE SET embedding = EXCLUDED.embedding, updated_at = now()
             ");
 
             $stmt->execute([

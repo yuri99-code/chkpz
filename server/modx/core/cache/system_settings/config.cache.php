@@ -109,7 +109,7 @@
   'locale' => '',
   'lock_ttl' => '360',
   'log_deprecated' => '1',
-  'log_level' => '1',
+  'log_level' => '4',
   'log_snippet_not_found' => '1',
   'log_target' => 'FILE',
   'mail_charset' => 'UTF-8',

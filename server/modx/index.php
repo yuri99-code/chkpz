@@ -8,9 +8,6 @@
  * files found in the top-level directory of this distribution.
  */
 
-
-error_log("DEBUG REQUEST_URI=" . ($_SERVER['REQUEST_URI'] ?? 'NONE') . " | QUERY_STRING=" . ($_SERVER['QUERY_STRING'] ?? 'NONE'));
-
 $tstart= microtime(true);
 
 /* define this as true in another entry file, then include this file to simply access the API

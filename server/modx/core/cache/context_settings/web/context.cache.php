@@ -6,9 +6,11 @@
   array (
     'index.html' => 1,
     'каталог/' => 2,
-    'api.json' => 4,
+    'api/' => 4,
     'test.html' => 6,
-    'гайка.html' => 3,
+    'ключ.html' => 3,
+    'гайка.html' => 7,
+    'мяч.html' => 8,
     'vector-search.json' => 5,
   ),
   'resourceMap' => 
@@ -23,6 +25,8 @@
     2 => 
     array (
       0 => 3,
+      1 => 7,
+      2 => 8,
     ),
     4 => 
     array (
